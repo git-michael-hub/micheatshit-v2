@@ -1,0 +1,9 @@
+@Component({ /* ... */ })
+export class MyComponent {
+  name: string;
+  email: string;
+
+  onSubmit(formData: any) {
+    console.log(formData);
+  }
+}

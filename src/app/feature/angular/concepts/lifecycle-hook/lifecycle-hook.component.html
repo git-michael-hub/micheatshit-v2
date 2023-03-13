@@ -1,0 +1,127 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    lifecycle hooks
+  </p>
+
+  <div class="text-content">
+    <p>
+      An interface that allows you to tap into the lifecycle of directives and components as they are created, updated, and destroyed:
+    </p>
+
+    <br>
+
+    <div class="">
+      <table class="w-fit divide-gray-200">
+        <thead class="bg-gray-800">
+          <tr>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-800 sm:pl-6"></th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">HOOK METHOD</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">DETAILS</th>
+
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-gray-800">
+          <tr>
+            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
+              1
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-400">
+              ngOnChanges
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-200">
+              When an input or output binding value changes.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
+             2
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-400">
+              ngOnInit
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-200">
+              After the first ngOnChanges.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
+              3
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-400">
+              ngDoCheck
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-200">
+              Developer's custom change detection.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
+              4
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-400">
+              ngAfterContentInit
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-200">
+              After component content initialized.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
+             5
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-400">
+              ngAfterContentChecked
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-200">
+              After every check of component content.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
+             6
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-400">
+              ngAfterViewInit
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-200">
+              After the views of a component are initialized.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
+             7
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-400">
+              ngAfterViewChecked
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-200">
+              After every check of the views of a component.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
+             8
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-400">
+              ngOnDestroy
+            </td>
+            <td class=" px-3 py-4 text-sm text-gray-200">
+              Just before the directive is destroyed.
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+

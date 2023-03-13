@@ -1,0 +1,17 @@
+import { Component } from '@angular/core';
+import { MyComponent } from './my-component';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <div [ngComponentOutlet]="component"></div>
+    <button (click)="loadComponent()">Load Component</button>
+  `
+})
+export class AppComponent {
+  component = null;
+
+  loadComponent() {
+    this.component = MyComponent;
+  }
+}

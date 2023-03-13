@@ -1,0 +1,376 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    Dependency Injection (DI)
+  </p>
+
+  <div class="text-content">
+    <p>
+      A design pattern and mechanism for creating and delivering some parts of an application (dependencies) to other parts of an application that require them.
+    </p>
+
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<ng-template #notesRef>
+  <p>
+    Dependency Injection (DI) in Angular:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Providers</strong> - Define the dependencies that are injected into components, directives, and services. Providers can be declared at the component, module, or application level.
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Injectors</strong> - Responsible for providing dependencies to components and services. Injectors are created at the component or module level and can inherit providers from their parent injector.
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Services</strong> - Provide reusable functionality to components and other services. Services can be injected into components and other services using dependency injection.
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Injectable</strong> - A decorator that marks a class as injectable and provides metadata that the injector uses to resolve dependencies.
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Tokens</strong> - Unique identifiers used by the injector to resolve dependencies. Tokens can be strings, classes, or objects.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Factory providers</strong> - Allow for custom logic to be used when creating dependencies. Factory providers are declared using a factory function that returns an instance of the dependency.
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Value providers</strong> - Allow for simple, static values to be injected as dependencies. Value providers are declared using a plain JavaScript object or a factory function that returns the value.
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Optional dependencies</strong> - Dependencies that are not required by a component or service can be marked as optional using the @Optional decorator.
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Injection tokens</strong> - Unique identifiers that can be used to resolve dependencies. Injection tokens are used when the dependency is not a class or a string.
+
+      <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code9 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_9"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Hierarchical injection</strong> - Allows for dependencies to be inherited by child components and services.
+
+      <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code10 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_10"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Understanding these concepts is essential for building scalable and maintainable Angular applications that use dependency injection to manage dependencies and improve code reuse.
+  </p>
+</ng-template>
+
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Better code maintainability</strong> - DI helps keep the code modular and makes it easier to test and modify individual components and services.
+    </li>
+    <li>
+      <strong>Improved code reusability</strong> - Components and services can be reused across the application and even in different applications.
+    </li>
+    <li>
+      <strong>Easier testing</strong> - DI allows for easy mocking of dependencies, making it easier to test components and services in isolation.
+    </li>
+    <li>
+      <strong>Better code organization</strong> - DI allows developers to easily manage dependencies between components and services, making the code more organized and easier to understand.
+    </li>
+    <li>
+      <strong>Reduced coupling</strong> - DI allows for looser coupling between components and services, making it easier to swap out dependencies or replace them with different implementations.
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Learning curve</strong> - DI can be challenging for developers who are new to the Angular framework, as it requires a solid understanding of the framework's architecture and design patterns.
+    </li>
+    <li>
+      <strong>Overhead</strong> - DI can add some overhead to the application, as it requires additional code to be written and executed by the Angular framework.
+    </li>
+    <li>
+      <strong>Complexity</strong> - As the application grows in size and complexity, it can become more challenging to manage the dependencies between components and services.
+    </li>
+    <li>
+      <strong>Performance impact</strong> - DI can impact the performance of the application if not used properly, particularly if there are many dependencies that need to be resolved and injected.
+    </li>
+    <li>
+      <strong>Debugging challenges</strong> - DI can make it more challenging to debug code, as it can be difficult to trace the dependencies between components and services.
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Despite these challenges, DI is a powerful and essential tool for building scalable and maintainable Angular applications. By carefully weighing the pros and cons and using DI effectively, developers can create applications that are easy to maintain, test, and modify over time.
+  </p>
+
+</ng-template>
+
+
+
+<ng-template #topicsRef>
+  <p>
+    Here are some related topics:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Inversion of Control (IoC)</strong> - DI is a form of IoC, which is a design pattern that decouples components by allowing a framework or container to handle the creation and management of objects.
+    </li>
+    <li>
+      <strong>Constructor injection</strong> - The most common form of DI in Angular, where dependencies are injected into a component or service through its constructor.
+    </li>
+    <li>
+      <strong>Property injection</strong> - An alternative form of DI in Angular, where dependencies are injected into a component or service through its properties.
+    </li>
+    <li>
+      <strong>Providers</strong> - The mechanism by which Angular provides and manages dependencies.
+    </li>
+    <li>
+      <strong>Injectors</strong> - The Angular service responsible for resolving dependencies and injecting them into components and services.
+    </li>
+    <li>
+      <strong>Tree-shakable providers</strong> - Providers that can be safely removed by the Angular compiler if they are not used in the application.
+    </li>
+    <li>
+      <strong>Multi-provider</strong> - A mechanism for providing multiple instances of a dependency.
+    </li>
+    <li>
+      <strong>Lazy loading</strong> - A technique used to defer the loading of components and services until they are needed.
+    </li>
+    <li>
+      <strong>Singleton services</strong> - Services that are shared across the entire application and are only instantiated once.
+    </li>
+    <li>
+      <strong>Testing</strong> - DI makes it easy to test components and services in isolation by providing mock dependencies.
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Understanding these related topics to DI is essential for building scalable and maintainable Angular applications that leverage the full power of Dependency Injection.
+  </p>
+
+</ng-template>
+

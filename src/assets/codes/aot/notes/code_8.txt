@@ -1,0 +1,15 @@
+import { Component, HostBinding, HostListener } from '@angular/core';
+
+@Component({
+  selector: 'app-host-binding',
+  template: `
+    <div>Host binding example</div>
+  `
+})
+export class HostBindingComponent {
+  @HostBinding('style.color') color = 'red';
+
+  @HostListener('click') onClick() {
+    alert('Host clicked!');
+  }
+}

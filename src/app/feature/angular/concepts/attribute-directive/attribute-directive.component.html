@@ -1,0 +1,328 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    attribute directive
+  </p>
+
+  <div class="text-content">
+    <p>
+      A category of <a href="">directive</a> that can listen to and modify the behavior of other HTML elements, attributes, properties, and components. They are usually represented as HTML attributes, hence the name.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<ng-template #notesRef>
+  <p>
+    Commonly used features and methods of Angular attribute directives:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>@Input()</strong> - Decorator that declares an input property for the directive. Used to pass data from a parent component to the directive.
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+
+        <span  copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>html</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_1_2"
+              [languages]="['html']">
+            </code>
+          </pre>
+        </span>
+
+
+      </span>
+
+    </li>
+    <li>
+      <strong>@HostBinding()</strong> - Decorator that binds a property of the host element to a property of the directive. Used to modify the host element's properties, such as styles or attributes.
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>@HostListener()</strong> - Decorator that listens for events on the host element and executes a method in the directive. Used to add event handling logic to the directive.
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>ElementRef</strong> - Class that provides access to the host element of the directive. Used to modify the host element's properties or add/remove child elements.
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Renderer2</strong> - Class that provides a safer way to modify the host element's properties than directly accessing the native element. Used to modify the host element's properties or add/remove child elements.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>ngAfterViewInit()</strong> - Lifecycle hook that executes after the view and child views are initialized. Used to modify the host element's properties or add/remove child elements.
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>@Directive()</strong> - Decorator that declares a class as an attribute directive.
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    By using these features and methods of Angular attribute directives, you can create powerful and reusable components that modify the behavior and appearance of host elements in your Angular app.
+  </p>
+
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Reusability</strong> - Attribute directives are reusable and can be used on multiple elements throughout your application.
+    </li>
+    <li>
+      <strong>Flexibility</strong> - Attribute directives allow you to modify the behavior or appearance of an element by binding to one or more of its attributes, which gives you a lot of flexibility in how you modify the element.
+    </li>
+    <li>
+      <strong>Modularity</strong> - Attribute directives allow you to separate concerns and logic by encapsulating functionality into a single directive.
+    </li>
+    <li>
+      <strong>Testability</strong> - Attribute directives can be easily unit tested to ensure that they behave as expected.
+    </li>
+    <li>
+      <strong>Easy to Learn</strong> - Attribute directives are relatively easy to learn and can be quickly added to an application.
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Tight Coupling</strong> - Attribute directives can create tight coupling between the directive and the HTML element it's applied to, making it harder to reuse the directive with other elements.
+    </li>
+    <li>
+      <strong>Global Scope</strong> - Attribute directives have a global scope, which can lead to naming conflicts and make it harder to manage large applications.
+    </li>
+    <li>
+      <strong>Complexity</strong> - Attribute directives can become complex if they have too much logic or too many options, making them harder to maintain.
+    </li>
+    <li>
+      <strong>Performance</strong> - Attribute directives can negatively impact application performance if they are used excessively or if their logic is inefficient.
+    </li>
+    <li>
+      <strong>Limited Access to Component Logic</strong> - Attribute directives have limited access to a component's logic and data, which can make it harder to create custom functionality.
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Overall, attribute directives can be a powerful tool for modifying the behavior and appearance of elements in your Angular application. However, like any feature, they have their strengths and weaknesses, and should be used appropriately based on the specific needs of your application.
+  </p>
+
+</ng-template>
+
+
+<ng-template #topicsRef>
+  <p>
+    Here are some topics related to Angular attribute directives:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Directive Definition Object (DDO)</strong> - The configuration object that defines the behavior of an Angular directive, including its selector, inputs, outputs, and other options.
+    </li>
+    <li>
+      <strong>Structural Directives</strong> - A type of directive that modifies the structure of the DOM by adding, removing, or replacing elements. Examples include *ngIf, *ngFor, and *ngSwitch.
+    </li>
+    <li>
+      <strong>Attribute Directives</strong> - A type of directive that modifies the behavior or appearance of an element by binding to one or more of its attributes. Examples include ngStyle, ngClass, and ngModel.
+    </li>
+    <li>
+      <strong>Host Binding</strong> - A technique for modifying the host element of an attribute directive by binding to one of its properties.
+    </li>
+    <li>
+      <strong>Host Listener</strong> - A technique for adding event listeners to the host element of an attribute directive.
+    </li>
+    <li>
+      <strong>ElementRef</strong> - A service that provides access to the host element of a directive or component.
+    </li>
+    <li>
+      <strong>Renderer2</strong> - A service that provides a safer way to modify the host element's properties than directly accessing the native element.
+    </li>
+    <li>
+      <strong>ViewChildren</strong> - A decorator that provides access to child elements or components that match a specified selector.
+    </li>
+    <li>
+      <strong>ContentChildren</strong> - A decorator that provides access to child elements or components that are projected into a component's content area.
+    </li>
+    <li>
+      <strong>Dependency Injection</strong> - A technique for providing an instance of a service or other object to a directive or component.
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    By understanding these topics, you can create more powerful and flexible attribute directives in your Angular applications.
+  </p>
+</ng-template>

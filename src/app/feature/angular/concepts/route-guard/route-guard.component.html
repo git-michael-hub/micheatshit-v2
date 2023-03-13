@@ -1,0 +1,325 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    route guard
+  </p>
+
+  <div class="text-content">
+    <p>
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<ng-template #notesRef>
+  <p>
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Creating a Route Guard</strong>
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Using a Route Guard in a Route</strong>
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Handling Guarded Navigation</strong>
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Handling Access Denied</strong>
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Handling Route Deactivation</strong>
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Lazy Loading Modules with Route Guards</strong>
+
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Angular Route Guards provide a way to protect routes from unauthorized access, handle route deactivation, and optimize the performance of your application. By using Angular Route Guards, you can create more secure and efficient applications that provide a better user experience.
+  </p>
+</ng-template>
+
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Secure Your Application</strong>
+      <p>
+        Route Guards can be used to secure your application by restricting access to certain routes. This can help protect sensitive data and prevent unauthorized access.
+      </p>
+    </li>
+    <li>
+      <strong>Improve User Experience</strong>
+      <p>
+        By using Route Guards to pre-fetch data or lazy load modules, you can improve the overall user experience of your application. This can help reduce load times and improve performance.
+      </p>
+    </li>
+    <li>
+      <strong>Centralized Management:</strong>
+      <p>
+        Route Guards provide a centralized way to manage route access and data fetching. This can help simplify your code and make it easier to maintain.
+      </p>
+    </li>
+    <li>
+      <strong>Flexibility</strong>
+      <p>
+        Route Guards can be customized to fit the needs of your application. You can create custom Route Guards that check for specific conditions and handle errors in a way that makes sense for your application.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Increased Complexity</strong>
+      <p>
+        Implementing Route Guards can add complexity to your application, especially if you are new to Angular. Route Guards require a good understanding of Angular's routing system and can be difficult to implement correctly.
+      </p>
+    </li>
+    <li>
+      <strong>Performance Overhead</strong>
+      <p>
+        Route Guards can add a small performance overhead to your application, especially if you are using multiple guards on a single route. This is because the guards are executed every time the route is accessed.
+      </p>
+    </li>
+    <li>
+      <strong>Maintenance Overhead</strong>
+      <p>
+        As your application grows, managing multiple Route Guards can become more difficult. This can increase the maintenance overhead of your application and make it harder to add new features.
+      </p>
+    </li>
+    <li>
+      <strong>Debugging Issues</strong>
+      <p>
+        Debugging Route Guards can be challenging, especially if you are dealing with complex conditions or multiple guards. It can be difficult to determine which guard is causing an issue, and debugging can be time-consuming.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Overall, the pros of using Angular Route Guards outweigh the cons, especially if security and user experience are important to your application. By understanding the potential drawbacks and implementing Route Guards correctly, you can create a more secure, efficient, and maintainable application.
+  </p>
+
+  </ng-template>
+
+
+
+
+  <ng-template #topicsRef>
+    <p>
+      Some related topics to Angular Route Guards:
+    </p>
+
+    <br>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>CanActivateChild</strong>
+        <p>
+          This interface is similar to CanActivate, but it is used for guarding child routes. You can use this interface to protect child routes from unauthorized access, and it can be useful for creating more complex route hierarchies.
+        </p>
+      </li>
+      <li>
+        <strong>CanDeactivate</strong>
+        <p>
+          his interface is used to guard against leaving a route. You can use this interface to check if the user has unsaved changes, for example, and ask them to confirm before leaving the route.
+        </p>
+      </li>
+      <li>
+        <strong>Resolve</strong>
+        <p>
+          This interface is used to fetch data before navigating to a route. You can use this interface to ensure that the data is available before displaying the route, which can improve the user experience of your application.
+        </p>
+      </li>
+      <li>
+        <strong>Route Configurations</strong>
+        <p>
+          You can configure routes in many different ways, such as lazy loading, preloading, and redirects. Understanding the different options for configuring routes can help you create a more efficient and maintainable application.
+        </p>
+      </li>
+      <li>
+        <strong>Route Navigation</strong>
+        <p>
+          The Angular Router provides many options for navigating between routes, such as using links, programmatic navigation, and navigating with parameters. Understanding how to navigate between routes is essential for creating a seamless user experience.
+        </p>
+      </li>
+      <li>
+        <strong>Authentication and Authorization</strong>
+        <p>
+          Route Guards can be used for implementing authentication and authorization in your application. By protecting routes with Route Guards, you can ensure that only authorized users can access certain parts of your application.
+        </p>
+      </li>
+      <li>
+        <strong>Performance Optimization</strong>
+        <p>
+          Route Guards can also be used for optimizing the performance of your application. By using Route Guards to lazy load modules, for example, you can reduce the initial load time of your application and improve the overall performance.
+        </p>
+      </li>
+    </ol>
+
+    <br>
+
+    <p>
+      These topics are all related to Angular Route Guards and can help you create more secure, efficient, and maintainable applications. By understanding these topics and how they relate to Angular Route Guards, you can create better applications and provide a better user experience for your users.
+    </p>
+
+  </ng-template>

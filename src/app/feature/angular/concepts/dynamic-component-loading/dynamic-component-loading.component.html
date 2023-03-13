@@ -1,0 +1,384 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    dynamic component loading
+  </p>
+
+  <div class="text-content">
+    <p>
+      Dynamic component loading in Angular is a powerful feature that allows developers to load and render components dynamically at runtime. This can be useful in a variety of scenarios, such as creating dynamic forms, implementing lazy loading, and building modular applications.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<ng-template #notesRef>
+  <p>
+    Key concepts and techniques related to dynamic component loading:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>ComponentFactoryResolver</strong>: A service provided by Angular that allows you to dynamically create component factories at runtime. You can use this service to obtain a ComponentFactory for a given component and then use the factory to create instances of the component.
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>ViewContainerRef</strong>: A class that represents a container for views. You can use this class to create and manage views in the DOM, including dynamically loaded components.
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>ComponentRef</strong>: A class that represents a reference to a dynamically loaded component instance. You can use this class to interact with the component instance, such as accessing its properties and methods.
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>ngComponentOutlet</strong>: A structural directive provided by Angular that allows you to dynamically load a component into a template. You can use this directive to load a component into a specific location in the DOM, such as a div or a section.
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Lazy Loading</strong>: A technique for loading modules and components only when they are needed, rather than loading them all upfront. This can improve application performance by reducing the initial load time and only loading what is needed at runtime.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>NgModuleFactoryLoader</strong>: A service provided by Angular that allows you to load modules and components dynamically at runtime. You can use this service to obtain a NgModuleFactory for a given module and then use the factory to load the module and its components.
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Router</strong>: The Angular Router provides a way to load components dynamically based on the current route. You can use the router to lazy load components and modules as needed, based on the user's interactions with the application.
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>DynamicComponentLoader</strong>: to load a component dynamically.
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>ComponentFactoryResolver</strong> and <strong>ViewContainerRef</strong>: to load a component dynamically with data.
+
+      <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code9 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_9"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>ngComponentOutlet</strong>: to load a component dynamically with data.
+
+
+      <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code10 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_10"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+
+    </li>
+    <li>
+      <strong>ContentChildren</strong> to load components dynamically based on a directive.
+
+
+      <button (click)="code11.hidden = !code11.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code11 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_11"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    By mastering these concepts and techniques, you can create powerful and dynamic applications that provide a great user experience while also being scalable and maintainable.
+  </p>
+</ng-template>
+
+
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      Dynamically loading components can <strong>improve the performance</strong> of your application by loading only the components that are needed, instead of loading all components at startup.
+    </li>
+    <li>
+      Dynamic component loading can make your application more <strong>modular and easier to maintain</strong>, by allowing you to separate your components into smaller, reusable pieces.
+    </li>
+    <li>
+      Dynamically loading components can enable more <strong>advanced features</strong>, such as lazy loading, which can improve the overall user experience of your application.
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      Dynamic component loading can add <strong>complexity</strong> to your application, and may require additional effort to set up and maintain.
+    </li>
+    <li>
+      Dynamically loaded components may have a slightly <strong>longer initial load time</strong> than components that are loaded statically, due to the additional overhead of loading the component at runtime.
+    </li>
+    <li>
+      Dynamic component loading may <strong>require additional configuration and setup for features</strong> like dependency injection and change detection.
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Overall, dynamic component loading can be a powerful tool for building modular and maintainable Angular applications. However, it is important to weigh the potential benefits against the additional complexity and potential performance implications, and to carefully consider the use cases for dynamic loading in your application.
+  </p>
+
+
+  </ng-template>
+
+
+
+
+  <ng-template #topicsRef>
+    <p>
+      Some related topics to dynamic component loading:
+    </p>
+
+    <br>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>Lazy Loading</strong>: Lazy loading is a technique for delaying the loading of modules and components until they are actually needed, which can help improve the initial load time of your application. This is particularly useful for large or complex applications that may have many components that are not immediately needed.
+      </li>
+      <li>
+        <strong>Code Splitting</strong>: Code splitting is a technique for breaking your application into smaller chunks that can be loaded on demand, which can also help improve the initial load time of your application. This is particularly useful for applications that have many large or complex components that may not be needed on every page.
+      </li>
+      <li>
+        <strong>NgModule</strong>: NgModule is a core concept in Angular that defines a compilation context for a set of components, directives, and services. By defining modules, you can organize your application into logical units and manage dependencies between components and services.
+      </li>
+      <li>
+        <strong>ViewContainerRef</strong>: ViewContainerRef is a class in Angular that represents a container element in your template that can host one or more components. ViewContainerRef is used extensively in dynamic component loading to create and insert instances of components into the DOM.
+      </li>
+      <li>
+        <strong>ComponentFactoryResolver</strong>: ComponentFactoryResolver is a class in Angular that allows you to create factories for components, which can then be used to create instances of the component at runtime. ComponentFactoryResolver is used extensively in dynamic component loading to create new instances of components and insert them into the DOM.
+      </li>
+      <li>
+        <strong>ngComponentOutlet</strong>: ngComponentOutlet is a directive in Angular that allows you to dynamically load a component into your template based on a class or instance property. This is a simple and powerful technique for dynamic component loading, but it does have some limitations in terms of customization and control over the component instance.
+      </li>
+      <li>
+        <strong>Content Projection</strong>: Content projection is a technique in Angular for projecting content from a parent component into a child component, which can be used to create reusable components and dynamic templates. Content projection is used extensively in dynamic component loading to allow components to be inserted into other components at runtime.
+      </li>
+      <li>
+        <strong>Custom Directives</strong>: Custom directives are a powerful feature in Angular that allow you to extend the behavior of elements in your templates. Custom directives can be used to create reusable behaviors for your components, and can also be used in conjunction with dynamic component loading to create more advanced features like dynamic forms and dialogs.
+      </li>
+    </ol>
+
+    <br>
+
+    <p>
+      Overall, dynamic component loading is a powerful tool in Angular that can help you create more flexible and responsive applications. By carefully considering the architecture and performance implications of dynamic component loading, and by using best practices and techniques like lazy loading and code splitting, you can create high-quality applications that provide a great user experience.
+    </p>
+
+  </ng-template>

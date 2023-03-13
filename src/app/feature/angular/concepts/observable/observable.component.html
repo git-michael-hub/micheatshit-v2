@@ -1,0 +1,356 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    observable
+  </p>
+
+  <div class="text-content">
+    <p>
+      Observables are a powerful feature in Angular that allow you to handle asynchronous data streams. Observables can be used to represent HTTP requests, user input, and other asynchronous events in your application.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<ng-template #notesRef>
+  <p>
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Creating an Observable</strong>:
+      <p>
+        To create an observable in Angular, you can use the Observable constructor or one of the utility functions such as of or from.
+      </p>
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Subscribing to an Observable</strong>:
+      <p>
+        To subscribe to an observable in Angular, you can use the subscribe method and pass in callbacks for handling the next, error, and complete events.
+      </p>
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Operators</strong>:
+      <p>
+        Operators are functions that can be used to transform, filter, and manipulate observables in various ways. There are many operators available in Angular, including map, filter, reduce, take, skip, debounceTime, and many more.
+      </p>
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Subjects</strong>:
+      <p>
+        Subjects are a type of observable that can be used to multicast events to multiple subscribers. Subjects have a next method that can be used to push new values to all subscribers.
+      </p>
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Error Handling</strong>:
+      <p>
+        You can handle errors in observables using the catchError and throwError operators. catchError is used to catch errors and return a new observable, while throwError is used to throw an error
+      </p>
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    By understanding observables, subscribing to them, using operators, handling errors, and working with subjects in Angular, you can handle asynchronous data streams and improve the responsiveness and interactivity of your application.
+  </p>
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Reactive programming</strong>:
+      <p>
+        Observables are a powerful tool for reactive programming, allowing you to easily handle asynchronous data streams and events in your application.
+      </p>
+    </li>
+    <li>
+      <strong>Consistent API</strong>:
+      <p>
+        Observables provide a consistent API for handling asynchronous data streams, making it easy to work with different data sources and APIs in your application.
+      </p>
+    </li>
+    <li>
+      <strong>Cancellation and Error handling</strong>:
+      <p>
+        Observables provide built-in mechanisms for cancelling requests and handling errors, making it easier to handle errors and improve the robustness of your application.
+      </p>
+    </li>
+    <li>
+      <strong>Composability</strong>:
+      <p>
+        Observables are composable, allowing you to easily combine and transform multiple streams of data in your application. This makes it easier to create complex data flows and handle more advanced scenarios.
+      </p>
+    </li>
+    <li>
+      <strong>Angular integration</strong>:
+      <p>
+        Observables are a core feature of Angular, making it easy to use them with other Angular features such as the HTTP client, forms, and routing.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Learning curve</strong>:
+      <p>
+        Observables can have a steep learning curve, especially if you are not familiar with reactive programming concepts or the RxJS library.
+      </p>
+    </li>
+    <li>
+      <strong>Overhead</strong>:
+      <p>
+        Observables can add some overhead to your application, both in terms of code complexity and runtime performance. This can be especially true for complex data flows and scenarios.
+      </p>
+    </li>
+    <li>
+      <strong>Callback hell</strong>:
+      <p>
+        If not used carefully, observables can lead to "callback hell", where you end up with a large number of nested subscriptions and callback functions.
+      </p>
+    </li>
+    <li>
+      <strong>Debugging</strong>:
+      <p>
+        Observables can be more difficult to debug than other programming patterns, especially if you are not familiar with the reactive programming concepts and operators used with observables.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    While there are some downsides to using observables in Angular, the benefits they provide for handling asynchronous data streams and events make them a powerful tool for building responsive and robust applications. By understanding the pros and cons of observables, you can make an informed decision about when and how to use them in your applications.
+  </p>
+
+  </ng-template>
+
+
+
+
+
+  <ng-template #topicsRef>
+    <p>
+      Some topics related to Observables in Angular:
+    </p>
+
+    <br>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>Unicast vs Multicast</strong>:
+        <p>
+          Unicast observables have a single subscriber, while multicast observables have multiple subscribers. Unicast observables are created using the Observable constructor, while multicast observables are created using the Subject or Observable.create methods.
+        </p>
+
+        <button (click)="code1r.hidden = !code1r.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code1r hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_1_r"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+
+      </li>
+      <li>
+        <strong>Cold vs Hot</strong>:
+        <p>
+          Cold observables create a new data stream for each subscriber, while hot observables share a single data stream between subscribers. Cold observables are created using the Observable constructor, while hot observables are created using the Subject or Observable.create methods.
+        </p>
+
+        <button (click)="code2r.hidden = !code2r.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code2r hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_2_r"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+
+
+      </li>
+      <li>
+        <strong>Creation Operators</strong>:
+        <p>
+          Creation operators are functions that create new observables from scratch. Some popular creation operators include of, from, interval, and timer.
+        </p>
+
+        <button (click)="code3r.hidden = !code3r.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code3r hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_3_r"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+
+      </li>
+    </ol>
+
+
+    <br>
+
+    <p>
+      By understanding observable patterns, creation operators, and the difference between unicast and multicast, cold and hot observables, you can create more powerful and flexible applications in Angular.
+    </p>
+
+  </ng-template>

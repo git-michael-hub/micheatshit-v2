@@ -1,0 +1,35 @@
+<!-- <div class="flex flex-row m-1">
+  <div></div>
+  <div class="flex flex-row justify-end">
+    <button class="p-1">Line</button>
+    <button class="p-1">Spread</button>
+  </div>
+</div> -->
+
+
+<div class="flex flex-row  pt-10 ">
+  <section class="relative overflow-y-auto h-screen" style="width: 43%;">
+    <app-glossary></app-glossary>
+  </section>
+
+
+  <section class="relative  bg-[#303030] overflow-y-auto h-screen rounded-md" style="width: 57%;">
+    <router-outlet></router-outlet>
+  </section>
+</div>
+
+
+
+
+
+<div class="invisible bg-gray-700 w-screen absolute h-8 bottom-0 right-0 grid grid-cols-6 gap-1 justify-between">
+
+  <button appBoxWidget [appBoxWidgetData]="item" [appBoxWidgetIsClosed]="appBoxWidgetIsClosed"
+    (click)="closeBox(i)"
+    *ngFor="let item of (bottomPills$ | async); let i = index"
+    [id]="i"
+    class="mx-1 px-2 w-72 text-white z-40">
+    {{ item.name }}
+    <!-- <span class="box-pop-{{i}}"></span> -->
+  </button>
+</div>

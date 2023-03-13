@@ -1,0 +1,25 @@
+import { Component } from '@angular/core';
+import { MyComponent } from './my-component';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <div [ngComponentOutlet]="component" [ngComponentOutletInjector]="injector"></div>
+    <button (click)="loadComponent('Hello, World!')">Load Component</button>
+  `
+})
+export class AppComponent {
+  component = null;
+  injector = null;
+
+  constructor(private injector: Injector, private resolver: ComponentFactoryResolver) { }
+
+  loadComponent(data: string) {
+    const componentFactory = this.resolver.resolveComponentFactory(MyComponent);
+    this.injector = Injector.create({
+      providers: [{ provide: 'data', useValue: data }],
+      parent: this.injector
+    });
+    this.component = componentFactory.create(this.injector);
+  }
+}

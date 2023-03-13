@@ -1,0 +1,292 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    routing component
+  </p>
+
+  <div class="text-content">
+    <p>
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<ng-template #notesRef>
+  <p>
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Basic Usage</strong>
+
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Route Parameters</strong>
+
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Query Parameters</strong>
+
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Route Configuration</strong>
+
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+
+  </p>
+</ng-template>
+
+
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Flexible Routing</strong>
+      <p>
+        Angular Routing Component provides a powerful and flexible way to define routes and map them to components in your application. This allows you to create complex routing structures with nested routes, named outlets, and more.
+      </p>
+    </li>
+    <li>
+      <strong>Modularity</strong>
+      <p>
+        Angular Routing Component allows you to separate your application into multiple modules, each with its own set of routes. This can help to improve the maintainability of your codebase and make it easier to reason about.
+      </p>
+    </li>
+    <li>
+      <strong>Lazy Loading</strong>
+      <p>
+        Angular Routing Component supports lazy loading, which allows you to load modules and components on demand, improving the performance of your application.
+      </p>
+    </li>
+    <li>
+      <strong>Route Guards</strong>
+      <p>
+        Angular Routing Component provides a way to add security and data validation to your routes using route guards. This can help to prevent unauthorized access to certain parts of your application and ensure that the data being passed to your components is valid.
+      </p>
+    </li>
+    <li>
+      <strong>Route Resolvers</strong>
+      <p>
+        Angular Routing Component allows you to pre-fetch data for a component before it is rendered using route resolvers. This can help to improve the performance of your application by reducing the amount of time it takes to load data.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <p>
+        Angular Routing Component can have a steep learning curve, especially for beginners who are new to Angular. The syntax for defining routes and navigating between them can be complex and take some time to master.
+      </p>
+    </li>
+    <li>
+      <strong>Debugging</strong>
+      <p>
+        Debugging routing issues can be difficult and time-consuming, especially when dealing with complex routing structures and route guards.
+      </p>
+    </li>
+    <li>
+      <strong>Performance Overhead</strong>
+      <p>
+        Angular Routing Component has some performance overhead due to its dynamic nature and the fact that it needs to maintain a stateful routing configuration.
+      </p>
+    </li>
+    <li>
+      <strong>Configuration Complexity</strong>
+      <p>
+        As the routing structure of your application becomes more complex, the configuration of Angular Routing Component can become more complex and harder to maintain.
+      </p>
+    </li>
+  </ol>
+
+
+  <br>
+
+  <p>
+    Overall, Angular Routing Component is a powerful tool for creating complex routing structures and dynamic applications, but it can also add complexity and overhead to your application. It's important to carefully consider your routing requirements and design your routing structures accordingly.
+  </p>
+
+  </ng-template>
+
+
+
+
+  <ng-template #topicsRef>
+    <p>
+      Some related topics to Angular Routing Component:
+    </p>
+
+    <br>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>Angular Router Configuration</strong>
+        <p>
+          Angular Router Component is a part of Angular Router module, and the configuration of the router is done in the app-routing.module.ts file. The configuration defines the available routes in the application and maps them to the appropriate components.
+        </p>
+      </li>
+      <li>
+        <strong>Route Parameters</strong>
+        <p>
+          Route parameters are placeholders that capture the values from the URL and pass them to the component. The parameter values are accessed using the ActivatedRoute service.
+        </p>
+      </li>
+      <li>
+        <strong>Query Parameters</strong>
+        <p>
+          Query parameters are used to pass data to a component through the URL. They are usually appended to the URL as key-value pairs.
+        </p>
+      </li>
+      <li>
+        <strong>Route Guards</strong>
+        <p>
+          Route guards are used to protect routes in Angular applications. They can be used to prevent unauthorized access, redirect the user to a login page, or perform any other custom logic.
+        </p>
+      </li>
+      <li>
+        <strong>Route Resolvers</strong>
+        <p>
+          Route resolvers are used to prefetch data before the route is activated. They are used to avoid the "flicker" effect that can occur when data is loaded after the component is rendered.
+        </p>
+      </li>
+      <li>
+        <strong>Lazy Loading</strong>
+        <p>
+          Lazy loading is a technique that is used to load modules and components on demand, only when they are needed. This can improve the performance of the application and reduce the initial load time.
+        </p>
+      </li>
+      <li>
+        <strong>Angular Router Events</strong>
+        <p>
+          Angular Router Component emits several events that can be used to perform custom logic. For example, the NavigationStart event is emitted when a navigation starts, and the NavigationEnd event is emitted when the navigation ends.
+        </p>
+      </li>
+    </ol>
+
+
+    <br>
+
+    <p>
+      These are some related topics that are often used in conjunction with Angular Router Component. By understanding these topics, you can create more complex and dynamic applications using Angular.
+    </p>
+
+  </ng-template>

@@ -1,0 +1,3 @@
+<ul>
+  <li *ngFor="let item of items; index as i; let startIndex = start">{{ item }} at index {{ i + startIndex }}</li>
+</ul>

@@ -1,0 +1,14 @@
+import { Observable, of, from } from 'rxjs';
+
+// Create an observable using the Observable constructor
+const myObservable = new Observable(observer => {
+  observer.next('Hello');
+  observer.next('World');
+  observer.complete();
+});
+
+// Create an observable using the of function
+const myObservable = of('Hello', 'World');
+
+// Create an observable using the from function
+const myObservable = from(['Hello', 'World']);

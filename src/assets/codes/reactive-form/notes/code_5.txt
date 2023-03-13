@@ -1,0 +1,4 @@
+addControl() {
+  const newControl = new FormControl();
+  this.myForm.addControl('newControl', newControl);
+}

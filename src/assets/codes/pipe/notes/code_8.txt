@@ -1,0 +1,1 @@
+<p>{{ myString | uppercase | slice:0:1 }}{{ myString | slice:1 }}</p>

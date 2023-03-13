@@ -1,0 +1,336 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    router outlet
+  </p>
+
+  <div class="text-content">
+    <p>
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<ng-template #notesRef>
+  <p>
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Basic Usage</strong>
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Named Outlets</strong>
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['html']">
+          </code>
+        </pre>
+
+        <!-- <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button> -->
+
+        <span  copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_2_1"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+
+
+      </span>
+
+    </li>
+    <li>
+      <strong>Route Animations</strong>
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+
+        <!-- <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button> -->
+
+        <span  copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_3_1"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+
+      </span>
+
+    </li>
+    <li>
+      <strong>Router Configuration</strong>
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+  </p>
+</ng-template>
+
+
+
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Flexible Routing</strong>
+      <p>
+        Angular Router Outlet allows you to create complex routing structures with multiple named outlets, nested outlets, and componentless routes.
+      </p>
+    </li>
+    <li>
+      <strong>Route Animations</strong>
+      <p>
+        Angular Router Outlet supports route animations, which allows you to animate the transition between different routes in your application.
+      </p>
+    </li>
+    <li>
+      <strong>Dynamic Configuration</strong>
+      <p>
+        Angular Router Outlet allows you to dynamically configure your routes at runtime, allowing you to create more flexible and dynamic applications.
+      </p>
+    </li>
+    <li>
+      <strong>Route Parameters</strong>
+      <p>
+        Angular Router Outlet allows you to pass data to components via the URL using route parameters.
+      </p>
+    </li>
+    <li>
+      <strong>Route Guards</strong>
+      <p>
+        Angular Router Outlet allows you to add security and data validation to your routes using route guards.
+      </p>
+    </li>
+    <li>
+      <strong>Route Resolvers</strong>
+      <p>
+        Angular Router Outlet allows you to pre-fetch data for a component before it is rendered using route resolvers, improving the performance of your application.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Complexity</strong>
+      <p>
+        Angular Router Outlet can become complex to use when creating advanced routing structures.
+      </p>
+    </li>
+    <li>
+      <strong>Learning Curve</strong>
+      <p>
+        Angular Router Outlet has a learning curve, especially for beginners who are new to Angular.
+      </p>
+    </li>
+    <li>
+      <strong>Performance Overhead</strong>
+      <p>
+        Angular Router Outlet has some performance overhead due to its dynamic nature and the fact that it needs to maintain a stateful routing configuration.
+      </p>
+    </li>
+    <li>
+      <strong>Debugging</strong>
+      <p>
+        Debugging complex routing structures can be difficult and time-consuming.
+      </p>
+    </li>
+  </ol>
+
+
+  <br>
+
+  <p>
+    Overall, Angular Router Outlet is a powerful tool for creating complex routing structures and dynamic applications, but it can also add complexity and overhead to your application. It's important to carefully consider your routing requirements and design your routing structures accordingly.
+  </p>
+
+  </ng-template>
+
+
+
+
+
+  <ng-template #topicsRef>
+    <p>
+      Some related topics to Angular Router Outlet:
+    </p>
+
+    <br>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>Nested Router Outlets</strong>
+        <p>
+          You can use multiple router-outlet elements in a single template to create nested routing structures. This allows you to define multiple named outlets that can be used to load different components depending on the current route.
+        </p>
+      </li>
+      <li>
+        <strong>Route Animations</strong>
+        <p>
+          Angular Router supports route animations, which allows you to animate the transition between different routes in your application. You can define animations using the @angular/animations package and apply them to your routes using the [@routeAnimation] directive.
+        </p>
+      </li>
+      <li>
+        <strong>Componentless Routes</strong>
+        <p>
+          Componentless routes allow you to define routes that have no associated component. This can be useful for creating complex nested routes where only the child routes have associated components.
+        </p>
+      </li>
+      <li>
+        <strong>Route Configuration</strong>
+        <p>
+          Angular Router allows you to configure your routes using a combination of static and dynamic configuration. Static configuration involves defining your routes in code, while dynamic configuration allows you to load routes dynamically at runtime.
+        </p>
+      </li>
+      <li>
+        <strong>Route Parameters:</strong>
+        <p>
+          Route parameters allow you to pass data to a component via the URL. You can define route parameters by adding a colon (:) before the parameter name in the route path. You can then access the parameter value via the ActivatedRoute service.
+        </p>
+      </li>
+      <li>
+        <strong>Route Guards</strong>
+        <p>
+          Route guards allow you to add security and data validation to your routes. You can use route guards to prevent unauthorized access to certain routes, validate user input, or perform other tasks before allowing the user to access a particular route.
+        </p>
+      </li>
+      <li>
+        <strong>Route Resolvers</strong>
+        <p>
+          Route resolvers allow you to pre-fetch data for a component before it is rendered. This can help to improve the performance of your application by reducing the time it takes to load data. You can define route resolvers by adding a resolve property to your route configuration.
+        </p>
+      </li>
+    </ol>
+
+
+    <br>
+
+    <p>
+      These are some related topics that are often used in conjunction with Angular Router Outlet. By understanding these topics, you can create more complex and dynamic applications using Angular.
+    </p>
+
+  </ng-template>
+
+
+

@@ -1,0 +1,31 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    Architect
+  </p>
+
+  <div class="text-content">
+    <p>
+      The tool that the Angular CLI uses to perform complex tasks such as compilation and test running, according to a provided configuration. Architect is a shell that runs a <a href="">builder</a> with a given <a href="">target configuration</a>. The <a href="">builder</a> is defined in an <a href="">npm package</a>.
+    </p>
+
+    <br>
+
+    <p>
+      In the <a href="">workspace configuration file</a>, an "architect" section provides configuration options for Architect builders.
+    </p>
+
+    <br>
+
+    <p>
+      For example, a built-in builder for linting is defined in the package <code>@angular-devkit/build_angular:tslint</code>, which uses the <a href="">TSLint</a> tool to perform linting, with a configuration specified in a <code>tslint.json</code> file.
+    </p>
+
+    <br>
+
+    <p>
+      Use the <a href="">ng run</a> Angular CLI command to invoke a builder by specifying a <a href="">target configuration</a> associated with that builder. Integrators can add builders to enable tools and workflows to run through the Angular CLI. For example, a custom builder can replace the third-party tools used by the built-in implementations for Angular CLI commands, such as <code>ng build</code> or <code>ng test</code>.
+    </p>
+  </div>
+</section>
+
+

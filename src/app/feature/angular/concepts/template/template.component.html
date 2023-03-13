@@ -1,0 +1,332 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    template
+  </p>
+
+  <div class="text-content">
+    <p>
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<ng-template #notesRef>
+  <p>
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      Interpolation
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Property Binding
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Event Binding
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Two-Way Binding
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      ngIf Directive
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      ngFor Directive
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+
+  </p>
+</ng-template>
+
+
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Easy to Learn:</strong>
+      <p>
+        Angular templates use familiar HTML syntax, making them easy to learn for web developers with HTML and CSS experience.
+      </p>
+    </li>
+    <li>
+      <strong>Separation of Concerns</strong>
+      <p>
+        Angular templates allow for a clear separation of concerns between presentation and logic, making it easier to maintain and update code.
+      </p>
+    </li>
+    <li>
+      <strong>Data Binding</strong>
+      <p>
+        Angular templates allow for easy data binding between components and the view, reducing boilerplate code and making it easier to manage application state.
+      </p>
+    </li>
+    <li>
+      <strong>Declarative Syntax</strong>
+      <p>
+        Angular templates use a declarative syntax, making it easier to write concise and readable code that is self-explanatory.
+      </p>
+    </li>
+    <li>
+      <strong>Testability</strong>
+      <p>
+        Angular templates are testable, making it easier to write and run unit tests for individual components and the application as a whole.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Complexity</strong>
+      <p>
+        Angular templates can become complex as applications grow, making it harder to manage and maintain code.
+      </p>
+    </li>
+    <li>
+      <strong>Template Bloat</strong>
+      <p>
+        Angular templates can become bloated with repeated or duplicated code, leading to a larger application size and reduced performance.
+      </p>
+    </li>
+    <li>
+      <strong>Limited Logic</strong>
+      <p>
+        Angular templates have limited logic capabilities, which can make it difficult to create complex data transformations or business logic.
+      </p>
+    </li>
+    <li>
+      <strong>Tight Coupling</strong>
+      <p>
+        Angular templates can create tight coupling between components and the view, making it harder to reuse and decouple code.
+      </p>
+    </li>
+    <li>
+      <strong>Performance</strong>
+      <p>
+        Angular templates can have an impact on application performance, particularly in larger or more complex applications. Techniques such as lazy loading and optimization can help mitigate this issue.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Overall, Angular templates offer a powerful and flexible way to create dynamic and interactive user interfaces. While they do have some potential downsides, these can be mitigated with careful planning and use of best practices.
+  </p>
+
+  </ng-template>
+
+
+
+  <ng-template #topicsRef>
+    <p>
+      Some related topics to Angular templates:
+    </p>
+
+    <br>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>Directives</strong>
+        <p>
+          Angular templates use directives to add behavior to HTML elements. Directives can be structural, like *ngIf and *ngFor, or attribute-based, like [ngClass] and [ngStyle].
+        </p>
+      </li>
+      <li>
+        <strong>Template Syntax</strong>
+        <p>
+          Angular templates use a combination of HTML, Angular-specific syntax, and expressions to create dynamic views. Template syntax includes interpolation , property binding, event binding , two-way binding, and structural directives.
+        </p>
+      </li>
+      <li>
+        <strong>Template Reference Variables</strong>
+        <p>
+          Angular templates allow you to create references to elements and components using template reference variables. These variables are defined using the # symbol, and can be used to reference elements in event binding and two-way binding expressions.
+        </p>
+      </li>
+      <li>
+        <strong>Template-driven Forms</strong>
+        <p>
+          Angular templates can be used to create forms using the template-driven approach. Template-driven forms use Angular directives and template syntax to create form controls and handle user input.
+        </p>
+      </li>
+      <li>
+        <strong>Template Inheritance</strong>
+        <p>
+          Angular templates can be inherited by child components to create a consistent UI across an application. Template inheritance allows you to define a base template and extend it in child components.
+        </p>
+      </li>
+      <li>
+        <strong>Template Rendering</strong>
+        <p>
+          Angular templates are rendered by the browser using the DOM. The Angular compiler parses the template and generates the corresponding DOM elements, which are then inserted into the browser's rendering engine.
+        </p>
+      </li>
+      <li>
+        <strong>Performance Considerations</strong>
+        <p>
+          Angular templates can have an impact on application performance. Techniques such as lazy loading, change detection strategies, and optimization of expressions can help improve template rendering performance.
+        </p>
+      </li>
+    </ol>
+
+    <br>
+
+    <p>
+      Overall, Angular templates are a critical part of building Angular applications, and understanding their syntax and behavior is key to building effective and performant user interfaces.
+    </p>
+
+  </ng-template>

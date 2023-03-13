@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '~highlight.js/styles/github-dark-dimmed.css';
+
+
+.heading-1 {
+  @apply text-xl text-rose-400;
+}
+
+strong {
+  @apply text-rose-400;
+}
+
+.text-content {
+  @apply text-gray-300;
+}
+
+
+a {
+  @apply text-sky-300 hover:underline hover:decoration-solid hover:cursor-pointer hover:decoration-rose-400;
+}
+
+li.sub-category {
+  @apply hover:underline hover:decoration-solid hover:cursor-pointer hover:decoration-rose-400;
+}
+
+ol li {
+  @apply pb-1;
+}
+
+code {
+  @apply bg-gray-900 text-rose-300 text-xs;
+}

@@ -1,0 +1,420 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    router
+  </p>
+
+  <div class="text-content">
+    <p>
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<ng-template #notesRef>
+  <p>
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Basic Routing</strong>
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Route Parameters</strong>
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Route Guards</strong>
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Lazy Loading</strong>
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Child Routes</strong>
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Route Redirects</strong>
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Route Resolvers</strong>
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Route Events</strong>
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Wildcard Routes</strong>
+
+      <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code9 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_9"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Location Strategy</strong>
+
+       <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code10 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_10"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    These are some common examples of Angular Router configurations. You can use them as a reference to create your own routing configuration according to your application requirements.
+  </p>
+</ng-template>
+
+
+
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Modular design</strong>
+      <p>
+        Angular Router allows you to organize your application into multiple, self-contained modules. Each module can have its own set of routes and can be loaded lazily, resulting in a more modular and efficient application.
+      </p>
+    </li>
+    <li>
+      <strong>Support for nested routes</strong>
+      <p>
+        Angular Router supports nested routes, allowing you to organize your application into a hierarchy of routes that match the structure of your application.
+      </p>
+    </li>
+    <li>
+      <strong>Support for route parameters</strong>
+      <p>
+        Angular Router supports route parameters, which allows you to pass data between different components via the URL.
+      </p>
+    </li>
+    <li>
+      <strong>Support for route guards</strong>
+      <p>
+        Angular Router allows you to define route guards that can be used to protect routes from unauthorized access, validate user input, or perform other tasks before allowing the user to access a particular route.
+      </p>
+    </li>
+    <li>
+      <strong>Support for route resolvers</strong>
+      <p>
+        Angular Router allows you to define route resolvers that can be used to fetch data for a route before the component is rendered.
+      </p>
+    </li>
+    <li>
+      <strong>Support for route events</strong>
+      <p>
+        Angular Router provides a set of events that can be used to monitor the navigation lifecycle of your application, allowing you to respond to changes in the application state.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Complexity</strong>
+      <p>
+        Angular Router can be complex, especially when you are first learning how to use it. There are many different concepts to understand, such as lazy loading, route guards, and route resolvers.
+      </p>
+    </li>
+    <li>
+      <strong>Performance</strong>
+      <p>
+        Lazy loading can improve the performance of your application by reducing the amount of code that needs to be loaded upfront. However, if you use lazy loading too extensively, it can lead to slower load times and increased complexity.
+      </p>
+    </li>
+    <li>
+      <strong>Debugging</strong>
+      <p>
+        When using Angular Router, it can be difficult to debug routing issues, especially if you have a large number of routes and route guards.
+      </p>
+    </li>
+  </ol>
+
+
+  <br>
+
+  <p>
+    Overall, Angular Router provides a powerful set of tools for building complex, modular applications. While it can be complex and difficult to learn, it can ultimately lead to more maintainable and scalable applications.
+  </p>
+
+  </ng-template>
+
+
+
+
+
+  <ng-template #topicsRef>
+    <p>
+      Some related topics to Angular Router:
+    </p>
+
+    <br>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>Lazy Loading</strong>
+        <p>
+          Angular Router supports lazy loading, which allows you to load parts of your application on-demand, resulting in a faster initial load time and improved performance. You can use the loadChildren property to specify which module to load when a specific route is accessed.
+        </p>
+      </li>
+      <li>
+        <strong>Route Parameters</strong>
+        <p>
+          Route parameters allow you to pass data to a component via the URL. You can define route parameters by adding a colon (:) before the parameter name in the route path. You can then access the parameter value via the ActivatedRoute service.
+        </p>
+      </li>
+      <li>
+        <strong>Route Guards</strong>
+        <p>
+          Route guards allow you to add security and data validation to your routes. You can use route guards to prevent unauthorized access to certain routes, validate user input, or perform other tasks before allowing the user to access a particular route.
+        </p>
+      </li>
+      <li>
+        <strong>Route Resolvers</strong>
+        <p>
+          Route resolvers allow you to pre-fetch data for a component before it is rendered. This can help to improve the performance of your application by reducing the time it takes to load data. You can define route resolvers by adding a resolve property to your route configuration.
+        </p>
+      </li>
+      <li>
+        <strong>Route Events</strong>
+        <p>
+          Angular Router provides a set of events that you can use to monitor the navigation lifecycle of your application. You can use these events to perform tasks such as showing a loading indicator while a route is loading, or tracking user behavior.
+        </p>
+      </li>
+      <li>
+        <strong>Location Strategy</strong>
+        <p>
+          The Angular Router provides two types of location strategies: PathLocationStrategy and HashLocationStrategy. The former uses the HTML5 history API to manipulate the URL, while the latter uses the hash symbol (#) to manage navigation. You can specify the location strategy to use in your application using the RouterModule.forRoot() method.
+        </p>
+      </li>
+      <li>
+        <strong>Route Animations</strong>
+        <p>
+          Angular Router supports route animations, which allows you to animate the transition between different routes in your application. You can define animations using the @angular/animations package and apply them to your routes using the [@routeAnimation] directive.
+        </p>
+      </li>
+    </ol>
+
+    <br>
+
+    <p>
+      These are some related topics that are often used in conjunction with Angular Router. By understanding these topics, you can create more complex and dynamic applications using Angular.
+    </p>
+
+  </ng-template>
+
+
+
+
+

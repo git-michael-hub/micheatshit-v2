@@ -1,0 +1,8 @@
+<form [formGroup]="myForm">
+  <div formArrayName="items">
+    <div *ngFor="let item of items.controls; let i=index" [formGroupName]="i">
+      <input type="text" formControlName="name">
+      <input type="number" formControlName="quantity">
+    </div>
+  </div>
+</form>

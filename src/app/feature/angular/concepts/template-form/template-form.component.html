@@ -1,0 +1,405 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    template driven form
+  </p>
+
+  <div class="text-content">
+    <p>
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<ng-template #notesRef>
+  <p>
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      Import FormsModule
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      Create a form in the template
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      Add validation to form controls
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      Disable the submit button if the form is invalid
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      Access form controls and their values
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      Display validation errors
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      Use ngModel with ngModelChange
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      Add radio buttons to the form
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      Add checkboxes to the form
+
+      <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code9 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_9"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Angular template-driven forms provide a simple way to create forms with validation and data binding using ngModel. They are a good option for small to medium-sized forms that require basic validation. However, they may not be as flexible as reactive forms and can be harder to scale for large, complex forms.
+  </p>
+</ng-template>
+
+
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Easy to learn</strong>
+      <p>
+        Angular template-driven forms are easier to learn and use compared to reactive forms, especially for developers who are new to Angular.
+      </p>
+    </li>
+    <li>
+      <strong>Rapid development</strong>
+      <p>
+        They allow for rapid form development by using data binding and built-in form validation directives.
+      </p>
+    </li>
+    <li>
+      <strong>Minimal coding</strong>
+      <p>
+        Angular template-driven forms require minimal coding, as most of the code is generated automatically by Angular.
+      </p>
+    </li>
+    <li>
+      <strong>Two-way data binding</strong>
+      <p>
+        Angular template-driven forms allow for two-way data binding using ngModel, which simplifies form data management and improves user experience.
+      </p>
+    </li>
+    <li>
+      <strong>Simple use cases:</strong>
+      <p>
+        They are suitable for simple use cases, such as login forms, contact forms, and surveys.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Limited control</strong>
+      <p>
+        Angular template-driven forms provide limited control over form elements, compared to reactive forms.
+      </p>
+    </li>
+    <li>
+      <strong>Limited scalability</strong>
+      <p>
+        They may not be scalable for complex forms with dynamic behavior and validation, as the template code can quickly become hard to maintain.
+      </p>
+    </li>
+    <li>
+      <strong>Limited testing</strong>
+      <p>
+        Unit testing of Angular template-driven forms can be difficult, as the form logic is tightly coupled with the template.
+      </p>
+    </li>
+    <li>
+      <strong>Limited customization</strong>
+      <p>
+        They offer limited customization options, such as custom validators and custom form controls, compared to reactive forms.
+      </p>
+    </li>
+    <li>
+      <strong>Difficulty with reuse</strong>
+      <p>
+        Reusing form code across multiple components can be difficult with Angular template-driven forms, as they are tightly coupled to the component's template.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Overall, Angular template-driven forms are a good choice for simple forms that require basic validation and data binding. However, for more complex forms with dynamic behavior and validation, reactive forms may be a better choice. It is important to carefully consider the requirements and limitations of each approach before deciding which one to use in an Angular application.
+  </p>
+
+  </ng-template>
+
+
+
+
+  <ng-template #topicsRef>
+    <p>
+      Some related topics to Angular template-driven forms:
+    </p>
+
+    <br>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>Form validation</strong>
+        <p>
+          Angular template-driven forms provide easy validation for forms using built-in directives such as required, minlength, maxlength, and pattern.
+        </p>
+      </li>
+      <li>
+        <strong>Two-way data binding</strong>
+        <p>
+          Angular template-driven forms allow for two-way data binding using ngModel, which automatically updates the form control's value and the component property's value.
+        </p>
+      </li>
+      <li>
+        <strong>Form submission</strong>
+        <p>
+          Form submission in Angular template-driven forms is handled by the ngSubmit directive, which allows for executing a function when the form is submitted.
+        </p>
+      </li>
+      <li>
+        <strong>Handling form data</strong>
+        <p>
+          Form data in Angular template-driven forms can be accessed through the ngForm directive, which provides access to form controls and their values.
+        </p>
+      </li>
+      <li>
+        <strong>Template-driven form vs. reactive form</strong>
+        <p>
+          Template-driven forms are simpler and quicker to set up, but reactive forms are more flexible and can handle complex forms with ease.
+        </p>
+      </li>
+      <li>
+        <strong>FormArray</strong>
+        <p>
+          FormArray is used to manage an array of FormControl, FormGroup or FormArray objects, such as a list of checkboxes, multiple form rows or a list of items.
+        </p>
+      </li>
+      <li>
+        <strong>Async validation</strong>
+        <p>
+          Asynchronous validators are functions that take a control and return a promise or observable that emits validation errors. They are useful when the validation logic depends on external factors, such as a network request.
+        </p>
+      </li>
+    </ol>
+
+    <br>
+
+    <p>
+      Overall, Angular template-driven forms are a powerful tool for building forms in Angular applications. They provide easy validation and data binding, and can be used for simple to moderately complex forms. However, for more complex forms with dynamic behavior and validation, reactive forms may be a better choice.
+    </p>
+
+  </ng-template>
+

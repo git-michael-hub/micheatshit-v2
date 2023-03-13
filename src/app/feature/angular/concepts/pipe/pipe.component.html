@@ -1,0 +1,345 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    pipe
+  </p>
+
+  <div class="text-content">
+    <p>
+      Pipes are a way to transform data in templates. You can use built-in pipes or create your own custom pipes to transform data streams.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<ng-template #notesRef>
+  <p>
+  </p>
+
+  <br>
+
+
+  <ul class="px-10 text-sm">
+   <li>
+
+    <h5>
+      Built-in Pipes
+    </h5>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>uppercase and lowercase</strong>
+
+        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+      </li>
+      <li>
+        <strong>date</strong>
+
+        <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+      </li>
+      <li>
+        <strong>currency</strong>
+
+        <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+      </li>
+      <li>
+        <strong>number</strong>
+
+        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+      </li>
+      <li>
+        <strong>async</strong>
+
+        <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+      </li>
+    </ol>
+   </li>
+   <li>
+    <h5>
+      Custom Pipes
+    </h5>
+
+    <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+
+        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span  copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+
+      </span>
+
+   </li>
+   <li>
+    <h5>
+      Chaining Pipes
+    </h5>
+
+    <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+   </li>
+  </ul>
+
+
+
+  <br>
+
+  <p>
+    By using built-in and custom pipes in Angular, you can transform data in templates and create more powerful and flexible applications.
+  </p>
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Simplifies template code</strong>: Pipes allow you to transform data in the template, rather than manipulating it in the component. This can help keep your component code clean and concise.
+    </li>
+    <li>
+      <strong>Reusability</strong>: Once created, pipes can be used across the entire application, making them a great way to share code.
+    </li>
+    <li>
+      <strong>Consistency</strong>: Pipes allow you to apply consistent formatting across your application, ensuring that data is always displayed in the same way.
+    </li>
+    <li>
+      <strong>Easy to use</strong>: Angular pipes are easy to use and can be added to a template with a simple syntax.
+    </li>
+    <li>
+      <strong>Flexibility</strong>: You can use built-in pipes or create your own custom pipes, giving you a high degree of flexibility when it comes to transforming data.
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Performance</strong>: Pipes can be expensive in terms of performance, especially if they are impure pipes. Angular will re-run impure pipes every time change detection runs, which can cause performance issues if you have a lot of data or complex transformations.
+    </li>
+    <li>
+      <strong>Debugging</strong>: Debugging pipes can be difficult, especially if you have complex pipe chains. This can make it harder to track down errors in your application.
+    </li>
+    <li>
+      <strong>Maintenance</strong>: Pipes can become difficult to maintain over time, especially if they are heavily used across the application. Changes to a pipe can have unintended consequences in other parts of the application.
+    </li>
+    <li>
+      <strong>Testing</strong>: Testing pipes can be challenging, especially if you have a lot of different inputs and outputs to test. This can make it harder to ensure that your pipes are functioning correctly.
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Overall, pipes can be a powerful tool in Angular for transforming data in templates, but they should be used with caution. To avoid performance issues and maintenance problems, it's important to limit the number of pipes you use and to test them thoroughly.
+  </p>
+
+  </ng-template>
+
+
+
+
+
+  <ng-template #topicsRef>
+    <p>
+      Related topics to Angular pipes:
+    </p>
+
+    <br>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>PipeTransform Interface</strong>: The PipeTransform interface is a built-in Angular interface that defines the transform() method. Pipes must implement this interface in order to be used in Angular. The transform() method takes a value and returns the transformed value.
+      </li>
+      <li>
+        <strong>Pure and Impure Pipes</strong>: Angular pipes can be either pure or impure. Pure pipes are only executed when the input data changes, whereas impure pipes are executed every time change detection runs, regardless of whether the input data has changed.
+      </li>
+      <li>
+        <strong>Custom Pipes</strong>: You can create your own custom pipes in Angular by creating a new class that implements the PipeTransform interface. Custom pipes can be used in templates just like built-in pipes.
+      </li>
+      <li>
+        <strong>Chaining Pipes</strong>: You can chain pipes together to create more complex transformations. Pipes are applied in the order they are chained, so you can use multiple pipes to transform data in a variety of ways.
+      </li>
+      <li>
+        <strong>Async Pipes</strong>: The async pipe is a special built-in pipe that allows you to handle asynchronous data streams. It automatically subscribes and unsubscribes to the observable, so you don't need to manage subscriptions yourself.
+      </li>
+      <li>
+        <strong>Parameterizing Pipes</strong>: You can pass parameters to pipes by adding them after the pipe name, separated by colons. For example, you can pass a format string to the date pipe to customize the date output.
+      </li>
+      <li>
+        <strong>Pipe Syntax</strong>: Pipes are added to template expressions using the | symbol. The input value is passed to the pipe on the left side of the |, and the pipe operation is performed on the right side of the |.
+      </li>
+      <li>
+        <strong>Built-in Pipes</strong>: Angular comes with a number of built-in pipes that you can use in your application, such as uppercase, lowercase, date, currency, and number.
+      </li>
+      <li>
+        <strong>Localization</strong>: Pipes can be used for localization purposes by using the i18n attribute. This allows you to specify different translations for different languages.
+      </li>
+      <li>
+        <strong>Testing Pipes</strong>: You can write unit tests for your custom pipes in Angular to ensure they are functioning correctly. You can use the TestBed module to create a testing environment for your pipe and test its output.
+      </li>
+    </ol>
+
+
+    <br>
+
+    <p>
+      Overall, pipes are a powerful tool in Angular that allow you to transform data in templates in a variety of ways. By combining built-in and custom pipes, you can create complex transformations and handle asynchronous data streams with ease.
+    </p>
+
+  </ng-template>

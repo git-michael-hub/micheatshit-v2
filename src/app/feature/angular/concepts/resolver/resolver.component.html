@@ -1,0 +1,307 @@
+<section class="p-2">
+  <p class="heading-1 mb-2">
+    resolver
+  </p>
+
+  <div class="text-content">
+    <p>
+
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<ng-template #notesRef>
+  <p>
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Creating a Resolver</strong>
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Using a Resolver in a Route</strong>
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Accessing Resolved Data in a Component</strong>
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+
+    </li>
+    <li>
+      <strong>Handling Resolver Errors</strong>
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Lazy Loading Modules with Resolvers</strong>
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Angular Resolvers provide a way to pre-fetch data before a component is loaded, which can improve the user experience and reduce the number of network requests. By using Angular Resolvers, you can create more responsive and efficient applications that provide a better user experience.
+  </p>
+</ng-template>
+
+
+
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Pre-fetching Data</strong>
+      <p>
+        Angular Resolvers provide a way to pre-fetch data before a component is loaded, which can improve the performance and reduce the number of network requests.
+      </p>
+    </li>
+    <li>
+      <strong>Improved User Experience</strong>
+      <p>
+        By pre-fetching data with a resolver, you can create a better user experience by reducing the time it takes for a component to load and providing more immediate feedback to the user.
+      </p>
+    </li>
+    <li>
+      <strong>Centralized Data Loading:</strong>
+      <p>
+        Resolvers can be used to centralize the data loading logic for a component or module, which can simplify the code and make it easier to manage.
+      </p>
+    </li>
+    <li>
+      <strong>Supports Asynchronous Operations</strong>
+      <p>
+        Resolvers support asynchronous operations, which means that you can load data from external APIs or other sources without blocking the user interface.
+      </p>
+    </li>
+    <li>
+      <strong>Optimized Data Loading</strong>
+      <p>
+        Resolvers can be used to optimize the loading of data by fetching only the data that is required for a particular component or module.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <p>
+        Resolvers can have a steep learning curve, especially for developers who are new to Angular or to asynchronous programming concepts.
+      </p>
+    </li>
+    <li>
+      <strong>Increased Complexity</strong>
+      <p>
+        Using resolvers can increase the complexity of your code, especially if you need to manage multiple resolvers for a single component or module.
+      </p>
+    </li>
+    <li>
+      <strong>Potential for Over-Optimization</strong>
+      <p>
+        It is possible to over-optimize data loading with resolvers, which can lead to unnecessary complexity or reduced maintainability.
+      </p>
+    </li>
+    <li>
+      <strong>Limited Control:</strong>
+      <p>
+        Resolvers provide limited control over the loading of data, which can make it difficult to handle complex loading scenarios or to integrate with external APIs.
+      </p>
+    </li>
+    <li>
+      <strong>Not Suitable for All Use Cases</strong>
+      <p>
+        Resolvers are not suitable for all use cases, especially if you need to load data on demand or if you need to load data dynamically based on user input.
+      </p>
+    </li>
+  </ol>
+
+
+  <br>
+
+  <p>
+    Angular Resolvers can provide many benefits, including improved performance, a better user experience, centralized data loading, and support for asynchronous operations.
+  </p>
+
+  <br>
+
+  <p>
+    However, they also come with some potential drawbacks, including a steep learning curve, increased complexity, limited control over data loading, and limited suitability for certain use cases. When deciding whether to use Angular Resolvers, it's important to consider the specific needs of your application and weigh the pros and cons carefully.
+  </p>
+
+  </ng-template>
+
+
+
+  <ng-template #topicsRef>
+    <p>
+      Some related topics on Angular Resolvers:
+    </p>
+
+    <br>
+
+    <ol class="list-decimal px-10 text-sm">
+      <li>
+        <strong>Asynchronous Data Loading</strong>
+        <p>
+          Resolvers are a way to pre-fetch data before a component is loaded, which can improve the user experience and reduce the number of network requests. By using asynchronous data loading techniques, you can further improve the performance of your application and create a better user experience.
+        </p>
+      </li>
+      <li>
+        <strong>Resolver Chains</strong>
+        <p>
+          Resolver Chains allow you to chain multiple resolvers together, so that each resolver can pre-fetch different data for the same component. Resolver Chains are a powerful way to create complex and dynamic data loading scenarios, and can be used to optimize the performance of your application.
+        </p>
+      </li>
+      <li>
+        <strong>Resolver Guards</strong>
+        <p>
+          Resolver Guards allow you to control the activation of a route based on the completion of a resolver. Resolver Guards are a way to prevent the loading of a component until all required data has been pre-fetched, which can improve the user experience and reduce the number of network requests.
+        </p>
+      </li>
+      <li>
+        <strong>Resolver Strategies</strong>
+        <p>
+          Resolver Strategies allow you to control the behavior of Angular Resolvers, and specify how they should behave in different scenarios. Resolver Strategies are a way to optimize the performance of your application and create a better user experience for your users.
+        </p>
+      </li>
+    </ol>
+
+
+    <br>
+
+    <p>
+      Angular Resolvers are a powerful way to pre-fetch data before a component is loaded, and can help improve the performance of your application and create a better user experience. By understanding related topics like asynchronous data loading, resolver chains, resolver guards, and resolver strategies, you can further optimize the behavior of your application and create a more responsive and efficient user experience.
+    </p>
+
+  </ng-template>
