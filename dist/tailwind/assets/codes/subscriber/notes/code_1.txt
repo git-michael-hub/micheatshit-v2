@@ -1,0 +1,11 @@
+import { Subscription } from 'rxjs';
+
+private mySubscription: Subscription;
+
+ngOnInit() {
+  this.mySubscription = myObservable.subscribe(
+    data => console.log(data),
+    error => console.error(error),
+    () => console.log('Completed!')
+  );
+}

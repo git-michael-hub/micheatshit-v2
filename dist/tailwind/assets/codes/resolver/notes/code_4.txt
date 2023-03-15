@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import { Resolve } from '@angular/router';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { MyService } from './my.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MyResolver implements Resolve<any> {
+  constructor(private myService: MyService) {}
+
+  resolve(): Observable<any> | Promise<any> | any {
+    return this.myService.getData().pipe(
+      catchError(error => {
+        // handle error here
+        return error;
+      })
+    );
+  }
+}

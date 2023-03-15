@@ -1,0 +1,1 @@
+<label>Name: <input type="text" name="name" [(ngModel)]="name" required minlength="3"></label>

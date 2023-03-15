@@ -1,0 +1,13 @@
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-my-component',
+  templateUrl: './my-component.component.html',
+  styleUrls: ['./my-component.component.css']
+})
+export class MyComponent {
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => console.log(params.id));
+  }
+}

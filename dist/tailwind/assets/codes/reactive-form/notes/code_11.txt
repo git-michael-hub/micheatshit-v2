@@ -1,0 +1,4 @@
+this.myForm.patchValue({
+  name: 'John Doe',
+  email: 'johndoe@example.com'
+});

@@ -1,0 +1,5 @@
+this.myForm.setValue({
+  name: 'John Doe',
+  email: 'johndoe@example.com',
+  password: 'password123'
+});

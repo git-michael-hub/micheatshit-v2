@@ -1,0 +1,5 @@
+constructor(private el: ElementRef) {}
+
+ngOnInit() {
+  this.el.nativeElement.style.backgroundColor = 'red';
+}

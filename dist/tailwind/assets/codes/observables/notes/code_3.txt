@@ -1,0 +1,11 @@
+import { of } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+
+const myObservable = of(1, 2, 3, 4, 5);
+
+myObservable.pipe(
+  filter(num => num % 2 === 0),
+  map(num => num * 2)
+).subscribe(
+  next => console.log(next)
+);
