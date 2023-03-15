@@ -1,3 +1,0 @@
-this.formGroup = this.formBuilder.group({
-  name: ['', [Validators.required, forbiddenNameValidator('admin')]],
-});

@@ -1,3 +1,0 @@
-ngDoCheck() {
-  console.log('Change detection has been triggered.');
-}

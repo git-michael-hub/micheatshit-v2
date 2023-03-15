@@ -1,5 +1,0 @@
-@Component({
-  selector: 'my-component',
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class MyComponent {}

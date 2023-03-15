@@ -1,5 +1,0 @@
-constructor(private cd: ChangeDetectorRef) {}
-
-ngAfterViewInit() {
-  this.cd.detectChanges();
-}

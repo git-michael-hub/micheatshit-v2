@@ -1,1 +1,0 @@
-@HostBinding('style.backgroundColor') backgroundColor: string;

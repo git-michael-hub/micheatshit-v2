@@ -1,3 +1,0 @@
-import('./my.module').then(m => {
-  // Do something with the module
-});

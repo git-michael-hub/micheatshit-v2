@@ -1,9 +1,0 @@
-import { take } from 'rxjs/operators';
-
-ngOnInit() {
-  this.mySubscription = myObservable.pipe(
-    take(1)
-  ).subscribe(
-    data => console.log(data)
-  );
-}

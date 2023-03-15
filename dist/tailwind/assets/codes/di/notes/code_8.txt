@@ -1,1 +1,0 @@
-constructor(@Optional() private exampleService?: ExampleService) {}

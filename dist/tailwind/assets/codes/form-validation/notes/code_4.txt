@@ -1,8 +1,0 @@
-<div *ngIf="formGroup.get('name').invalid && (formGroup.get('name').dirty || formGroup.get('name').touched)">
-  <div *ngIf="formGroup.get('name').errors.required">
-    Name is required
-  </div>
-  <div *ngIf="formGroup.get('name').errors.forbiddenName">
-    Name cannot be "admin"
-  </div>
-</div>

@@ -1,4 +1,0 @@
-@Directive({
-  selector: '[appExample]'
-})
-export class ExampleDirective {}

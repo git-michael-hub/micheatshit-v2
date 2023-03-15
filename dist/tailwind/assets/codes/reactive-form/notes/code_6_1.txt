@@ -1,8 +1,0 @@
-addItem() {
-  const item = this.fb.group({
-    name: [''],
-    quantity: ['']
-  });
-
-  this.items.push(item);
-}

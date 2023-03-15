@@ -1,7 +1,0 @@
-const myObservable = of('Hello', 'World');
-
-myObservable.subscribe(
-  next => console.log(next),
-  error => console.error(error),
-  () => console.log('Complete')
-);

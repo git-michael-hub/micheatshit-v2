@@ -1,1 +1,0 @@
-<p>{{ myValue | myPipe:arg1:arg2 }}</p>
