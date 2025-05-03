@@ -23,7 +23,7 @@ export class GlossaryComponent {
       "file_location": "components/after-next-render",
       "url": "after-next-render",
       "hashtags": [
-        'lifecycle'
+        'lifecycle', 'v17+'
       ]
     },
     {
@@ -31,7 +31,15 @@ export class GlossaryComponent {
       "file_location": "components/after-render",
       "url": "after-render",
       "hashtags": [
-        'lifecycle'
+        'lifecycle', 'v17+'
+      ]
+    },
+    {
+      "name": "Angular DevTools",
+      "file_location": "components/angular-devtools",
+      "url": "angular-devtools",
+      "hashtags": [
+        'debugging', 'v19'
       ]
     },
     {
@@ -95,7 +103,7 @@ export class GlossaryComponent {
       "file_location": "components/control-flow",
       "url": "control-flow",
       "hashtags": [
-        'v17'
+        'v17+', 'stable-v19'
       ]
     },
     {
@@ -215,7 +223,7 @@ export class GlossaryComponent {
       "file_location": "components/deferrable-views",
       "url": "deferrable-views",
       "hashtags": [
-        'v17', 'performance'
+        'v17+', 'performance', 'enhanced-v19'
       ]
     },
     {
@@ -319,7 +327,7 @@ export class GlossaryComponent {
       "file_location": "components/hydration",
       "url": "hydration",
       "hashtags": [
-        'v17', 'performance'
+        'v17+', 'performance', 'enhanced-v19'
       ]
     },
     {
@@ -359,7 +367,7 @@ export class GlossaryComponent {
       "file_location": "components/input-transform",
       "url": "input-transform",
       "hashtags": [
-        'v17'
+        'v17+'
       ]
     },
     {
@@ -480,6 +488,14 @@ export class GlossaryComponent {
       "url": "output",
       "hashtags": [
         ''
+      ]
+    },
+    {
+      "name": "partial hydration",
+      "file_location": "components/partial-hydration",
+      "url": "partial-hydration",
+      "hashtags": [
+        'v19', 'performance', 'ssr'
       ]
     },
     {
@@ -607,7 +623,7 @@ export class GlossaryComponent {
       "file_location": "components/ssr",
       "url": "ssr",
       "hashtags": [
-        ''
+        'enhanced-v19', 'performance'
       ]
     },
     {
@@ -619,11 +635,19 @@ export class GlossaryComponent {
       ]
     },
     {
+      "name": "signal-based components",
+      "file_location": "components/signal-components",
+      "url": "signal-components",
+      "hashtags": [
+        'v19', 'reactivity'
+      ]
+    },
+    {
       "name": "signals",
       "file_location": "components/signals",
       "url": "signals",
       "hashtags": [
-        'v17', 'reactivity'
+        'v17+', 'reactivity', 'enhanced-v19'
       ]
     },
     {
@@ -647,7 +671,7 @@ export class GlossaryComponent {
       "file_location": "components/style-url",
       "url": "style-url",
       "hashtags": [
-        'v17'
+        'v17+'
       ]
     },
     {
@@ -791,7 +815,7 @@ export class GlossaryComponent {
       "file_location": "components/view-transitions",
       "url": "view-transitions",
       "hashtags": [
-        'v17', 'animation'
+        'v17+', 'animation'
       ]
     },
     {
@@ -824,6 +848,14 @@ export class GlossaryComponent {
       "url": "zone",
       "hashtags": [
         ''
+      ]
+    },
+    {
+      "name": "zoneless applications",
+      "file_location": "components/zoneless-applications",
+      "url": "zoneless-applications",
+      "hashtags": [
+        'v19', 'performance'
       ]
     },
   ];
