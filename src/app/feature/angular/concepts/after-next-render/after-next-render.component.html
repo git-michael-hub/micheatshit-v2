@@ -1,0 +1,195 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    afterNextRender
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">afterNextRender</span>
+      is a lifecycle hook introduced in Angular v17 that runs exactly once after the first render of a component is completed and committed to the DOM. This makes it ideal for integration with third-party libraries and executing code that requires the DOM to be fully rendered.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Overview
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Usage Examples
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related APIs
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="usageRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="bestPracticesRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="relatedApisRef;"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="overviewRef;"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #overviewRef>
+  <p class="mb-4">
+    <span class="text-zinc-50 tw-font-medium">afterNextRender</span> is a lifecycle hook designed for interacting with the DOM after the initial render is completed. Unlike <code>ngAfterViewInit</code>, this hook guarantees that the component's view has been fully committed to the DOM, making it safe to perform measurements, initialization of third-party libraries, or any operations requiring a stable DOM.
+  </p>
+
+  <h3 class="text-lg font-semibold mb-2 text-sky-400">Key Features:</h3>
+  <ul class="list-disc pl-6 mb-4">
+    <li>Runs exactly once after the first render is completed</li>
+    <li>Guarantees the DOM has been fully updated and committed</li>
+    <li>Executes in the browser environment only, not during server-side rendering</li>
+    <li>Works with both Zone.js-based and Zoneless applications</li>
+    <li>Available from Angular v17 onwards</li>
+  </ul>
+
+  <h3 class="text-lg font-semibold mb-2 text-sky-400">
+    Syntax:
+    <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  </h3>
+  <span #code1 copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre class="mt-4"><code [highlight]="code_1" [languages]="['typescript']"></code></pre>
+  </span>
+
+  <h3 class="text-lg font-semibold mb-2 text-sky-400">When to Use:</h3>
+  <ul class="list-disc pl-6 mb-4">
+    <li>Initializing third-party libraries that need access to DOM elements</li>
+    <li>Taking DOM measurements after the initial render</li>
+    <li>Setting up observers (ResizeObserver, IntersectionObserver, etc.)</li>
+    <li>Making initial API calls that depend on the rendered DOM state</li>
+    <li>Setting up animations that need to start after the first render</li>
+  </ul>
+</ng-template>
+
+<ng-template #usageRef>
+  <h3 class="text-lg font-semibold text-sky-400">
+    Basic Usage:
+    <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  </h3>
+
+  <span #code2 copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre class="mt-4"><code [highlight]="code_2" [languages]="['typescript']"></code></pre>
+  </span>
+
+  <h3 class="text-lg font-semibold mt-2 text-sky-400">
+    Initializing a Third-party Library:
+    <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  </h3>
+  <span #code3 copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre class="mt-4"><code [highlight]="code_3" [languages]="['typescript']"></code></pre>
+  </span>
+
+  <h3 class="text-lg font-semibold mt-2 text-sky-400">
+    Taking DOM Measurements:
+    <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  </h3>
+  <span #code4 copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre class="mt-4"><code [highlight]="code_4" [languages]="['typescript']"></code></pre>
+  </span>
+
+  <h3 class="text-lg font-semibold mt-2 text-sky-400">
+    Using with Zoneless Applications:
+    <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  </h3>
+  <span #code5 copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre class="mt-4"><code [highlight]="code_5" [languages]="['typescript']"></code></pre>
+  </span>
+</ng-template>
+
+<ng-template #bestPracticesRef>
+  <h3 class="text-lg font-semibold mb-2 text-sky-400">Best Practices:</h3>
+  <ul class="list-disc pl-6 mb-4">
+    <li class="mb-3">
+      <strong>Use for DOM-dependent Operations:</strong> Reserve <code>afterNextRender</code> for operations that genuinely require the DOM to be fully rendered. For data initialization or other non-DOM tasks, consider using <code>ngOnInit</code> instead.
+    </li>
+    <li class="mb-3">
+      <strong>Clean Up Resources:</strong> If you set up subscriptions, observers, or other resources in <code>afterNextRender</code>, make sure to clean them up in <code>ngOnDestroy</code> to prevent memory leaks.
+    </li>
+    <li class="mb-3">
+      <strong>Don't Trigger Additional Change Detection:</strong> Avoid operations that would trigger additional change detection cycles within <code>afterNextRender</code> as this could lead to performance issues.
+    </li>
+    <li class="mb-3">
+      <strong>Consider Server-Side Rendering:</strong> Remember that <code>afterNextRender</code> only runs in browser environments, not during server-side rendering. Design your components to handle both scenarios gracefully.
+    </li>
+    <li class="mb-3">
+      <strong>Prefer Over ngAfterViewInit When:</strong> Use <code>afterNextRender</code> instead of <code>ngAfterViewInit</code> when you need to be certain that the DOM has been fully committed, not just when Angular has initialized the view.
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #relatedApisRef>
+  <h3 class="text-lg font-semibold mb-2 text-sky-400">Related APIs:</h3>
+
+  <div class="mb-6">
+    <h4 class="font-medium text-zinc-50 mb-1">afterRender</h4>
+    <p class="mb-2">Similar to <code>afterNextRender</code>, but runs after every render cycle instead of just the first one.</p>
+    <ul class="list-disc pl-6 mb-2">
+      <li>Use when you need to perform operations after every render, not just the initial one</li>
+      <li>Be careful with performance as it runs frequently</li>
+    </ul>
+  </div>
+
+  <div class="mb-6">
+    <h4 class="font-medium text-zinc-50 mb-1">ngAfterViewInit</h4>
+    <p class="mb-2">Angular's traditional lifecycle hook that runs after a component's view has been initialized.</p>
+    <ul class="list-disc pl-6 mb-2">
+      <li>Less reliable for DOM operations as it doesn't guarantee DOM commitment</li>
+      <li>Available in older Angular versions</li>
+    </ul>
+  </div>
+
+  <div class="mb-6">
+    <h4 class="font-medium text-zinc-50 mb-1">withAfterNextRender</h4>
+    <p class="mb-2">Functional variant of the lifecycle hook for use in standalone components with functional setup.</p>
+  </div>
+
+  <div class="mb-6">
+    <h4 class="font-medium text-zinc-50 mb-1">ViewRef.detectChanges</h4>
+    <p class="mb-2">Manual change detection API that can be used to trigger change detection.</p>
+    <ul class="list-disc pl-6 mb-2">
+      <li>Often used in conjunction with afterNextRender for advanced use cases</li>
+    </ul>
+  </div>
+
+  <div class="mb-4 p-4 bg-gray-800 rounded border-l-4 border-yellow-500">
+    <h4 class="font-medium text-zinc-50 mb-1">⚠️ Important Note</h4>
+    <p>When using <code>afterNextRender</code> in a zoneless application, remember to manually trigger change detection if your operations might affect the component state.</p>
+  </div>
+</ng-template>

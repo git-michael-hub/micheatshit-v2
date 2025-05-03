@@ -47,6 +47,7 @@ import { SubscriberComponent } from './feature/angular/concepts/subscriber/subsc
 import { TemplateComponent } from './feature/angular/concepts/template/template.component';
 import { TemplateFormComponent } from './feature/angular/concepts/template-form/template-form.component';
 import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
+import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-render/after-next-render.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { AngularElementComponent } from './feature/angular/concepts/angular-elem
     SubscriberComponent,
     TemplateComponent,
     TemplateFormComponent,
+    AfterNextRenderComponent,
   ],
   imports: [
     CommonModule,

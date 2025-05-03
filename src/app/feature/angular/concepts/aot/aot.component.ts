@@ -11,7 +11,7 @@ const themeAndroidStudio: string = 'node_modules/highlight.js/styles/androidstud
   selector: 'app-aot',
   templateUrl: './aot.component.html',
   styleUrls: ['./aot.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AotComponent extends UnsubscribeService {
   selectedTab = 1;

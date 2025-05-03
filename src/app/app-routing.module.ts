@@ -27,6 +27,7 @@ import { TemplateFormComponent } from './feature/angular/concepts/template-form/
 import { TemplateComponent } from './feature/angular/concepts/template/template.component';
 import { GlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
 import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
+import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-render/after-next-render.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path: 'aot',
         component: AotComponent
+      },
+      {
+        path: 'after-next-render',
+        component: AfterNextRenderComponent
       },
       {
         path: 'angular-element',
