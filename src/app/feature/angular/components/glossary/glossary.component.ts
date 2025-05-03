@@ -15,7 +15,7 @@ export class GlossaryComponent {
       "file_location": "components/aot",
       "url": "aot",
       "hashtags": [
-        ''
+        'performance', 'v19'
       ]
     },
     {

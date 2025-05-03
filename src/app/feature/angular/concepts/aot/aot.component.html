@@ -6,7 +6,7 @@
   <div class="text-content">
     <p>
       <span class="text-zinc-50 tw-font-medium">Ahead-of-Time (AOT) Compilation</span>
-      in Angular 18 pre-compiles Angular templates and TypeScript code into highly optimized JavaScript at build time. This process improves application performance by reducing load times, shrinking bundle sizes, enhancing security, and catching template errors early in the development cycle.
+      in Angular 19 pre-compiles Angular templates and TypeScript code into highly optimized JavaScript at build time. This process improves application performance by reducing load times, shrinking bundle sizes, enhancing security, and catching template errors early in the development cycle.
     </p>
 
     <br>
@@ -73,30 +73,36 @@
   <br>
   <br>
 
-  <p>New Features and Enhancements in Angular 18</p>
+  <p>New Features and Enhancements in Angular 19</p>
   <ol class="list-decimal pl-4 text-sm">
     <li>
-      <strong>Support for Zoneless Applications</strong>:
+      <strong>Fully Stabilized Zoneless Applications</strong>:
       <ul class="list-disc pl-4">
-        <li>Angular 18 optimizes AOT compilation for zoneless apps by reducing dependency on <code>zone.js</code>, using native async functions, and achieving smaller, faster bundles.</li>
+        <li>Angular 19 fully stabilizes zoneless applications, eliminating dependency on <code>zone.js</code>, using native async functions, and achieving significantly smaller, faster bundles with improved AOT optimization.</li>
       </ul>
     </li>
     <li>
-      <strong>Improved Error Messages and Diagnostics:</strong>:
+      <strong>Enhanced Signal-based Components</strong>:
       <ul class="list-disc pl-4">
-        <li>Enhanced error reporting makes it easier to debug issues during AOT compilation.</li>
+        <li>Angular 19 introduces a completely signal-based component model that AOT can optimize more effectively, providing better performance and more predictable rendering.</li>
       </ul>
     </li>
     <li>
-      <strong>Partial Hydration Strategy</strong>:
+      <strong>Advanced Partial Hydration Strategy</strong>:
       <ul class="list-disc pl-4">
-        <li>Supports partial hydration for server-side rendering (SSR), hydrating only necessary parts of the app, which improves load times and performance.</li>
+        <li>Offers improved partial hydration for server-side rendering (SSR) with granular control over which components are hydrated, significantly improving performance for complex applications.</li>
       </ul>
     </li>
     <li>
-      <strong>Stabilized Built-in Control Flow</strong>:
+      <strong>Stable Built-in Control Flow</strong>:
       <ul class="list-disc pl-4">
-        <li>AOT is fully compatible with directives like <code>*ngIf</code> and <code>*ngFor</code>, ensuring reliable runtime behavior.</li>
+        <li>The built-in control flow syntax (<code>&#64;if</code>, <code>&#64;for</code>, <code>&#64;switch</code>) is now fully stable and optimized for AOT compilation, resulting in more efficient bundles than the previous directive-based approach.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved DevTools Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular DevTools now provides enhanced debugging capabilities specifically for AOT-compiled applications, making it easier to identify performance bottlenecks and optimize rendering.</li>
       </ul>
     </li>
   </ol>
@@ -176,29 +182,29 @@
 
   <p>Common Commands for AOT Compilation</p>
   <br>
-  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
     <thead>
-      <tr class="">
-        <th class="">Command</th>
-        <th class="">Description</th>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Command</th>
+        <th class="py-3 px-4 text-left">Description</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="pl-2"><code>ng build --aot</code></td>
-        <td>Builds the application with AOT enabled.</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng build --aot</code></td>
+        <td class="py-3 px-4">Builds the application with AOT enabled.</td>
       </tr>
-      <tr>
-        <td class="pl-2"><code>ng serve --aot</code></td>
-        <td>Serves the application locally with AOT enabled.</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng serve --aot</code></td>
+        <td class="py-3 px-4">Serves the application locally with AOT enabled.</td>
       </tr>
-      <tr>
-        <td class="pl-2"><code>ng build --prod</code></td>
-        <td>Production build with AOT and other optimizations.</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng build --prod</code></td>
+        <td class="py-3 px-4">Production build with AOT and other optimizations.</td>
       </tr>
-      <tr>
-        <td class="pl-2"><code>ng build --aot --source-map</code></td>
-        <td>AOT build with source maps for debugging purposes.</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng build --aot --source-map</code></td>
+        <td class="py-3 px-4">AOT build with source maps for debugging purposes.</td>
       </tr>
     </tbody>
   </table>
@@ -372,8 +378,8 @@
       <strong class="text-sky-400">Avoid Direct DOM Manipulation</strong>
       <ul class="list-disc pl-4">
         <li>
-          <strong>Use Angular’s <code>Renderer2</code> API</strong>:
-          Instead of directly manipulating the DOM using native methods or third-party libraries like jQuery, use Angular’s <code>Renderer2</code> API.
+          <strong>Use Angular's <code>Renderer2</code> API</strong>:
+          Instead of directly manipulating the DOM using native methods or third-party libraries like jQuery, use Angular's <code>Renderer2</code> API.
           This ensures compatibility with Angular's rendering engine and supports AOT.
         </li>
       </ul>
@@ -405,11 +411,11 @@
       </ul>
     </li>
     <li>
-      <strong class="text-sky-400">Use Angular’s Partial Hydration and Improved SSR Features</strong>
+      <strong class="text-sky-400">Use Angular's Partial Hydration and Improved SSR Features</strong>
       <ul class="list-disc pl-4">
         <li>
           <strong>Partial Hydration</strong>:
-          In Angular 18, partial hydration helps optimize server-side rendering (SSR) by hydrating only necessary parts of the app, improving load times and overall performance.
+          In Angular 19, partial hydration helps optimize server-side rendering (SSR) by hydrating only necessary parts of the app, improving load times and overall performance.
         </li>
       </ul>
     </li>
@@ -471,10 +477,10 @@
       </ul>
     </li>
     <li>
-      <strong>Compatibility with Zoneless Applications and Native Async</strong>
+      <strong>Compatibility with Zoneless Applications and Signal-based Components</strong>
       <ul class="list-disc pl-4">
         <li>
-          Angular 18 supports zoneless applications and native async/await, reducing reliance on <code>zone.js</code> and enabling more efficient, smaller bundles with AOT.
+          Angular 19 fully stabilizes zoneless applications and introduces an optimized signal-based component model, reducing reliance on <code>zone.js</code> and enabling more efficient, smaller bundles with AOT.
         </li>
       </ul>
     </li>
@@ -526,7 +532,7 @@
       </ul>
     </li>
     <li>
-      <strong>More Complex Debugging in Some Cases</strong>
+      <strong class="text-sky-400">More Complex Debugging in Some Cases</strong>
       <ul class="list-disc pl-4">
         <li>
           While AOT catches many errors at build time, debugging AOT-specific issues can sometimes be more complex due to the additional build steps and optimizations involved.
@@ -535,7 +541,7 @@
       </ul>
     </li>
     <li>
-      <strong>Initial Setup and Configuration Overhead</strong>
+      <strong class="text-sky-400">Initial Setup and Configuration Overhead</strong>
       <ul class="list-disc pl-4">
         <li>
           Configuring an application to use AOT, especially if transitioning from JIT, may involve some initial setup and refactoring.
@@ -550,37 +556,37 @@
   <p>
     Summary
   </p>
-  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
     <thead>
-      <tr class="">
-        <th class="">Pros</th>
-        <th class="">Cons</th>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="pl-2">Faster initial load times</td>
-        <td>Increased build time</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Faster initial load times</td>
+        <td class="py-3 px-4">Increased build time</td>
       </tr>
-      <tr>
-        <td class="pl-2">Smaller bundle sizes</td>
-        <td>Limited support for dynamic code</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Smaller bundle sizes</td>
+        <td class="py-3 px-4">Limited support for dynamic code</td>
       </tr>
-      <tr>
-        <td class="pl-2">Improved security</td>
-        <td>Requires strict type checking</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Improved security</td>
+        <td class="py-3 px-4">Requires strict type checking</td>
       </tr>
-      <tr>
-        <td class="pl-2">Early error detection</td>
-        <td>Compatibility issues with some third-party libraries</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Early error detection</td>
+        <td class="py-3 px-4">Compatibility issues with some third-party libraries</td>
       </tr>
-      <tr>
-        <td class="pl-2">Optimized performance for production</td>
-        <td>More complex debugging in certain scenarios</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Optimized performance for production</td>
+        <td class="py-3 px-4">More complex debugging in certain scenarios</td>
       </tr>
-      <tr>
-        <td class="pl-2">Supports zoneless applications and native async</td>
-        <td>Initial setup and configuration overhead</td>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Supports zoneless applications and signal-based components</td>
+        <td class="py-3 px-4">Initial setup and configuration overhead</td>
       </tr>
     </tbody>
   </table>
@@ -603,7 +609,7 @@
           <ul class="list-disc pl-4">
             <li>
               <span class="text-zinc-50 tw-font-medium">JIT</span> is faster during development because it avoids the initial build time, while
-              <span class="text-zinc-50 tw-font-medium">AOT</span> is faster for end users because it reduces the app’s load time.
+              <span class="text-zinc-50 tw-font-medium">AOT</span> is faster for end users because it reduces the app's load time.
             </li>
             <li>
               <span class="text-zinc-50 tw-font-medium">JIT</span> is suitable for development environments where quick iteration is needed, whereas
@@ -628,7 +634,7 @@
               It also enables new features like partial hydration and support for zoneless applications.
             </li>
             <li>
-              <span class="text-zinc-50 tw-font-medium">Angular 18</span> leverages Ivy to enhance the performance of both JIT and AOT compilations.
+              <span class="text-zinc-50 tw-font-medium">Angular 19</span> leverages Ivy to enhance the performance of both JIT and AOT compilations.
             </li>
           </ul>
         </li>
@@ -644,7 +650,7 @@
               <span class="text-zinc-50 tw-font-medium">Default Strategy</span>: Checks the entire component tree for changes, which can be inefficient for large applications.
             </li>
             <li>
-              <span class="text-zinc-50 tw-font-medium">OnPush Strategy</span>: Checks only when input properties change, an event occurs, or a component’s view is initialized.
+              <span class="text-zinc-50 tw-font-medium">OnPush Strategy</span>: Checks only when input properties change, an event occurs, or a component's view is initialized.
             </li>
           </ul>
         </li>
@@ -676,7 +682,7 @@
               <span class="text-zinc-50 tw-font-medium">AOT</span> and lazy loading work together to optimize application performance by reducing the amount of code loaded initially.
             </li>
             <li>
-              With Angular 18, AOT can be used alongside lazy loading to ensure that only the necessary modules are loaded when needed, which minimizes the download size and speeds up initial rendering.
+              With Angular 19, AOT can be used alongside lazy loading to ensure that only the necessary modules are loaded when needed, which minimizes the download size and speeds up initial rendering.
             </li>
           </ul>
         </li>
@@ -713,10 +719,10 @@
           <strong class="text-sky-400">Relation to AOT</strong>:
           <ul class="list-disc pl-4">
             <li>
-              Angular 18’s AOT supports partial hydration to optimize server-side rendering (SSR) by hydrating only necessary parts of the app after initial SSR, improving performance and reducing load times.
+              Angular 19's AOT supports partial hydration to optimize server-side rendering (SSR) by hydrating only necessary parts of the app after initial SSR, improving performance and reducing load times.
             </li>
             <li>
-              AOT ensures that the JavaScript required for hydration is minimal and only contains what’s necessary to make the server-rendered content interactive.
+              AOT ensures that the JavaScript required for hydration is minimal and only contains what's necessary to make the server-rendered content interactive.
             </li>
           </ul>
         </li>
@@ -753,7 +759,7 @@
           <strong class="text-sky-400">Relation to AOT</strong>:
           <ul class="list-disc pl-4">
             <li>
-              It provides tools for inspecting the component tree, detecting performance bottlenecks, and understanding the impact of AOT compilation on the application’s runtime behavior.
+              It provides tools for inspecting the component tree, detecting performance bottlenecks, and understanding the impact of AOT compilation on the application's runtime behavior.
             </li>
             <li>
               Angular DevTools can be used to monitor the effectiveness of AOT optimizations, including how change detection strategies affect performance.
@@ -776,7 +782,7 @@
               Properly organizing code into NgModules improves AOT compilation by making code more modular, manageable, and easier for the compiler to optimize.
             </li>
             <li>
-              With Angular 18, modular architecture allows for better compatibility with new features like zoneless apps and native async functions.
+              With Angular 19, modular architecture allows for better compatibility with new features like zoneless apps and native async functions.
             </li>
           </ul>
         </li>
@@ -793,7 +799,24 @@
           <strong class="text-sky-400">Relation to AOT</strong>:
           <ul class="list-disc pl-4">
             <li>
-              Angular 18's support for zoneless applications benefits AOT by allowing for smaller bundles and more efficient change detection, optimizing both runtime and build-time performance.
+              Angular 19's fully stabilized support for zoneless applications benefits AOT by allowing for smaller bundles and more efficient change detection, optimizing both runtime and build-time performance.
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal-based Components</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Signal-based components are a new way to build Angular components with fine-grained reactivity using signals instead of traditional property bindings.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Angular 19's signal-based component model is designed to work optimally with AOT compilation, providing better performance through more efficient change detection and rendering.
             </li>
           </ul>
         </li>
