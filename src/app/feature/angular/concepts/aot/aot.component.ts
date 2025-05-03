@@ -16,7 +16,7 @@ const themeAndroidStudio: string = 'node_modules/highlight.js/styles/androidstud
 export class AotComponent extends UnsubscribeService {
   selectedTab = 1;
 
-  response!: HighlightAutoResult;
+  // response!: HighlightAutoResult;
 
   code_3 = '';
   code_5 = '';
@@ -29,14 +29,20 @@ export class AotComponent extends UnsubscribeService {
   code_11 = '';
   code_14 = '';
   code_15 = '';
+  code_16 = '';
+  code_17 = '';
+  code_18 = '';
+  code_19 = '';
+  code_20 = '';
+  code_21 = '';
 
-  currentTheme: string = themeGithub;
+  // currentTheme: string = themeGithub;
 
   constructor(
-    private hljsLoader: HighlightLoader,
+    // private hljsLoader: HighlightLoader,
     private http: HttpClient
   ) {
-    super()
+    super();
   }
 
   ngOnInit() {
@@ -83,22 +89,46 @@ export class AotComponent extends UnsubscribeService {
     this.http.get('assets/codes/aot/notes/code_15.txt', { responseType: 'text' })
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_15 = data);
+
+    this.http.get('assets/codes/aot/notes/code_16.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_16 = data);
+
+    this.http.get('assets/codes/aot/notes/code_17.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_17 = data);
+
+    this.http.get('assets/codes/aot/notes/code_18.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_18 = data);
+
+    this.http.get('assets/codes/aot/notes/code_19.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_19 = data);
+
+    this.http.get('assets/codes/aot/notes/code_20.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_20 = data);
+
+    this.http.get('assets/codes/aot/notes/code_21.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_21 = data);
   }
 
 
-  onHighlight(e: HighlightAutoResult) {
-    this.response = {
-      language: e.language,
-      relevance: e.relevance,
-      secondBest: '{...}',
-      value: '{...}',
-    };
-  }
+  // onHighlight(e: HighlightAutoResult) {
+  //   this.response = {
+  //     language: e.language,
+  //     relevance: e.relevance,
+  //     secondBest: '{...}',
+  //     value: '{...}',
+  //   };
+  // }
 
-  changeTheme() {
-    this.currentTheme = this.currentTheme === themeGithub ? themeAndroidStudio : themeGithub;
-    this.hljsLoader.setTheme(this.currentTheme);
-  }
+  // changeTheme() {
+  //   this.currentTheme = this.currentTheme === themeGithub ? themeAndroidStudio : themeGithub;
+  //   this.hljsLoader.setTheme(this.currentTheme);
+  // }
 }
 
 

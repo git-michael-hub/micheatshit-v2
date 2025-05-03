@@ -1,19 +1,15 @@
 <section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    ahead-of-time (AOT) compilation
+    Ahead-of-time (AOT) compilation
   </p>
 
   <div class="text-content">
     <p>
-      Ahead-of-time (AOT) compilation is a process in Angular that converts your application's TypeScript and template files into efficient JavaScript code that can be loaded and executed by the browser.
-      <br>
-      AOT compilation improves the performance and security of your application by pre-compiling the code and templates and reducing the size of the final JavaScript bundle.
+      <span class="text-zinc-50 tw-font-medium">Ahead-of-Time (AOT) Compilation</span>
+      in Angular 18 pre-compiles Angular templates and TypeScript code into highly optimized JavaScript at build time. This process improves application performance by reducing load times, shrinking bundle sizes, enhancing security, and catching template errors early in the development cycle.
     </p>
 
     <br>
-
-
-
 
     <div class="flex flex-col">
       <div class="flex border-b border-gray-200">
@@ -21,307 +17,404 @@
           Notes
         </button>
         <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
-          Pros and Cons
+          Best Practices
         </button>
         <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
-            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
           </div>
           <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
           </div>
           <div *ngSwitchDefault>
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
+
   </div>
 </section>
 
 
 
-
-
-
 <ng-template #notesRef>
-  <p>
-    Keep in mind when working with ahead-of-time (AOT) compilation in Angular:
-  </p>
+  <p>Why Use AOT Compilation?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Faster Rendering</strong>:
+      Pre-compiles code, so the browser doesn't have to compile it at runtime, reducing initial load time.
+    </li>
+    <li>
+      <strong>Smaller Bundle Sizes</strong>:
+      Removes the Angular compiler from the bundle, resulting in smaller files.
+    </li>
+    <li>
+      <strong>Improved Security</strong>:
+      Reduces the risk of injection attacks by compiling templates at build time.
+    </li>
+    <li>
+      <strong>Early Error Detectionn</strong>:
+      Identifies template errors during build time, reducing runtime errors.
+    </li>
+  </ul>
 
   <br>
+  <br>
 
-  <ol class="list-decimal px-10 text-sm">
+  <p>New Features and Enhancements in Angular 18</p>
+  <ol class="list-decimal pl-4 text-sm">
     <li>
-      AOT compilation improves application performance by pre-compiling templates and reducing the size of JavaScript bundles.
+      <strong>Support for Zoneless Applications</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 18 optimizes AOT compilation for zoneless apps by reducing dependency on <code>zone.js</code>, using native async functions, and achieving smaller, faster bundles.</li>
+      </ul>
     </li>
     <li>
-      Use the <code>ngc</code> command to manually run the AOT compiler on your application.
+      <strong>Improved Error Messages and Diagnostics:</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enhanced error reporting makes it easier to debug issues during AOT compilation.</li>
+      </ul>
     </li>
     <li>
-      Use the <code>--prod</code> flag when running the <code>ng serve</code> command to enable AOT compilation and optimize your application for production.
-
-      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code3 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>bash</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_3"
-            [languages]="['bash']"
-            (highlighted)="onHighlight($event)"
-            [lineNumbers]="true">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Partial Hydration Strategy</strong>:
+      <ul class="list-disc pl-4">
+        <li>Supports partial hydration for server-side rendering (SSR), hydrating only necessary parts of the app, which improves load times and performance.</li>
+      </ul>
     </li>
     <li>
-      Use the <code>ng build --prod</code> command to build your application for production, which includes AOT compilation and other optimizations.
-    </li>
-    <li>
-      Use the <code>@ViewChild</code> and <code>@ContentChild</code> decorators to access child components and elements in your templates.
-
-      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code5 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_5"
-            [languages]="['typescript']"
-            (highlighted)="onHighlight($event)"
-            [lineNumbers]="true">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      Use Angular's built-in APIs for accessing the DOM, such as <code>Renderer2</code>, instead of directly manipulating the DOM using vanilla JavaScript.
-
-      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code6 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_6"
-            [languages]="['typescript']"
-            (highlighted)="onHighlight($event)"
-            [lineNumbers]="true">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      Use the <code>--aot</code> flag to enable or disable AOT compilation when running the <code>ng build</code> or <code>ng serve</code> commands.
-
-      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code7 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>bash</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_7"
-            [languages]="['bash']"
-            (highlighted)="onHighlight($event)"
-            [lineNumbers]="true">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      Use the <code>@HostBinding</code> and <code>@HostListener</code> decorators to bind to properties and listen to events on the host element of your component.
-
-      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code8 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_8"
-            [languages]="['typescript']"
-            (highlighted)="onHighlight($event)"
-            [lineNumbers]="true">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      Use the <code>import()</code> syntax, rather than the <code>require()</code> syntax, to import modules.
-
-      <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code9 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_9_1"
-            [languages]="['typescript']"
-            (highlighted)="onHighlight($event)"
-            [lineNumbers]="true">
-          </code>
-        </pre>
-
-        <span copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_9_2"
-              [languages]="['typescript']"
-              (highlighted)="onHighlight($event)"
-              [lineNumbers]="true">
-            </code>
-          </pre>
-        </span>
-
-      </span>
-
-
-
-    </li>
-    <li>
-      Use Angular's built-in change detection strategies, such as <code>OnPush</code>, to improve performance and reduce the number of change detection cycles.
-
-      <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code10 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_10"
-            [languages]="['typescript']"
-            (highlighted)="onHighlight($event)"
-            [lineNumbers]="true">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      Use the <code>ngc</code> command to pre-compile your templates and improve the startup time of your application.
-
-      <button (click)="code11.hidden = !code11.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code11 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>bash</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_11"
-            [languages]="['bash']"
-            (highlighted)="onHighlight($event)"
-            [lineNumbers]="true">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      Use the <code>ng-content</code> element to pass content into your components, rather than using <code>innerHTML</code> or manipulating the DOM directly.
-    </li>
-    <li>
-      Use the <code>@Input</code> and <code>@Output</code> decorators to pass data into and out of your components.
-    </li>
-    <li>
-      Use Angular's built-in form validation and error handling, such as the <code>Validators</code> and <code>FormGroup</code> classes.
-
-      <button (click)="code14.hidden = !code14.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code14 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_14"
-            [languages]="['typescript']"
-            (highlighted)="onHighlight($event)"
-            [lineNumbers]="true">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      Use the <code>--build-optimizer</code> flag to enable the build optimizer, which can further reduce the size of your JavaScript bundles.
-
-      <button (click)="code15.hidden = !code15.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code15 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>bash</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_15"
-            [languages]="['bash']"
-            (highlighted)="onHighlight($event)"
-            [lineNumbers]="true">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Stabilized Built-in Control Flow</strong>:
+      <ul class="list-disc pl-4">
+        <li>AOT is fully compatible with directives like <code>*ngIf</code> and <code>*ngFor</code>, ensuring reliable runtime behavior.</li>
+      </ul>
     </li>
   </ol>
 
   <br>
+  <br>
 
-  <p>
-    By following these best practices and tips, you can successfully work with AOT compilation in Angular and optimize your application for performance and efficiency.
-  </p>
+  <p>How to Enable AOT Compilation</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Using Angular CLI</strong>:
+      Compiles the app with AOT enabled.
+
+      <button (click)="code16.hidden = !code16.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code16 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>bash</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_16"
+            [languages]="['bash']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Production Builds (AOT Enabled by Default)</strong>:
+      Automatically enables AOT and other optimizations.
+
+      <button (click)="code17.hidden = !code17.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code17 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>bash</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_17"
+            [languages]="['bash']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      <strong>Configuring in <code>angular.json</code></strong>:
+      Sets AOT as the default for all builds.
+
+      <button (click)="code18.hidden = !code18.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code18 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_18"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Common Commands for AOT Compilation</p>
+  <br>
+  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
+    <thead>
+      <tr class="">
+        <th class="">Command</th>
+        <th class="">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pl-2"><code>ng build --aot</code></td>
+        <td>Builds the application with AOT enabled.</td>
+      </tr>
+      <tr>
+        <td class="pl-2"><code>ng serve --aot</code></td>
+        <td>Serves the application locally with AOT enabled.</td>
+      </tr>
+      <tr>
+        <td class="pl-2"><code>ng build --prod</code></td>
+        <td>Production build with AOT and other optimizations.</td>
+      </tr>
+      <tr>
+        <td class="pl-2"><code>ng build --aot --source-map</code></td>
+        <td>AOT build with source maps for debugging purposes.</td>
+      </tr>
+    </tbody>
+  </table>
 
 </ng-template>
 
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Static Templates and Expressions</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Avoid Dynamic Constructs</strong>:
+          Ensure templates use static, predictable expressions. Avoid using dynamic constructs like function calls or complex logic inside templates, as they can prevent AOT from optimizing properly.
+        </li>
+        <li>
+          <strong>Leverage Pure Pipes</strong>:
+          Use pure pipes for complex data transformations. Pure pipes are cached and only recomputed when their input changes, which helps optimize performance during AOT.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Ensure Type Safety and Static Metadata</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Explicit Typing</strong>:
+          Use strict TypeScript types and avoid the any type. Angular's AOT compiler relies heavily on TypeScript's type system for generating metadata, so always define explicit types for variables, function parameters, and return types.
+        </li>
+        <li>
+          <strong>Avoid Dynamic Metadata</strong>:
+          Use static values in decorators and component metadata. Avoid using dynamic expressions (like functions) to define metadata such as component selectors, template URLs, etc., as AOT requires all metadata to be statically analyzable.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400"></strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Production Builds</strong>:
+          Use the Angular CLI to ensure AOT is enabled for all production builds. This command enables AOT by default, along with other optimizations like minification and tree-shaking.
+
+          <button (click)="code17.hidden = !code17.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+          <span #code17 hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>bash</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
+
+            <pre>
+              <code
+                [highlight]="code_17"
+                [languages]="['bash']">
+              </code>
+            </pre>
+          </span>
+        </li>
+        <li>
+          <strong>Development Builds</strong>:
+          Enable AOT during development to catch errors early. This allows you to detect template-related errors early in the development process.
+
+          <button (click)="code19.hidden = !code19.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+          <span #code19 hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>bash</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
+
+            <pre>
+              <code
+                [highlight]="code_19"
+                [languages]="['bash']">
+              </code>
+            </pre>
+          </span>
+        </li>
+        <li>
+          <strong>Configuration in <code>angular.json</code></strong>:
+          Set AOT as the default for all builds.
+
+          <button (click)="code18.hidden = !code18.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+          <span #code18 hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>bash</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
+
+            <pre>
+              <code
+                [highlight]="code_18"
+                [languages]="['bash']">
+              </code>
+            </pre>
+          </span>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Component Structure and Lifecycle</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use <code>ChangeDetectionStrategy.OnPush</code></strong>:
+          Minimize change detection cycles by using <code>ChangeDetectionStrategy.OnPush</code> for components that do not rely on global state:
+
+          <button (click)="code20.hidden = !code20.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+          <span #code20 hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>typescript</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
+
+            <pre>
+              <code
+                [highlight]="code_20"
+                [languages]="['typescript']">
+              </code>
+            </pre>
+          </span>
+        </li>
+        <li>
+          <strong>Break Down Complex Components</strong>:
+          Divide large, complex components into smaller, focused components. This makes them easier to analyze and optimize by the AOT compiler.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Utilize Lazy Loading for Feature Modules</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Implement Lazy Loading</strong>:
+          Use lazy loading to defer the loading of feature modules that are not required immediately, reducing the initial bundle size.
+          This reduces the initial load time by only loading necessary modules when needed.
+
+          <button (click)="code21.hidden = !code21.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+          <span #code21 hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>typescript</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
+
+            <pre>
+              <code
+                [highlight]="code_21"
+                [languages]="['typescript']">
+              </code>
+            </pre>
+          </span>
+
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Ensure Compatibility of Third-Party Libraries</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use AOT-Compatible Libraries</strong>:
+          Verify that all third-party libraries are compatible with AOT. Some libraries might rely on dynamic runtime features that are not supported by AOT.
+        </li>
+        <li>
+          <strong>Tree-Shaking</strong>:
+          Remove unused libraries and dependencies to reduce the final bundle size. AOT, combined with tree-shaking, can eliminate dead code during the build process.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Avoid Direct DOM Manipulation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Angular’s <code>Renderer2</code> API</strong>:
+          Instead of directly manipulating the DOM using native methods or third-party libraries like jQuery, use Angular’s <code>Renderer2</code> API.
+          This ensures compatibility with Angular's rendering engine and supports AOT.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Styles and Assets</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Inline Critical CSS</strong>:
+          Inline critical CSS to reduce the number of HTTP requests and speed up initial rendering.
+        </li>
+        <li>
+          <strong>Minimize Asset Size</strong>:
+          Compress images, fonts, and other assets to reduce their size and optimize the app's load time.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Monitor Build Performance and Diagnostics</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Analyze Build Outputs</strong>:
+          Regularly check build outputs for any warnings or errors during AOT compilation. Use tools like Webpack Bundle Analyzer to analyze bundle sizes and identify performance bottlenecks.
+        </li>
+        <li>
+          <strong>Use Angular DevTools</strong>:
+          Utilize Angular DevTools to inspect component performance, detect hydration issues, and debug AOT-related errors more effectively.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Angular’s Partial Hydration and Improved SSR Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Partial Hydration</strong>:
+          In Angular 18, partial hydration helps optimize server-side rendering (SSR) by hydrating only necessary parts of the app, improving load times and overall performance.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
 
 <ng-template #prosConsRef>
@@ -333,19 +426,57 @@
 
   <ol class="list-decimal px-10 text-sm">
     <li>
-      <strong>Better performance</strong>: AOT-compiled applications can start faster and run more efficiently because they do not require JIT compilation, which can take time and resources during runtime.
+      <strong>Faster Initial Load Time</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          AOT compiles templates and components during the build process, eliminating the need for Just-in-Time (JIT) compilation in the browser.
+          This reduces the amount of JavaScript the browser needs to process at runtime, resulting in a faster initial load time.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Improved security</strong>: AOT-compiled applications are more secure because the templates are compiled into optimized code and do not rely on Angular's dynamic template parsing, which can introduce security vulnerabilities.
+      <strong>Smaller Bundle Sizes</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          By removing the Angular compiler from the application bundle, AOT reduces the size of the JavaScript files sent to the client.
+          Smaller bundle sizes lead to faster downloads and improved app performance, particularly on slower networks.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Smaller bundle sizes</strong>: AOT compilation reduces the size of the final JavaScript bundle by removing unnecessary code and optimizing the code for faster execution.
+      <strong>Improved Security</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          AOT compiles templates into JavaScript before deployment, preventing the risk of injection attacks that can occur if templates are dynamically compiled at runtime.
+          This makes the app more secure by reducing the surface area for potential vulnerabilities.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Better debugging</strong>: AOT-compiled applications can be easier to debug because they produce cleaner and more readable code, which can be helpful when diagnosing issues and errors.
+      <strong>Early Error Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Errors in templates, components, and metadata are detected during the build phase, allowing developers to identify and fix them early in the development process.
+          This leads to fewer runtime errors and more stable applications.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Better tooling support</strong>: AOT compilation is supported by most Angular tooling, including Angular CLI, which makes it easier to build, test, and deploy applications.
+      <strong>Optimized Performance for Production</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          AOT is optimized for production use, ensuring that the application performs well under various conditions.
+          It is fully compatible with Angular's change detection strategies and supports advanced features like partial hydration for server-side rendering (SSR).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Compatibility with Zoneless Applications and Native Async</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 18 supports zoneless applications and native async/await, reducing reliance on <code>zone.js</code> and enabling more efficient, smaller bundles with AOT.
+        </li>
+      </ul>
     </li>
   </ol>
 
@@ -359,69 +490,315 @@
 
   <ol class="list-decimal px-10 text-sm">
     <li>
-      <strong>Longer build times</strong>: AOT compilation requires additional time and resources during the build process, which can increase the build time and slow down the development process.
+      <strong>Increased Build Time</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          AOT compilation adds extra processing time to the build process because it performs template compilation, type checking, and optimization at build time.
+          This can increase the time required for builds, which might be noticeable in large projects.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Limited runtime flexibility</strong>: AOT-compiled applications have limited runtime flexibility because they are pre-compiled and cannot be modified at runtime.
+      <strong>Limited Support for Dynamic Code</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          AOT relies on static analysis, which means it cannot handle dynamic code constructs or certain types of JavaScript expressions (e.g., dynamically generated templates or code that uses reflection).
+          This can be a limitation if your app requires highly dynamic behavior.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Limited template complexity</strong>: AOT compilation has some limitations when it comes to complex templates, such as dynamic templates, that may require JIT compilation.
+      <strong>Requires Strict Type Checking</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          AOT requires strict adherence to TypeScript types and Angular best practices. This means any loose typing or use of dynamic types (any) can lead to compilation errors.
+          While this is generally a good practice, it may require additional work for legacy projects or applications with less strict typing.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Increased development complexity</strong>: AOT compilation requires developers to follow strict coding practices and adhere to Angular's best practices to ensure that the code is compatible with AOT compilation.
+      <strong>Compatibility Issues with Third-Party Libraries</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Not all third-party libraries are compatible with AOT, especially those that rely on dynamic runtime behavior or use reflection.
+          You may need to modify or replace incompatible libraries, which can add extra work and complexity.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Compatibility issues</strong>: AOT-compiled applications may have compatibility issues with some third-party libraries and plugins that are not compatible with AOT compilation.
+      <strong>More Complex Debugging in Some Cases</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          While AOT catches many errors at build time, debugging AOT-specific issues can sometimes be more complex due to the additional build steps and optimizations involved.
+          Developers may need to use specific tools like Angular DevTools to diagnose and resolve AOT-related problems.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Initial Setup and Configuration Overhead</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Configuring an application to use AOT, especially if transitioning from JIT, may involve some initial setup and refactoring.
+          This can include ensuring that all templates, components, and metadata are statically analyzable and updating any dynamic code that is incompatible with AOT.
+        </li>
+      </ul>
     </li>
   </ol>
 
   <br>
 
   <p>
-    In summary, AOT compilation offers several benefits, such as better performance, security, and smaller bundle sizes, but also has some drawbacks, such as longer build times, limited runtime flexibility, and increased development complexity. Developers should carefully consider these factors when deciding whether to use AOT compilation in their Angular applications.
+    Summary
   </p>
+  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
+    <thead>
+      <tr class="">
+        <th class="">Pros</th>
+        <th class="">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pl-2">Faster initial load times</td>
+        <td>Increased build time</td>
+      </tr>
+      <tr>
+        <td class="pl-2">Smaller bundle sizes</td>
+        <td>Limited support for dynamic code</td>
+      </tr>
+      <tr>
+        <td class="pl-2">Improved security</td>
+        <td>Requires strict type checking</td>
+      </tr>
+      <tr>
+        <td class="pl-2">Early error detection</td>
+        <td>Compatibility issues with some third-party libraries</td>
+      </tr>
+      <tr>
+        <td class="pl-2">Optimized performance for production</td>
+        <td>More complex debugging in certain scenarios</td>
+      </tr>
+      <tr>
+        <td class="pl-2">Supports zoneless applications and native async</td>
+        <td>Initial setup and configuration overhead</td>
+      </tr>
+    </tbody>
+  </table>
 
 </ng-template>
 
 
 <ng-template #topicsRef>
-  <p>
-    Here are some related topics to AOT compilation in Angular:
-  </p>
-
-  <br>
-
   <ol class="list-decimal px-10 text-sm">
     <li>
-      <strong>Just-in-time (JIT) compilation:</strong>
-      JIT compilation is the default compilation mode in Angular, where the browser compiles the application's TypeScript and template files at runtime, which can impact the performance and security of the application.
+      <strong>Just-in-Time (JIT) Compilation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+            <strong class="text-sky-400">Description</strong>:
+            In contrast to AOT, <span class="text-zinc-50 tw-font-medium">Just-in-Time (JIT) Compilation</span> compiles Angular templates and components in the browser at runtime.
+            This approach allows for a more dynamic development experience since changes can be quickly reloaded without rebuilding the entire app.
+        </li>
+        <li>
+          <strong class="text-sky-400">Key Differences with AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <span class="text-zinc-50 tw-font-medium">JIT</span> is faster during development because it avoids the initial build time, while
+              <span class="text-zinc-50 tw-font-medium">AOT</span> is faster for end users because it reduces the app’s load time.
+            </li>
+            <li>
+              <span class="text-zinc-50 tw-font-medium">JIT</span> is suitable for development environments where quick iteration is needed, whereas
+              <span class="text-zinc-50 tw-font-medium">AOT</span> is better for production deployments where performance and security are priorities.
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Template parsing:</strong>
-      Template parsing is the process of converting the HTML and Angular template syntax into executable code, which can be expensive and slow in large applications. AOT compilation pre-compiles the templates and generates optimized code, which reduces the time and resources required for parsing and rendering the templates.
+      <strong>Angular Ivy</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          <span class="text-zinc-50 tw-font-medium">Ivy</span> is the default rendering engine in Angular starting from Angular 9. It offers a more efficient compilation and rendering pipeline, resulting in smaller bundles and faster compilation times.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <span class="text-zinc-50 tw-font-medium">Ivy</span> makes AOT compilation faster and more efficient by compiling templates more effectively and eliminating unnecessary code.
+              It also enables new features like partial hydration and support for zoneless applications.
+            </li>
+            <li>
+              <span class="text-zinc-50 tw-font-medium">Angular 18</span> leverages Ivy to enhance the performance of both JIT and AOT compilations.
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Build optimizer:</strong>
-      The build optimizer is a tool in Angular that reduces the size of the final JavaScript bundle by removing unnecessary code and optimizing the code for faster execution. The build optimizer works together with AOT compilation to produce smaller, faster, and more efficient code.
+      <strong>Change Detection Strategies</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <span class="text-zinc-50 tw-font-medium">Default Strategy</span>: Checks the entire component tree for changes, which can be inefficient for large applications.
+            </li>
+            <li>
+              <span class="text-zinc-50 tw-font-medium">OnPush Strategy</span>: Checks only when input properties change, an event occurs, or a component’s view is initialized.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Using <span class="text-zinc-50 tw-font-medium">ChangeDetectionStrategy.OnPush</span> with AOT can improve performance by reducing the number of change detection cycles, especially in large applications.
+            </li>
+            <li>
+              With <span class="text-zinc-50 tw-font-medium">AOT</span>, Angular can statically analyze the templates, optimize change detection, and eliminate unnecessary checks.
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Lazy loading:</strong>
-      Lazy loading is a technique in Angular that loads components and modules only when they are needed, rather than loading everything upfront, which can improve the performance and reduce the initial load time of the application. AOT compilation can help optimize the loading and execution of lazy-loaded components and modules.
+      <strong>Lazy Loading</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          <span class="text-zinc-50 tw-font-medium">Lazy Loading</span> allows Angular to load feature modules on demand rather than upfront, reducing the initial bundle size and improving application load times.
+
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <span class="text-zinc-50 tw-font-medium">AOT</span> and lazy loading work together to optimize application performance by reducing the amount of code loaded initially.
+            </li>
+            <li>
+              With Angular 18, AOT can be used alongside lazy loading to ensure that only the necessary modules are loaded when needed, which minimizes the download size and speeds up initial rendering.
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Change detection: </strong>
-      Change detection is the process in Angular that detects and responds to changes in the application's data and updates the view accordingly. AOT compilation can optimize the change detection process by reducing the number of change detection cycles and improving the performance of the application.
+      <strong>Tree Shaking</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          <span class="text-zinc-50 tw-font-medium">Tree Shaking</span> is a technique used to eliminate unused code from the final bundle, reducing the size of the application.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <span class="text-zinc-50 tw-font-medium">AOT</span> works well with tree shaking to eliminate parts of the Angular framework that are not used by the application. This leads to smaller bundle sizes and faster load times.
+            </li>
+            <li>
+              Angular's build optimizer, enabled with AOT, enhances tree-shaking effectiveness by marking unused code for removal.
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Template engines: </strong>
-      Template engines are libraries that generate HTML and other markup languages from templates and data. AOT compilation in Angular uses the Ivy template engine, which is a new and more efficient template engine that supports AOT compilation and improves the performance and security of the application.
+      <strong>Partial Hydration and Server-Side Rendering (SSR)</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          <span class="text-zinc-50 tw-font-medium">Partial Hydration</span> is a strategy where only the necessary parts of an application are hydrated or made interactive after server-side rendering (SSR).
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Angular 18’s AOT supports partial hydration to optimize server-side rendering (SSR) by hydrating only necessary parts of the app after initial SSR, improving performance and reducing load times.
+            </li>
+            <li>
+              AOT ensures that the JavaScript required for hydration is minimal and only contains what’s necessary to make the server-rendered content interactive.
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Angular CLI and Build Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          The <span class="text-zinc-50 tw-font-medium">Angular CLI</span> is a command-line tool that provides commands to initialize, develop, scaffold, and maintain Angular applications.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              The <span class="text-zinc-50 tw-font-medium">CLI</span> provides commands like <code>ng build --aot</code> to enable AOT compilation. It also includes build optimization flags (<code>--prod</code>) that enable AOT by default along with other optimizations like minification, tree shaking, and code splitting.
+            </li>
+            <li>
+              The <span class="text-zinc-50 tw-font-medium">CLI</span> helps automate the build process with AOT, making it easier to integrate AOT into the CI/CD pipeline.
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Angular DevTools</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          <span class="text-zinc-50 tw-font-medium">Angular DevTools</span> is a browser extension for debugging and profiling Angular applications.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              It provides tools for inspecting the component tree, detecting performance bottlenecks, and understanding the impact of AOT compilation on the application’s runtime behavior.
+            </li>
+            <li>
+              Angular DevTools can be used to monitor the effectiveness of AOT optimizations, including how change detection strategies affect performance.
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>NgModules and Modular Architecture</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          <span class="text-zinc-50 tw-font-medium">NgModules</span> are fundamental building blocks of Angular applications, used to group related components, directives, services, and pipes.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Properly organizing code into NgModules improves AOT compilation by making code more modular, manageable, and easier for the compiler to optimize.
+            </li>
+            <li>
+              With Angular 18, modular architecture allows for better compatibility with new features like zoneless apps and native async functions.
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Applications</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Zoneless applications in Angular remove the reliance on <code>zone.js</code> for change detection, relying instead on native async capabilities like <code>async/await</code>.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to AOT</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Angular 18's support for zoneless applications benefits AOT by allowing for smaller bundles and more efficient change detection, optimizing both runtime and build-time performance.
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
   </ol>
-
-  <br>
-
-  <p>
-    By mastering these topics and understanding how they relate to AOT compilation in Angular, you can optimize your application's performance, reduce its size, and improve its security and user experience.
-  </p>
 </ng-template>
 

@@ -1,0 +1,1 @@
+@Input('appHighlight') highlightColor: string = 'yellow';

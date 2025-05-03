@@ -1,0 +1,3 @@
+<div *ngIf="observable$ | async as data">
+  {{ data }}
+</div>

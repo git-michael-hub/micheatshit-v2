@@ -19,303 +19,812 @@ export class GlossaryComponent {
       ]
     },
     {
-      "name": "Angular element"
+      "name": "afterNextRender",
+      "file_location": "components/after-next-render",
+      "url": "after-next-render",
+      "hashtags": [
+        'lifecycle'
+      ]
     },
     {
-      "name": "annotation"
+      "name": "afterRender",
+      "file_location": "components/after-render",
+      "url": "after-render",
+      "hashtags": [
+        'lifecycle'
+      ]
     },
     {
-      "name": "app-shell"
+      "name": "Angular element",
+      "file_location": "components/angular-element",
+      "url": "angular-element",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "Architect"
+      "name": "annotation",
+      "file_location": "components/annotation",
+      "url": "annotation",
+      "hashtags": [
+        ''
+      ]
+    },
+    {
+      "name": "app-shell",
+      "file_location": "components/app-shell",
+      "url": "app-shell",
+      "hashtags": [
+        ''
+      ]
+    },
+    {
+      "name": "Architect",
+      "file_location": "components/architect",
+      "url": "architect",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "attribute directive",
-      "url": "attribute-directive"
+      "file_location": "components/attribute-directive",
+      "url": "attribute-directive",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "binding"
+      "name": "binding",
+      "file_location": "components/binding",
+      "url": "binding",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "bootstrap"
+      "name": "bootstrap",
+      "file_location": "components/bootstrap",
+      "url": "bootstrap",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "builder"
+      "name": "built-in control flow",
+      "file_location": "components/control-flow",
+      "url": "control-flow",
+      "hashtags": [
+        'v17'
+      ]
+    },
+    {
+      "name": "builder",
+      "file_location": "components/builder",
+      "url": "builder",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "case types",
-      "url": "case-types"
+      "file_location": "components/case-types",
+      "url": "case-types",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "change detection",
-      "url": "change-detection"
+      "file_location": "components/change-detection",
+      "url": "change-detection",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "class decorator",
+      "file_location": "components/class-decorator",
+      "url": "class-decorator",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "class field decorator"
+      "name": "class field decorator",
+      "file_location": "components/class-field-decorator",
+      "url": "class-field-decorator",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "collection"
+      "name": "collection",
+      "file_location": "components/collection",
+      "url": "collection",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "command-line interface (CLI)"
+      "name": "command-line interface (CLI)",
+      "file_location": "components/cli",
+      "url": "cli",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "component"
+      "name": "component",
+      "file_location": "components/component",
+      "url": "component",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "configuration"
+      "name": "configuration",
+      "file_location": "components/configuration",
+      "url": "configuration",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "content projection"
+      "name": "content projection",
+      "file_location": "components/content-projection",
+      "url": "content-projection",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "custom element"
+      "name": "custom element",
+      "file_location": "components/custom-element",
+      "url": "custom-element",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "data binding"
+      "name": "data binding",
+      "file_location": "components/data-binding",
+      "url": "data-binding",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "declarable"
+      "name": "declarable",
+      "file_location": "components/declarable",
+      "url": "declarable",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "decorator | decoration"
+      "name": "decorator | decoration",
+      "file_location": "components/decorator",
+      "url": "decorator",
+      "hashtags": [
+        ''
+      ]
+    },
+    {
+      "name": "deferrable views",
+      "file_location": "components/deferrable-views",
+      "url": "deferrable-views",
+      "hashtags": [
+        'v17', 'performance'
+      ]
     },
     {
       "name": "dependency injection (DI)",
-      "url": "di"
+      "file_location": "components/di",
+      "url": "di",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "DI token"
+      "name": "DI token",
+      "file_location": "components/di-token",
+      "url": "di-token",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "directive",
-      "url": "directive"
+      "file_location": "components/directive",
+      "url": "directive",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "domain-specific language (DSL)"
+      "name": "domain-specific language (DSL)",
+      "file_location": "components/dsl",
+      "url": "dsl",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "dynamic component loading",
-      "url": "dynamic-component-loading"
+      "file_location": "components/dynamic-component-loading",
+      "url": "dynamic-component-loading",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "eager loading"
+      "name": "eager loading",
+      "file_location": "components/eager-loading",
+      "url": "eager-loading",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "ECMAScript"
+      "name": "ECMAScript",
+      "file_location": "components/ecmascript",
+      "url": "ecmascript",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "element"
+      "name": "element",
+      "file_location": "components/element",
+      "url": "element",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "entry point"
+      "name": "entry point",
+      "file_location": "components/entry-point",
+      "url": "entry-point",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "form control",
-      "url": "form-control"
+      "file_location": "components/form-control",
+      "url": "form-control",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "form model",
-      "url": "form-model"
+      "file_location": "components/form-model",
+      "url": "form-model",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "form validation",
-      "url": "form-validation"
+      "file_location": "components/form-validation",
+      "url": "form-validation",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "immutability"
+      "name": "hydration",
+      "file_location": "components/hydration",
+      "url": "hydration",
+      "hashtags": [
+        'v17', 'performance'
+      ]
     },
     {
-      "name": "injectable"
+      "name": "immutability",
+      "file_location": "components/immutability",
+      "url": "immutability",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "injector"
+      "name": "injectable",
+      "file_location": "components/injectable",
+      "url": "injectable",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "input"
+      "name": "injector",
+      "file_location": "components/injector",
+      "url": "injector",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "interpolation"
+      "name": "input",
+      "file_location": "components/input",
+      "url": "input",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "Ivy"
+      "name": "input transform",
+      "file_location": "components/input-transform",
+      "url": "input-transform",
+      "hashtags": [
+        'v17'
+      ]
     },
     {
-      "name": "JavaScript"
+      "name": "interpolation",
+      "file_location": "components/interpolation",
+      "url": "interpolation",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "just-in-time (JIT) compilation"
+      "name": "Ivy",
+      "file_location": "components/ivy",
+      "url": "ivy",
+      "hashtags": [
+        ''
+      ]
+    },
+    {
+      "name": "JavaScript",
+      "file_location": "components/javascript",
+      "url": "javascript",
+      "hashtags": [
+        ''
+      ]
+    },
+    {
+      "name": "just-in-time (JIT) compilation",
+      "file_location": "components/jit",
+      "url": "jit",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "lazy loading",
-      "url": "lazy-loading"
+      "file_location": "components/lazy-loading",
+      "url": "lazy-loading",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "library"
+      "name": "library",
+      "file_location": "components/library",
+      "url": "library",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "lifecycle hook",
-      "url": "hooks"
+      "file_location": "components/hooks",
+      "url": "hooks",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "module"
+      "name": "module",
+      "file_location": "components/module",
+      "url": "module",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "ngcc"
+      "name": "ngcc",
+      "file_location": "components/ngcc",
+      "url": "ngcc",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "NgModule"
+      "name": "NgModule",
+      "file_location": "components/ngmodule",
+      "url": "ngmodule",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "npm package"
+      "name": "npm package",
+      "file_location": "components/npm-package",
+      "url": "npm-package",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "ngc"
+      "name": "ngc",
+      "file_location": "components/ngc",
+      "url": "ngc",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "observable",
-      "url": "observable"
+      "file_location": "components/observable",
+      "url": "observable",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "observer"
+      "name": "observer",
+      "file_location": "components/observer",
+      "url": "observer",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "output"
+      "name": "output",
+      "file_location": "components/output",
+      "url": "output",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "pipe",
-      "url": "pipe"
+      "file_location": "components/pipe",
+      "url": "pipe",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "platform"
+      "name": "platform",
+      "file_location": "components/platform",
+      "url": "platform",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "polyfill"
+      "name": "polyfill",
+      "file_location": "components/polyfill",
+      "url": "polyfill",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "project"
+      "name": "project",
+      "file_location": "components/project",
+      "url": "project",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "provider"
+      "name": "provider",
+      "file_location": "components/provider",
+      "url": "provider",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "reactive form",
-      "url": "reactive-form"
+      "file_location": "components/reactive-form",
+      "url": "reactive-form",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "resolver",
-      "url": "resolver"
+      "file_location": "components/resolver",
+      "url": "resolver",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "route guard",
-      "url": "route-guard"
+      "file_location": "components/route-guard",
+      "url": "route-guard",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "router",
-      "url": "router"
+      "file_location": "components/router",
+      "url": "router",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "router outlet",
-      "url": "router-outlet"
+      "file_location": "components/router-outlet",
+      "url": "router-outlet",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "routing component",
-      "url": "routing-component"
+      "file_location": "components/routing-component",
+      "url": "routing-component",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "rule"
+      "name": "rule",
+      "file_location": "components/rule",
+      "url": "rule",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "schematic"
+      "name": "schematic",
+      "file_location": "components/schematic",
+      "url": "schematic",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "Schematics CLI"
+      "name": "Schematics CLI",
+      "file_location": "components/schematics-cli",
+      "url": "schematics-cli",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "scoped package"
+      "name": "scoped package",
+      "file_location": "components/scoped-package",
+      "url": "scoped-package",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "server-side rendering"
+      "name": "server-side rendering",
+      "file_location": "components/ssr",
+      "url": "ssr",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "service"
+      "name": "service",
+      "file_location": "components/service",
+      "url": "service",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "standalone"
+      "name": "signals",
+      "file_location": "components/signals",
+      "url": "signals",
+      "hashtags": [
+        'v17', 'reactivity'
+      ]
+    },
+    {
+      "name": "standalone",
+      "file_location": "components/standalone",
+      "url": "standalone",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "structural directive",
-      "url": "structural-directive"
+      "file_location": "components/structural-directive",
+      "url": "structural-directive",
+      "hashtags": [
+        ''
+      ]
+    },
+    {
+      "name": "styleUrl",
+      "file_location": "components/style-url",
+      "url": "style-url",
+      "hashtags": [
+        'v17'
+      ]
     },
     {
       "name": "subscriber",
-      "url": "subscriber"
+      "file_location": "components/subscriber",
+      "url": "subscriber",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "target"
+      "name": "target",
+      "file_location": "components/target",
+      "url": "target",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "template",
-      "url": "template"
+      "file_location": "components/template",
+      "url": "template",
+      "hashtags": [
+        ''
+      ]
     },
     {
       "name": "template-driven forms",
-      "url": "template-form"
+      "file_location": "components/template-form",
+      "url": "template-form",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "template expression"
+      "name": "template expression",
+      "file_location": "components/template-expression",
+      "url": "template-expression",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "template reference variable"
+      "name": "template reference variable",
+      "file_location": "components/template-reference-variable",
+      "url": "template-reference-variable",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "template input variable"
+      "name": "template input variable",
+      "file_location": "components/template-input-variable",
+      "url": "template-input-variable",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "token"
+      "name": "token",
+      "file_location": "components/token",
+      "url": "token",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "transpile"
+      "name": "transpile",
+      "file_location": "components/transpile",
+      "url": "transpile",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "tree"
+      "name": "tree",
+      "file_location": "components/tree",
+      "url": "tree",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "TypeScript"
+      "name": "TypeScript",
+      "file_location": "components/typescript",
+      "url": "typescript",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "TypeScript configuration file"
+      "name": "TypeScript configuration file",
+      "file_location": "components/typescript-configuration",
+      "url": "typescript-configuration",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "unidirectional data flow"
+      "name": "unidirectional data flow",
+      "file_location": "components/unidirectional-data-flow",
+      "url": "unidirectional-data-flow",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "Universal"
+      "name": "Universal",
+      "file_location": "components/universal",
+      "url": "universal",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "view"
+      "name": "view",
+      "file_location": "components/view",
+      "url": "view",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "View Engine"
+      "name": "View Engine",
+      "file_location": "components/view-engine",
+      "url": "view-engine",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "view hierarchy"
+      "name": "view hierarchy",
+      "file_location": "components/view-hierarchy",
+      "url": "view-hierarchy",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "web component"
+      "name": "view transitions",
+      "file_location": "components/view-transitions",
+      "url": "view-transitions",
+      "hashtags": [
+        'v17', 'animation'
+      ]
     },
     {
-      "name": "workspace"
+      "name": "web component",
+      "file_location": "components/web-component",
+      "url": "web-component",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "workspace configuration"
+      "name": "workspace",
+      "file_location": "components/workspace",
+      "url": "workspace",
+      "hashtags": [
+        ''
+      ]
     },
     {
-      "name": "zone"
+      "name": "workspace configuration",
+      "file_location": "components/workspace-configuration",
+      "url": "workspace-configuration",
+      "hashtags": [
+        ''
+      ]
+    },
+    {
+      "name": "zone",
+      "file_location": "components/zone",
+      "url": "zone",
+      "hashtags": [
+        ''
+      ]
     },
   ];
 

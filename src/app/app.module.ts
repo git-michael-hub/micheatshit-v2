@@ -7,7 +7,7 @@ import { FirstLetterColorDirective } from './utils/directives/first-letter-color
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { GlossaryComponent } from './feature/angular/components/glossary/glossary.component';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { ObjToArrPipe } from './utils/pipes/obj-to-arr.pipe';
 import { BypassStringIndexPipe } from './utils/pipes/bypass-string-index.pipe';
 import { GlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
@@ -46,6 +46,7 @@ import { StructuralDirectiveComponent } from './feature/angular/concepts/structu
 import { SubscriberComponent } from './feature/angular/concepts/subscriber/subscriber.component';
 import { TemplateComponent } from './feature/angular/concepts/template/template.component';
 import { TemplateFormComponent } from './feature/angular/concepts/template-form/template-form.component';
+import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { TemplateFormComponent } from './feature/angular/concepts/template-form/
     GlossaryPageComponent,
     BoxWidgetDirective,
     AotComponent,
+    AngularElementComponent,
     ApfComponent,
     AnnotationComponent,
     AppShellComponent,
@@ -92,7 +94,7 @@ import { TemplateFormComponent } from './feature/angular/concepts/template-form/
     TemplateFormComponent,
   ],
   imports: [
-    // CommonModule,
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HighlightModule,

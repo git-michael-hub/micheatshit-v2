@@ -1,0 +1,9 @@
+@Pipe({
+  name: 'myPipe',
+  pure: true
+})
+export class MyPipe {
+  transform(value: any): any {
+    return value * 2;
+  }
+}

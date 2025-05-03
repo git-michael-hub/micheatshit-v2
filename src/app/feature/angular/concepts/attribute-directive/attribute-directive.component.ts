@@ -21,6 +21,15 @@ export class AttributeDirectiveComponent extends UnsubscribeService {
   code_5 = '';
   code_6 = '';
   code_7 = '';
+  code_8 = '';
+  code_9 = '';
+  code_10 = '';
+  codeb_1 = '';
+  codeb_2 = '';
+  codeb_3 = '';
+  codeb_4 = '';
+  codeb_5 = '';
+  codeb_6 = '';
 
   constructor(
     private http: HttpClient
@@ -60,5 +69,41 @@ export class AttributeDirectiveComponent extends UnsubscribeService {
     this.http.get('assets/codes/attribute-directive/notes/code_7.txt', { responseType: 'text' })
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_7 = data);
+
+    this.http.get('assets/codes/attribute-directive/notes/code_8.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_8 = data);
+
+    this.http.get('assets/codes/attribute-directive/notes/code_9.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_9 = data);
+
+    this.http.get('assets/codes/attribute-directive/notes/code_10.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_10 = data);
+
+    this.http.get('assets/codes/attribute-directive/best/code_1.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.codeb_1 = data);
+
+    this.http.get('assets/codes/attribute-directive/best/code_2.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.codeb_2 = data);
+
+    this.http.get('assets/codes/attribute-directive/best/code_3.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.codeb_3 = data);
+
+    this.http.get('assets/codes/attribute-directive/best/code_4.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.codeb_4 = data);
+
+    this.http.get('assets/codes/attribute-directive/best/code_5.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.codeb_5 = data);
+
+    this.http.get('assets/codes/attribute-directive/best/code_6.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.codeb_6 = data);
   }
 }

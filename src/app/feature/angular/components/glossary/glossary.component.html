@@ -1,4 +1,4 @@
-<div class="flex flex-wrap justify-between relative overflow-y-auto">
+<div class="flex flex-wrap relative overflow-y-auto">
 
   <a
     [routerLink]="item.url"
@@ -7,16 +7,17 @@
     *ngFor="let item of components; let i = index;"
     class="wrapper-container-{{i}}   cursor-pointer m-1 relative flex items-center
       rounded-lg border border-gray-300
-      bg-gray-200 p-2 shadow-sm
+      bg-[#303030] p-2 shadow-sm
       focus:ring-2 focus:ring-rose-500 focus:ring-offset-1
       hover:border-rose-400 hover:shadow-lg hover:ring-rose-400 hover:ring-1
+      w-full
     ">
     <div class="min-w-0 flex-1">
       <span
         appFirstLetterColor
         text="{{item.name}}"
         [id]="i"
-        class="text-sm font-medium text-gray-900">
+        class="text-sm font-medium text-content">
       </span>
     </div>
   </a>

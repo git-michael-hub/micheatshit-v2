@@ -1,11 +1,13 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    change detection
+    Change Detection
   </p>
 
   <div class="text-content">
     <p>
-      Change Detection is an important aspect of Angular that helps ensure that your application's UI is always up-to-date with its underlying data model.
+      <span class="text-zinc-50 tw-font-medium">Change Detection</span>
+      is a key mechanism in Angular that ensures the application’s view reflects the current state of the model.
+      Understanding how change detection works and how to optimize it is essential for building efficient Angular applications.
     </p>
 
 
@@ -17,18 +19,24 @@
           Notes
         </button>
         <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
-          Pros and Cons
+          Best Practices
         </button>
         <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
-            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
           </div>
           <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
           </div>
           <div *ngSwitchDefault>
@@ -45,20 +53,85 @@
 
 
 <ng-template #notesRef>
-  <p>
-    Commonly used features and methods related to Change Detection:
-  </p>
+  <p>Key Concepts</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Change Detection Strategies</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Default</span>:
+          Angular checks every component in the application tree from the root down whenever an event occurs (e.g., user input, timer, HTTP response).
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">OnPush</span>:
+          This strategy tells Angular to check a component only when its input properties change by reference or when an event is emitted within that component.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zones and <code>Zone.js</code></strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Zone.js</span>:
+          A library Angular uses to detect asynchronous operations (like HTTP requests, user events, etc.) and trigger change detection automatically.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium"><code>NgZone</code></span>:
+          Angular's wrapper around <code>Zone.js</code>. You can manually run tasks inside or outside of <code>NgZone</code> to control when change detection occurs.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong><code>ChangeDetectorRef</code></strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">markForCheck()</span>:
+          Marks the component and its ancestors to be checked during the next change detection cycle.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">detectChanges()</span>:
+          Runs change detection immediately on the component and its children.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">detach()</span>:
+          Detaches the component from the change detection tree.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">reattach()</span>:
+          Reattaches the component to the change detection tree.
+        </li>
+      </ul>
+    </li>
+  </ol>
 
   <br>
+  <br>
 
-  <ol class="list-decimal px-10 text-sm">
+  <p>Change Detection Strategies</p>
+  <ol class="list-decimal pl-4 text-sm">
     <li>
-      <strong>ChangeDetectionStrategy</strong> - Enum that determines how a component or directive's change detection should be triggered.
+      <strong>Default Strategy</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          Angular’s default strategy checks the entire component tree whenever any event occurs (e.g., mouse clicks, HTTP requests).
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Pros</span>:
+          Ensures every change in the app is captured.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Cons</span>:
+          Can lead to performance issues, especially in large applications with many components.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>OnPush Strategy</strong>:
 
+      <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
-      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code1 hidden copyToClipboard>
+      <span #code9 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
           <span>typescript</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
@@ -66,7 +139,50 @@
 
         <pre>
           <code
-            [highlight]="code_1"
+            [highlight]="code_9"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          Angular only checks the component when one of its input properties changes by reference or when an event occurs inside the component.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Pros</span>:
+          Improved performance by reducing unnecessary checks.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Cons</span>:
+          Requires immutability practices (updating object references) to work correctly.
+
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Optimizing Change Detection</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Use OnPush with Immutable Data</strong>:
+      This ensures that Angular detects changes only when the reference of the object changes, thus reducing the number of checks.
+
+      <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code10 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_10"
             [languages]="['typescript']">
           </code>
         </pre>
@@ -74,12 +190,59 @@
 
     </li>
     <li>
-      <strong>ChangeDetectorRef</strong> - Class that provides methods for manually triggering change detection.
+      <strong>Manual Control with <code>ChangeDetectorRef</code></strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium"><code>markForCheck()</code></span>:
+          Marks the component for checking in the next cycle.
 
+          <button (click)="code11.hidden = !code11.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
-      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+          <span #code11 hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>typescript</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
 
-      <span #code2 hidden copyToClipboard>
+            <pre>
+              <code
+                [highlight]="code_11"
+                [languages]="['typescript']">
+              </code>
+            </pre>
+          </span>
+
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium"><code>detectChanges()</code></span>:
+          Triggers change detection immediately.
+
+          <button (click)="code12.hidden = !code12.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+          <span #code12 hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>typescript</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
+
+            <pre>
+              <code
+                [highlight]="code_12"
+                [languages]="['typescript']">
+              </code>
+            </pre>
+          </span>
+
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Detach and Reattach</strong>:
+      Use <code>detach()</code> to stop change detection and <code>reattach()</code> when you want to resume it.
+
+      <button (click)="code13.hidden = !code13.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code13 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
           <span>typescript</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
@@ -87,7 +250,7 @@
 
         <pre>
           <code
-            [highlight]="code_2"
+            [highlight]="code_13"
             [languages]="['typescript']">
           </code>
         </pre>
@@ -95,12 +258,12 @@
 
     </li>
     <li>
-      <strong>ngDoCheck()</strong> - Lifecycle hook that executes whenever Angular's default change detection has been triggered.
+      <strong>Run Tasks Outside Angular’s Zone</strong>:
+      For background tasks or frequent updates, run them outside Angular’s <code>NgZone</code> to prevent unnecessary change detection cycles.
 
+      <button (click)="code14.hidden = !code14.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
-      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code3 hidden copyToClipboard>
+      <span #code14 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
           <span>typescript</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
@@ -108,7 +271,7 @@
 
         <pre>
           <code
-            [highlight]="code_3"
+            [highlight]="code_14"
             [languages]="['typescript']">
           </code>
         </pre>
@@ -116,12 +279,12 @@
 
     </li>
     <li>
-      <strong>ngOnChanges()</strong> - Lifecycle hook that executes whenever one or more input properties of a component or directive have been changed.
+      <strong>Use Pure Pipes</strong>:
+      Pure pipes are recalculated only when input values change, thus preventing unnecessary calculations.
 
+      <button (click)="code15.hidden = !code15.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
-      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code4 hidden copyToClipboard>
+      <span #code15 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
           <span>typescript</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
@@ -129,91 +292,7 @@
 
         <pre>
           <code
-            [highlight]="code_4"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      <strong>markForCheck()</strong> - Method that marks a component or directive for change detection during the next change detection cycle.
-
-
-      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code5 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_5"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      <strong>detach() and reattach()</strong> - Methods that temporarily detach or reattach a component or directive from the change detection tree.
-
-
-      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code6 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_6"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      <strong>ChangeDetectorRef.detectChanges()</strong> - Method that manually triggers change detection for a component and all its child components.
-
-
-      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code7 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_7"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      <strong>NgZone</strong> - Service that provides a way to run code outside or inside of Angular's zone, which can affect how change detection is triggered.
-
-
-      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code8 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_8"
+            [highlight]="code_15"
             [languages]="['typescript']">
           </code>
         </pre>
@@ -223,10 +302,441 @@
   </ol>
 
   <br>
+  <br>
 
-  <p>
-    By using these features and methods related to Change Detection in Angular, you can optimize the performance of your application by controlling when and how change detection is triggered.
-  </p>
+  <p>Common Methods in <code>ChangeDetectorRef</code></p>
+  <br>
+  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
+    <thead>
+      <tr class="">
+        <th class="">Method</th>
+        <th class="">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pl-2"><code>markForCheck()</code></td>
+        <td>Marks the component and its ancestors to be checked next cycle.</td>
+      </tr>
+      <tr>
+        <td class="pl-2"><code>detectChanges()</code></td>
+        <td>Triggers change detection immediately for this component.</td>
+      </tr>
+      <tr>
+        <td class="pl-2"><code>detach()</code></td>
+        <td>Detaches the component from change detection checks.</td>
+      </tr>
+      <tr>
+        <td class="pl-2"><code>reattach()</code></td>
+        <td>Reattaches the component to the change detection tree.</td>
+      </tr>
+      <tr>
+        <td class="pl-2"><code>checkNoChanges()</code></td>
+        <td>Throws an error if any change occurs. Used in dev mode for debugging.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Common Use Cases</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Preventing Change Detection for Performance-Intensive Tasks</strong>:
+      Use <code>NgZone.runOutsideAngular()</code> for tasks like animations or WebSocket connections where frequent updates occur but don’t necessarily require UI changes.
+    </li>
+    <li>
+      <strong>Manual Change Detection with OnPush</strong>:
+      If you're using the <code>OnPush</code> strategy and want to force Angular to check for changes when the reference hasn’t changed, use <code>markForCheck()</code>.
+    </li>
+    <li>
+      <strong>Component Interaction</strong>:
+      When interacting between components, ensure that objects passed through <code>@Input()</code> properties are immutable to benefit from the <code>OnPush</code> strategy.
+    </li>
+  </ol>
+
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use <code>ChangeDetectionStrategy.OnPush</code> for Performance Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>What it does</strong>:
+           <code>OnPush</code> tells Angular to check a component’s view only when its input properties change by reference or when an event happens inside the component.
+        </li>
+        <li>
+          <strong>Why it's beneficial</strong>:
+          It limits the number of components Angular needs to check, thereby improving performance by reducing unnecessary re-checks.
+        </li>
+        <li>
+          <strong>Best Practice</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Use <code>OnPush</code> with immutable data structures or whenever you know the component doesn't need to be checked frequently.
+
+              <button (click)="codeb1.hidden = !codeb1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #codeb1 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code
+                    [highlight]="codeb_1"
+                    [languages]="['typescript']">
+                  </code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Immutability with <code>OnPush</code></strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>What it does</strong>:
+          When using the <code>OnPush</code> strategy, Angular detects changes in inputs by checking the reference of the object, not its internal properties.
+        </li>
+        <li>
+          <strong>Why it's beneficial</strong>:
+          Immutability ensures that any change in an object’s state leads to a new object reference, allowing Angular to detect the change properly.
+        </li>
+        <li>
+          <strong>Best Practice</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Avoid mutating objects directly. Instead, create new copies of objects when updating data (e.g., using <code>Object.assign()</code>, the spread operator, or libraries like <code>Immutable.js</code>).
+
+              <button (click)="codeb2.hidden = !codeb2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #codeb2 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code
+                    [highlight]="codeb_2"
+                    [languages]="['typescript']">
+                  </code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use <code>NgZone.runOutsideAngular()</code> for Long-Running or Background Tasks</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>What it does</strong>:
+          <code>NgZone.runOutsideAngular()</code> allows you to run code outside Angular's zone, meaning it won't trigger change detection.
+        </li>
+        <li>
+          <strong>Why it's beneficial</strong>:
+          This reduces the frequency of change detection cycles, which is particularly useful for tasks that don't affect the UI, such as animations, WebSockets, or interval-based tasks.
+        </li>
+        <li>
+          <strong>Best Practice</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Run tasks that don't require UI updates (e.g., background tasks or timers) outside Angular's zone.
+
+              <button (click)="codeb3.hidden = !codeb3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #codeb3 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code
+                    [highlight]="codeb_3"
+                    [languages]="['typescript']">
+                  </code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Avoid Frequent DOM Manipulation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>What it does</strong>:
+          Directly manipulating the DOM (e.g., using <code>document.getElementById()</code>) bypasses Angular’s change detection and can lead to inconsistencies.
+        </li>
+        <li>
+          <strong>Why it's beneficial</strong>:
+          By letting Angular handle DOM updates through data binding and its templating engine, you ensure that the view remains consistent with the model.
+        </li>
+        <li>
+          <strong>Best Practice</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Use Angular’s <code>Renderer2</code> or bindings to manipulate the DOM instead of directly using <code>document</code> methods.
+
+              <button (click)="codeb4.hidden = !codeb4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #codeb4 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code
+                    [highlight]="codeb_4"
+                    [languages]="['typescript']">
+                  </code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use <code>ChangeDetectorRef</code> for Manual Control</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>What it does</strong>:
+          <code>ChangeDetectorRef</code> provides methods to manually control change detection, such as <code>markForCheck()</code>, <code>detectChanges()</code>, <code>detach()</code>, and <code>reattach()</code>.
+        </li>
+        <li>
+          <strong>Why it's beneficial</strong>:
+          It gives you fine-grained control over when Angular should check a component, which helps avoid unnecessary checks.
+        </li>
+        <li>
+          <strong>Best Practice</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Use <code>markForCheck()</code> when you know a component needs to be checked even though it uses <code>OnPush</code>.
+            </li>
+            <li>
+              Use <code>detach()</code> to stop change detection for performance-intensive components and <code>reattach()</code> when necessary.
+
+              <button (click)="codeb5.hidden = !codeb5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #codeb5 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code
+                    [highlight]="codeb_5"
+                    [languages]="['typescript']">
+                  </code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Pure Pipes</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>What it does</strong>:
+          Pipes in Angular transform data in templates. Pure pipes are only recalculated when the input values change.
+        </li>
+        <li>
+          <strong>Why it's beneficial</strong>:
+          Using pure pipes reduces unnecessary recalculations in templates when the data hasn’t changed.
+        </li>
+        <li>
+          <strong>Best Practice</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Ensure that pipes are pure by default to optimize performance.
+
+              <button (click)="codeb6.hidden = !codeb6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #codeb6 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code
+                    [highlight]="codeb_6"
+                    [languages]="['typescript']">
+                  </code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Lifecycle Hooks for Efficient Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>What it does</strong>:
+          Lifecycle hooks like <code>ngOnChanges</code>, <code>ngAfterViewChecked</code>, and <code>ngDoCheck</code> allow you to perform specific actions during different phases of a component’s lifecycle.
+        </li>
+        <li>
+          <strong>Why it's beneficial</strong>:
+          These hooks allow you to intervene in the change detection process and optimize when and how Angular checks for changes.
+        </li>
+        <li>
+          <strong>Best Practice</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Use <code>ngOnChanges</code> for detecting changes in <code>@Input</code> properties and <code>ngDoCheck</code> for custom change detection logic.
+
+              <button (click)="codeb7.hidden = !codeb7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #codeb7 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code
+                    [highlight]="codeb_7"
+                    [languages]="['typescript']">
+                  </code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Minimize DOM Manipulation Inside Loops</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>What it does</strong>:
+          Looping over data and manipulating the DOM (e.g., using <code>*ngFor</code>) can trigger a high number of change detection cycles.
+        </li>
+        <li>
+          <strong>Why it's beneficial</strong>:
+          Reducing DOM manipulations inside loops minimizes the number of checks Angular performs.
+        </li>
+        <li>
+          <strong>Best Practice</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Use Angular's trackBy function to optimize <code>*ngFor</code> loops and prevent unnecessary re-renders.
+
+              <button (click)="codeb8.hidden = !codeb8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #codeb8 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>html</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code
+                    [highlight]="codeb_8"
+                    [languages]="['html']">
+                  </code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Avoid Running Change Detection on External Libraries</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>What it does:</strong>:
+          Some third-party libraries, especially those for animations or DOM manipulation, can trigger unnecessary change detection.
+        </li>
+        <li>
+          <strong>Why it's beneficial</strong>:
+          Running change detection on third-party libraries can slow down your app.
+        </li>
+        <li>
+          <strong>Best Practice</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Use <code>NgZone.runOutsideAngular()</code> to run external libraries or any non-Angular code that doesn’t need to trigger UI updates.
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use <code>async</code> Pipes in Templates</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>What it does</strong>:
+          The <code>async</code> pipe automatically subscribes to and unsubscribes from observables, ensuring change detection is managed properly.
+        </li>
+        <li>
+          <strong>Why it's beneficial</strong>:
+          Using <code>async</code> pipes instead of manual subscriptions keeps the view in sync with asynchronous data while optimizing performance.
+        </li>
+        <li>
+          <strong>Best Practice</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              Prefer <code>async</code> pipes over manually subscribing and handling <code>Observable</code> streams in components.
+
+              <button (click)="codeb9.hidden = !codeb9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #codeb9 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>html</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code
+                    [highlight]="codeb_9"
+                    [languages]="['html']">
+                  </code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+  </ol>
 </ng-template>
 
 
@@ -239,19 +749,69 @@
 
   <ol class="list-decimal px-10 text-sm">
     <li>
-      <strong>Automatic detection of changes</strong> - Angular's change detection system automatically detects changes in the application's data model and updates the UI accordingly, which simplifies the development process.
+      <strong>Automatic Synchronization of UI and Model</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          Angular’s change detection automatically updates the UI when the underlying data model changes.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
+          This makes development more intuitive and reduces the need to manually update the DOM, ensuring that the view is always in sync with the data model.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>High performance</strong> - Angular's change detection system is optimized for high performance, so it can handle large and complex applications with ease.
+      <strong>Built-in Optimization with <code>OnPush</code> Strategy</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          The <code>OnPush</code> change detection strategy checks only when input properties of a component change by reference, rather than checking the entire component tree.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
+          This optimizes performance, especially in large applications, by reducing unnecessary change detection cycles, thus speeding up UI updates for components that rely heavily on immutability.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Support for multiple strategies</strong> - Angular provides different strategies for change detection, including OnPush, which allows you to optimize performance by reducing the number of change detection cycles.
+      <strong>Integration with Zone.js for Asynchronous Tasks</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          Angular leverages Zone.js to detect and respond to asynchronous operations (e.g., HTTP requests, setTimeout) and trigger change detection accordingly.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
+          Developers do not need to manually track when and where async tasks are completed. Angular automatically updates the UI once the async operation finishes.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Support for observables</strong> - Angular's support for observables and reactive programming allows for more efficient change detection, since it only updates the UI when data changes.
+      <strong><code>ChangeDetectorRef</code> for Manual Control</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          Developers can manually control change detection using the <code>ChangeDetectorRef</code> API, allowing for fine-tuning and optimization.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
+          This is especially useful for advanced scenarios where you need more control, such as stopping or manually triggering change detection for performance reasons.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Debugging tools</strong> - Angular provides built-in tools for debugging change detection, including the ChangeDetectorRef and the ngDoCheck lifecycle hook.
+      <strong>Efficient Handling of Forms and User Inputs</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          Angular’s change detection efficiently handles dynamic forms and user inputs, providing real-time feedback without excessive checks.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
+          Real-time input validation and form state updates improve the user experience without requiring developers to write custom watchers or handlers.
+        </li>
+      </ul>
     </li>
   </ol>
 
@@ -265,66 +825,294 @@
 
   <ol class="list-decimal px-10 text-sm">
     <li>
-      <strong>Overhead</strong> - Angular's change detection system can add overhead to the application, especially for complex applications with a large number of components.
+      <strong>Potential Performance Issues with Default Strategy</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          Angular’s Default Change Detection Strategy checks the entire component tree whenever an event occurs (e.g., user input, HTTP requests).
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Drawback</span>:
+          In large applications with many components, this can result in performance bottlenecks, as every component and its children are rechecked for changes, even when unnecessary.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Complexity</strong> - Angular's change detection system can be complex to understand and debug, especially for developers new to the framework.
+      <strong>Learning Curve with <code>OnPush</code> Strategy</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          While the <code>OnPush</code> strategy optimizes performance, it requires understanding of immutability and reference-based change detection.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Drawback</span>:
+          Developers unfamiliar with immutability practices may find it challenging to implement <code>OnPush</code> correctly, leading to bugs where updates are not reflected in the UI.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Performance issues</strong> - Poorly optimized change detection strategies or inefficient data models can lead to performance issues and slow down the application.
+      <strong>Overhead of Zone.js</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          While Zone.js helps detect asynchronous operations and trigger change detection, it adds a level of complexity and overhead to the application.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Drawback</span>:
+          The reliance on <code>Zone.js</code> can lead to performance degradation, particularly in high-frequency or low-latency applications. Developers must be careful with long-running or frequent async tasks.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Limited control</strong> - Angular's change detection system is largely automatic and can be difficult to control in some cases, such as when dealing with complex data models or third-party libraries.
+      <strong>Complexity in Manual Control</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          While <code>ChangeDetectorRef</code> provides control over change detection, it can introduce complexity when overused.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Drawback</span>:
+          Over-managing change detection using methods like <code>detach()</code>, <code>detectChanges()</code>, or <code>markForCheck()</code> can make the application harder to maintain and debug.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Compatibility with Third-Party Libraries</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Description</span>:
+          Some third-party libraries may run outside Angular’s zone or behave in ways that do not automatically trigger change detection.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Drawback</span>:
+          Developers may need to manually run such tasks inside Angular’s zone or use <code>NgZone.run()</code> to ensure that change detection occurs correctly.
+        </li>
+      </ul>
     </li>
   </ol>
 
   <br>
 
   <p>
-    In summary, Angular's change detection system is a powerful feature that simplifies the development process and optimizes performance, but it can also add overhead and complexity to the application.
-    <br>
-    <br>
-    Developers must be aware of these pros and cons and use the appropriate strategies to optimize performance and improve user experience.
+    Summary
   </p>
+  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
+    <thead>
+      <tr class="">
+        <th class="">Pros</th>
+        <th class="">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pl-2">Automatic synchronization of UI and model</td>
+        <td>Potential performance issues with the default strategy</td>
+      </tr>
+      <tr>
+        <td class="pl-2"><code>OnPush</code> strategy optimizes performance</td>
+        <td>Learning curve with <code>OnPush</code> and immutability</td>
+      </tr>
+      <tr>
+        <td class="pl-2">Zone.js integration for handling asynchronous operations</td>
+        <td>Overhead from <code>Zone.js</code> in large or complex apps</td>
+      </tr>
+      <tr>
+        <td class="pl-2">Fine-grained control with <code>ChangeDetectorRef</code></td>
+        <td>Complexity in manually managing change detection</td>
+      </tr>
+      <tr>
+        <td class="pl-2">Efficient handling of forms and inputs</td>
+        <td>Compatibility issues with third-party libraries and zones</td>
+      </tr>
+    </tbody>
+  </table>
 
 </ng-template>
 
 
 <ng-template #topicsRef>
-  <p>
-    Here are some related topics:
-  </p>
-
-  <br>
-
   <ol class="list-decimal px-10 text-sm">
     <li>
-      <strong>Change Detection Strategy</strong> - Determines how change detection is triggered for a component. The default strategy is to check for changes every time a user event or asynchronous task occurs, but this can be customized with the OnPush strategy or by disabling change detection altogether.
+      <strong>Zone.js and <code>NgZone</code></strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Zone.js</strong>:
+          Angular uses Zone.js to intercept asynchronous operations (such as HTTP requests, timeouts, and events) and trigger change detection automatically. Without this, developers would need to manually tell Angular when to update the UI after async operations.
+        </li>
+        <li>
+          <strong class="text-sky-400"><code>NgZone</code></strong>:
+          Angular wraps tasks inside its own zone (<code>NgZone</code>) to trigger change detection automatically. You can run code outside Angular’s zone using <code>NgZone.runOutsideAngular()</code> to avoid triggering change detection during performance-heavy operations like animations.
+        </li>
+        <li>
+          <strong class="text-sky-400">Related Concept</strong>:
+          Running tasks outside Angular's zone can prevent excessive change detection cycles for performance-heavy tasks.
+        </li>
+        <li>
+          <strong class="text-sky-400">Resources</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <a href="https://github.com/angular/zone.js" target="_blank">Zone.js on GitHub</a>
+            </li>
+            <li>
+              <a href="" target="_blank">Angular NgZone API</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Change Detection Lifecycle</strong> - Consists of a series of lifecycle hooks that execute during Angular's change detection process, including ngDoCheck, ngOnChanges, and ngAfterViewChecked.
+      <strong>Change Detection Strategies (<code>OnPush</code> and Default)</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Default Strategy</strong>:
+          By default, Angular checks all components in the component tree whenever any event occurs, which can cause performance issues in large applications.
+        </li>
+        <li>
+          <strong class="text-sky-400">OnPush Strategy</strong>:
+          The OnPush strategy only runs change detection when the input properties change by reference, reducing the frequency of checks and improving performance, especially in large-scale applications.
+        </li>
+        <li>
+          <strong class="text-sky-400">Related Concept</strong>:
+          Immutability is critical when using the <code>OnPush</code> strategy. Angular relies on reference changes to detect updates, so developers must ensure that objects are updated by reference.
+        </li>
+        <li>
+          <strong class="text-sky-400">Resources</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <a href="" target="_blank">Angular Change Detection Strategies</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Zone.js</strong> - A library that is responsible for running Angular's change detection loop and detecting changes to the application's state.
+      <strong>ChangeDetectorRef API</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">ChangeDetectorRef</strong>:
+          Angular provides the <code>ChangeDetectorRef</code> API to control when and how change detection runs. Developers can use this API to manually trigger (<code>detectChanges()</code>) or skip (<code>detach()</code>) change detection for more control over the update cycles.
+        </li>
+        <li>
+          <strong class="text-sky-400">Related Concept</strong>:
+          <code>markForCheck()</code> can be used to mark a component for checking during the next detection cycle when using the <code>OnPush</code> strategy.
+        </li>
+        <li>
+          <strong class="text-sky-400">Resources</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <a href="" target="_blank">Angular ChangeDetectorRef API</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Immutable Data</strong> - A programming technique that involves creating new instances of data structures rather than modifying existing ones. This can help simplify change detection and improve performance.
+      <strong>Angular Reactive Programming with RxJS</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">RxJS</strong>:
+          Angular’s change detection integrates well with RxJS, Angular’s reactive programming library. RxJS streams help handle async data, and with strategies like <code>OnPush</code>, change detection is triggered efficiently only when new data is emitted.
+        </li>
+        <li>
+          <strong class="text-sky-400">Related Concept</strong>:
+          <code>async</code> pipes in templates automatically subscribe to observables and trigger change detection when a new value is emitted, which makes the code more declarative and eliminates manual subscription handling.
+        </li>
+        <li>
+          <strong class="text-sky-400">Resources</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <a href="" target="_blank">Reactive Programming in Angular</a>
+            </li>
+            <li>
+              <a href="" target="_blank">RxJS Official Documentation</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Performance Optimization</strong> - Techniques for improving Angular's change detection performance, including using the OnPush change detection strategy, optimizing component and directive structures, and using the ChangeDetectorRef to manually trigger change detection.
+      <strong>Lifecycle Hooks</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Lifecycle Hooks</strong>:
+          Angular provides lifecycle hooks (such as <code>ngOnInit</code>, <code>ngOnChanges</code>, <code>ngAfterViewChecked</code>) that allow developers to hook into specific moments of the component's lifecycle. Change detection runs after lifecycle hooks, providing a way to trigger actions when the view is stable.
+        </li>
+        <li>
+          <strong class="text-sky-400">Related Concept</strong>:
+          <code>ngOnChanges</code> is particularly useful in conjunction with the <code>OnPush</code> strategy, as it responds to changes in <code>@Input()</code> properties, which may affect change detection.
+        </li>
+        <li>
+          <strong class="text-sky-400">Resources</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <a href="" target="_blank">Angular Lifecycle Hooks</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Data Binding</strong> - The process of synchronizing data between the application's model and its UI components, including one-way and two-way data binding.
+      <strong>Template Expressions and Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Template Expressions</strong>:
+          Angular automatically recalculates values in template expressions during change detection cycles. Inefficient expressions (like complex calculations inside templates) can slow down change detection, so it’s important to limit the complexity of expressions.
+        </li>
+        <li>
+          <strong class="text-sky-400">Related Concept</strong>:
+          Use pipes to format data and keep expressions simple, ensuring efficient change detection cycles.
+        </li>
+        <li>
+          <strong class="text-sky-400">Resources</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <a href="" target="_blank">Best Practices for Angular Templates</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>RxJS</strong> - A library for reactive programming that can be used with Angular to help manage asynchronous data flows and simplify change detection.
+      <strong>Angular Universal (Server-Side Rendering)</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Angular Universal</strong>:
+          When using Angular Universal for server-side rendering (SSR), change detection works differently. The initial rendering occurs on the server, and Angular reboots on the client side. Understanding how SSR interacts with change detection is critical for optimizing performance.
+        </li>
+        <li>
+          <strong class="text-sky-400">Related Concept</strong>:
+          Ensure that no unnecessary change detection cycles are triggered after hydration (the process of making the static HTML interactive after being sent from the server).
+        </li>
+        <li>
+          <strong class="text-sky-400">Resources</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <a href="" target="_blank">Angular Universal Guide</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Tuning and Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Performance Tuning</strong>:
+          Optimizing Angular performance involves reducing the number of change detection cycles. Techniques include using <code>OnPush</code>, debouncing events with RxJS, detaching <code>ChangeDetectorRef</code> when appropriate, and running tasks outside Angular’s zone.
+        </li>
+        <li>
+          <strong class="text-sky-400">Related Concept</strong>:
+          Developers can profile and analyze change detection performance using tools like Angular DevTools or Chrome's performance profiler to identify bottlenecks and reduce the impact of frequent checks.
+        </li>
+        <li>
+          <strong class="text-sky-400">Resources</strong>:
+          <ul class="list-disc pl-4">
+            <li>
+              <a href="" target="_blank">Angular Performance Best Practices</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
   </ol>
-
-  <br>
-
-  <p>
-    Understanding these topics is essential for building scalable and performant Angular applications that can handle complex data flows and user interactions.
-  </p>
-
 </ng-template>

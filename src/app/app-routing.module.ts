@@ -26,6 +26,7 @@ import { SubscriberComponent } from './feature/angular/concepts/subscriber/subsc
 import { TemplateFormComponent } from './feature/angular/concepts/template-form/template-form.component';
 import { TemplateComponent } from './feature/angular/concepts/template/template.component';
 import { GlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
+import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
       {
         path: 'aot',
         component: AotComponent
+      },
+      {
+        path: 'angular-element',
+        component: AngularElementComponent
       },
       {
         path: 'attribute-directive',

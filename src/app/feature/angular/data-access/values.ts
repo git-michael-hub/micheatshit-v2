@@ -10,6 +10,9 @@ export const glossaryItems = [
     "name": "Angular element"
   },
   {
+    "name": "Angular package format (APF)"
+  },
+  {
     "name": "annotation"
   },
   {
@@ -142,9 +145,6 @@ export const glossaryItems = [
     "name": "module"
   },
   {
-    "name": "ngcc"
-  },
-  {
     "name": "NgModule"
   },
   {
@@ -259,7 +259,7 @@ export const glossaryItems = [
     "name": "unidirectional data flow"
   },
   {
-    "name": "Universal"
+    "name": "Server-side rendering"
   },
   {
     "name": "view"
@@ -288,85 +288,146 @@ export const angular = {
   "name": "angular",
   "url": "angular",
   "items": {
-    "core": {
+    "Introduction": {
+      "introduction": {
+        "name": "Introduction",
+      }
+    },
+    "In-depth": {
       "components": {
         "name": "Components",
       },
-      "templates": {
-        "name": "Templates",
+      "template": {
+        "name": "Template",
       },
       "directives": {
         "name": "Directives",
       },
-      "dependency_injection": {
+      "di": {
         "name": "Dependency Injection",
-      }
-    },
-    "features": {
-      "standalone": {
-        "name": "Standalone"
       },
-      "change_detection": {
-        "name": "Change Detection"
+      "signals": {
+        "name": "Signals",
       },
-      "routing_navigation": {
-        "name": "Routing Navigation"
+      "routing": {
+        "name": "Routing",
       },
       "forms": {
-        "name": "Forms"
+        "name": "Forms",
       },
-      "http_client": {
-        "name": "HTTP Client"
+      "http-client": {
+        "name": "HTTP Client",
       },
-      "image_optimization": {
-        "name": "Image Optimization"
+      "performance": {
+        "name": "Performance",
       },
       "testing": {
-        "name": "Testing"
+        "name": "Testing",
       },
-      "internalization": {
-        "name": "Internalization"
+      "internationalization": {
+        "name": "Internationalization",
       },
       "animations": {
-        "name": "Animations"
+        "name": "Animations",
       },
-      "service_worker_pwa": {
-        "name": "Service Worker & PWA"
+      "experimental-features": {
+        "name": "Experimental features",
       },
-      "web_workers": {
-        "name": "Web Workers"
-      },
-      "ssr":{
-        "name": "SSR"
-      },
-      "pre_rendering": {
-        "name": "Pre Rendering"
+
+    },
+    "Developer Tools": {
+      "cli": {
+        "name": "CLI",
       },
       "libraries": {
-        "name": "Libraries"
+        "name": "Libraries",
+      },
+      "dev-tools": {
+        "name": "DevTools",
+      },
+      "language-service": {
+        "name": "Language Service",
       },
     },
-    "references": {
-      "conceptual": {
-        "name": "Conceptual"
+    "Best Practices": {
+      "style-guide": {
+        "name": "Style Guide",
       },
-      "cli_command": {
-        "name": "CLI Command"
+      "security": {
+        "name": "Security",
       },
-      "api": {
-        "name": "API"
+      "accessibility": {
+        "name": "Accessibility",
       },
-      "error": {
-        "name": "Error"
+      "performance": {
+        "name": "Performance",
       },
+      "keeping-up-to-date": {
+        "name": "Keeping up-to-date",
+      },
+    },
+    "Extended Ecosystem": {
+      "service-workers-pwa": {
+        "name": "Service Workers & PWAs",
+      },
+      "web-workers": {
+        "name": "Web workers",
+      },
+      "angular-fire": {
+        "name": "Angular Fire",
+      },
+      "google-maps": {
+        "name": "Google Maps",
+      },
+      "google-pay": {
+        "name": "Google Pay",
+      },
+      "youtube-player": {
+        "name": "YouTube Player",
+      },
+      "angular-cdk": {
+        "name": "Angular CDK",
+      },
+      "angular-material": {
+        "name": "Angular Material",
+      },
+    },
+    "Reference": {
       "glossary": {
         "name": "Glossary",
         "items": glossaryItems
       },
-      "coding_style": {
-        "name": "Coding Style"
-      }
-    }
+      "api": {
+        "name": "API",
+      },
+      "cli": {
+        "name": "CLI",
+      },
+      "error-encyclopedia": {
+        "name": "Error Encyclopedia",
+      },
+      "extended-diagnostic": {
+        "name": "Extended Diagnostic",
+      },
+      "versioning-and-releases": {
+        "name": "Versioning and releases",
+      },
+      "version compatibility": {
+        "name": "Version compatibility",
+      },
+      "update guide": {
+        "name": "Update guide",
+      },
+      "configurations": {
+        "name": "Configurations",
+      },
+      "migrations": {
+        "name": "Migrations",
+      },
+      "concepts": {
+        "name": "Concepts",
+      },
+    },
   }
 };
 
