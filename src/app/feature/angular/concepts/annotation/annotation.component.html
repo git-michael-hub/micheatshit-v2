@@ -1,13 +1,78 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
     annotation
   </p>
 
   <div class="text-content">
     <p>
-      A structure that provides metadata for a class. To learn more, see <a>decorator</a>.
+      <span class="text-zinc-50 tw-font-medium">Annotations</span> in Angular 19 are TypeScript decorators that add metadata to classes, properties, or methods. They provide a clean, declarative syntax for registering your code with the Angular framework. In Angular 19, annotations have been enhanced with improved type checking and simplified syntax.
     </p>
 
+    <br>
+
+    <p>Key concepts of annotations in Angular 19:</p>
+    <ul class="list-disc pl-4 text-sm">
+      <li>
+        <strong>Class Annotations</strong>: Decorators like <code>&#64;Component</code>, <code>&#64;Injectable</code>, <code>&#64;Directive</code>, and <code>&#64;Pipe</code> add metadata to classes.
+      </li>
+      <li>
+        <strong>Property Annotations</strong>: Decorators like <code>&#64;Input</code>, <code>&#64;Output</code>, <code>&#64;HostBinding</code>, and <code>&#64;ViewChild</code> add metadata to class properties.
+      </li>
+      <li>
+        <strong>Method Annotations</strong>: Decorators like <code>&#64;HostListener</code> add metadata to class methods.
+      </li>
+      <li>
+        <strong>Parameter Annotations</strong>: Decorators like <code>&#64;Inject</code> add metadata to constructor parameters.
+      </li>
+    </ul>
+
+    <br>
+
+    <p>Angular 19 enhancements to annotations:</p>
+    <ul class="list-disc pl-4 text-sm">
+      <li>
+        <strong>Improved TypeScript Integration</strong>: Better type checking and inference for decorated properties.
+      </li>
+      <li>
+        <strong>Simplified Syntax</strong>: More concise decorator syntax with less boilerplate.
+      </li>
+      <li>
+        <strong>Enhanced Performance</strong>: Optimized compilation process for annotations, reducing bundle size.
+      </li>
+      <li>
+        <strong>Functional Decorators</strong>: Support for functional-style decorators that work better with tree-shaking.
+      </li>
+    </ul>
+
+    <br>
+
+    <p>Example of using annotations in Angular 19:</p>
+    <div class="bg-gray-800 p-3 rounded-md text-gray-300">
+      <pre>
+import {{ '{' }} Component, Input, Output, EventEmitter {{ '}' }} from '&#64;angular/core';
+
+&#64;Component({{ '{' }}
+  selector: 'app-example',
+  standalone: true,
+  template: `
+    &lt;div&gt;{{ '{{' }} title {{ '}}' }}&lt;/div&gt;
+    &lt;button (click)="onClick()"&gt;Click me&lt;/button&gt;
+  `
+{{ '}' }})
+export class ExampleComponent {{ '{' }}
+  &#64;Input() title: string = 'Default Title';
+  &#64;Output() clicked = new EventEmitter&lt;void&gt;();
+
+  onClick() {{ '{' }}
+    this.clicked.emit();
+  {{ '}' }}
+{{ '}' }}
+      </pre>
+    </div>
+
+    <br>
+
+    <p>To learn more about the specifics of individual decorators, see <a [routerLink]="'/glossary/decorator'">decorator</a>.</p>
   </div>
 </section>
 

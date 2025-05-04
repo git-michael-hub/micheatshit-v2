@@ -55,7 +55,7 @@ export class GlossaryComponent {
       "file_location": "components/annotation",
       "url": "annotation",
       "hashtags": [
-        ''
+        'v19'
       ]
     },
     {

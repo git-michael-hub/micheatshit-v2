@@ -30,6 +30,7 @@ import { AngularElementComponent } from './feature/angular/concepts/angular-elem
 import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-render/after-next-render.component';
 import { AfterRenderComponent } from './feature/angular/concepts/after-render/after-render.component';
 import { AngularDevToolsComponent } from './feature/angular/concepts/angular-devtools/angular-devtools.component';
+import { AnnotationComponent } from './feature/angular/concepts/annotation/annotation.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
       {
         path: 'angular-element',
         component: AngularElementComponent
+      },
+      {
+        path: 'annotation',
+        component: AnnotationComponent
       },
       {
         path: 'attribute-directive',
