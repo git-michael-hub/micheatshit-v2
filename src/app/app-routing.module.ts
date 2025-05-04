@@ -29,6 +29,7 @@ import { GlossaryPageComponent } from './feature/angular/pages/glossary-page/glo
 import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
 import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-render/after-next-render.component';
 import { AfterRenderComponent } from './feature/angular/concepts/after-render/after-render.component';
+import { AngularDevToolsComponent } from './feature/angular/concepts/angular-devtools/angular-devtools.component';
 
 const routes: Routes = [
   {
@@ -147,7 +148,11 @@ const routes: Routes = [
       {
         path: 'template-form',
         component: TemplateFormComponent
-      }
+      },
+      {
+        path: 'angular-devtools',
+        component: AngularDevToolsComponent
+      },
     ]
   },
 
