@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { takeUntil } from 'rxjs';
 import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
 
@@ -17,7 +17,9 @@ export class AngularElementComponent extends UnsubscribeService {
   code_3 = '';
   code_4 = '';
   code_5 = '';
+  code_19 = ''; // Modern code example with the sequential number pattern
 
+  // Best practices code examples
   codeb_1 = '';
   codeb_2 = '';
   codeb_3 = '';
@@ -47,6 +49,9 @@ export class AngularElementComponent extends UnsubscribeService {
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_5 = data);
 
+    this.http.get('assets/codes/angular-element/notes/code_19.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_19 = data);
 
     this.http.get('assets/codes/angular-element/best/code_1.txt', { responseType: 'text' })
       .pipe(takeUntil(this.toUnsubscribe$))
@@ -60,5 +65,4 @@ export class AngularElementComponent extends UnsubscribeService {
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.codeb_3 = data);
   }
-
 }

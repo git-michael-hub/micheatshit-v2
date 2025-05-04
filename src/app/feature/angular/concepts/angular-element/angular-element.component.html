@@ -84,6 +84,37 @@
   <br>
   <br>
 
+  <p>New Features in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Default Standalone Components</strong>:
+      Angular 19 makes standalone components the default, significantly simplifying the creation of Angular Elements by eliminating NgModule boilerplate code and reducing configuration steps.
+    </li>
+    <li>
+      <strong>Enhanced Bootstrap Performance</strong>:
+      Custom elements now bootstrap more efficiently in Angular 19, with optimized initialization that results in faster startup times and smoother integration with host applications.
+    </li>
+    <li>
+      <strong>Improved Browser Compatibility</strong>:
+      Angular 19 provides better support across all browsers, especially those with less mature Web Component implementations, ensuring consistent behavior without additional polyfills in many cases.
+    </li>
+    <li>
+      <strong>Hydration Support</strong>:
+      New hydration techniques allow Angular Elements to initialize faster in server-rendered applications, with optimized state preservation during hydration that significantly improves performance.
+    </li>
+    <li>
+      <strong>Advanced Tree-Shaking</strong>:
+      The Ivy compiler in Angular 19 provides more effective tree-shaking specifically optimized for custom elements, dramatically reducing bundle sizes when compared to previous Angular versions.
+    </li>
+    <li>
+      <strong>Reduced Bundle Size</strong>:
+      Angular 19 produces significantly smaller bundle sizes for custom elements, making them more practical for production use in scenarios where performance is critical.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
   <p>Key Concepts of Angular Elements</p>
   <ol class="list-decimal pl-4 text-sm">
     <li>
@@ -95,7 +126,7 @@
     <li>
       <strong>Using <code>createCustomElement</code></strong>:
       <ul class="list-disc pl-4">
-        <li>The <code>createCustomElement</code> function from <code>@angular/elements</code> is used to define a custom element from an Angular component.</li>
+        <li>The <code>createCustomElement</code> function from <code>&#64;angular/elements</code> is used to define a custom element from an Angular component.</li>
       </ul>
     </li>
     <li>
@@ -110,10 +141,9 @@
   <br>
 
   <p>How to Create an Angular Element</p>
-  <ol class="list-decimal pl-4 text-sm">
+  <ul class="list-disc pl-4 text-sm">
     <li>
-      <strong>Install Angular Elements and Polyfills</strong>:
-      Install the <code>@angular/elements</code> package and the web components polyfills.
+      <strong>Install necessary packages</strong>:
 
       <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -130,11 +160,10 @@
           </code>
         </pre>
       </span>
-
     </li>
+
     <li>
       <strong>Create an Angular Component</strong>:
-      Define the component that you want to turn into a custom element.
 
       <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -151,11 +180,10 @@
           </code>
         </pre>
       </span>
-
     </li>
+
     <li>
-      <strong>Convert the Component into a Custom Element</strong>:
-      Use the <code>createCustomElement</code> function to create a custom element from your component.
+      <strong>Convert the Component to a Custom Element</strong>:
 
       <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -172,81 +200,58 @@
           </code>
         </pre>
       </span>
-
     </li>
+
     <li>
-      <strong>Include Polyfills for Browser Compatibility</strong>:
-      Add the polyfills to your <code>angular.json</code> file to ensure compatibility across all browsers.
+      <strong>Build and use the custom element</strong>:
 
-      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <button (click)="code19.hidden = !code19.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
-      <span #code4 hidden copyToClipboard>
+      <span #code19 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>json</span>
+          <span>typescript</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
         </div>
 
         <pre>
           <code
-            [highlight]="code_4"
-            [languages]="['json']">
+            [highlight]="code_19"
+            [languages]="['typescript']">
           </code>
         </pre>
       </span>
 
     </li>
-    <li>
-      <strong>Build and Use the Custom Element</strong>:
-      Build the Angular app to generate the custom element bundle.
-      You can now use the custom element [hello-world][/] in any HTML file, even outside the Angular application.
-
-      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code5 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>bash</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_5"
-            [languages]="['bash']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-  </ol>
+  </ul>
 
   <br>
   <br>
 
   <p>Common Commands and Tips</p>
   <br>
-  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
     <thead>
-      <tr class="">
-        <th class="">Command</th>
-        <th class="">Description</th>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Command</th>
+        <th class="py-3 px-4 text-left">Description</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="pl-2"><code>ng add @angular/elements</code></td>
-        <td>Installs Angular Elements and necessary dependencies.</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng add &#64;angular/elements</code></td>
+        <td class="py-3 px-4">Installs Angular Elements and necessary dependencies.</td>
       </tr>
-      <tr>
-        <td class="pl-2"><code>ng build --prod</code></td>
-        <td>Builds the Angular app in production mode with optimizations.</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng build --configuration production</code></td>
+        <td class="py-3 px-4">Builds the Angular app in production mode with optimizations.</td>
       </tr>
-      <tr>
-        <td class="pl-2"><code>npm install @webcomponents/custom-elements</code></td>
-        <td>Installs polyfills for browser compatibility.</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>npm install &#64;webcomponents/custom-elements</code></td>
+        <td class="py-3 px-4">Installs polyfills for browser compatibility.</td>
       </tr>
-      <tr>
-        <td class="pl-2"><code>customElements.define('name', element)</code></td>
-        <td>Registers the custom element with the browser.</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>customElements.define('name', element)</code></td>
+        <td class="py-3 px-4">Registers the custom element with the browser.</td>
       </tr>
     </tbody>
   </table>
@@ -286,7 +291,7 @@
       <ul class="list-disc pl-4">
         <li>
           <strong>Use Ivy's Advantages</strong>:
-          Angular 18 uses the Ivy rendering engine, which optimizes the size and performance of Angular Elements. Ivy compiles components into smaller, more efficient code and enables better tree-shaking to remove unused parts of Angular.
+          Angular 19 uses the Ivy rendering engine with significant enhancements for Angular Elements. Ivy in Angular 19 provides even smaller bundle sizes, faster compilation, and better performance for custom elements.
         </li>
         <li>
           <strong>Fine-Tune Ivy's Configuration</strong>:
@@ -373,7 +378,7 @@
         <li>
           <strong>Use Input and Output Properties</strong>:
           Expose configurable inputs and outputs to make your Angular Elements flexible and reusable in different contexts.
-          Use <code>@Input()</code> and <code>@Output()</code> decorators to define properties and events.
+          Use <code>&#64;Input()</code> and <code>&#64;Output()</code> decorators to define properties and events.
         </li>
         <li>
           <strong>Avoid Hardcoding</strong>:
@@ -477,7 +482,7 @@
         </li>
         <li>
           <span class="text-zinc-50 tw-font-medium">Support for Ivy Rendering Engine</span>:
-          Angular 18 uses the Ivy rendering engine, which makes Angular Elements smaller and more efficient, benefiting from better performance and improved tree-shaking.
+          Angular 19 uses the Ivy rendering engine, which makes Angular Elements smaller and more efficient, benefiting from better performance and improved tree-shaking.
         </li>
       </ul>
     </li>
@@ -597,43 +602,43 @@
   <br>
 
   <p>
-    Summary
+    Summary of Pros and Cons
   </p>
-  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
     <thead>
-      <tr class="">
-        <th class="">Pros</th>
-        <th class="">Cons</th>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Pros</th>
+        <th class="py-3 px-4 text-left">Cons</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="pl-2">Framework-agnostic; reusable across multiple frameworks</td>
-        <td>Increased bundle size due to the inclusion of Angular runtime and polyfills</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Framework-agnostic; reusable across multiple frameworks</td>
+        <td class="py-3 px-4">Increased bundle size due to the inclusion of Angular runtime and polyfills</td>
       </tr>
-      <tr>
-        <td class="pl-2">Encapsulation of styles and behaviors (Shadow DOM)</td>
-        <td>Higher memory and CPU usage compared to native custom elements</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Encapsulation of styles and behaviors (Shadow DOM)</td>
+        <td class="py-3 px-4">Higher memory and CPU usage compared to native custom elements</td>
       </tr>
-      <tr>
-        <td class="pl-2">Smooth integration into existing applications</td>
-        <td>Complex build process, especially for optimized builds</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Smooth integration into existing applications</td>
+        <td class="py-3 px-4">Complex build process, especially for optimized builds</td>
       </tr>
-      <tr>
-        <td class="pl-2">Leverages Angular’s features and Ivy optimizations</td>
-        <td>Limited dynamic behavior; may not suit highly interactive use cases</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Leverages Angular's features and Ivy optimizations</td>
+        <td class="py-3 px-4">Limited dynamic behavior; may not suit highly interactive use cases</td>
       </tr>
-      <tr>
-        <td class="pl-2">Standards-based; compatible with modern web technologies</td>
-        <td>Dependency on Angular framework can lead to version-locking issues</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Standards-based; compatible with modern web technologies</td>
+        <td class="py-3 px-4">Dependency on Angular framework can lead to version-locking issues</td>
       </tr>
-      <tr>
-        <td class="pl-2">Simple API for non-Angular developers</td>
-        <td>Testing complexity across multiple environments</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Simple API for non-Angular developers</td>
+        <td class="py-3 px-4">Testing complexity across multiple environments</td>
       </tr>
-      <tr>
-        <td class="pl-2">Improved maintainability and versioning</td>
-        <td>Limited tooling and debugging support</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Improved maintainability and versioning</td>
+        <td class="py-3 px-4">Limited tooling and debugging support</td>
       </tr>
     </tbody>
   </table>
@@ -700,7 +705,7 @@
         <li>
           <strong class="text-sky-400">Description</strong>:
           <span class="text-zinc-50 tw-font-medium">Shadow DOM</span>
-          is a Web Components technology that encapsulates a component’s internal DOM structure and styles, preventing them from affecting or being affected by the external document's styles.
+          is a Web Components technology that encapsulates a component's internal DOM structure and styles, preventing them from affecting or being affected by the external document's styles.
         </li>
         <li>
           <strong class="text-sky-400">Relation to Angular Elements</strong>:
@@ -727,11 +732,11 @@
           <strong class="text-sky-400">Key Polyfills</strong>:
           <ul class="list-disc pl-4">
             <li>
-              <span class="text-zinc-50 tw-font-medium">@webcomponents/custom-elements</span>:
+              <span class="text-zinc-50 tw-font-medium">&#64;webcomponents/custom-elements</span>:
               Provides support for custom elements.
             </li>
             <li>
-              <span class="text-zinc-50 tw-font-medium">@webcomponents/shadydom</span>:
+              <span class="text-zinc-50 tw-font-medium">&#64;webcomponents/shadydom</span>:
               Provides a polyfill for Shadow DOM.
             </li>
           </ul>
@@ -761,7 +766,7 @@
               Minimize dependencies within your Angular Elements to reduce the bundle size.
             </li>
             <li>
-              Use Angular’s <code>Injector</code> to provide services only when necessary.
+              Use Angular's <code>Injector</code> to provide services only when necessary.
             </li>
           </ul>
         </li>
@@ -801,7 +806,7 @@
           <strong class="text-sky-400">Commands</strong>:
           <ul class="list-disc pl-4">
             <li>
-              <code>ng add @angular/elements</code>:
+              <code>ng add &#64;angular/elements</code>:
               Adds Angular Elements to your project.
             </li>
             <li>
@@ -851,4 +856,34 @@
       </ul>
     </li>
   </ol>
+
+  <br>
+
+  <p>Angular Elements in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Enhanced Standalone Components</strong>:
+      Angular 19 makes standalone components the default, eliminating the need for NgModules and making Angular Elements creation more streamlined and intuitive.
+    </li>
+    <li>
+      <strong>Faster Bootstrap Performance</strong>:
+      Custom elements bootstrap more efficiently in Angular 19, resulting in quicker initialization and better overall performance.
+    </li>
+    <li>
+      <strong>Improved Browser Compatibility</strong>:
+      Better support across all browsers, including those with less mature Web Component implementations.
+    </li>
+    <li>
+      <strong>Optimized Hydration Support</strong>:
+      Angular 19's hydration mechanisms allow Angular Elements to initialize faster and consume fewer resources when used in server-rendered applications.
+    </li>
+    <li>
+      <strong>Better Tree-Shaking</strong>:
+      Improvements to the Ivy compiler in Angular 19 provide more effective tree-shaking, resulting in smaller bundle sizes for custom elements.
+    </li>
+    <li>
+      <strong>Reduced Bundle Size</strong>:
+      Angular 19 produces significantly smaller bundle sizes for custom elements, making them more practical for production use in scenarios where performance is critical.
+    </li>
+  </ul>
 </ng-template>
