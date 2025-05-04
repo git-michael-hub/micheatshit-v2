@@ -28,6 +28,7 @@ import { TemplateComponent } from './feature/angular/concepts/template/template.
 import { GlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
 import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
 import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-render/after-next-render.component';
+import { AfterRenderComponent } from './feature/angular/concepts/after-render/after-render.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'after-next-render',
         component: AfterNextRenderComponent
+      },
+      {
+        path: 'after-render',
+        component: AfterRenderComponent
       },
       {
         path: 'angular-element',
@@ -144,7 +149,8 @@ const routes: Routes = [
         component: TemplateFormComponent
       }
     ]
-  }
+  },
+
 ];
 
 @NgModule({
