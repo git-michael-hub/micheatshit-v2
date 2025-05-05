@@ -1,79 +1,342 @@
 <section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    annotation
+    Annotations in Angular
   </p>
 
   <div class="text-content">
     <p>
-      <span class="text-zinc-50 tw-font-medium">Annotations</span> in Angular 19 are TypeScript decorators that add metadata to classes, properties, or methods. They provide a clean, declarative syntax for registering your code with the Angular framework. In Angular 19, annotations have been enhanced with improved type checking and simplified syntax.
+      <span class="text-zinc-50 tw-font-medium">Annotations</span>
+      in Angular 19 are TypeScript decorators that add metadata to classes, properties, methods, and parameters. Angular uses these annotations to understand how components, directives, services, and other features should be processed, instantiated, and used at runtime.
     </p>
 
     <br>
 
-    <p>Key concepts of annotations in Angular 19:</p>
-    <ul class="list-disc pl-4 text-sm">
-      <li>
-        <strong>Class Annotations</strong>: Decorators like <code>&#64;Component</code>, <code>&#64;Injectable</code>, <code>&#64;Directive</code>, and <code>&#64;Pipe</code> add metadata to classes.
-      </li>
-      <li>
-        <strong>Property Annotations</strong>: Decorators like <code>&#64;Input</code>, <code>&#64;Output</code>, <code>&#64;HostBinding</code>, and <code>&#64;ViewChild</code> add metadata to class properties.
-      </li>
-      <li>
-        <strong>Method Annotations</strong>: Decorators like <code>&#64;HostListener</code> add metadata to class methods.
-      </li>
-      <li>
-        <strong>Parameter Annotations</strong>: Decorators like <code>&#64;Inject</code> add metadata to constructor parameters.
-      </li>
-    </ul>
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <div *ngIf="selectedTab === 1">
+          <!-- Notes Tab -->
+          <p>Key Types of Angular Annotations</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Class Annotations</strong>:
+              Decorators applied to classes to declare their role in Angular's ecosystem.
+              <ul class="list-disc pl-4">
+                <li><code>&#64;Component</code>: Defines a component with UI and behavior.</li>
+                <li><code>&#64;Directive</code>: Creates a reusable behavior without a template.</li>
+                <li><code>&#64;Injectable</code>: Marks a class as available for dependency injection.</li>
+                <li><code>&#64;Pipe</code>: Declares a transformation function for values in templates.</li>
+                <li><code>&#64;NgModule</code>: Defines a module (less common in Angular 19 with standalone components).</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Property Annotations</strong>:
+              Decorators applied to class properties.
+              <ul class="list-disc pl-4">
+                <li><code>&#64;Input</code>: Declares a property that receives data from parent components.</li>
+                <li><code>&#64;Output</code>: Declares an event emitter that sends data to parent components.</li>
+                <li><code>&#64;HostBinding</code>: Binds a property to an attribute or property of the host element.</li>
+                <li><code>&#64;ViewChild / &#64;ViewChildren</code>: Gets references to elements in the template.</li>
+                <li><code>&#64;ContentChild / &#64;ContentChildren</code>: Gets references to projected content.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Method Annotations</strong>:
+              Decorators applied to class methods.
+              <ul class="list-disc pl-4">
+                <li><code>&#64;HostListener</code>: Subscribes to events on the host element.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Parameter Annotations</strong>:
+              Decorators applied to constructor parameters or method parameters.
+              <ul class="list-disc pl-4">
+                <li><code>&#64;Inject</code>: Specifies a custom provider token.</li>
+                <li><code>&#64;Optional</code>: Makes a dependency optional.</li>
+                <li><code>&#64;Self / &#64;SkipSelf</code>: Controls where to look for dependencies.</li>
+                <li><code>&#64;Host</code>: Limits dependency lookup to the host component.</li>
+              </ul>
+            </li>
+          </ul>
 
-    <br>
+          <br>
+          <br>
 
-    <p>Angular 19 enhancements to annotations:</p>
-    <ul class="list-disc pl-4 text-sm">
-      <li>
-        <strong>Improved TypeScript Integration</strong>: Better type checking and inference for decorated properties.
-      </li>
-      <li>
-        <strong>Simplified Syntax</strong>: More concise decorator syntax with less boilerplate.
-      </li>
-      <li>
-        <strong>Enhanced Performance</strong>: Optimized compilation process for annotations, reducing bundle size.
-      </li>
-      <li>
-        <strong>Functional Decorators</strong>: Support for functional-style decorators that work better with tree-shaking.
-      </li>
-    </ul>
+          <p>Angular 19 Annotation Enhancements</p>
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong>Signal-Based Inputs</strong>:
+              <ul class="list-disc pl-4">
+                <li>New signal-based input API with the <code>input()</code> function replacing traditional <code>&#64;Input()</code> decorator for reactive programming.</li>
+                <li>Signal inputs are automatically updated when parent component changes the input value.</li>
+                <li>Better performance with fine-grained reactivity compared to traditional inputs.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Transform Functions for Inputs</strong>:
+              <ul class="list-disc pl-4">
+                <li>Support for input transform functions that process incoming values before they're assigned.</li>
+                <li>Enables validation, type conversion, and normalization directly in the input definition.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Required Inputs</strong>:
+              <ul class="list-disc pl-4">
+                <li>New <code>required</code> option for inputs to enforce providing values at compile time.</li>
+                <li>Better developer experience with clear errors when required inputs are missing.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Model Inputs</strong>:
+              <ul class="list-disc pl-4">
+                <li>New <code>&#64;Model()</code> decorator and <code>model()</code> function for two-way binding with better type checking.</li>
+                <li>Provides a more explicit and type-safe alternative to <code>[(ngModel)]</code> or manual two-way binding.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Functional Pattern Support</strong>:
+              <ul class="list-disc pl-4">
+                <li>Enhanced support for functional patterns in decorators like <code>&#64;Injectable</code>.</li>
+                <li>Factory functions in provider definitions allow more flexibility and better tree-shaking.</li>
+              </ul>
+            </li>
+          </ol>
 
-    <br>
+          <br>
+          <br>
 
-    <p>Example of using annotations in Angular 19:</p>
-    <div class="bg-gray-800 p-3 rounded-md text-gray-300">
-      <pre>
-import {{ '{' }} Component, Input, Output, EventEmitter {{ '}' }} from '&#64;angular/core';
+          <p>Code Examples</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Component with Various Annotations</strong>:
+              <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+              <span #code1 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+                <pre>
+                  <code [highlight]="componentCode" [languages]="['typescript']"></code>
+                </pre>
+              </span>
+            </li>
+            <li>
+              <strong>Directive with Property and Method Annotations</strong>:
+              <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+              <span #code2 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+                <pre>
+                  <code [highlight]="directiveCode" [languages]="['typescript']"></code>
+                </pre>
+              </span>
+            </li>
+            <li>
+              <strong>Injectable Service with Parameter Annotations</strong>:
+              <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+              <span #code3 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+                <pre>
+                  <code [highlight]="injectableCode" [languages]="['typescript']"></code>
+                </pre>
+              </span>
+            </li>
+            <li>
+              <strong>Component with Signal-based Inputs</strong>:
+              <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+              <span #code4 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+                <pre>
+                  <code [highlight]="signalInputCode" [languages]="['typescript']"></code>
+                </pre>
+              </span>
+            </li>
+            <li>
+              <strong>Pipe Annotation Example</strong>:
+              <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+              <span #code5 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+                <pre>
+                  <code [highlight]="pipeCode" [languages]="['typescript']"></code>
+                </pre>
+              </span>
+            </li>
+          </ul>
+        </div>
 
-&#64;Component({{ '{' }}
-  selector: 'app-example',
-  standalone: true,
-  template: `
-    &lt;div&gt;{{ '{{' }} title {{ '}}' }}&lt;/div&gt;
-    &lt;button (click)="onClick()"&gt;Click me&lt;/button&gt;
-  `
-{{ '}' }})
-export class ExampleComponent {{ '{' }}
-  &#64;Input() title: string = 'Default Title';
-  &#64;Output() clicked = new EventEmitter&lt;void&gt;();
+        <div *ngIf="selectedTab === 2">
+          <!-- Best Practices Tab -->
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Choose the Right Annotation Type</strong>
+              <ul class="list-disc pl-4">
+                <li>Use <code>&#64;Input()</code> or <code>input()</code> for data passed from parent components</li>
+                <li>Use <code>&#64;Output()</code> for events emitted to parent components</li>
+                <li>Use <code>&#64;HostBinding</code> and <code>&#64;HostListener</code> instead of directly manipulating the DOM</li>
+                <li>Prefer <code>&#64;ViewChild</code> over querying the DOM using native JavaScript selectors</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Signal-Based Inputs for Better Performance</strong>
+              <ul class="list-disc pl-4">
+                <li>Use the new signal-based <code>input()</code> function for improved change detection</li>
+                <li>Leverage input transforms to normalize or validate incoming data</li>
+                <li>Mark critical inputs as required to catch missing bindings early</li>
+                <li>Use <code>model()</code> for two-way binding scenarios instead of complex input/output combinations</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Dependency Injection Best Practices</strong>
+              <ul class="list-disc pl-4">
+                <li>Provide services at the appropriate level using <code>&#64;Injectable()</code> with <code>providedIn</code></li>
+                <li>Use <code>&#64;Optional()</code> for dependencies that might not be available</li>
+                <li>Use <code>&#64;Inject()</code> when the token differs from the class type</li>
+                <li>Take advantage of factory functions for conditional service creation</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Component Architecture</strong>
+              <ul class="list-disc pl-4">
+                <li>Keep <code>&#64;Component</code> metadata minimal by externalizing templates and styles</li>
+                <li>Use standalone components with explicit imports for better tree-shaking</li>
+                <li>Group related <code>&#64;ViewChild</code> and <code>&#64;ContentChild</code> queries together</li>
+                <li>Keep the selector name consistent with the component's purpose</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Directive Implementation</strong>
+              <ul class="list-disc pl-4">
+                <li>Make directives standalone whenever possible</li>
+                <li>Use attribute selectors with a consistent prefix (e.g., <code>[app-]</code>)</li>
+                <li>Group <code>&#64;HostBinding</code> decorators together for better readability</li>
+                <li>Prefer composition of multiple directives over complex monolithic ones</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
 
-  onClick() {{ '{' }}
-    this.clicked.emit();
-  {{ '}' }}
-{{ '}' }}
-      </pre>
+        <div *ngIf="selectedTab === 3">
+          <!-- Pros and Cons Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Advantages of Angular Annotations</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Declarative Syntax</strong>: Makes code intention clear through metadata annotations</li>
+              <li><strong>Framework Integration</strong>: Seamlessly integrates with Angular's DI system, template engine, and change detection</li>
+              <li><strong>Type Safety</strong>: Enhanced type checking in Angular 19 catches errors during development</li>
+              <li><strong>Signal-Based Reactivity</strong>: New input APIs provide granular reactivity without complex state management</li>
+              <li><strong>IDE Support</strong>: Good tooling support with autocompletion and documentation</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Challenges with Angular Annotations</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Learning Curve</strong>: Understanding all decorator types and their options can be challenging</li>
+              <li><strong>Debugging Complexity</strong>: Errors in decorators can be harder to trace than regular code</li>
+              <li><strong>Decorator Limitations</strong>: TypeScript decorators have limitations in how they can be used</li>
+              <li><strong>Metadata Size</strong>: Heavy use of decorators can increase bundle size slightly</li>
+              <li><strong>Migration Efforts</strong>: Moving from older annotation patterns to new signal-based APIs requires refactoring</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Annotation Pattern Evolution in Angular</p>
+            <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+              <thead>
+                <tr class="bg-gray-800 text-gray-100">
+                  <th class="py-3 px-4 text-left">Traditional Pattern</th>
+                  <th class="py-3 px-4 text-left">Angular 19 Modern Pattern</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4"><code>&#64;Input() value: string;</code></td>
+                  <td class="py-3 px-4"><code>value = input&lt;string&gt;('');</code></td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4"><code>&#64;Output() valueChange = new EventEmitter();</code></td>
+                  <td class="py-3 px-4"><code>value = model&lt;string&gt;('');</code></td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4"><code>&#64;NgModule({{'{...}'}});</code></td>
+                  <td class="py-3 px-4"><code>&#64;Component({{'{standalone: true, imports: [...]}'}})</code></td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4"><code>&#64;Injectable({{'{providedIn: "root"}'}})</code></td>
+                  <td class="py-3 px-4"><code>&#64;Injectable({{'{providedIn: "root", factory: () => ...}'}})</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab === 4">
+          <!-- Related Topics Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Decorators</strong>: The TypeScript feature that enables Angular annotations</li>
+              <li><strong>Dependency Injection</strong>: How Angular uses annotations to identify and inject dependencies</li>
+              <li><strong>Signals</strong>: The new reactive primitive that integrates with modern annotations</li>
+              <li><strong>Standalone Components</strong>: Modern components that simplify annotation usage</li>
+              <li><strong>Template Compilation</strong>: How annotations guide the template compiler</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Annotation FAQ</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li>
+                <strong>Q: What's the difference between annotations and decorators?</strong><br>
+                A: In Angular, "annotations" refers to the metadata added to classes and members, while "decorators" are the TypeScript language feature (&#64;Symbol) that enables this functionality.
+              </li>
+              <li>
+                <strong>Q: Should I use &#64;Input() or input() in Angular 19?</strong><br>
+                A: For new components, use the signal-based <code>input()</code> function as it provides better reactivity, typing, and performance.
+              </li>
+              <li>
+                <strong>Q: How do I handle two-way binding in Angular 19?</strong><br>
+                A: Use the new <code>model()</code> function to create a two-way bindable signal instead of an input/output pair.
+              </li>
+              <li>
+                <strong>Q: How do annotations impact performance?</strong><br>
+                A: Modern Angular annotations are designed for performance with optimized change detection.
+              </li>
+              <li>
+                <strong>Q: Can I create custom decorators in Angular?</strong><br>
+                A: Yes, you can create custom TypeScript decorators, but they won't integrate with Angular's core functionality.
+              </li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Useful Resources</p>
+            <ul class="list-disc pl-4">
+              <li><a href="https://angular.dev/guide/components" class="text-sky-400 hover:underline">Angular Components Guide</a></li>
+              <li><a href="https://angular.dev/guide/directives" class="text-sky-400 hover:underline">Angular Directives Guide</a></li>
+              <li><a href="https://angular.dev/guide/di" class="text-sky-400 hover:underline">Angular Dependency Injection Guide</a></li>
+              <li><a href="https://angular.dev/guide/signals" class="text-sky-400 hover:underline">Angular Signals Guide</a></li>
+              <li><a href="https://angular.dev/api/core" class="text-sky-400 hover:underline">Angular Core API Reference</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <br>
-
-    <p>To learn more about the specifics of individual decorators, see <a [routerLink]="'/glossary/decorator'">decorator</a>.</p>
   </div>
 </section>
-
-

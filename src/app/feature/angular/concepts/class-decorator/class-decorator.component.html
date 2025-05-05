@@ -1,0 +1,385 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Class Decorators in Angular
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Class Decorators</span>
+      in Angular 19 are TypeScript decorators that add metadata to classes, enabling Angular to understand their intended role and behavior. These decorators are essential building blocks that define components, directives, services, and other core features of Angular applications.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <div *ngIf="selectedTab === 1">
+          <!-- Notes Tab -->
+          <p>Core Angular Class Decorators</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>@Component</strong>:
+              Defines a component, connecting a template, styles, and business logic.
+              <ul class="list-disc pl-4">
+                <li>Identifies a class as an Angular component</li>
+                <li>Specifies metadata like the selector, template, styles, and change detection strategy</li>
+                <li>Since Angular 19, standalone components are the preferred approach</li>
+                <button (click)="componentCodeEl.hidden = !componentCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #componentCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="componentCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>@Directive</strong>:
+              Creates a directive that adds behavior to DOM elements without a template.
+              <ul class="list-disc pl-4">
+                <li>Marks a class as an Angular directive</li>
+                <li>Uses a CSS selector to target elements in templates</li>
+                <li>In Angular 19, standalone directives are fully supported</li>
+                <button (click)="directiveCodeEl.hidden = !directiveCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #directiveCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="directiveCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>@Injectable</strong>:
+              Marks a class as available for dependency injection.
+              <ul class="list-disc pl-4">
+                <li>Essential for services and other injectable classes</li>
+                <li>Configures provider scope and tree-shakability</li>
+                <li>Angular 19 optimizes DI for better performance</li>
+                <button (click)="injectableCodeEl.hidden = !injectableCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #injectableCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="injectableCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>@Pipe</strong>:
+              Defines a transformation function for template expressions.
+              <ul class="list-disc pl-4">
+                <li>Marks a class as an Angular pipe</li>
+                <li>Must implement the PipeTransform interface</li>
+                <li>In Angular 19, standalone pipes are the preferred approach</li>
+                <button (click)="pipeCodeEl.hidden = !pipeCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #pipeCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="pipeCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>@NgModule</strong>:
+              Defines a module that encapsulates related components, directives, pipes, and services.
+              <ul class="list-disc pl-4">
+                <li>Less common in Angular 19 with standalone components</li>
+                <li>Still useful for organizing large applications and lazy loading</li>
+                <li>Configures elements, imports, providers, and bootstrap components</li>
+                <button (click)="ngModuleCodeEl.hidden = !ngModuleCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #ngModuleCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="ngModuleCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Angular 19 Class Decorator Enhancements</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Functional Pattern for Decorators</strong>:
+              <ul class="list-disc pl-4">
+                <li>Angular 19 emphasizes functional patterns for better tree-shaking</li>
+                <li>New signal-based components use functional alternatives to decorators</li>
+                <li>Example: <code>input()</code> function instead of <code>@Input()</code> decorator</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Improved Type Safety</strong>:
+              <ul class="list-disc pl-4">
+                <li>Enhanced type checking for decorator metadata</li>
+                <li>Better TypeScript integration with decorator factories</li>
+                <li>More accurate error messages for decorator-related issues</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Performance Optimizations</strong>:
+              <ul class="list-disc pl-4">
+                <li>Reduced runtime overhead from decorator processing</li>
+                <li>More efficient metadata storage and retrieval</li>
+                <li>Improved tree-shaking for unused decorators</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Custom Decorators</strong>:
+              <ul class="list-disc pl-4">
+                <li>Better support for creating custom class decorators</li>
+                <li>Simplified decorator composition patterns</li>
+                <li>Integration with Angular's dependency injection system</li>
+                <button (click)="customDecoratorCodeEl.hidden = !customDecoratorCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #customDecoratorCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="customDecoratorCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Class Decorator Metadata Options</p>
+          <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+            <thead>
+              <tr class="bg-gray-800 text-gray-100">
+                <th class="py-3 px-4 text-left">Decorator</th>
+                <th class="py-3 px-4 text-left">Key Metadata Properties</th>
+                <th class="py-3 px-4 text-left">Angular 19 Features</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">@Component</td>
+                <td class="py-3 px-4">selector, template, templateUrl, styles, styleUrls, changeDetection, standalone</td>
+                <td class="py-3 px-4">Standalone is now default, signal-based alternatives available</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">@Injectable</td>
+                <td class="py-3 px-4">providedIn</td>
+                <td class="py-3 px-4">Enhanced provider scoping, optimized for DI</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">@Directive</td>
+                <td class="py-3 px-4">selector, standalone, host, providers</td>
+                <td class="py-3 px-4">Standalone is recommended, improved host binding</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">@Pipe</td>
+                <td class="py-3 px-4">name, pure, standalone</td>
+                <td class="py-3 px-4">Standalone is default, better optimization for pure pipes</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">@NgModule</td>
+                <td class="py-3 px-4">declarations, imports, exports, providers, bootstrap</td>
+                <td class="py-3 px-4">Less prominent with standalone components, improved lazy loading</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="selectedTab === 2">
+          <!-- Best Practices Tab -->
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Prefer Standalone Components</strong>
+              <ul class="list-disc pl-4">
+                <li>Use standalone: true in @Component, @Directive, and @Pipe decorators</li>
+                <li>Directly import dependencies in the imports array</li>
+                <li>Avoid NgModules when possible for simpler code organization</li>
+                <li>Take advantage of improved tree-shaking with standalone components</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Optimize @Injectable Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>Use providedIn: 'root' for singleton services across the application</li>
+                <li>Use providedIn: 'platform' only for truly application-wide services</li>
+                <li>Use providedIn: 'any' for multi-instance lazy-loaded modules</li>
+                <li>Consider using providedIn: SomeModule for module-scoped services</li>
+                <li>Use explicit providers arrays for component-level services</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Write Clean, Focused Components</strong>
+              <ul class="list-disc pl-4">
+                <li>Each component should have a single responsibility</li>
+                <li>Keep templates and styles simple and maintainable</li>
+                <li>Use OnPush change detection strategy for better performance</li>
+                <li>Prefer composition over inheritance for component reuse</li>
+                <li>Consider using signal-based components for optimal reactivity</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Make Decorators Readable</strong>
+              <ul class="list-disc pl-4">
+                <li>Use consistent formatting for decorator metadata</li>
+                <li>Organize properties alphabetically or by importance</li>
+                <li>Split complex decorators across multiple lines for readability</li>
+                <li>Add comments for non-obvious decorator configurations</li>
+                <li>Consider extracting complex configuration to constants</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Embrace Modern Patterns</strong>
+              <ul class="list-disc pl-4">
+                <li>Consider signal-based alternatives to traditional decorators</li>
+                <li>Use functional patterns when appropriate for better tree-shaking</li>
+                <li>Take advantage of type inference improvements in Angular 19</li>
+                <li>Use explicit typing for decorator metadata where needed</li>
+                <li>Consider custom decorators for cross-cutting concerns</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div *ngIf="selectedTab === 3">
+          <!-- Pros and Cons Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Advantages of Class Decorators</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Declarative Syntax</strong>: Makes it clear what a class's role is in the Angular ecosystem</li>
+              <li><strong>Metadata Definition</strong>: Provides a clean way to attach configuration to classes</li>
+              <li><strong>Framework Integration</strong>: Enables Angular to discover and process classes correctly</li>
+              <li><strong>Separation of Concerns</strong>: Keeps configuration separate from implementation</li>
+              <li><strong>IDE Support</strong>: Modern editors provide excellent autocompletion and validation</li>
+              <li><strong>Testability</strong>: Decorators make classes easier to mock and test</li>
+              <li><strong>Code Organization</strong>: Helps maintain a consistent structure across the codebase</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Challenges with Class Decorators</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>TypeScript Limitations</strong>: Decorators are still technically experimental in TypeScript</li>
+              <li><strong>Learning Curve</strong>: Understanding all decorator options requires time</li>
+              <li><strong>Runtime Overhead</strong>: Decorators add some processing cost during application startup</li>
+              <li><strong>Debugging Complexity</strong>: Errors in decorators can be harder to trace</li>
+              <li><strong>Limited Type Safety</strong>: Some decorator metadata isn't fully type-checked</li>
+              <li><strong>Code Size</strong>: Heavy use of decorators can increase bundle size</li>
+              <li><strong>Migration Challenges</strong>: Moving to new patterns requires refactoring</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Traditional vs. Modern Angular 19 Patterns</p>
+            <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+              <thead>
+                <tr class="bg-gray-800 text-gray-100">
+                  <th class="py-3 px-4 text-left">Traditional Pattern</th>
+                  <th class="py-3 px-4 text-left">Angular 19 Modern Pattern</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">@Component with NgModule</td>
+                  <td class="py-3 px-4">Standalone @Component with direct imports</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">@Input() property decorator</td>
+                  <td class="py-3 px-4">input() signal function</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">@Output() with EventEmitter</td>
+                  <td class="py-3 px-4">output() signal function</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">Two-way binding with @Input/@Output</td>
+                  <td class="py-3 px-4">model() signal function</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">@Injectable provided in array</td>
+                  <td class="py-3 px-4">@Injectable with providedIn configuration</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab === 4">
+          <!-- Related Topics Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>TypeScript Decorators</strong>: The language feature that enables Angular decorators</li>
+              <li><strong>Metadata Reflection</strong>: How Angular uses decorators to generate metadata</li>
+              <li><strong>Dependency Injection</strong>: The system that leverages @Injectable decorators</li>
+              <li><strong>Standalone Components</strong>: Modern approach to component definition</li>
+              <li><strong>Signal-Based APIs</strong>: Functional alternatives to property decorators</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Class Decorator FAQ</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li>
+                <strong>Q: When should I use NgModules vs. standalone components?</strong><br>
+                A: In Angular 19, prefer standalone components for most use cases. NgModules are still useful for organizing large applications and legacy code.
+              </li>
+              <li>
+                <strong>Q: What's the difference between providedIn: 'root' and providedIn: 'platform'?</strong><br>
+                A: 'root' creates a singleton for the current application, while 'platform' creates a singleton shared across multiple Angular applications that might be running on the same page.
+              </li>
+              <li>
+                <strong>Q: Should I migrate from property decorators to signal-based APIs?</strong><br>
+                A: For new components, use signal-based APIs. For existing components, consider migrating during major refactors rather than all at once.
+              </li>
+              <li>
+                <strong>Q: Can I create my own custom class decorators?</strong><br>
+                A: Yes, but they won't integrate with Angular's core functionality automatically. Custom decorators are useful for cross-cutting concerns like logging and validation.
+              </li>
+              <li>
+                <strong>Q: How do decorators affect performance?</strong><br>
+                A: Decorators add some overhead during application startup but have minimal impact on runtime performance. Angular 19 has optimized decorator processing considerably.
+              </li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Useful Resources</p>
+            <ul class="list-disc pl-4">
+              <li><a href="https://angular.dev/guide/components" class="text-sky-400 hover:underline">Angular Component Guide</a></li>
+              <li><a href="https://angular.dev/guide/di/dependency-injection" class="text-sky-400 hover:underline">Angular Dependency Injection Guide</a></li>
+              <li><a href="https://angular.dev/guide/directives/directive-composition-api" class="text-sky-400 hover:underline">Directive Composition API</a></li>
+              <li><a href="https://angular.dev/guide/signals" class="text-sky-400 hover:underline">Angular Signals Guide</a></li>
+              <li><a href="https://www.typescriptlang.org/docs/handbook/decorators.html" class="text-sky-400 hover:underline">TypeScript Decorators Documentation</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

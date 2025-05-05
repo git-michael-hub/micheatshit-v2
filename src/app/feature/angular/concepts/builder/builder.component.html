@@ -1,26 +1,415 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    builder
+    Builders in Angular
   </p>
 
   <div class="text-content">
     <p>
-      A function that uses the <a href="">Architect</a> API to perform a complex process such as <code>build</code> or <code>test</code>. The builder code is defined in an <a href="">npm package</a>.
+      <span class="text-zinc-50 tw-font-medium">Builders</span>
+      in Angular 19 are specialized functions that implement the Angular Architect API to perform complex tasks like building, serving, testing, or deploying applications. Builders encapsulate build processes, allowing for custom, reusable build steps with well-defined inputs and outputs.
     </p>
 
     <br>
 
-    <p>
-      For example, <a href="">BrowserBuilder</a> runs a <a href="">webpack</a> build for a browser target and <a href="">KarmaBuilder</a> starts the Karma server and runs a webpack build for unit tests.
-    </p>
-
-    <br>
-
-    <p>
-      The <code>ng run</code> Angular CLI command invokes a builder with a specific <a href="">target configuration</a>. The <a href="">workspace configuration</a> file, <code>angular.json</code>, contains default configurations for built-in builders.
-    </p>
-
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </section>
+
+<ng-template #notesRef>
+  <p>Understanding Builders in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      Functions that implement the Architect API to perform complex build, test, or deployment processes.
+    </li>
+    <li>
+      <strong>Core Function</strong>:
+      Handle transformation tasks like bundling, minification, tree-shaking, and AOT compilation.
+    </li>
+    <li>
+      <strong>Usage</strong>:
+      Invoked via the Angular CLI's <code>ng run</code> command with specific target configurations.
+    </li>
+    <li>
+      <strong>Configuration</strong>:
+      Defined in the project's <code>angular.json</code> workspace configuration file.
+    </li>
+    <li>
+      <strong>Extensibility</strong>:
+      Can be customized or extended to create specialized build processes beyond the default ones.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Built-in Builders in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>application (Replaces browser in Angular 19)</strong>:
+      <ul class="list-disc pl-4">
+        <li>Processes and bundles the application for browsers with improved Vite-based bundling, offering faster builds and better performance.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>server</strong>:
+      <ul class="list-disc pl-4">
+        <li>Bundles the application for server-side rendering with enhanced hydration support.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>dev-server</strong>:
+      <ul class="list-disc pl-4">
+        <li>Serves the application during development with live reloading, now with improved refresh performance.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>karma</strong>:
+      <ul class="list-disc pl-4">
+        <li>Runs unit tests using Karma, now with better integration with modern testing tools.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>protractor</strong>:
+      <ul class="list-disc pl-4">
+        <li>Legacy builder for end-to-end testing (largely replaced by Cypress and Playwright in modern projects).</li>
+      </ul>
+    </li>
+    <li>
+      <strong>extract-i18n</strong>:
+      <ul class="list-disc pl-4">
+        <li>Extracts internationalization messages for translation, now with improved support for standalone components.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>ssr-dev-server</strong>:
+      <ul class="list-disc pl-4">
+        <li>New in Angular 19 - Specialized development server with integrated server-side rendering capabilities for more accurate local development.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Creating Custom Builders</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Custom Builder Implementation</strong>:
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="customBuilderCode" [languages]="['typescript']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Builder Configuration (builders.json)</strong>:
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="builderJsonCode" [languages]="['json']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Options Schema (schema.json)</strong>:
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="schemaJsonCode" [languages]="['json']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Using in angular.json</strong>:
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="angularJsonCode" [languages]="['json']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Running Builders</strong>:
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="runBuilderCode" [languages]="['typescript']"></code>
+        </pre>
+      </span>
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Builder Enhancements</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Feature</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Vite Integration</td>
+        <td class="py-3 px-4">New application builder uses Vite for significantly faster build times</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">ESBuild Support</td>
+        <td class="py-3 px-4">Utilizes ESBuild for faster transpilation and bundling processes</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Advanced Caching</td>
+        <td class="py-3 px-4">Improved caching strategies for faster incremental builds</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">SSR Integration</td>
+        <td class="py-3 px-4">Better developer experience for server-side rendering workflows</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Partial Compilation</td>
+        <td class="py-3 px-4">More efficient rebuilds by only compiling changed parts of the application</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Build Executor API</td>
+        <td class="py-3 px-4">Enhanced API for creating custom build processes with better type safety</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Appropriate Built-in Builders</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use application Builder</strong>:
+          For modern browser applications, prefer the new application builder over the legacy browser builder for better performance.
+        </li>
+        <li>
+          <strong>Server + Client Configuration</strong>:
+          For SSR applications, configure both application and server builders with consistent options.
+        </li>
+        <li>
+          <strong>Development Environments</strong>:
+          Use ssr-dev-server for more accurate local development when building SSR applications.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Builder Configuration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Production Builds</strong>:
+          Enable optimization, bundleBudgets, and extractLicenses for production builds.
+        </li>
+        <li>
+          <strong>Budget Planning</strong>:
+          Set appropriate budget warnings and errors to maintain bundle size discipline.
+        </li>
+        <li>
+          <strong>Browser Compatibility</strong>:
+          Configure the correct browserslist to optimize polyfill inclusion.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Creating Custom Builders</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Package Structure</strong>:
+          Organize custom builders in dedicated packages with proper exports.
+        </li>
+        <li>
+          <strong>Schema Validation</strong>:
+          Create comprehensive JSON schemas for builder options to enable CLI validation.
+        </li>
+        <li>
+          <strong>Composable Builders</strong>:
+          Design builders to be composable, allowing them to work together in pipelines.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Testing and Debugging</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Unit Testing</strong>:
+          Write proper unit tests for custom builders using the Architect testing utilities.
+        </li>
+        <li>
+          <strong>Verbose Logging</strong>:
+          Implement detailed logging in custom builders to aid debugging.
+        </li>
+        <li>
+          <strong>Incremental Builds</strong>:
+          Support incremental building where possible to improve performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Performance Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Parallel Execution</strong>:
+          Design builders to utilize multi-core processing where applicable.
+        </li>
+        <li>
+          <strong>Caching Strategy</strong>:
+          Implement effective caching for intermediate build artifacts.
+        </li>
+        <li>
+          <strong>Memory Management</strong>:
+          Be mindful of memory usage, particularly when processing large applications.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Advantages of Angular Builders</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Standardized Interface</strong>: Provides a consistent API for all build processes</li>
+      <li><strong>Extensibility</strong>: Allows for customization of build processes to meet specific requirements</li>
+      <li><strong>Integration with CLI</strong>: Seamless integration with Angular CLI workflows</li>
+      <li><strong>Configuration Management</strong>: Centralized configuration in workspace files</li>
+      <li><strong>Reusability</strong>: Custom builders can be shared across projects and teams</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Challenges and Limitations</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Learning Curve</strong>: Creating custom builders requires understanding the Architect API</li>
+      <li><strong>Documentation Gaps</strong>: Limited detailed documentation on creating complex builders</li>
+      <li><strong>Testing Difficulty</strong>: Testing builders can be complex due to build system dependencies</li>
+      <li><strong>Versioning Challenges</strong>: Custom builders may need updates with Angular version changes</li>
+      <li><strong>Performance Overhead</strong>: The Architect system adds some overhead to simple build processes</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Angular 19 Builder Improvements</p>
+    <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+      <thead>
+        <tr class="bg-gray-800 text-gray-100">
+          <th class="py-3 px-4 text-left">Previous Angular</th>
+          <th class="py-3 px-4 text-left">Angular 19</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Webpack-based browser builder</td>
+          <td class="py-3 px-4">Vite-powered application builder with faster builds</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Limited SSR development support</td>
+          <td class="py-3 px-4">Dedicated ssr-dev-server builder for better dev experience</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Slower incremental builds</td>
+          <td class="py-3 px-4">Enhanced caching and partial compilation</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Basic builder API</td>
+          <td class="py-3 px-4">Enhanced typings and better diagnostic tools</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Architect</strong>: The underlying system that runs builders in Angular</li>
+      <li><strong>Angular CLI</strong>: Command-line interface that invokes builders</li>
+      <li><strong>Workspace Configuration</strong>: Where builder configurations are stored</li>
+      <li><strong>Schematics</strong>: Code generators that can be used alongside builders</li>
+      <li><strong>Build Process</strong>: The compilation and bundling pipeline in Angular</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Common Builder Use Cases</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Custom webpack configuration</strong>: Extending the default webpack configuration</li>
+      <li><strong>Multiple entry points</strong>: Building multiple applications from one codebase</li>
+      <li><strong>Static site generation</strong>: Creating pre-rendered static websites</li>
+      <li><strong>Specialized deployments</strong>: Preparing applications for unique hosting environments</li>
+      <li><strong>Build pipeline integration</strong>: Connecting Angular builds with CI/CD systems</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Popular Custom Builders</p>
+    <ul class="list-disc pl-4">
+      <li><strong>&#64;angular-builders/custom-webpack</strong>: For extending webpack configuration</li>
+      <li><strong>&#64;nrwl/angular</strong>: Enhanced builders for Nx workspaces</li>
+      <li><strong>&#64;angular-eslint/builder</strong>: ESLint integration for Angular projects</li>
+      <li><strong>&#64;angular-devkit/build-optimizer</strong>: Advanced build optimization</li>
+      <li><strong>ngx-build-plus</strong>: Extended build capabilities for Angular applications</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mt-6 mb-2">Additional Resources</p>
+    <ul class="list-disc pl-4">
+      <li><a href="https://angular.dev/tools/cli/builders" class="text-sky-400 hover:underline">Angular.dev: Builders</a></li>
+      <li><a href="https://angular.dev/tools/cli/workspace-config" class="text-sky-400 hover:underline">Angular.dev: Workspace Configuration</a></li>
+      <li><a href="https://github.com/angular/angular-cli" class="text-sky-400 hover:underline">Angular CLI Repository</a></li>
+      <li><a href="https://github.com/just-jeb/angular-builders" class="text-sky-400 hover:underline">Angular Builders Collection</a></li>
+    </ul>
+  </div>
+</ng-template>
 
 

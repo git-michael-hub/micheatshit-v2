@@ -1,0 +1,573 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Signals
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Signals</span>
+      in Angular are reactive primitives introduced in Angular 16 and enhanced in Angular 19. They provide a fine-grained reactivity system for tracking state changes, enabling more efficient rendering, improved change detection, and a more intuitive reactive programming model.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What are Angular Signals?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Reactive Primitives</strong>:
+      Angular Signals are reactive primitives that enable fine-grained tracking of state changes and dependencies between values.
+    </li>
+    <li>
+      <strong>Three Primary Signal Types</strong>:
+      Signals come in three main types: writable signals, computed signals, and effects.
+    </li>
+    <li>
+      <strong>Declarative Reactivity</strong>:
+      They enable a declarative approach to reactivity, where dependencies are automatically tracked and updates propagate efficiently.
+    </li>
+    <li>
+      <strong>Improved Performance</strong>:
+      Angular 19 has significantly improved signal performance, making them suitable for even the most demanding applications.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic Signal Usage</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="basicSignalCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Signals in Components</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="signalComponentsCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Advanced Signal Features</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="advancedSignalsCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Signal Enhancements</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="v19EnhancementsCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>The Three Signal Types</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Signal Type</th>
+        <th class="py-3 px-4 text-left">Description</th>
+        <th class="py-3 px-4 text-left">Key Methods</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><strong>Writable Signal</strong></td>
+        <td class="py-3 px-4">Basic signal that can be directly updated</td>
+        <td class="py-3 px-4"><code>signal()</code>, <code>set()</code>, <code>update()</code>, <code>asReadonly()</code></td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><strong>Computed Signal</strong></td>
+        <td class="py-3 px-4">Derived signal that calculates its value from other signals</td>
+        <td class="py-3 px-4"><code>computed()</code></td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><strong>Effect</strong></td>
+        <td class="py-3 px-4">Side effect that runs when its dependencies change</td>
+        <td class="py-3 px-4"><code>effect()</code>, cleanup function</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Signal Improvements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Signal-Based Component Model</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces signal-based inputs, outputs, models, and queries for components</li>
+        <li>Component inputs and outputs are now signal-based with <code>input()</code> and <code>output()</code></li>
+        <li>Two-way binding with <code>model()</code> for cleaner component communication</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Optimizations</strong>:
+      <ul class="list-disc pl-4">
+        <li>Optimized signal implementation for faster change detection</li>
+        <li>Reduced memory overhead for signal storage</li>
+        <li>Better garbage collection integration for signal dependencies</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Developer Experience</strong>:
+      <ul class="list-disc pl-4">
+        <li>Improved type safety across all signal operations</li>
+        <li>Better error messages for common signal usage mistakes</li>
+        <li>Enhanced debugging support in Angular DevTools</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal Utilities</strong>:
+      <ul class="list-disc pl-4">
+        <li><code>asReadonly()</code> method for creating read-only signals</li>
+        <li>Custom equality functions for controlling signal change detection</li>
+        <li><code>untracked()</code> for preventing dependency tracking in computed signals</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Integration with Zoneless Applications</strong>:
+      <ul class="list-disc pl-4">
+        <li>Signals are the foundation for zoneless applications in Angular 19</li>
+        <li>Provide automatic UI updates without relying on Zone.js</li>
+        <li>Enable more predictable, fine-grained change detection</li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Signal State Design</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Keep Signal Granularity Appropriate</strong>:
+          Create signals at the right level of granularity. Too fine-grained signals can lead to complexity, while too coarse can reduce the benefits of reactivity.
+        </li>
+        <li>
+          <strong>Use Computed for Derived State</strong>:
+          Always use computed signals for derived state rather than manually updating dependent values. This ensures your derived state stays in sync automatically.
+        </li>
+        <li>
+          <strong>Minimize Stateful Services</strong>:
+          Move signals to components when possible and keep services stateless. When services need state, use signals to make that state reactive.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Performance Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Avoid Deep Objects in Signals</strong>:
+          Prefer flat state in signals. Deep nesting can make change detection less efficient and updates more complex.
+        </li>
+        <li>
+          <strong>Use untracked() Strategically</strong>:
+          Use <code>untracked()</code> to prevent unnecessary dependencies in computed signals when you need to access a signal's value without creating a dependency.
+        </li>
+        <li>
+          <strong>Custom Equality Functions</strong>:
+          Use custom equality functions for complex objects to prevent unnecessary updates when actual values haven't changed.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Effect Management</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Clean Up Effects</strong>:
+          Always return cleanup functions from effects that subscribe to external resources or create timers to prevent memory leaks.
+        </li>
+        <li>
+          <strong>Keep Effects Focused</strong>:
+          Effects should have a single responsibility. Prefer multiple small effects over one large effect with many dependencies.
+        </li>
+        <li>
+          <strong>Place Effects Appropriately</strong>:
+          Define effects where their dependencies are defined, typically in component constructors or initialization methods.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Component Integration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Prefer Signal Inputs and Outputs</strong>:
+          In Angular 19, use <code>input()</code>, <code>output()</code>, and <code>model()</code> for component communications over the older decorator approach.
+        </li>
+        <li>
+          <strong>Use asReadonly() for API Design</strong>:
+          Expose read-only signals to consumers when they shouldn't be able to modify the value directly.
+        </li>
+        <li>
+          <strong>Consider Signal Store for Complex State</strong>:
+          For complex application state, consider using a pattern like signal-based stores to organize related state and behavior.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Migration Strategy</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Incremental Adoption</strong>:
+          Migrate to signals incrementally, focusing on areas with complex state management or performance issues first.
+        </li>
+        <li>
+          <strong>Combine with RxJS When Needed</strong>:
+          Signals and RxJS can coexist. Use signals for UI state and component interaction, and RxJS for complex asynchronous operations.
+        </li>
+        <li>
+          <strong>Consider Future Patterns</strong>:
+          Design your signal architecture with the future in mind, such as zoneless applications and signal-based components.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Fine-grained Reactivity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Precise Dependency Tracking</span>:
+          Signals automatically track their dependencies, leading to more efficient updates and rendering.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Minimal Re-rendering</span>:
+          Only parts of the UI that depend on changed signals are updated, reducing unnecessary work.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Explicit Change Detection</span>:
+          Changes to signal values explicitly trigger updates, making application behavior more predictable.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Optimized Change Detection</span>:
+          Angular 19 signals significantly improve change detection efficiency compared to traditional mechanisms.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Memory Efficiency</span>:
+          Signals have minimal memory overhead compared to alternatives like RxJS Subjects.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Zone-free Operation</span>:
+          Signals enable zoneless applications, reducing overhead related to zone.js.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Better Developer Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Simple API</span>:
+          Signals have a straightforward, functional API that's easy to understand and use.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Improved Type Safety</span>:
+          Signal operations are fully typed, providing excellent TypeScript integration.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Debugging Support</span>:
+          Angular DevTools offers enhanced debugging capabilities for signals in Angular 19.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Integration with Angular Ecosystem</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Signal-based Components</span>:
+          Angular 19 introduces a complete signal-based component model with signal inputs, outputs, and models.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Integration with Templates</span>:
+          Signal values can be used directly in templates and automatically update when signals change.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Works with Existing Code</span>:
+          Signals can be gradually adopted alongside existing Angular patterns.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">New Mental Model</span>:
+          Developers familiar with RxJS or traditional Angular change detection need to learn a new approach.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Signal Function Calls</span>:
+          The need to call signals as functions to get their values can be confusing for newcomers.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Reactive Thinking</span>:
+          Requires a shift to thinking reactively about dependencies and data flow.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Migration Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Mixed Code Bases</span>:
+          During migration, managing code that uses both signals and traditional patterns can be complex.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Refactoring Effort</span>:
+          Converting existing components and services to use signals requires significant effort.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Third-party Libraries</span>:
+          Not all third-party libraries support signals yet, creating potential integration challenges.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Debugging Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Hidden Dependencies</span>:
+          Automatic dependency tracking can sometimes make it difficult to trace exactly what's causing updates.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Effect Debugging</span>:
+          Effects with many dependencies can be challenging to debug when they trigger unexpectedly.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Stack Traces</span>:
+          Error stack traces from signal operations can sometimes be harder to follow than traditional code.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Overuse</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Signal Proliferation</span>:
+          There's a risk of creating too many fine-grained signals, leading to unnecessarily complex code.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Architecture Decisions</span>:
+          Determining where to place signals (components vs. services) requires careful consideration.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Performance Overhead</span>:
+          While signals are optimized, there's still some overhead for very simple state changes that might not need reactivity.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #topicsRef>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Signal-Based Components</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular 19's component model based entirely on signals, replacing traditional inputs and outputs.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signals</strong>:
+          Uses signals as the foundation for component inputs, outputs, models, and queries, creating a unified reactive programming model.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Applications</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular applications that operate without Zone.js, using signals and explicit change detection.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signals</strong>:
+          Signals provide the reactivity mechanism that enables applications to function efficiently without Zone.js.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Reactive Programming</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Programming paradigm focused on data streams and propagation of change.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signals</strong>:
+          Signals implement reactive programming principles in a way that's integrated with Angular's rendering system.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>RxJS and Observables</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Library for reactive programming with Observables in Angular applications.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signals</strong>:
+          Complementary to signals - RxJS is better for complex async operations, while signals excel at UI state management.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          How Angular identifies and propagates changes to update the DOM.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signals</strong>:
+          Signals enable fine-grained change detection by creating explicit connections between state and UI.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Partial Hydration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Technique to selectively hydrate server-rendered components based on priority or visibility.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signals</strong>:
+          Signals integrate with partial hydration, enabling efficient state restoration when components are hydrated.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>State Management</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Patterns and practices for managing application state in Angular applications.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signals</strong>:
+          Signals provide a built-in mechanism for reactive state management that can replace or complement external libraries.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>

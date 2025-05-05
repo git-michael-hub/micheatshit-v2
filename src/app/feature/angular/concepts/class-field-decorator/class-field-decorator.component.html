@@ -1,0 +1,354 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Class Field Decorators in Angular
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Class Field Decorators</span>
+      in Angular 19 are TypeScript decorators that add metadata to class properties and methods. These decorators enable Angular to understand how properties interact with components, templates, and the DOM, providing essential functionality like property binding, event handling, and DOM access.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <div *ngIf="selectedTab === 1">
+          <!-- Notes Tab -->
+          <p>Core Angular Class Field Decorators</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>&#64;Input()</strong>:
+              Declares a property that can receive data from a parent component.
+              <ul class="list-disc pl-4">
+                <li>Enables component property binding</li>
+                <li>Can include aliases, required flag, and transform functions</li>
+                <li>Angular 19 introduces more robust typing and validation</li>
+                <button (click)="inputCodeEl.hidden = !inputCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #inputCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="inputCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>&#64;Output()</strong>:
+              Declares an event emitter property that a component can use to emit events.
+              <ul class="list-disc pl-4">
+                <li>Uses EventEmitter to emit custom events to parent components</li>
+                <li>Can specify alias for clearer template binding</li>
+                <li>Facilitates component communication</li>
+                <button (click)="outputCodeEl.hidden = !outputCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #outputCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="outputCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>&#64;ViewChild() / &#64;ViewChildren()</strong>:
+              Provides access to child elements, components, or directives in templates.
+              <ul class="list-disc pl-4">
+                <li>Queries the DOM for elements matching a selector</li>
+                <li>Can target template reference variables, component types, or directives</li>
+                <li>Supports static query option for early access in ngOnInit</li>
+                <button (click)="viewChildCodeEl.hidden = !viewChildCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #viewChildCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="viewChildCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>&#64;HostBinding() / &#64;HostListener()</strong>:
+              Binds properties and events of the host element.
+              <ul class="list-disc pl-4">
+                <li>&#64;HostBinding binds to properties, attributes, or classes of the host element</li>
+                <li>&#64;HostListener subscribes to events on the host element</li>
+                <li>Useful for directive implementation</li>
+                <button (click)="hostBindingCodeEl.hidden = !hostBindingCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #hostBindingCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="hostBindingCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Angular 19 Signal-Based Alternatives</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Signal-Based Inputs and Outputs</strong>:
+              <ul class="list-disc pl-4">
+                <li>input() function replaces &#64;Input() decorator</li>
+                <li>output() function replaces &#64;Output() decorator</li>
+                <li>model() function provides two-way binding capability</li>
+                <li>Improved type safety and runtime validation</li>
+                <li>Better tree-shaking and performance optimization</li>
+                <button (click)="signalInputCodeEl.hidden = !signalInputCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #signalInputCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="signalInputCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>Key Advantages of Signal-Based APIs</strong>:
+              <ul class="list-disc pl-4">
+                <li>Improved reactivity with direct signal integration</li>
+                <li>Enhanced type checking with generics</li>
+                <li>More intuitive API for transform functions</li>
+                <li>Simpler syntax for declaring required inputs</li>
+                <li>Better performance through optimization</li>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Other Important Class Field Decorators</p>
+          <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+            <thead>
+              <tr class="bg-gray-800 text-gray-100">
+                <th class="py-3 px-4 text-left">Decorator</th>
+                <th class="py-3 px-4 text-left">Purpose</th>
+                <th class="py-3 px-4 text-left">Angular 19 Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">&#64;ContentChild / &#64;ContentChildren</td>
+                <td class="py-3 px-4">Access projected content</td>
+                <td class="py-3 px-4">Supported, no signal alternative yet</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">&#64;Inject</td>
+                <td class="py-3 px-4">Field-based DI token injection</td>
+                <td class="py-3 px-4">Supported, functional inject() alternative available</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">&#64;Optional</td>
+                <td class="py-3 px-4">Mark dependencies as optional</td>
+                <td class="py-3 px-4">Supported</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">&#64;Self / &#64;SkipSelf</td>
+                <td class="py-3 px-4">Control injector hierarchy traversal</td>
+                <td class="py-3 px-4">Supported</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">&#64;Attribute</td>
+                <td class="py-3 px-4">Access host element attribute values</td>
+                <td class="py-3 px-4">Supported</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="selectedTab === 2">
+          <!-- Best Practices Tab -->
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Use Descriptive Property Names</strong>
+              <ul class="list-disc pl-4">
+                <li>Choose clear, descriptive names for decorated properties</li>
+                <li>Use camelCase for property names, following TypeScript conventions</li>
+                <li>If using an alias, ensure it's intuitive for template consumers</li>
+                <li>Document complex properties with JSDoc comments</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Prefer Signal-Based Inputs in Angular 19</strong>
+              <ul class="list-disc pl-4">
+                <li>Use input() function instead of &#64;Input() decorator for new components</li>
+                <li>Take advantage of improved type safety with generics</li>
+                <li>Implement transform functions for data sanitization</li>
+                <li>Use input.required&lt;T&gt;() for mandatory properties</li>
+                <li>Consider model() for two-way binding scenarios</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Properly Type All Inputs and Outputs</strong>
+              <ul class="list-disc pl-4">
+                <li>Always specify types for Input and Output properties</li>
+                <li>Use generic types with EventEmitter: EventEmitter&lt;T&gt;</li>
+                <li>Avoid the any type; use unknown if the type is truly dynamic</li>
+                <li>Consider using interface or type alias for complex data structures</li>
+                <li>Use readonly arrays or objects when appropriate</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Optimize ViewChild and ContentChild Queries</strong>
+              <ul class="list-disc pl-4">
+                <li>Use {{ '{' }} static: true {{ '}' }} only when needed in ngOnInit</li>
+                <li>Specify the read option when querying for a specific token</li>
+                <li>Be aware of timing differences between static and dynamic queries</li>
+                <li>Use @ViewChildren with QueryList for multiple elements</li>
+                <li>Remember that ContentChild queries elements projected from parent templates</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Implement Change Detection Strategies</strong>
+              <ul class="list-disc pl-4">
+                <li>Use OnPush change detection for improved performance</li>
+                <li>Understand how inputs trigger change detection</li>
+                <li>Consider immutable data patterns for OnPush components</li>
+                <li>Use signal-based inputs for automatic fine-grained updates</li>
+                <li>Be cautious with HostBinding in performance-critical components</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div *ngIf="selectedTab === 3">
+          <!-- Pros and Cons Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Advantages of Class Field Decorators</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Declarative API</strong>: Clearly identifies the purpose and behavior of properties</li>
+              <li><strong>Simplified Component Communication</strong>: Easy to implement parent-child data flow</li>
+              <li><strong>DOM Integration</strong>: Provides direct access to template elements and DOM events</li>
+              <li><strong>Type Safety</strong>: Works well with TypeScript's type system</li>
+              <li><strong>Template Integration</strong>: Makes binding in templates intuitive and straightforward</li>
+              <li><strong>Framework Integration</strong>: Ensures Angular can properly process components</li>
+              <li><strong>Metadata Preservation</strong>: Retains information through the build process</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Challenges with Class Field Decorators</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>TypeScript Experimental Feature</strong>: Decorators are still technically experimental</li>
+              <li><strong>Performance Overhead</strong>: Traditional decorators add some runtime cost</li>
+              <li><strong>Debugging Complexity</strong>: Errors in decorators can be harder to diagnose</li>
+              <li><strong>Change Detection Complexity</strong>: Can trigger unnecessary renders if not careful</li>
+              <li><strong>Timing Issues</strong>: ViewChild and ContentChild queries have specific lifecycle timing</li>
+              <li><strong>Migration Effort</strong>: Moving to signal-based alternatives requires refactoring</li>
+              <li><strong>Testing Complexity</strong>: Some decorators require special handling in tests</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Traditional vs. Angular 19 Signal-Based Patterns</p>
+            <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+              <thead>
+                <tr class="bg-gray-800 text-gray-100">
+                  <th class="py-3 px-4 text-left">Traditional Pattern</th>
+                  <th class="py-3 px-4 text-left">Angular 19 Signal-Based Pattern</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">&#64;Input() name: string;</td>
+                  <td class="py-3 px-4">name = input&lt;string&gt;('');</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">&#64;Input({{ '{' }} required: true {{ '}' }}) id!: string;</td>
+                  <td class="py-3 px-4">id = input.required&lt;string&gt;();</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">&#64;Input({{ '{' }} transform: fn {{ '}' }}) value: T;</td>
+                  <td class="py-3 px-4">value = input&lt;T&gt;(defaultValue, {{ '{' }} transform: fn {{ '}' }});</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">&#64;Output() changed = new EventEmitter&lt;T&gt;();</td>
+                  <td class="py-3 px-4">changed = output&lt;T&gt;();</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">&#64;Input() value: T;<br>&#64;Output() valueChange = new EventEmitter&lt;T&gt;();</td>
+                  <td class="py-3 px-4">value = model&lt;T&gt;(defaultValue);</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab === 4">
+          <!-- Related Topics Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Component Communication</strong>: How data flows between components in Angular</li>
+              <li><strong>TypeScript Decorators</strong>: The language feature that enables Angular's field decorators</li>
+              <li><strong>Angular Signals</strong>: The reactive primitive that powers modern input/output APIs</li>
+              <li><strong>Change Detection</strong>: How decorated properties affect Angular's update cycle</li>
+              <li><strong>Component Lifecycle</strong>: How ViewChild and ContentChild queries interact with lifecycle hooks</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Class Field Decorator FAQ</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li>
+                <strong>Q: Should I use traditional decorators or signal-based APIs in Angular 19?</strong><br>
+                A: For new components, prefer signal-based APIs (input(), output(), model()). They offer better performance, type safety, and integration with Angular's reactivity system. For existing components, consider migrating during major refactors.
+              </li>
+              <li>
+                <strong>Q: When should I use ViewChild vs ContentChild?</strong><br>
+                A: Use ViewChild to access elements defined in the component's own template. Use ContentChild to access elements projected into the component via ng-content.
+              </li>
+              <li>
+                <strong>Q: How do I handle required inputs in Angular 19?</strong><br>
+                A: With traditional decorators, use &#64;Input({{ '{' }} required: true {{ '}' }}). With signal-based APIs, use input.required&lt;T&gt;().
+              </li>
+              <li>
+                <strong>Q: Can I transform input values in Angular 19?</strong><br>
+                A: Yes, both &#64;Input({{ '{' }} transform: fn {{ '}' }}) and input(defaultValue, {{ '{' }} transform: fn {{ '}' }}) support transformation functions that process values before they reach the component.
+              </li>
+              <li>
+                <strong>Q: How do signal-based inputs affect change detection?</strong><br>
+                A: Signal-based inputs integrate with Angular's fine-grained reactivity system, potentially reducing unnecessary re-renders and improving performance.
+              </li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Useful Resources</p>
+            <ul class="list-disc pl-4">
+              <li><a href="https://angular.dev/guide/components/inputs" class="text-sky-400 hover:underline">Angular Input Binding Guide</a></li>
+              <li><a href="https://angular.dev/guide/components/outputs" class="text-sky-400 hover:underline">Angular Output Binding Guide</a></li>
+              <li><a href="https://angular.dev/guide/components/view-encapsulation" class="text-sky-400 hover:underline">Component View Encapsulation</a></li>
+              <li><a href="https://angular.dev/guide/signals" class="text-sky-400 hover:underline">Angular Signals Guide</a></li>
+              <li><a href="https://www.typescriptlang.org/docs/handbook/decorators.html" class="text-sky-400 hover:underline">TypeScript Decorators Documentation</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

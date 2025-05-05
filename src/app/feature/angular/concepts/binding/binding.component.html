@@ -1,19 +1,404 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    binding
+    Data Binding
   </p>
 
   <div class="text-content">
     <p>
-      Generally, the practice of setting a variable or property to a data value. Within Angular, typically refers to <a href="">data binding</a>, which coordinates DOM object properties with data object properties.
+      <span class="text-zinc-50 tw-font-medium">Data Binding</span>
+      in Angular 19 provides a powerful mechanism to synchronize data between component class and template view. Angular 19 offers enhanced binding capabilities with signals, standalone components, and improved change detection for more efficient updates and better performance.
     </p>
 
     <br>
 
-    <p>
-      Sometimes refers to a <a href="">dependency-injection</a> binding between a <a href="">token</a> and a dependency <a href="">provider</a>.
-    </p>
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </section>
+
+<ng-template #notesRef>
+  <p>Types of Data Binding in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Interpolation</strong>:
+      Displays component data in the view using double curly braces syntax.
+    </li>
+    <li>
+      <strong>Property Binding</strong>:
+      Binds values to properties of DOM elements using square brackets.
+    </li>
+    <li>
+      <strong>Event Binding</strong>:
+      Listens for DOM events using parentheses.
+    </li>
+    <li>
+      <strong>Two-way Binding</strong>:
+      Combines property and event binding using the banana-in-a-box syntax [()].
+    </li>
+    <li>
+      <strong>Signal-based Binding</strong>:
+      Angular 19's reactive approach for fine-grained updates.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Binding Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Signal-based Reactive Binding</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces streamlined syntax for binding to signals, providing more efficient change detection and granular updates.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Standalone Component Binding</strong>:
+      <ul class="list-disc pl-4">
+        <li>Simplified input/output binding syntax for standalone components with better tree-shaking and performance.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Control Flow Binding</strong>:
+      <ul class="list-disc pl-4">
+        <li>New <code>&#64;if</code>, <code>&#64;for</code>, and <code>&#64;switch</code> syntax in templates for more efficient conditional and list rendering with optimized binding.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Change Detection</strong>:
+      <ul class="list-disc pl-4">
+        <li>Explicit, fine-grained control over when bindings update without relying on Zone.js for improved performance.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Type-safe Template Binding</strong>:
+      <ul class="list-disc pl-4">
+        <li>Improved TypeScript integration with template binding for stronger type checking and better developer experience.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Binding Syntax Examples</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Interpolation</strong>:
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="interpolationCode" [languages]="['html']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Property Binding</strong>:
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="propertyBindingCode" [languages]="['html']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Event Binding</strong>:
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="eventBindingCode" [languages]="['html']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Two-way Binding</strong>:
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="twoWayBindingCode" [languages]="['html']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Signal-based Binding</strong>:
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript+html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="signalBindingCode" [languages]="['typescript']"></code>
+        </pre>
+      </span>
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Binding Use Cases</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Binding Type</th>
+        <th class="py-3 px-4 text-left">Best Use Cases</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Interpolation</td>
+        <td class="py-3 px-4">Displaying text content, calculated values, or formatting data</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Property Binding</td>
+        <td class="py-3 px-4">Setting element attributes, styles, classes, or component inputs</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Event Binding</td>
+        <td class="py-3 px-4">Handling user actions like clicks, input, and form submissions</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Two-way Binding</td>
+        <td class="py-3 px-4">Form inputs, custom components with input/output pairs</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Signal-based</td>
+        <td class="py-3 px-4">Real-time data, performance-critical views, reactive patterns</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Prefer Signal-based Binding</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Signal Primitives</strong>:
+          Use signal() for reactive state, computed() for derived values, and effect() for side effects.
+        </li>
+        <li>
+          <strong>Explicit Change Detection</strong>:
+          Signals allow more predictable and efficient change detection compared to NgZone-based detection.
+        </li>
+        <li>
+          <strong>Fine-grained Updates</strong>:
+          Angular 19 signals provide more granular updates than traditional property binding.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement OnPush Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Immutable Data</strong>:
+          Use immutable data structures and create new object references when data changes.
+        </li>
+        <li>
+          <strong>Change Detection Strategy</strong>:
+          Set ChangeDetectionStrategy.OnPush for all components to improve performance.
+        </li>
+        <li>
+          <strong>Avoid Deep Object Nesting</strong>:
+          Flatten data structures to make change detection more efficient.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Template Binding</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Pure Pipes</strong>:
+          Leverage pure pipes for transformations instead of methods in interpolation.
+        </li>
+        <li>
+          <strong>Track Items By</strong>:
+          Always include trackBy functions with ngFor to improve rendering performance.
+        </li>
+        <li>
+          <strong>New Control Flow</strong>:
+          Use the new &#64;for syntax with tracking instead of *ngFor for better performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Minimize DOM Updates</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Debounce Inputs</strong>:
+          Debounce event handlers for inputs that update frequently.
+        </li>
+        <li>
+          <strong>Async Pipe</strong>:
+          Use the async pipe to automatically handle subscription and unsubscription.
+        </li>
+        <li>
+          <strong>Virtual Scrolling</strong>:
+          For large lists, use the Angular CDK's virtual scrolling with efficient bindings.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Type-safe Templates</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Strict Type Checking</strong>:
+          Enable strictTemplates in tsconfig.json for type-safe templates.
+        </li>
+        <li>
+          <strong>Type Coercion</strong>:
+          Use appropriate type coercion for inputs to avoid runtime errors.
+        </li>
+        <li>
+          <strong>Template Context</strong>:
+          Define proper types for template context variables in ViewChild and ContentChild.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Advantages of Angular 19 Data Binding</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Reactive Updates</strong>: Signal-based binding provides fine-grained reactivity</li>
+      <li><strong>Type Safety</strong>: Enhanced template type checking prevents runtime errors</li>
+      <li><strong>Performance</strong>: Improved change detection with OnPush and zoneless options</li>
+      <li><strong>Declarative Syntax</strong>: Clear separation between component logic and view</li>
+      <li><strong>Control Flow Integration</strong>: Seamless integration with new built-in control flow</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Challenges</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Learning Curve</strong>: Signal-based binding introduces new concepts</li>
+      <li><strong>Migration Effort</strong>: Updating existing applications to use signals</li>
+      <li><strong>Debugging Complexity</strong>: Can be challenging to track reactive data flow</li>
+      <li><strong>Boilerplate</strong>: Some binding patterns require additional setup code</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Traditional vs. Signal-Based Binding</p>
+    <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+      <thead>
+        <tr class="bg-gray-800 text-gray-100">
+          <th class="py-3 px-4 text-left">Feature</th>
+          <th class="py-3 px-4 text-left">Traditional Binding</th>
+          <th class="py-3 px-4 text-left">Signal-Based Binding</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Change Detection</td>
+          <td class="py-3 px-4">Zone.js-based</td>
+          <td class="py-3 px-4">Fine-grained, explicit</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Performance</td>
+          <td class="py-3 px-4">Can trigger unnecessary checks</td>
+          <td class="py-3 px-4">Only updates affected parts</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Reactivity</td>
+          <td class="py-3 px-4">Coarse-grained</td>
+          <td class="py-3 px-4">Fine-grained with dependency tracking</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Derived Values</td>
+          <td class="py-3 px-4">Manual or getter methods</td>
+          <td class="py-3 px-4">Efficient computed signals</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Related Angular 19 Features</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Signals API</strong>: Core reactive primitives used for state management</li>
+      <li><strong>Built-in Control Flow</strong>: New template syntax for conditionals and loops</li>
+      <li><strong>Zoneless Applications</strong>: Running Angular without Zone.js</li>
+      <li><strong>Standalone Components</strong>: Simplified, self-contained components</li>
+      <li><strong>Input Signal Function</strong>: New way to define component inputs</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Advanced Binding Techniques</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Content Projection</strong>: Advanced techniques for ng-content</li>
+      <li><strong>Dynamic Component Loading</strong>: Binding to dynamically created components</li>
+      <li><strong>Custom Two-way Binding</strong>: Creating custom ngModel implementations</li>
+      <li><strong>Template Context Variables</strong>: Using let-* variables in templates</li>
+      <li><strong>Attribute Directives</strong>: Creating custom attribute directives with bindings</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Performance Considerations</p>
+    <ul class="list-disc pl-4">
+      <li>Using OnPush change detection strategy with immutable data patterns</li>
+      <li>Implementing trackBy functions to optimize rendering of lists</li>
+      <li>Avoiding expensive computations in template expressions</li>
+      <li>Using pure pipes instead of methods in templates</li>
+      <li>Leveraging signal-based reactivity for fine-grained updates</li>
+      <li>Employing deferrable views to lazy-load non-critical UI sections</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mt-6 mb-2">Recommended Documentation</p>
+    <ul class="list-disc pl-4">
+      <li><a href="https://angular.dev/guide/templates/binding" class="text-sky-400 hover:underline">Angular.dev: Data Binding</a></li>
+      <li><a href="https://angular.dev/guide/signals" class="text-sky-400 hover:underline">Angular.dev: Signals</a></li>
+      <li><a href="https://angular.dev/guide/templates/control-flow" class="text-sky-400 hover:underline">Angular.dev: Built-in Control Flow</a></li>
+      <li><a href="https://angular.dev/guide/change-detection" class="text-sky-400 hover:underline">Angular.dev: Change Detection</a></li>
+    </ul>
+  </div>
+</ng-template>
 
 

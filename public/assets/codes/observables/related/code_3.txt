@@ -1,0 +1,13 @@
+import { of, from, interval, timer } from 'rxjs';
+
+// Create an observable from a single value
+const myObservable = of('Hello', 'World');
+
+// Create an observable from an array
+const myObservable = from(['Hello', 'World']);
+
+// Create an observable that emits values at a given interval
+const myObservable = interval(1000);
+
+// Create an observable that emits a single value after a given delay
+const myObservable = timer(1000);

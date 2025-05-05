@@ -1,0 +1,45 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { ApplicationConfig, bootstrapApplication } from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-hello-world',
+  standalone: true, // Standalone components are the default in Angular 19
+  template: `
+    <div class="container">
+      <h2>Hello, {{name}}!</h2>
+      <button (click)="onClick()">Say Hello</button>
+    </div>
+  `,
+  styles: [`
+    .container { border: 1px solid #ccc; padding: 10px; border-radius: 5px; }
+    h2 { color: #3f51b5; }
+    button { background-color: #ff4081; color: white; border: none; padding: 5px 10px; border-radius: 3px; }
+  `]
+})
+export class HelloWorldComponent {
+  @Input() name: string = 'World';
+  @Output() greeting = new EventEmitter<string>();
+
+  onClick() {
+    this.greeting.emit(`Hello, ${this.name}!`);
+  }
+}
+
+// Create the custom element from the Angular component
+const helloWorldElement = createCustomElement(HelloWorldComponent, {
+  injector: bootstrapApplication(HelloWorldComponent).injector
+});
+
+// Register the custom element with the browser
+customElements.define('hello-world', helloWorldElement);
+
+// Optional: Set up the application with custom providers if needed
+const appConfig: ApplicationConfig = {
+  providers: [
+    // Add any providers needed by your component
+  ]
+};
+
+// Bootstrap your app
+bootstrapApplication(HelloWorldComponent, appConfig);

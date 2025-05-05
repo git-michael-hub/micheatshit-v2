@@ -1,0 +1,551 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Input Transform
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Input Transform</span>
+      is a powerful feature in Angular 19 that allows you to transform input values as they enter a component, providing clean data manipulation, validation, and formatting without cluttering component logic.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What is Input Transform?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Input Property Transformation</strong>:
+      A feature that lets you transform input values as they enter a component.
+    </li>
+    <li>
+      <strong>Reactive Integration</strong>:
+      Works seamlessly with Angular's signal-based reactivity system.
+    </li>
+    <li>
+      <strong>Cleaner Component Logic</strong>:
+      Moves data manipulation logic directly into the input declaration.
+    </li>
+    <li>
+      <strong>Type-Safe Transformations</strong>:
+      Maintains TypeScript type safety throughout the transformation pipeline.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic Input Transform Example</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="basicExampleCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Multiple Input Transforms</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="multiInputExampleCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Complex Transforms with Input Functions</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="complexTransformExampleCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Input Transform Enhancements</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="v19EnhancementsCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Architecture Patterns with Input Transform</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="architectureExampleCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Input Transform Key Features</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Feature</th>
+        <th class="py-3 px-4 text-left">Description</th>
+        <th class="py-3 px-4 text-left">Benefits</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Value Transformation</td>
+        <td class="py-3 px-4">Transform raw input values into formatted, validated data</td>
+        <td class="py-3 px-4">Clean data always available in component without extra logic</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Dependency Tracking</td>
+        <td class="py-3 px-4">Transforms can depend on other inputs or signals</td>
+        <td class="py-3 px-4">Automatically updates when dependencies change</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Type Safety</td>
+        <td class="py-3 px-4">Full TypeScript support for input and output types</td>
+        <td class="py-3 px-4">Prevents errors and improves development experience</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Async Support</td>
+        <td class="py-3 px-4">Transform functions can be asynchronous</td>
+        <td class="py-3 px-4">Enables API calls or complex async operations in transforms</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Keep Transforms Pure and Focused</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Single Responsibility</strong>:
+          Each transform should have a clear, single purpose (formatting, validation, etc.).
+        </li>
+        <li>
+          <strong>Avoid Side Effects</strong>:
+          Transforms should not change component state or trigger external actions.
+        </li>
+        <li>
+          <strong>Prefer Immutability</strong>:
+          Return new objects rather than mutating input values.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Plan Your Transform Dependencies</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Dependency Order</strong>:
+          Define inputs in the proper order if transforms depend on other inputs.
+        </li>
+        <li>
+          <strong>Avoid Circular Dependencies</strong>:
+          Don't create transforms that depend on each other in a circular manner.
+        </li>
+        <li>
+          <strong>Use Computed for Derived Values</strong>:
+          If you only need to derive values without transforming inputs, use computed() instead.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Handle Edge Cases Gracefully</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Default Values</strong>:
+          Always provide sensible defaults for when inputs are undefined.
+        </li>
+        <li>
+          <strong>Validation</strong>:
+          Include appropriate validation in transforms to prevent unexpected values.
+        </li>
+        <li>
+          <strong>Error Handling</strong>:
+          Properly handle errors in transforms, especially for async transforms.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize for Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Keep Transforms Efficient</strong>:
+          Avoid computationally intensive operations in transforms that run frequently.
+        </li>
+        <li>
+          <strong>Debounce Frequent Changes</strong>:
+          For inputs that change rapidly, consider implementing debouncing.
+        </li>
+        <li>
+          <strong>Cache Complex Results</strong>:
+          Use memoization techniques for expensive transformations.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Document Your Transforms</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Clear Comments</strong>:
+          Document what each transform does, especially for complex transforms.
+        </li>
+        <li>
+          <strong>Type Annotations</strong>:
+          Use explicit TypeScript types for both input and output of transforms.
+        </li>
+        <li>
+          <strong>Document Assumptions</strong>:
+          Make clear any assumptions about input values or dependencies.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Cleaner Component Logic</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Declarative Approach</span>:
+          Transforms move data manipulation logic directly into input declarations.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Reduced Boilerplate</span>:
+          Eliminates the need for separate getters/setters or ngOnChanges.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Self-Contained Logic</span>:
+          Keep input handling logic close to where the input is defined.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Type Safety</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Strong Typing</span>:
+          Full TypeScript support for both incoming values and transformed results.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Compile-Time Checks</span>:
+          Type errors are caught at compile time rather than runtime.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Better IntelliSense</span>:
+          Improved IDE support for working with transformed values.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Reactive Integration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Seamless Signal Integration</span>:
+          Works perfectly with Angular's signal-based reactivity system.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Automatic Updates</span>:
+          Transforms re-run automatically when dependencies change.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Fine-Grained Reactivity</span>:
+          Updates only components affected by input changes.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Better Reusability</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Encapsulated Validation</span>:
+          Components can handle their own input validation.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Standardized Interfaces</span>:
+          Transforms can normalize different input formats to a standard internal format.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Clean Component APIs</span>:
+          Makes components more self-contained and easier to reuse.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Potential Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Dependency Tracking</span>:
+          Complex dependency chains between transforms can be difficult to understand.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Hidden Logic</span>:
+          Transform logic can be less visible than explicit methods.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Debugging Challenges</span>:
+          Issues within transforms can sometimes be harder to debug.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Execution Frequency</span>:
+          Transforms might run more often than needed if dependencies change frequently.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Resource Usage</span>:
+          Complex transforms on large data structures can impact performance.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Memory Overhead</span>:
+          Creating new objects in transforms can increase memory usage.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">New Pattern</span>:
+          Developers need to learn this new approach to input handling.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Conceptual Shift</span>:
+          Requires understanding reactive programming concepts.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Pattern Evolution</span>:
+          Best practices for input transforms are still evolving.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Limited Backward Compatibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Angular Version Requirement</span>:
+          Only available in Angular 19+, not usable in older projects.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Migration Effort</span>:
+          Converting existing input patterns to use transforms requires refactoring.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Signal Dependency</span>:
+          Fully leveraging transforms requires adopting the signals architecture.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #topicsRef>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Angular Signals</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular's reactive primitives for state management.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Input Transform</strong>:
+          Input transforms are built on the signals architecture and can depend on signal values.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Computed Values</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Derived values that automatically update when their dependencies change.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Input Transform</strong>:
+          Input transforms can use computed values, and computed values can use transformed inputs.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Two-Way Binding with model()</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular 19's approach to two-way data binding using signals.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Input Transform</strong>:
+          Can be combined with input transforms for more powerful two-way binding patterns.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Form Control Validation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Validating and processing user input in forms.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Input Transform</strong>:
+          Input transforms can provide an alternative approach to form value processing and validation.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          How Angular detects and responds to state changes.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Input Transform</strong>:
+          Input transforms participate in signal-based change detection, improving performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Component Architecture</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Patterns for structuring Angular components and their interactions.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Input Transform</strong>:
+          Transforms can simplify component APIs and improve component boundaries.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Applications</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular applications that don't rely on Zone.js for change detection.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Input Transform</strong>:
+          Input transforms work well in zoneless applications as part of the signals architecture.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>

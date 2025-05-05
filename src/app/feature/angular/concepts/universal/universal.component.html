@@ -1,0 +1,268 @@
+<div class="container">
+  <h1>Angular Universal</h1>
+  <p>
+    Angular Universal is a technology that enables server-side rendering (SSR) for Angular applications. It allows your app to render on the server before sending HTML to the client, providing better performance, SEO, and user experience.
+  </p>
+
+  <div class="tab-navigation">
+    <button
+      type="button"
+      [class.active]="selectedTab === 'notes'"
+      (click)="selectedTab = 'notes'">
+      Notes
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'bestPractices'"
+      (click)="selectedTab = 'bestPractices'">
+      Best Practices
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'prosCons'"
+      (click)="selectedTab = 'prosCons'">
+      Pros and Cons
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'relatedTopics'"
+      (click)="selectedTab = 'relatedTopics'">
+      Related Topics
+    </button>
+  </div>
+
+  <ng-container [ngSwitch]="selectedTab">
+    <ng-container *ngSwitchCase="'notes'">
+      <ng-container *ngTemplateOutlet="notesTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'bestPractices'">
+      <ng-container *ngTemplateOutlet="bestPracticesTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'prosCons'">
+      <ng-container *ngTemplateOutlet="prosConsTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'relatedTopics'">
+      <ng-container *ngTemplateOutlet="relatedTopicsTemplate"></ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #notesTemplate>
+  <h2>Overview</h2>
+  <p>
+    Angular Universal renders your Angular application on the server, generating static HTML that's sent to the browser. This approach combines the benefits of server-side rendering with Angular's client-side capabilities.
+  </p>
+
+  <h3>Benefits of Angular Universal</h3>
+  <ul class="benefits-list">
+    <li>
+      <strong>Improved SEO:</strong> Search engines can crawl and index the fully rendered HTML content.
+    </li>
+    <li>
+      <strong>Faster First Contentful Paint:</strong> Users see rendered content quickly before the JavaScript bundles load.
+    </li>
+    <li>
+      <strong>Better Performance on Low-Power Devices:</strong> Less client-side processing required initially.
+    </li>
+    <li>
+      <strong>Improved Social Media Sharing:</strong> Proper preview images and metadata for social media platforms.
+    </li>
+  </ul>
+
+  <h3>How Angular Universal Works</h3>
+  <p>
+    The workflow of an Angular Universal application:
+  </p>
+  <div class="workflow-diagram">
+    <h4>Request Flow:</h4>
+    <ol>
+      <li>User requests your application URL</li>
+      <li>Request is received by the server (Node.js with Express typically)</li>
+      <li>Angular Universal renders your application on the server</li>
+      <li>Server responds with fully rendered HTML</li>
+      <li>Browser displays the HTML immediately</li>
+      <li>Angular JavaScript bundles load in the background</li>
+      <li>Once loaded, Angular "hydrates" the application, taking over interaction handling</li>
+    </ol>
+  </div>
+
+  <h3>Setup and Installation</h3>
+  <div class="code-container">
+    <pre><code [highlight]="setupCode" [languages]="['bash']"></code></pre>
+  </div>
+
+  <h3>Building and Running</h3>
+  <div class="code-container">
+    <pre><code [highlight]="buildRunCode" [languages]="['bash']"></code></pre>
+  </div>
+
+  <h3>Server Module Configuration</h3>
+  <div class="code-container">
+    <pre><code [highlight]="serverModuleCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Angular Configuration</h3>
+  <div class="code-container">
+    <pre><code [highlight]="angularJsonCode" [languages]="['json']"></code></pre>
+  </div>
+</ng-template>
+
+<ng-template #bestPracticesTemplate>
+  <h2>Best Practices</h2>
+
+  <h3>Browser/Server Code Differentiation</h3>
+  <p>
+    Use platform detection to handle browser-specific code:
+  </p>
+  <div class="code-container">
+    <pre><code [highlight]="isBrowserCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Managing State Transfer</h3>
+  <p>
+    Use TransferState to avoid duplicate data fetching:
+  </p>
+  <div class="code-container">
+    <pre><code [highlight]="transferStateCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Additional Best Practices</h3>
+  <ul>
+    <li>
+      <strong>Avoid Browser-Only APIs:</strong> Window, document, localStorage, and other browser-specific APIs aren't available during server rendering. Use conditional checks or Angular abstractions.
+    </li>
+    <li>
+      <strong>Optimize for Time-to-First-Byte (TTFB):</strong> Keep server rendering efficient to minimize delays.
+    </li>
+    <li>
+      <strong>Implement Proper Caching:</strong> Use response caching strategies to reduce server load and improve performance.
+    </li>
+    <li>
+      <strong>Use Relative URLs:</strong> For API requests and asset references to ensure they work both on server and client.
+    </li>
+    <li>
+      <strong>Implement Pre-rendering for Static Content:</strong> Consider pre-rendering routes with static content during build time.
+    </li>
+    <li>
+      <strong>Optimize Bundle Size:</strong> Smaller bundles lead to quicker hydration after the initial server-rendered view.
+    </li>
+    <li>
+      <strong>Use Angular's Meta and Title Services:</strong> Ensure proper metadata for SEO and social sharing.
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #prosConsTemplate>
+  <h2>Pros and Cons</h2>
+
+  <h3>Advantages</h3>
+  <ul>
+    <li><strong>SEO Benefits:</strong> Better indexing by search engines</li>
+    <li><strong>Improved Performance:</strong> Faster initial rendering and Time to Interactive</li>
+    <li><strong>Progressive Enhancement:</strong> Content available before JavaScript loads</li>
+    <li><strong>Better Accessibility:</strong> Content available to users with JavaScript disabled</li>
+    <li><strong>Social Media Sharing:</strong> Proper preview cards on social platforms</li>
+  </ul>
+
+  <h3>Challenges and Limitations</h3>
+  <ul>
+    <li><strong>Increased Complexity:</strong> More complex architecture and deployment</li>
+    <li><strong>Server Requirements:</strong> Need for Node.js server infrastructure</li>
+    <li><strong>Development Overhead:</strong> Must account for both client and server environments</li>
+    <li><strong>Potential for Double HTTP Requests:</strong> If not using TransferState properly</li>
+    <li><strong>Additional Build/Deploy Steps:</strong> More complex CI/CD pipelines</li>
+  </ul>
+
+  <h3>Comparison: SSR vs CSR vs Pre-rendering</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Server-Side Rendering (SSR)</th>
+        <th>Client-Side Rendering (CSR)</th>
+        <th>Static Pre-rendering</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Initial Load Time</td>
+        <td>Fast (HTML ready)</td>
+        <td>Slower (wait for JS)</td>
+        <td>Fastest (pre-built HTML)</td>
+      </tr>
+      <tr>
+        <td>SEO</td>
+        <td>Good</td>
+        <td>Limited</td>
+        <td>Excellent</td>
+      </tr>
+      <tr>
+        <td>Server Load</td>
+        <td>High (per request)</td>
+        <td>Low</td>
+        <td>Build-time only</td>
+      </tr>
+      <tr>
+        <td>Dynamic Content</td>
+        <td>Supported</td>
+        <td>Supported</td>
+        <td>Limited (build-time only)</td>
+      </tr>
+      <tr>
+        <td>Development Complexity</td>
+        <td>Higher</td>
+        <td>Lower</td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td>Infrastructure</td>
+        <td>Node.js server</td>
+        <td>Static hosting</td>
+        <td>Static hosting</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #relatedTopicsTemplate>
+  <h2>Related Topics</h2>
+
+  <ul>
+    <li>
+      <strong>Server-Side Rendering (SSR):</strong> The underlying concept behind Angular Universal
+    </li>
+    <li>
+      <strong>Hydration:</strong> Process of attaching event listeners to server-rendered HTML
+    </li>
+    <li>
+      <strong>Partial Hydration:</strong> Selectively hydrating only parts of your application
+    </li>
+    <li>
+      <strong>TransferState:</strong> API for transferring state from server to client
+    </li>
+    <li>
+      <strong>Pre-rendering:</strong> Generating static HTML at build time rather than per request
+    </li>
+    <li>
+      <strong>App Shell:</strong> Minimal UI shown during app loading
+    </li>
+    <li>
+      <strong>SEO (Search Engine Optimization):</strong> Improving discoverability in search results
+    </li>
+    <li>
+      <strong>Express.js:</strong> Common Node.js framework used with Angular Universal
+    </li>
+  </ul>
+
+  <h3>Recent Angular Universal Updates</h3>
+  <p>
+    Angular 19 brings several improvements to Universal:
+  </p>
+  <ul>
+    <li>Improved performance for server-side rendering</li>
+    <li>Better integration with Angular signals</li>
+    <li>Enhanced hydration capabilities</li>
+    <li>Support for partial hydration</li>
+    <li>More streamlined setup process</li>
+  </ul>
+</ng-template>

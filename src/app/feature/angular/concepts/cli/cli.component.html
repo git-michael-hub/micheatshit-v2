@@ -1,0 +1,361 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Command-Line Interface (CLI) in Angular
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Angular CLI</span>
+      is a powerful command-line tool that streamlines Angular development workflows. It provides commands for creating projects, generating code, building, testing, and deploying applications. In Angular 19, the CLI has received significant enhancements for developer experience, performance optimization, and integration with Angular's latest features like standalone components, SSR, and hydration.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <div *ngIf="selectedTab === 1">
+          <!-- Notes Tab -->
+          <p>Core CLI Commands and Functionality</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Basic CLI Commands</strong>
+              <ul class="list-disc pl-4">
+                <li>The CLI provides essential commands for the entire development lifecycle</li>
+                <li>Most commands have shorthand versions (e.g., <code>ng g c</code> for <code>ng generate component</code>)</li>
+                <li>Commands accept options that customize their behavior</li>
+                <button (click)="basicCommandsCodeEl.hidden = !basicCommandsCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #basicCommandsCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>bash</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="basicCommandsCode" [languages]="['bash']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>Workspace Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>The CLI uses <code>angular.json</code> to store project configuration</li>
+                <li>This file defines project structure, build options, and CLI defaults</li>
+                <li>It contains configurations for different environments (development, production)</li>
+                <li>Schematics configuration for code generation is stored here</li>
+                <button (click)="workspaceConfigCodeEl.hidden = !workspaceConfigCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #workspaceConfigCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>json</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="workspaceConfigCode" [languages]="['json']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>Schematics & Builders</strong>
+              <ul class="list-disc pl-4">
+                <li>The CLI uses schematics to generate and modify code</li>
+                <li>Builders execute processes like build, test, and serve</li>
+                <li>Both can be customized or extended for specific project needs</li>
+                <li>Third-party libraries can provide additional schematics and builders</li>
+                <button (click)="customBuildersCodeEl.hidden = !customBuildersCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #customBuildersCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="customBuildersCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Angular 19 CLI Enhancements</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>New CLI Features in Angular 19</strong>
+              <ul class="list-disc pl-4">
+                <li>Enhanced support for standalone applications and components</li>
+                <li>Improved server-side rendering (SSR) and hydration integration</li>
+                <li>Advanced build optimization for smaller bundle sizes</li>
+                <li>New performance profiling and analytics tools</li>
+                <li>Streamlined migration paths from older Angular versions</li>
+                <button (click)="v19CommandsCodeEl.hidden = !v19CommandsCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #v19CommandsCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>bash</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="v19CommandsCode" [languages]="['bash']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>Build Performance Improvements</strong>
+              <ul class="list-disc pl-4">
+                <li>Enhanced Webpack 5 integration with smarter chunking strategies</li>
+                <li>Improved cache invalidation for faster incremental builds</li>
+                <li>Better tree-shaking to reduce bundle sizes</li>
+                <li>More efficient code generation during builds</li>
+                <li>New optimization options for production deployments</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Developer Experience Updates</strong>
+              <ul class="list-disc pl-4">
+                <li>More informative error messages with actionable suggestions</li>
+                <li>Enhanced auto-completion in CLI commands</li>
+                <li>Interactive prompts for common CLI operations</li>
+                <li>Better integration with modern bundlers and tools</li>
+                <li>Improved telemetry with opt-in analytics</li>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Key CLI Commands in Angular 19</p>
+          <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+            <thead>
+              <tr class="bg-gray-800 text-gray-100">
+                <th class="py-3 px-4 text-left">Command</th>
+                <th class="py-3 px-4 text-left">Purpose</th>
+                <th class="py-3 px-4 text-left">Angular 19 Enhancements</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">ng new</td>
+                <td class="py-3 px-4">Create a new Angular application</td>
+                <td class="py-3 px-4">Improved standalone and SSR templates, new minimal option</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">ng generate</td>
+                <td class="py-3 px-4">Generate components, services, etc.</td>
+                <td class="py-3 px-4">Enhanced schematic options for standalone, signals support</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">ng build</td>
+                <td class="py-3 px-4">Build the application</td>
+                <td class="py-3 px-4">Improved bundling, new performance profiler</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">ng serve</td>
+                <td class="py-3 px-4">Run development server</td>
+                <td class="py-3 px-4">Enhanced hydration and SSR development support</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">ng test</td>
+                <td class="py-3 px-4">Run unit tests</td>
+                <td class="py-3 px-4">Better error reporting, faster test execution</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">ng update</td>
+                <td class="py-3 px-4">Update Angular dependencies</td>
+                <td class="py-3 px-4">Enhanced dependency analysis, smoother migrations</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">ng add</td>
+                <td class="py-3 px-4">Add new capabilities to your project</td>
+                <td class="py-3 px-4">Extended package ecosystem, better integration</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="selectedTab === 2">
+          <!-- Best Practices Tab -->
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Optimize Project Structure for CLI</strong>
+              <ul class="list-disc pl-4">
+                <li>Follow the standard directory structure created by the CLI</li>
+                <li>Keep related files (component, styles, tests) together</li>
+                <li>Use feature modules or standalone components for organization</li>
+                <li>Consider using library projects for shared code</li>
+                <li>Create a sensible naming convention for generated files</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Customize Angular Workspace Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>Configure default schematic options in <code>angular.json</code></li>
+                <li>Set up suitable budget thresholds for bundle sizes</li>
+                <li>Configure environment-specific build options</li>
+                <li>Create custom builder configurations for specific needs</li>
+                <li>Use project-specific configuration when working in a monorepo</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Leverage CLI Generation Capabilities</strong>
+              <ul class="list-disc pl-4">
+                <li>Use <code>ng generate</code> consistently for components, services, etc.</li>
+                <li>Take advantage of the <code>--dry-run</code> flag to preview changes</li>
+                <li>Utilize schematic options to customize code generation</li>
+                <li>Consider creating custom schematics for project-specific patterns</li>
+                <li>Use Angular 19's signal input options when generating components</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Optimize Build and Development Process</strong>
+              <ul class="list-disc pl-4">
+                <li>Use production builds with proper optimization flags</li>
+                <li>Leverage Angular 19's improved build caching</li>
+                <li>Activate SSR and hydration for better user experience</li>
+                <li>Monitor bundle sizes with budgets and analytics</li>
+                <li>Configure CDN paths and differential loading appropriately</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Maintain Environment Consistency</strong>
+              <ul class="list-disc pl-4">
+                <li>Lock Angular CLI version in <code>package.json</code> for team consistency</li>
+                <li>Document project-specific CLI commands in README</li>
+                <li>Consider using npm/yarn scripts to wrap CLI commands</li>
+                <li>Set up CI/CD pipelines using CLI commands for builds and tests</li>
+                <li>Keep workspace and dependencies up to date with regular updates</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div *ngIf="selectedTab === 3">
+          <!-- Pros and Cons Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Advantages of the Angular CLI</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Standardized Workflow</strong>: Provides consistent patterns for team development</li>
+              <li><strong>Automation</strong>: Reduces manual work with code generation and build process automation</li>
+              <li><strong>Optimization</strong>: Advanced build optimization for production deployments</li>
+              <li><strong>Scaffolding</strong>: Quick creation of components and other Angular artifacts</li>
+              <li><strong>Testing Integration</strong>: Built-in tools for unit and end-to-end testing</li>
+              <li><strong>Update Management</strong>: Simplified dependency updates and migration paths</li>
+              <li><strong>Configuration</strong>: Centralized workspace configuration in a single file</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Challenges with the Angular CLI</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Learning Curve</strong>: Many commands and options to understand</li>
+              <li><strong>Configuration Complexity</strong>: Advanced customization can be challenging</li>
+              <li><strong>Build Times</strong>: Large projects may still have lengthy build times despite optimizations</li>
+              <li><strong>Limited Flexibility</strong>: Some customizations require ejecting or complex workarounds</li>
+              <li><strong>Versioning Constraints</strong>: CLI version must align with Angular framework version</li>
+              <li><strong>Integration Challenges</strong>: Some third-party tools may require additional configuration</li>
+              <li><strong>Developer Machine Requirements</strong>: Resource-intensive tasks may strain less powerful systems</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Angular 19 CLI Improvements Over Previous Versions</p>
+            <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+              <thead>
+                <tr class="bg-gray-800 text-gray-100">
+                  <th class="py-3 px-4 text-left">Feature</th>
+                  <th class="py-3 px-4 text-left">Before Angular 19</th>
+                  <th class="py-3 px-4 text-left">Angular 19 Improvements</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Build Performance</td>
+                  <td class="py-3 px-4">Slower incremental builds, less efficient caching</td>
+                  <td class="py-3 px-4">Up to 30% faster builds with improved caching mechanisms</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">Bundle Size</td>
+                  <td class="py-3 px-4">Basic tree-shaking and optimization</td>
+                  <td class="py-3 px-4">Enhanced tree-shaking with standalone component optimization</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">SSR Integration</td>
+                  <td class="py-3 px-4">Complex setup with manual configuration</td>
+                  <td class="py-3 px-4">Streamlined SSR and hydration with simple CLI flags</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">Error Messages</td>
+                  <td class="py-3 px-4">Often cryptic errors with limited context</td>
+                  <td class="py-3 px-4">Detailed error messages with actionable suggestions</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Dependency Updates</td>
+                  <td class="py-3 px-4">Basic update mechanism with some migration paths</td>
+                  <td class="py-3 px-4">Comprehensive dependency analysis and smarter migrations</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab === 4">
+          <!-- Related Topics Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Angular Workspace</strong>: The environment configured by the CLI for development</li>
+              <li><strong>Schematics</strong>: The templating system used by the CLI for code generation</li>
+              <li><strong>Builders</strong>: Tools that perform operations like build, serve, and test</li>
+              <li><strong>Angular DevKit</strong>: The underlying libraries powering the Angular CLI</li>
+              <li><strong>Webpack</strong>: The bundler integrated with the CLI for optimized builds</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">CLI FAQ</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li>
+                <strong>Q: How do I update to Angular 19 CLI?</strong><br>
+                A: Use the command <code>ng update @angular/cli @angular/core</code> to update both the CLI and core framework to version 19. The CLI will automatically handle dependency updates and run necessary migrations.
+              </li>
+              <li>
+                <strong>Q: How can I reduce bundle sizes in Angular 19?</strong><br>
+                A: The Angular 19 CLI provides several optimization techniques: use standalone components, enable build optimization with <code>--configuration production</code>, implement lazy loading for routes, use the new <code>--minimal</code> flag for new projects, and leverage the budgets feature to monitor bundle sizes.
+              </li>
+              <li>
+                <strong>Q: What's the best way to configure the CLI for a team project?</strong><br>
+                A: Establish standardized configuration in <code>angular.json</code>, set up defaults for schematics, create npm scripts for common CLI commands, document CLI usage in the project README, and consider creating custom schematics for project-specific patterns.
+              </li>
+              <li>
+                <strong>Q: How do I enable SSR and hydration in Angular 19?</strong><br>
+                A: For new projects, use <code>ng new my-app --ssr</code>. For existing projects, run <code>ng add @angular/ssr</code>. To enable hydration during development, use <code>ng serve --hydration</code>. For partial hydration, configure components with the <code>hydration: 'manual'</code> option.
+              </li>
+              <li>
+                <strong>Q: Can I create a library with Angular 19 CLI?</strong><br>
+                A: Yes, use <code>ng generate library my-lib</code> to create a library project within your workspace. Angular 19 enhances library support with standalone component compatibility, improved tree-shaking, and better API documentation generation.
+              </li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Useful Resources</p>
+            <ul class="list-disc pl-4">
+              <li><a href="https://angular.dev/tools/cli/overview" class="text-sky-400 hover:underline">Angular CLI Documentation</a></li>
+              <li><a href="https://angular.dev/guide/workspace-config" class="text-sky-400 hover:underline">Workspace Configuration Guide</a></li>
+              <li><a href="https://angular.dev/tools/cli/schematics" class="text-sky-400 hover:underline">Schematics Overview</a></li>
+              <li><a href="https://angular.dev/guide/standalone-components" class="text-sky-400 hover:underline">Standalone Components Guide</a></li>
+              <li><a href="https://github.com/angular/angular-cli" class="text-sky-400 hover:underline">Angular CLI GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,10 @@
+import { Observable, Subject } from 'rxjs';
+
+// Unicast observable
+const myObservable = new Observable(observer => {
+  observer.next('Hello');
+});
+
+// Multicast observable
+const mySubject = new Subject<string>();
+mySubject.next('Hello');

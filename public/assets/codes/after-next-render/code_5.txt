@@ -1,0 +1,58 @@
+import { Component, ElementRef, ViewChild, afterNextRender, ChangeDetectorRef } from '@angular/core';
+
+// In a zoneless application (bootstrapped without Zone.js)
+@Component({
+  selector: 'app-zoneless-example',
+  template: `
+    <div class="container">
+      <div #contentArea class="content">
+        Content is loading...
+        <div *ngIf="contentReady">Content dimensions: {{ width }}x{{ height }}</div>
+      </div>
+      <button (click)="refreshContent()">Refresh Content</button>
+    </div>
+  `
+})
+export class ZonelessExampleComponent {
+  @ViewChild('contentArea') contentEl!: ElementRef;
+  contentReady = false;
+  width = 0;
+  height = 0;
+
+  constructor(private cdr: ChangeDetectorRef) {
+    // Using afterNextRender in a zoneless app
+    afterNextRender(() => {
+      // Measure initial content dimensions
+      this.measureContent();
+
+      // Since we're in a zoneless application, we need to trigger
+      // change detection manually after updating component properties
+      this.contentReady = true;
+      this.cdr.detectChanges();
+    });
+  }
+
+  private measureContent(): void {
+    if (this.contentEl) {
+      const element = this.contentEl.nativeElement;
+      this.width = element.offsetWidth;
+      this.height = element.offsetHeight;
+    }
+  }
+
+  refreshContent(): void {
+    // In a zoneless app, you need to manually trigger change detection
+    // when you want to update the UI after a user interaction
+    setTimeout(() => {
+      this.measureContent();
+      this.cdr.detectChanges();
+    }, 0);
+  }
+}
+
+// When bootstrapping a zoneless application:
+// bootstrapApplication(AppComponent, {
+//   providers: [
+//     // Other providers...
+//   ]
+// }).catch(err => console.error(err));

@@ -6,7 +6,7 @@
   <div class="text-content">
     <p>
       <span class="text-zinc-50 tw-font-medium">Attribute Directives</span>
-      in Angular are used to change the appearance, behavior, or layout of a DOM element. Unlike structural directives (like <code>*ngIf</code> or <code>*ngFor</code>) that change the DOM layout by adding or removing elements, attribute directives only affect the element they are applied to.
+      in Angular 19 are used to change the appearance, behavior, or layout of a DOM element. Unlike structural directives that change the DOM layout by adding or removing elements, attribute directives only affect the element they are applied to. Angular 19 introduces powerful enhancements for directives including signal-based inputs, host directives, and better integration with standalone components.
     </p>
 
     <br>
@@ -52,209 +52,145 @@
 
 
 <ng-template #notesRef>
-  <p>What is an Attribute Directive?</p>
+  <p>Angular 19 Directive Enhancements</p>
   <ul class="list-disc pl-4 text-sm">
     <li>
-      <strong>Definition</strong>:
-      An Angular attribute directive is a custom directive that modifies the behavior or appearance of a DOM element.
-      It can change element properties, styles, classes, or other attributes dynamically.
+      <strong>Standalone Directives</strong>:
+      Directives can now be fully standalone, making them more modular and easier to distribute.
     </li>
     <li>
-      <strong>Examples of Built-in Attribute Directives</strong>:
-      <ul class="list-disc pl-4">
-        <li>
-          <code>ngClass</code>:
-          Adds and removes a set of CSS classes.
-        </li>
-        <li>
-          <code>ngStyle</code>:
-          Adds and removes a set of inline styles.
-        </li>
-        <li>
-          <code>ngModel</code>:
-          Binds input elements to a property in the component.
-        </li>
-      </ul>
+      <strong>Signal-based Inputs</strong>:
+      Angular 19 introduces signal-based inputs for directives, improving performance and reactivity.
+    </li>
+    <li>
+      <strong>Host Directives</strong>:
+      Compose multiple directives together to create more powerful, reusable directive combinations.
+    </li>
+    <li>
+      <strong>Improved Performance</strong>:
+      Enhanced change detection and optimized rendering for directives in Angular 19.
+    </li>
+    <li>
+      <strong>Deferrable Views Integration</strong>:
+      Directives can work with Angular's new deferrable views for improved loading performance.
     </li>
   </ul>
 
   <br>
   <br>
 
-  <p>Creating a Custom Attribute Directive</p>
-  <ol class="list-decimal pl-4 text-sm">
-    <li>
-      <strong>Generate an Attribute Directive Using Angular CLI</strong>:
-      To create a new attribute directive, use the Angular CLI command.
-      This command generates a new directive file and updates the module file by declaring it.
-
-      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code8 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>bash</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_8"
-            [languages]="['bash']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      <strong>Define a Custom Attribute Directive</strong>:
-      Define the directive by adding logic to modify the host element.
-
-      <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code9 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_9"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">ElementRef</span>:
-          Accesses the element the directive is applied to.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Renderer2</span>:
-          A service that helps modify the DOM in a safe and platform-agnostic way.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">HostListener</span>:
-          Listens to DOM events triggered by the host element.
-        </li>
-      </ul>
-
-    </li>
-    <li>
-      <strong>Use the Custom Directive in a Template</strong>:
-      Apply the directive to an element in your template.
-      This example changes the text color to blue when the mouse enters and reverts it when the mouse leaves.
-
-      <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code10 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>html</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_10"
-            [languages]="['html']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-  </ol>
+  <p>Creating a Standalone Directive in Angular 19</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code [highlight]="standaloneDirectiveCode" [languages]="['typescript']"></code>
+    </pre>
+  </span>
 
   <br>
   <br>
 
-  <p>Common Angular Attribute Directives</p>
+  <p>Signal-Based Directives</p>
+  <p class="text-sm mt-2 mb-4">
+    Angular 19 introduces powerful signal-based inputs for directives, allowing for more efficient reactivity:
+  </p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code [highlight]="signalDirectiveCode" [languages]="['typescript']"></code>
+    </pre>
+  </span>
+
   <br>
-  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
+  <br>
+
+  <p>Host Directives for Composition</p>
+  <p class="text-sm mt-2 mb-4">
+    Angular 19 enhances Host Directives for better directive composition:
+  </p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code [highlight]="hostDirectiveCode" [languages]="['typescript']"></code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Using Directives in Templates</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code [highlight]="directiveUsageCode" [languages]="['html']"></code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Deferrable Views with Directives</p>
+  <p class="text-sm mt-2 mb-4">
+    Angular 19's deferrable views feature works seamlessly with directives:
+  </p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code [highlight]="deferredDirectiveCode" [languages]="['html']"></code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Common Angular 19 Directive Scenarios</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
     <thead>
-      <tr class="">
-        <th class="">Directive</th>
-        <th class="">Description</th>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Scenario</th>
+        <th class="py-3 px-4 text-left">Implementation</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="pl-2"><code>ngClass</code></td>
-        <td>Adds or removes a set of CSS classes.</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Theme Switching</td>
+        <td class="py-3 px-4">Signal-based directive that dynamically updates styles</td>
       </tr>
-      <tr>
-        <td class="pl-2"><code>ngStyle</code></td>
-        <td>Adds or removes a set of inline styles.</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Form Validation</td>
+        <td class="py-3 px-4">Host directive combining error state and validation message directives</td>
       </tr>
-      <tr>
-        <td class="pl-2"><code>ngModel</code></td>
-        <td>Binds an input element to a property on the component.</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Lazy Loading</td>
+        <td class="py-3 px-4">Directive with deferrable views to load content on demand</td>
       </tr>
-      <tr>
-        <td class="pl-2"><code>ngIf</code></td>
-        <td>Conditionally includes a template based on the value of an expression.</td>
-      </tr>
-      <tr>
-        <td class="pl-2"><code>ngFor</code></td>
-        <td>Repeats a block of HTML for each item in a list.</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Performance Monitoring</td>
+        <td class="py-3 px-4">Directive that tracks render times and reports to analytics</td>
       </tr>
     </tbody>
   </table>
-
-  <br>
-  <br>
-
-  <p>Common Commands for Working with Directives</p>
-  <br>
-  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
-    <thead>
-      <tr class="">
-        <th class="">Command</th>
-        <th class="">Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="pl-2"><code>ng generate directive directive-name</code></td>
-        <td>Creates a new directive in the Angular project.</td>
-      </tr>
-      <tr>
-        <td class="pl-2"><code>ng build --prod</code></td>
-        <td>Builds the Angular app in production mode with optimizations.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <br>
-  <br>
-
-  <p>Debugging and Development Tips</p>
-  <ol class="list-decimal pl-4 text-sm">
-    <li>
-      <strong>Use Angular DevTools</strong>:
-      <ul class="list-disc pl-4">
-        <li>
-          Use Angular DevTools to inspect and debug directives in your Angular application. You can view applied directives and their state in the component tree.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Utilize Angular's <code>OnPush</code> Change Detection</strong>:
-      <ul class="list-disc pl-4">
-        <li>
-          Optimize performance by using the <code>ChangeDetectionStrategy.OnPush</code> strategy in components that use directives to minimize change detection cycles.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Monitor Performance with Browser DevTools</strong>:
-      <ul class="list-disc pl-4">
-        <li>
-          Use Chrome DevTools or other browser tools to monitor performance impacts, especially when directives involve heavy DOM manipulation or event handling.
-        </li>
-      </ul>
-    </li>
-  </ol>
 
 </ng-template>
 
@@ -262,261 +198,87 @@
 <ng-template #bestRef>
   <ol class="list-decimal px-4 text-sm">
     <li>
-      <strong class="text-sky-400">Use <code>Renderer2</code> for DOM Manipulation</strong>
+      <strong class="text-sky-400">Prefer Standalone Directives</strong>
       <ul class="list-disc pl-4">
         <li>
-          <strong>Why</strong>:
-          Directly manipulating the DOM using <code>ElementRef</code> can lead to security issues (such as XSS attacks) and make your directive less compatible with server-side rendering or web workers.
+          <strong>Modular Design</strong>:
+          Create standalone directives that don't rely on NgModules for better isolation and sharing.
         </li>
         <li>
-          <strong>How</strong>:
-          Use the <code>Renderer2</code> service provided by Angular, which abstracts DOM manipulation and ensures compatibility across platforms.
-
-          <button (click)="codeb1.hidden = !codeb1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-          <span #codeb1 hidden copyToClipboard>
-            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-              <span>typescript</span>
-              <span class="copy-button-wrapper bg-gray-700"></span>
-            </div>
-
-            <pre>
-              <code
-                [highlight]="codeb_1"
-                [languages]="['typescript']">
-              </code>
-            </pre>
-          </span>
-
+          <strong>Avoid Global Imports</strong>:
+          Import only the directives you need directly in components for better tree-shaking.
+        </li>
+        <li>
+          <strong>Consider Packaging</strong>:
+          Package related directives together for better distribution and maintenance.
         </li>
       </ul>
     </li>
     <li>
-      <strong class="text-sky-400">Keep the Directive Logic Focused and Simple</strong>
+      <strong class="text-sky-400">Leverage Signal-Based Inputs</strong>
       <ul class="list-disc pl-4">
         <li>
-          <strong>Why</strong>:
-          Attribute directives should be small and focused on a single task. Overloading a directive with too many responsibilities makes it difficult to understand, test, and maintain.
+          <strong>Use Input Signals</strong>:
+          Replace &#64;Input() with the new input() signal function for improved performance.
         </li>
         <li>
-          <strong>How</strong>:
-          Use a clear and concise name for your directive to indicate its purpose, and limit its functionality to one specific behavior (e.g., only handling hover styles or managing focus).
+          <strong>Create Computed Properties</strong>:
+          Use computed() for derived values to avoid unnecessary calculations.
+        </li>
+        <li>
+          <strong>Apply Effects Carefully</strong>:
+          Use effect() for side effects but be cautious of performance implications.
         </li>
       </ul>
     </li>
     <li>
-      <strong class="text-sky-400">Use Host Listeners and Host Bindings</strong>
+      <strong class="text-sky-400">Optimize for Performance</strong>
       <ul class="list-disc pl-4">
         <li>
-          <strong>Why</strong>:
-          <code>@HostListener</code> and <code>@HostBinding</code> provide a clean way to bind properties and listen to events on the host element.
-          They reduce the need for direct DOM manipulation and keep the directive’s code more declarative.
+          <strong>Minimize DOM Manipulations</strong>:
+          Batch DOM changes and use renderer2 instead of direct DOM manipulation.
         </li>
         <li>
-          <strong>How</strong>:
-          Use <code>@HostListener</code> to listen to events and <code>@HostBinding</code> to bind properties directly to the host element.
-
-          <button (click)="codeb2.hidden = !codeb2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-          <span #codeb2 hidden copyToClipboard>
-            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-              <span>typescript</span>
-              <span class="copy-button-wrapper bg-gray-700"></span>
-            </div>
-
-            <pre>
-              <code
-                [highlight]="codeb_2"
-                [languages]="['typescript']">
-              </code>
-            </pre>
-          </span>
-
+          <strong>Avoid Expensive Calculations</strong>:
+          Cache results and use memoization for complex calculations.
+        </li>
+        <li>
+          <strong>Profile and Measure</strong>:
+          Use Angular DevTools to profile directive performance and identify bottlenecks.
         </li>
       </ul>
     </li>
     <li>
-      <strong class="text-sky-400">Use Input Properties to Make Directives Configurable</strong>
+      <strong class="text-sky-400">Directive Composition</strong>
       <ul class="list-disc pl-4">
         <li>
-          <strong>Why</strong>:
-          Making directives configurable allows them to be reusable and adaptable in different scenarios.
+          <strong>Use Host Directives</strong>:
+          Compose multiple directives together using the hostDirectives feature.
         </li>
         <li>
-          <strong>How</strong>:
-          Use <code>@Input</code> to allow data to be passed from the template to the directive.
-
-          <button (click)="codeb3.hidden = !codeb3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-          <span #codeb3 hidden copyToClipboard>
-            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-              <span>typescript</span>
-              <span class="copy-button-wrapper bg-gray-700"></span>
-            </div>
-
-            <pre>
-              <code
-                [highlight]="codeb_3"
-                [languages]="['typescript']">
-              </code>
-            </pre>
-          </span>
-
+          <strong>Balance Granularity</strong>:
+          Create small, focused directives that can be composed rather than monolithic directives.
+        </li>
+        <li>
+          <strong>Consider API Surface</strong>:
+          Carefully design which inputs and outputs to expose from composed directives.
         </li>
       </ul>
     </li>
     <li>
-      <strong class="text-sky-400">Minimize Direct DOM Access</strong>
+      <strong class="text-sky-400">Defensive Programming</strong>
       <ul class="list-disc pl-4">
         <li>
-          <strong>Why</strong>:
-          Avoid accessing the global <code>document</code> or <code>window</code> objects directly to ensure that your directive works well with server-side rendering (SSR) or in environments like web workers.
+          <strong>Handle Edge Cases</strong>:
+          Implement checks for null or undefined values to prevent runtime errors.
         </li>
         <li>
-          <strong>How</strong>:
-          Use Angular's services (such as <code>Renderer2</code> and <code>PlatformLocation</code>) for tasks that involve global objects.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong class="text-sky-400">Test Directives Thoroughly</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong>Why</strong>:
-          Directives manipulate the DOM and handle user interactions, so they should be tested to ensure they work as expected in all scenarios.
+          <strong>Clean Up Resources</strong>:
+          Use ngOnDestroy to remove event listeners and clean up resources.
         </li>
         <li>
-          <strong>How</strong>:
-          Write unit tests using Angular’s testing utilities (<code>TestBed</code>) to verify that the directive correctly modifies the DOM, responds to user actions, and handles inputs as expected.
-
-          <button (click)="codeb4.hidden = !codeb4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-          <span #codeb4 hidden copyToClipboard>
-            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-              <span>typescript</span>
-              <span class="copy-button-wrapper bg-gray-700"></span>
-            </div>
-
-            <pre>
-              <code
-                [highlight]="codeb_4"
-                [languages]="['typescript']">
-              </code>
-            </pre>
-          </span>
-
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong class="text-sky-400">Leverage Angular Lifecycle Hooks</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong>Why</strong>:
-          Using Angular lifecycle hooks (<code>ngOnInit</code>, <code>ngOnChanges</code>, <code>ngOnDestroy</code>) ensures that the directive's logic executes at the right time, managing resources effectively and performing necessary cleanup.
-        </li>
-        <li>
-          <strong>How</strong>:
-          Use <code>ngOnInit</code> for initialization logic, <code>ngOnChanges</code> to respond to input changes, and <code>ngOnDestroy</code> for cleanup.
-
-          <button (click)="codeb5.hidden = !codeb5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-          <span #codeb5 hidden copyToClipboard>
-            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-              <span>typescript</span>
-              <span class="copy-button-wrapper bg-gray-700"></span>
-            </div>
-
-            <pre>
-              <code
-                [highlight]="codeb_5"
-                [languages]="['typescript']">
-              </code>
-            </pre>
-          </span>
-
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong class="text-sky-400">Provide Default Values for Input Properties</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong>Why</strong>:
-          Default values ensure that your directive behaves correctly even when input properties are not provided by the user.
-        </li>
-        <li>
-          <strong>How</strong>:
-          Set default values in the directive class.
-
-          <button (click)="codeb6.hidden = !codeb6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-          <span #codeb6 hidden copyToClipboard>
-            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-              <span>typescript</span>
-              <span class="copy-button-wrapper bg-gray-700"></span>
-            </div>
-
-            <pre>
-              <code
-                [highlight]="codeb_6"
-                [languages]="['typescript']">
-              </code>
-            </pre>
-          </span>
-
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong class="text-sky-400">Use Proper Naming Conventions</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong>Why</strong>:
-          Clear and consistent naming conventions help other developers understand the purpose of your directive at a glance.
-        </li>
-        <li>
-          <strong>How</strong>:
-          Use a prefix (like <code>app</code>) followed by a descriptive name (e.g., <code>appHighlight</code>, <code>appTooltip</code>) to prevent naming conflicts and improve readability.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong class="text-sky-400">Document the Directive's API</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong>Why</strong>:
-          Proper documentation helps other developers understand how to use your directive, its input properties, and any events it may emit.
-        </li>
-        <li>
-          <strong>How</strong>:
-          Use comments and Angular’s documentation tools to describe the directive’s purpose, expected inputs, outputs, and behaviors.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong class="text-sky-400">Consider Accessibility</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong>Why</strong>:
-          Accessibility ensures that all users, including those with disabilities, can use your application effectively.
-        </li>
-        <li>
-          <strong>How</strong>:
-          Use ARIA attributes and ensure that directives do not interfere with the accessibility of components. For example, if your directive changes focus or interacts with keyboard events, ensure it does so in an accessible manner.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong class="text-sky-400">Minimize Directive Usage for Performance Optimization</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong>Why</strong>:
-          Overusing directives can impact performance, especially if they are applied to many elements or perform heavy computations.
-        </li>
-        <li>
-          <strong>How</strong>:
-          Limit the use of directives to cases where they are truly necessary and keep their logic as light as possible.
+          <strong>Provide Meaningful Error Messages</strong>:
+          Include clear error messages for common misconfigurations.
         </li>
       </ul>
     </li>
@@ -525,419 +287,95 @@
 
 
 <ng-template #prosConsRef>
-  <strong class="text-sky-400">
-    Pros:
-  </strong>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Advantages of Angular 19 Directives</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Improved Performance</strong>: Signal-based reactivity for faster rendering and updates</li>
+      <li><strong>Better Modularity</strong>: Standalone directives for improved tree-shaking and code organization</li>
+      <li><strong>Enhanced Composition</strong>: Host directives for combining multiple behaviors</li>
+      <li><strong>Type Safety</strong>: Stronger type checking and improved type inference</li>
+      <li><strong>Deferrable Integration</strong>: Seamless integration with deferrable views for lazy loading</li>
+    </ul>
 
-  <br>
+    <p class="font-semibold text-sky-400 mb-2">Challenges</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Migration Effort</strong>: Updating existing directives to use new patterns requires effort</li>
+      <li><strong>Learning Curve</strong>: Signal-based inputs and host directives introduce new concepts</li>
+      <li><strong>Debugging Complexity</strong>: Composed directives can be harder to debug</li>
+      <li><strong>Integration with Legacy Code</strong>: Mixing old and new directive patterns can be challenging</li>
+    </ul>
 
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Reusable Behavior Across Components</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Advantage</span>:
-          Attribute directives allow you to encapsulate and reuse behaviors across different components.
-          For example, you can create a directive to handle common tasks like validation, formatting, or styling, and apply it to multiple elements.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
-          Reduces code duplication and makes your application easier to maintain by centralizing common functionality.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Enhanced Interactivity and UX</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Advantage</span>:
-          Attribute directives can be used to enhance user experience by dynamically changing the appearance or behavior of elements in response to user interactions (e.g., hovering, clicking).
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
-          Improves the responsiveness and interactivity of your application without requiring significant changes to the HTML or component logic.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Clean and Declarative Code</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Advantage</span>:
-          Directives provide a declarative way to modify elements, which keeps your templates clean and easy to understand. Instead of embedding complex JavaScript code directly in your templates, you can encapsulate the logic in a directive.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
-          Improves code readability and maintainability by separating behavior from markup.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Modular and Scalable</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Advantage</span>:
-          Attribute directives promote modularity and scalability by allowing you to add or change functionality without modifying the underlying components.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
-          Facilitates easier refactoring and scaling of applications as new behaviors or requirements emerge.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Efficient DOM Manipulation</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Advantage</span>:
-          Using Angular's <code>Renderer2</code> and other built-in tools ensures safe and efficient DOM manipulation, which is essential for cross-platform compatibility (e.g., server-side rendering with Angular Universal).
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
-          Enhances performance and compatibility across various environments and devices.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Seamless Integration with Angular's Reactive Programming</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Advantage</span>:
-          Attribute directives can easily integrate with Angular's reactive forms and state management patterns, making them ideal for handling complex form controls or dynamic behaviors.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Benefit</span>:
-          Provides a consistent approach to managing state and reactivity across your application.
-        </li>
-      </ul>
-    </li>
-  </ol>
-
-  <br>
-
-  <strong class="text-sky-400">
-    Cons:
-  </strong>
-
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Complexity in Debugging</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Disadvantage</span>:
-          Debugging attribute directives can sometimes be challenging, especially if they involve complex DOM manipulations or interactions with other directives and components.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Impact</span>:
-          May require additional debugging tools or techniques to isolate and fix issues, potentially increasing development time.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Performance Overhead</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Disadvantage</span>:
-          Attribute directives that perform heavy computations or manipulate the DOM frequently can negatively impact application performance, especially when applied to many elements.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Impact</span>:
-          Can slow down rendering and affect the overall responsiveness of the application, particularly on lower-end devices.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Limited Use Cases</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Disadvantage</span>:
-          Attribute directives are primarily suited for modifying existing elements and behaviors.
-          They are not ideal for scenarios that require complex structural changes or the addition/removal of DOM elements (where structural directives like <code>*ngIf</code> or <code>*ngFor</code> are more appropriate).
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Impact</span>:
-          Limits the applicability of attribute directives to certain types of tasks, requiring alternative approaches for more complex DOM manipulations.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Potential for Overuse and Misuse</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Disadvantage</span>:
-          Developers may be tempted to overuse attribute directives, applying them for tasks better handled by services, structural directives, or components. This can lead to bloated codebases and reduce clarity.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Impact</span>:
-          Overuse can make the application harder to maintain and debug, especially if directives become overloaded with too much functionality.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Requires Knowledge of Angular's Internal Mechanics</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Disadvantage</span>:
-          To effectively use attribute directives, developers need a good understanding of Angular's internal mechanics, such as lifecycle hooks, dependency injection, and the rendering process.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Impact</span>:
-          Can introduce a steeper learning curve for developers new to Angular or those unfamiliar with the framework's advanced features.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Compatibility Issues</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Disadvantage</span>:
-          Directives that rely heavily on browser-specific features may not work consistently across all browsers or platforms, especially if polyfills or fallbacks are not provided.
-        </li>
-        <li>
-          <span class="text-zinc-50 tw-font-medium">Impact</span>:
-          May require additional effort to ensure cross-browser compatibility and consistent behavior.
-        </li>
-      </ul>
-    </li>
-  </ol>
-
-  <br>
-
-  <p>
-    Summary
-  </p>
-  <table class="table-auto rounded-md border border-gray-300 border-solid w-full ">
-    <thead>
-      <tr class="">
-        <th class="">Pros</th>
-        <th class="">Cons</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="pl-2">Reusable behavior across components</td>
-        <td>Complexity in debugging</td>
-      </tr>
-      <tr>
-        <td class="pl-2">Enhanced interactivity and UX</td>
-        <td>Potential performance overhead with heavy computations</td>
-      </tr>
-      <tr>
-        <td class="pl-2">Clean and declarative code</td>
-        <td>Limited use cases for complex structural changes</td>
-      </tr>
-      <tr>
-        <td class="pl-2">Modular and scalable</td>
-        <td>Potential for overuse and misuse</td>
-      </tr>
-      <tr>
-        <td class="pl-2">Efficient DOM manipulation using <code>Renderer2</code></td>
-        <td>Requires knowledge of Angular's internal mechanics</td>
-      </tr>
-      <tr>
-        <td class="pl-2">Seamless integration with Angular's reactive programming patterns</td>
-        <td>Compatibility issues across different browsers and platforms</td>
-      </tr>
-    </tbody>
-  </table>
-
+    <p class="font-semibold text-sky-400 mb-2">Traditional vs. Signal-Based Directives</p>
+    <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+      <thead>
+        <tr class="bg-gray-800 text-gray-100">
+          <th class="py-3 px-4 text-left">Feature</th>
+          <th class="py-3 px-4 text-left">Traditional Directive</th>
+          <th class="py-3 px-4 text-left">Signal-Based Directive</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Input Change Detection</td>
+          <td class="py-3 px-4">OnChanges lifecycle hook</td>
+          <td class="py-3 px-4">Automatic with signals</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Derived Values</td>
+          <td class="py-3 px-4">Manual recalculation</td>
+          <td class="py-3 px-4">Computed signals</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Reactivity</td>
+          <td class="py-3 px-4">Zone.js based</td>
+          <td class="py-3 px-4">Fine-grained reactivity</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Performance</td>
+          <td class="py-3 px-4">Potentially wasteful checks</td>
+          <td class="py-3 px-4">Only updates when signals change</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </ng-template>
 
 
 <ng-template #topicsRef>
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Structural Directives</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong class="text-sky-400">Description</strong>:
-          Structural directives, such as <code>*ngIf</code>, <code>*ngFor</code>, and <code>*ngSwitch</code>, are used to change the structure of the DOM by adding or removing elements.
-          Unlike attribute directives, which only modify the behavior or appearance of existing elements, structural directives modify the DOM layout itself.
-        </li>
-        <li>
-          <strong class="text-sky-400">Relation to Attribute Directives</strong>:
-          Both structural and attribute directives provide ways to dynamically alter the UI. Understanding structural directives helps clarify when to use attribute directives for behavioral changes versus structural changes.
-        </li>
-        <li>
-          <strong class="text-sky-400">Example</strong>:
-          Using <code>*ngIf</code> to conditionally display an element, while using an attribute directive to change its style or behavior based on conditions.
-        </li>
-        <li>
-          <strong class="text-sky-400">Resources</strong>:
-          <a href="" target="_blank">Angular Structural Directives Guide</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>HostBinding and HostListener</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong class="text-sky-400">Description</strong>:
-          <code>@HostBinding</code> and <code>@HostListener</code> are decorators used in Angular directives to bind properties and listen to events on the host element.
-          <code>@HostBinding</code> binds a property to a DOM attribute or style, while <code>@HostListener</code> listens for events (like mouse clicks or keyboard events) on the host element.
-        </li>
-        <li>
-          <strong class="text-sky-400">Relation to Attribute Directives</strong>:
-          These decorators are frequently used in attribute directives to interact with the host element. They provide a clean and efficient way to manipulate the DOM and respond to user actions.
-        </li>
-        <li>
-          <strong class="text-sky-400">Example</strong>:
-          An attribute directive that changes an element's background color on hover by using <code>@HostBinding</code> and <code> @HostListener</code>.
-        </li>
-        <li>
-          <strong class="text-sky-400">Resources</strong>:
-          <a href="" target="_blank">Angular HostBinding and HostListener</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Renderer2</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong class="text-sky-400">Description</strong>:
-          Renderer2 is a service provided by Angular for safely manipulating the DOM. It provides methods for adding or removing classes, styles, attributes, and elements in a way that works across platforms (including server-side rendering).
-        </li>
-        <li>
-          <strong class="text-sky-400">Relation to Attribute Directives</strong>:
-          <code>Renderer2</code> is essential for attribute directives that modify the DOM. It ensures that DOM manipulations are safe and compatible with all environments, including server-side rendering with Angular Universal.
-        </li>
-        <li>
-          <strong class="text-sky-400">Example</strong>:
-          Using <code>Renderer2</code> in a directive to add a CSS class dynamically.
-        </li>
-        <li>
-          <strong class="text-sky-400">Resources</strong>:
-          <a href="" target="_blank">Angular Renderer2 Documentation</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Lifecycle Hooks</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong class="text-sky-400">Description</strong>:
-          Angular lifecycle hooks are methods that allow you to tap into key moments in a component or directive's lifecycle (like initialization, changes, or destruction). Common lifecycle hooks include <code>ngOnInit</code>, <code>ngOnChanges</code>, and <code>ngOnDestroy</code>.
-        </li>
-        <li>
-          <strong class="text-sky-400">Relation to Attribute Directives</strong>:
-          Lifecycle hooks are crucial for managing the state and behavior of directives. They allow you to initialize directive properties, respond to changes, and perform cleanup tasks.
-        </li>
-        <li>
-          <strong class="text-sky-400">Example</strong>:
-          Using <code>ngOnInit</code> to set initial values and <code>ngOnDestroy</code> to remove event listeners or cleanup resources in an attribute directive.
-        </li>
-        <li>
-          <strong class="text-sky-400">Resources</strong>:
-          <a href="" target="_blank">Angular Lifecycle Hooks</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Dependency Injection (DI) in Directives</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong class="text-sky-400">Description</strong>:
-          Dependency Injection (DI) is a design pattern used in Angular to provide services or dependencies to components, directives, or other services. It allows for efficient resource sharing and modular architecture.
-        </li>
-        <li>
-          <strong class="text-sky-400">Relation to Attribute Directives</strong>:
-          Attribute directives can use DI to inject Angular services, such as <code>Renderer2</code> for DOM manipulation, <code>ElementRef</code> for accessing the host element, or custom services for data management.
-        </li>
-        <li>
-          <strong class="text-sky-400">Example</strong>:
-          Injecting <code>Renderer2</code> in a directive to safely manipulate the DOM or using a custom service to fetch data and modify the element accordingly.
-        </li>
-        <li>
-          <strong class="text-sky-400">Resources</strong>:
-          <a href="" target="_blank">Angular Dependency Injection</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Angular Modules and NgModules</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong class="text-sky-400">Description</strong>:
-          NgModules are Angular's mechanism for organizing and managing code. They group components, directives, pipes, and services into cohesive blocks of functionality.
-        </li>
-        <li>
-          <strong class="text-sky-400">Relation to Attribute Directives</strong>:
-          When creating custom attribute directives, you must declare them in an Angular module (<code>NgModule</code>). Understanding how to properly organize and declare directives within modules is crucial for effective Angular development.
-        </li>
-        <li>
-          <strong class="text-sky-400">Example</strong>:
-          Declaring a custom attribute directive in an <code>NgModule</code> to make it available for use throughout the application.
-        </li>
-        <li>
-          <strong class="text-sky-400">Resources</strong>:
-          <a href="" target="_blank">Angular NgModules Guide</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Angular Forms and Reactive Forms</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong class="text-sky-400">Description</strong>:
-          Angular provides two types of forms: Template-driven forms and Reactive forms. Reactive forms are more flexible and provide better control over form inputs, validation, and dynamic changes.
-        </li>
-        <li>
-          <strong class="text-sky-400">Relation to Attribute Directives</strong>:
-          Attribute directives can enhance forms by adding dynamic validation, visual cues, or custom behaviors. For example, a directive could highlight invalid fields or dynamically enable/disable form controls.
-        </li>
-        <li>
-          <strong class="text-sky-400">Example</strong>:
-          Using an attribute directive to change the border color of form fields based on validation status.
-        </li>
-        <li>
-          <strong class="text-sky-400">Resources</strong>:
-          <a href="" target="_blank">Angular Forms Guide</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Angular Universal and Server-Side Rendering (SSR)</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong class="text-sky-400">Description</strong>:
-          Angular Universal enables server-side rendering (SSR) of Angular applications, improving performance, SEO, and user experience by rendering pages on the server.
-        </li>
-        <li>
-          <strong class="text-sky-400">Relation to Attribute Directives</strong>:
-          When using attribute directives with Angular Universal, it's important to ensure that any DOM manipulation is compatible with server-side rendering. This often involves using <code>Renderer2</code> instead of direct DOM access.
-        </li>
-        <li>
-          <strong class="text-sky-400">Example</strong>:
-          An attribute directive that dynamically changes content or styles based on server-rendered data.
-        </li>
-        <li>
-          <strong class="text-sky-400">Resources</strong>:
-          <a href="" target="_blank">Angular Universal Guide</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Angular Change Detection Strategies</strong>
-      <ul class="list-disc pl-4">
-        <li>
-          <strong class="text-sky-400">Description</strong>:
-          Change detection in Angular determines when the view should be updated to reflect changes in the application state. There are two strategies: <code>Default</code> and <code>OnPush</code>.
-        </li>
-        <li>
-          <strong class="text-sky-400">Relation to Attribute Directives</strong>:
-          Understanding change detection is critical when developing attribute directives that depend on dynamic data or input properties. Using <code>OnPush</code> can optimize performance by reducing the frequency of change detection cycles.
-        </li>
-        <li>
-          <strong class="text-sky-400">Example</strong>:
-          A directive that updates styles or classes based on input changes might benefit from using <code>ChangeDetectionStrategy.OnPush</code> in its host component.
-        </li>
-        <li>
-          <strong class="text-sky-400">Resources</strong>:
-          <a href="" target="_blank">Angular Change Detection</a>
-        </li>
-      </ul>
-    </li>
-  </ol>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Related Angular 19 Features</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Signals</strong>: Core reactive primitive used by directives for fine-grained reactivity</li>
+      <li><strong>Standalone Components</strong>: Complement to standalone directives for modular architecture</li>
+      <li><strong>Deferrable Views</strong>: Works with directives to improve initial load performance</li>
+      <li><strong>Zoneless Applications</strong>: Signal-based directives work well in zoneless mode</li>
+      <li><strong>Server-Side Rendering</strong>: Directives in SSR contexts with improved hydration</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Directive Types in Angular 19</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Attribute Directives</strong>: Change appearance, behavior, or layout of elements</li>
+      <li><strong>Structural Directives</strong>: Change DOM layout by adding/removing elements</li>
+      <li><strong>Component Directives</strong>: Components are technically specialized directives</li>
+      <li><strong>Host Directives</strong>: Composed directives for combining behaviors</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Angular 19 Improvements for Directives</p>
+    <ul class="list-disc pl-4">
+      <li>Signal-based input() function for better performance</li>
+      <li>Enhanced hostDirectives API for better composition</li>
+      <li>Improved type checking and inference for directive inputs/outputs</li>
+      <li>Better tree-shaking for directive dependencies</li>
+      <li>Integration with deferrable views and dynamic imports</li>
+      <li>Improved tooling and debugging experience in Angular DevTools</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mt-6 mb-2">Recommended Documentation</p>
+    <ul class="list-disc pl-4">
+      <li><a href="https://angular.dev/guide/directives" class="text-sky-400 hover:underline">Angular.dev: Directive Overview</a></li>
+      <li><a href="https://angular.dev/guide/directives/attribute-directives" class="text-sky-400 hover:underline">Angular.dev: Attribute Directives</a></li>
+      <li><a href="https://angular.dev/guide/signals" class="text-sky-400 hover:underline">Angular.dev: Signals</a></li>
+      <li><a href="https://angular.dev/guide/host-directives" class="text-sky-400 hover:underline">Angular.dev: Host Directives</a></li>
+    </ul>
+  </div>
 </ng-template>

@@ -1,0 +1,12 @@
+<div *ngIf="myForm.get('firstName').errors?.required">
+  First name is required
+</div>
+<div *ngIf="myForm.get('lastName').errors?.required">
+  Last name is required
+</div>
+<div *ngIf="myForm.get('email').errors?.required">
+  Email is required
+</div>
+<div *ngIf="myForm.get('email').errors?.email">
+  Invalid email format
+</div>

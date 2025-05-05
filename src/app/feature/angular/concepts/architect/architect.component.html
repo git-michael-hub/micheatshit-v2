@@ -1,31 +1,298 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
     Architect
   </p>
 
   <div class="text-content">
     <p>
-      The tool that the Angular CLI uses to perform complex tasks such as compilation and test running, according to a provided configuration. Architect is a shell that runs a <a href="">builder</a> with a given <a href="">target configuration</a>. The <a href="">builder</a> is defined in an <a href="">npm package</a>.
+      <span class="text-zinc-50 tw-font-medium">Architect</span>
+      is the build system that the Angular CLI uses to perform complex tasks such as compilation, testing, and deployment according to a provided configuration. It is a shell that runs a <a href="">builder</a> with a given <a href="">target configuration</a>. The <a href="">builder</a> is defined in an <a href="">npm package</a>.
     </p>
 
     <br>
 
-    <p>
-      In the <a href="">workspace configuration file</a>, an "architect" section provides configuration options for Architect builders.
-    </p>
-
-    <br>
-
-    <p>
-      For example, a built-in builder for linting is defined in the package <code>@angular-devkit/build_angular:tslint</code>, which uses the <a href="">TSLint</a> tool to perform linting, with a configuration specified in a <code>tslint.json</code> file.
-    </p>
-
-    <br>
-
-    <p>
-      Use the <a href="">ng run</a> Angular CLI command to invoke a builder by specifying a <a href="">target configuration</a> associated with that builder. Integrators can add builders to enable tools and workflows to run through the Angular CLI. For example, a custom builder can replace the third-party tools used by the built-in implementations for Angular CLI commands, such as <code>ng build</code> or <code>ng test</code>.
-    </p>
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </section>
+
+<ng-template #notesRef>
+  <p>Key Features in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Enhanced Performance</strong>:
+      Significantly faster builds with esbuild integration for improved compilation times.
+    </li>
+    <li>
+      <strong>SSR Integration</strong>:
+      Streamlined server-side rendering and prerendering through Architect targets.
+    </li>
+    <li>
+      <strong>Improved Tree Shaking</strong>:
+      Better optimization for smaller bundle sizes and more efficient code.
+    </li>
+    <li>
+      <strong>Progress Reporting</strong>:
+      Enhanced visibility into build steps with the --progress flag.
+    </li>
+    <li>
+      <strong>Simplified Configuration</strong>:
+      Better defaults for standalone applications with reduced boilerplate.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>CLI Commands</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Command</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng run my-app:build</code></td>
+        <td class="py-3 px-4">Runs the build target for the specified project.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng run my-app:build:production</code></td>
+        <td class="py-3 px-4">Runs the build with the production configuration.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng run my-app:build --prerender --ssr</code></td>
+        <td class="py-3 px-4">Builds with server-side rendering and prerendering enabled.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng run my-app:test</code></td>
+        <td class="py-3 px-4">Runs the test target for the specified project.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Custom Builders Configuration</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>json</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code [highlight]="customBuilderCode" [languages]="['json']"></code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Workspace Configuration</p>
+  <p class="text-sm mt-2 mb-4">
+    In the workspace configuration file (angular.json), an "architect" section provides configuration options for Architect builders. Angular 19 introduces new options for improved performance and rendering.
+  </p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>json</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code [highlight]="architectConfigCode" [languages]="['json']"></code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Workspace Configuration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use environment-specific configurations</strong>:
+          Leverage production, development, and custom configurations for different deployment scenarios.
+        </li>
+        <li>
+          <strong>Set sensible defaults</strong>:
+          Configure default values that work for most team members to maintain consistency.
+        </li>
+        <li>
+          <strong>Extract common settings</strong>:
+          Use the global options section for settings shared across configurations to avoid duplication.
+        </li>
+        <li>
+          <strong>Use the right builder</strong>:
+          Choose the appropriate builder for each task (browser, server, application, etc.) based on your needs.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Custom Builders</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Follow the contract</strong>:
+          Builders should return a BuilderOutput with success/failure status for proper error handling.
+        </li>
+        <li>
+          <strong>Handle errors gracefully</strong>:
+          Properly catch and report errors instead of crashing to improve developer experience.
+        </li>
+        <li>
+          <strong>Provide good logging</strong>:
+          Use the context.logger for progress and diagnostic information to aid debugging.
+        </li>
+        <li>
+          <strong>Create well-defined schemas</strong>:
+          Define your builder options with clear JSON schemas for better IDE support.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Performance Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Set appropriate budget thresholds</strong>:
+          Configure size budgets to prevent application bloat and maintain performance.
+        </li>
+        <li>
+          <strong>Use cache effectively</strong>:
+          The cache option can dramatically speed up subsequent builds during development.
+        </li>
+        <li>
+          <strong>Optimize source maps</strong>:
+          Use appropriate sourceMap settings for each environment to balance debugging and build size.
+        </li>
+        <li>
+          <strong>Configure incremental builds</strong>:
+          Enable incremental TypeScript compilation to improve build times.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Advantages</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Extensibility</strong>: Create custom builders for specialized tasks</li>
+      <li><strong>Standardization</strong>: Consistent approach to building across Angular projects</li>
+      <li><strong>Configuration Management</strong>: Environment-specific settings managed in one place</li>
+      <li><strong>Integration with CLI</strong>: Access through familiar Angular CLI commands</li>
+      <li><strong>Parallel Execution</strong>: Run multiple tasks concurrently for better performance</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Challenges</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Learning Curve</strong>: Understanding the builder API and creating custom builders can be complex</li>
+      <li><strong>Configuration Verbosity</strong>: The angular.json file can become large and hard to manage</li>
+      <li><strong>Limited IDE Support</strong>: Schema validation for custom builders may not be available in all editors</li>
+      <li><strong>Debugging Difficulty</strong>: Troubleshooting failed builds can be challenging</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Comparison with Other Build Systems</p>
+    <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+      <thead>
+        <tr class="bg-gray-800 text-gray-100">
+          <th class="py-3 px-4 text-left">Feature</th>
+          <th class="py-3 px-4 text-left">Angular Architect</th>
+          <th class="py-3 px-4 text-left">Webpack Directly</th>
+          <th class="py-3 px-4 text-left">Nx Workspace</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Configuration Style</td>
+          <td class="py-3 px-4">JSON in angular.json</td>
+          <td class="py-3 px-4">JavaScript file</td>
+          <td class="py-3 px-4">Extended Angular Architect</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">CLI Integration</td>
+          <td class="py-3 px-4">Native with ng CLI</td>
+          <td class="py-3 px-4">Requires custom scripts</td>
+          <td class="py-3 px-4">Enhanced with nx CLI</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Extensibility</td>
+          <td class="py-3 px-4">Via custom builders</td>
+          <td class="py-3 px-4">Via plugins and loaders</td>
+          <td class="py-3 px-4">Via builders and executors</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Angular 19 Compatibility</td>
+          <td class="py-3 px-4">Native support</td>
+          <td class="py-3 px-4">Requires configuration</td>
+          <td class="py-3 px-4">Enhanced support</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Related Angular Features</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Angular CLI</strong>: Command-line interface used to invoke Architect builders</li>
+      <li><strong>Builders</strong>: Functions that implement different build tasks</li>
+      <li><strong>Workspace Configuration</strong>: The angular.json file that defines target configurations</li>
+      <li><strong>Schematics</strong>: Generator templates used by the CLI to create code</li>
+      <li><strong>Webpack</strong>: The underlying bundler used by Angular's build system</li>
+      <li><strong>esbuild</strong>: Fast JavaScript bundler integrated with Angular 19</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Changes in Angular 19</p>
+    <ul class="list-disc pl-4">
+      <li>Improved build performance using esbuild for faster compilation</li>
+      <li>Better tree-shaking for smaller bundle sizes</li>
+      <li>Enhanced SSR and prerendering capabilities</li>
+      <li>More efficient content compression algorithms</li>
+      <li>Simplified configuration for standalone applications</li>
+      <li>Improved progress reporting during builds</li>
+      <li>Better support for custom ESLint configurations</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mt-6 mb-2">Recommended Documentation</p>
+    <ul class="list-disc pl-4">
+      <li><a href="https://angular.dev/tools/cli/builders" class="text-sky-400 hover:underline">Angular.dev: Builders</a></li>
+      <li><a href="https://angular.dev/tools/cli/configuration" class="text-sky-400 hover:underline">Angular.dev: Workspace Configuration</a></li>
+      <li><a href="https://angular.dev/tools/cli/cli-builder" class="text-sky-400 hover:underline">Angular.dev: Creating Custom Builders</a></li>
+    </ul>
+  </div>
+</ng-template>
 
 

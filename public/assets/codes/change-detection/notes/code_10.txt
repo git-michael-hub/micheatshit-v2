@@ -1,0 +1,3 @@
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush
+})

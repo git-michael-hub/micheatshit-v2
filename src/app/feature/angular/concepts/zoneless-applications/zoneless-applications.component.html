@@ -1,0 +1,578 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Zoneless Applications
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Zoneless Applications</span>
+      in Angular 19 introduce a paradigm shift in how change detection works. By removing the dependency on Zone.js, these applications provide superior performance through optimized rendering cycles, reduced memory footprint, and better integration with signals for fine-grained reactivity.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What are Zoneless Applications?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>No Zone.js Dependency</strong>:
+      Angular applications that run without Zone.js, eliminating the automatic change detection it provides.
+    </li>
+    <li>
+      <strong>Explicit Change Detection</strong>:
+      Applications where change detection must be triggered explicitly or through reactive primitives like signals.
+    </li>
+    <li>
+      <strong>Performance Benefits</strong>:
+      Improved performance through fewer change detection cycles, reduced bundle size, and lower memory usage.
+    </li>
+    <li>
+      <strong>Modern Angular Pattern</strong>:
+      Part of Angular's modern architecture focusing on fine-grained reactivity and developer control.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic Zoneless Application Setup</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="basicZonelessAppCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Manual Change Detection in Zoneless Apps</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="manualChangeDetectionCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Signal-Based Reactivity in Zoneless Apps</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="signalBasedZonelessCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Zoneless Enhancements</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="v19EnhancementsCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Key Features of Zoneless Applications in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Simplified Setup</strong>:
+      <ul class="list-disc pl-4">
+        <li>New <code>provideZonelessChangeDetection()</code> function for easy zoneless application configuration</li>
+        <li>Automatic integration with Angular's build tools to exclude Zone.js from the bundle</li>
+        <li>Clear error messages when attempting to use Zone-dependent features in zoneless mode</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signals Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Seamless integration with Signal-based components for automatic UI updates</li>
+        <li>Support for signal-based inputs, outputs, and view queries in zoneless applications</li>
+        <li>Optimized change propagation paths that minimize unnecessary DOM updates</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Optimizations</strong>:
+      <ul class="list-disc pl-4">
+        <li>Smaller bundle size without Zone.js (~45KB reduction)</li>
+        <li>Lower memory usage due to fewer event listeners and change detection cycles</li>
+        <li>Improved startup time without Zone.js initialization overhead</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Developer Experience</strong>:
+      <ul class="list-disc pl-4">
+        <li>Improved debugging experience with clearer component update tracking</li>
+        <li>DevTools support for visualizing signal-based updates in zoneless applications</li>
+        <li>Better TypeScript integration with type-safe signal APIs</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Integration with Other Angular 19 Features</strong>:
+      <ul class="list-disc pl-4">
+        <li>Works perfectly with built-in control flow for reactive template updates</li>
+        <li>Compatible with partial hydration for optimized server-rendered applications</li>
+        <li>Can be combined with deferrable views for maximum performance optimizations</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Performance Comparison: Zoneless vs Zone-based Applications</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Metric</th>
+        <th class="py-3 px-4 text-left">Zoneless Apps</th>
+        <th class="py-3 px-4 text-left">Zone-based Apps</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Bundle Size</td>
+        <td class="py-3 px-4">Smaller (~45KB less)</td>
+        <td class="py-3 px-4">Larger (includes Zone.js)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Initial Load Time</td>
+        <td class="py-3 px-4">15-25% faster</td>
+        <td class="py-3 px-4">Slower due to Zone setup</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Memory Usage</td>
+        <td class="py-3 px-4">Up to 30% lower</td>
+        <td class="py-3 px-4">Higher due to Zone tracking</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Change Detection</td>
+        <td class="py-3 px-4">Explicit, fine-grained</td>
+        <td class="py-3 px-4">Automatic, but often redundant</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Signal-Based Components</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Prefer Signal Components</strong>:
+          Use signal-based components for automatic UI updates without Zone.js.
+        </li>
+        <li>
+          <strong>Input/Output Signals</strong>:
+          Use input and output signals for component communication.
+        </li>
+        <li>
+          <strong>Computed for Derived State</strong>:
+          Use computed signals for derived state to avoid manual calculations.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Manage Change Detection Carefully</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Be Explicit</strong>:
+          For non-signal components, always be explicit about when change detection needs to run.
+        </li>
+        <li>
+          <strong>Batch Updates</strong>:
+          Group related state changes to trigger change detection only once.
+        </li>
+        <li>
+          <strong>Use DetectChanges Strategically</strong>:
+          Call detectChanges() only when necessary and at the right component level.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize for Zoneless Mode</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Avoid Zone-dependent APIs</strong>:
+          Stay away from APIs that rely on Zone.js like NgZone.run().
+        </li>
+        <li>
+          <strong>Replace setTimeout/setInterval</strong>:
+          Use signal-based alternatives or manual change detection with these APIs.
+        </li>
+        <li>
+          <strong>HTTP Request Handling</strong>:
+          Explicitly update UI after HTTP requests complete.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Combine with Other Performance Techniques</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use with OnPush</strong>:
+          Combine zoneless applications with OnPush strategy for maximum performance.
+        </li>
+        <li>
+          <strong>Implement Partial Hydration</strong>:
+          Use partial hydration with zoneless applications for optimized SSR performance.
+        </li>
+        <li>
+          <strong>Leverage Deferrable Views</strong>:
+          Use deferrable views to further optimize loading performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Testing and Debugging</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>ComponentFixture.detectChanges</strong>:
+          Use ComponentFixture.detectChanges() explicitly in tests.
+        </li>
+        <li>
+          <strong>Angular DevTools</strong>:
+          Use Angular DevTools to visualize component updates in zoneless mode.
+        </li>
+        <li>
+          <strong>Performance Monitoring</strong>:
+          Regularly measure performance metrics to ensure zoneless mode provides benefits.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Performance Improvements</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Smaller Bundle Size</span>:
+          Removing Zone.js reduces the application bundle by approximately 45KB.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Reduced Memory Usage</span>:
+          Less memory consumption without Zone.js's event tracking overhead.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Faster Startup Time</span>:
+          Applications initialize more quickly without Zone.js setup time.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Fine-Grained Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Explicit Control</span>:
+          Precise control over when change detection runs, eliminating unnecessary cycles.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Signal-Based Updates</span>:
+          When using signals, only affected parts of the UI update, not the entire component tree.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Optimized Rendering</span>:
+          Reduced work for the browser with fewer DOM updates and style recalculations.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Angular 19 Specific Benefits</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Easy Configuration</span>:
+          New <code>provideZonelessChangeDetection()</code> makes setup simpler.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Signal Component Integration</span>:
+          Seamless integration with signal-based components for automatic UI updates.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Built-in Control Flow</span>:
+          Works perfectly with Angular's new control flow directives for reactive templates.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Developer Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Clearer Mental Model</span>:
+          Explicit change detection creates a more predictable application behavior.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Better Debugging</span>:
+          Easier to debug UI updates as they happen only when explicitly triggered.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Improved Tooling</span>:
+          Enhanced DevTools support for visualizing signal-based updates.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">New Mental Model</span>:
+          Requires a different approach to thinking about change detection.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Explicit Updates</span>:
+          Developers must remember to trigger change detection where needed.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Migration Effort</span>:
+          Converting existing Zone-based applications requires careful refactoring.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Integration Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Third-Party Libraries</span>:
+          Some libraries may assume Zone.js is present and require adaptation.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Event Handling</span>:
+          Non-Angular event handlers need manual change detection calls.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Asynchronous Operations</span>:
+          Operations like setTimeout or AJAX calls need explicit UI updates.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Pitfalls</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Missing Updates</span>:
+          Forgetting to trigger change detection leads to stale UI.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Excessive Manual Calls</span>:
+          Overcompensating with too many detectChanges() calls hurts performance.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Debugging Complexity</span>:
+          When updates are missing, finding where change detection should have been triggered can be challenging.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Team Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Training Requirements</span>:
+          Team members need to understand zoneless principles for effective development.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Codebase Consistency</span>:
+          Maintaining consistent patterns for change detection across the codebase.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Transition Period</span>:
+          During migration, managing both Zone-based and zoneless components can be complex.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #topicsRef>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Zone.js</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          A library that intercepts and keeps track of asynchronous operations, enabling automatic change detection in Angular.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Zoneless</strong>:
+          Zoneless applications completely remove this dependency, requiring explicit change detection instead.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular's mechanism for updating the DOM based on changes to component data.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Zoneless</strong>:
+          In zoneless applications, change detection must be triggered explicitly or through signals rather than automatically.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal-Based Components</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Components built using Angular's signals system for fine-grained reactivity.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Zoneless</strong>:
+          Signal-based components work perfectly in zoneless mode, providing automatic UI updates without Zone.js.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Partial Hydration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Technique to selectively hydrate server-rendered components based on need.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Zoneless</strong>:
+          Partial hydration works well with zoneless applications for maximum server-side rendering performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Built-in Control Flow</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular's new template syntax for conditional rendering, loops, and deferred content.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Zoneless</strong>:
+          Control flow directives integrate seamlessly with signal-based zoneless applications for reactive templates.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Techniques to improve application speed, responsiveness, and resource usage.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Zoneless</strong>:
+          Zoneless applications are primarily about performance optimization, reducing bundle size and execution overhead.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Server-Side Rendering (SSR)</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Pre-rendering Angular applications on the server for improved initial load.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Zoneless</strong>:
+          Zoneless applications can significantly improve SSR performance by reducing JavaScript execution time.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>

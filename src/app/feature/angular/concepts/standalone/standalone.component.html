@@ -1,0 +1,265 @@
+<div class="container">
+  <h1>Standalone Components in Angular</h1>
+  <p>
+    Standalone components are a feature in Angular that allows components, directives, and pipes to be used without declaring them in an NgModule. This simplifies the component architecture and makes Angular development more intuitive.
+  </p>
+
+  <div class="tab-navigation">
+    <button
+      type="button"
+      [class.active]="selectedTab === 'notes'"
+      (click)="selectedTab = 'notes'">
+      Notes
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'bestPractices'"
+      (click)="selectedTab = 'bestPractices'">
+      Best Practices
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'prosCons'"
+      (click)="selectedTab = 'prosCons'">
+      Pros and Cons
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'relatedTopics'"
+      (click)="selectedTab = 'relatedTopics'">
+      Related Topics
+    </button>
+  </div>
+
+  <ng-container [ngSwitch]="selectedTab">
+    <ng-container *ngSwitchCase="'notes'">
+      <ng-container *ngTemplateOutlet="notesTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'bestPractices'">
+      <ng-container *ngTemplateOutlet="bestPracticesTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'prosCons'">
+      <ng-container *ngTemplateOutlet="prosConsTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'relatedTopics'">
+      <ng-container *ngTemplateOutlet="relatedTopicsTemplate"></ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #notesTemplate>
+  <h2>Overview</h2>
+  <p>
+    Standalone components are a simplified way of building Angular applications without explicitly creating and managing NgModules for each component. They were introduced to reduce boilerplate code and make the framework more intuitive.
+  </p>
+
+  <h3>Creating a Standalone Component</h3>
+  <div class="code-example">
+    <pre><code [highlight]="standaloneComponentCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Key Features of Standalone Components</h3>
+  <ul class="feature-list">
+    <li>
+      <strong>Self-contained:</strong> A standalone component declares its own dependencies.
+    </li>
+    <li>
+      <strong>No NgModule required:</strong> Components can be used without being declared in an NgModule.
+    </li>
+    <li>
+      <strong>Direct imports:</strong> Components can directly import other components, directives, and pipes.
+    </li>
+    <li>
+      <strong>Simplified lazy loading:</strong> Makes it easier to lazy load components in routes.
+    </li>
+    <li>
+      <strong>Better tree-shaking:</strong> Allows the build system to more efficiently eliminate unused code.
+    </li>
+  </ul>
+
+  <h3>Bootstrapping a Standalone Application</h3>
+  <div class="code-example">
+    <pre><code [highlight]="bootstrapCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Routing with Standalone Components</h3>
+  <div class="code-example">
+    <pre><code [highlight]="standaloneRoutesCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Configuring Providers</h3>
+  <div class="code-example">
+    <pre><code [highlight]="providersCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Dependency Injection</h3>
+  <div class="code-example">
+    <pre><code [highlight]="dependencyInjectionCode" [languages]="['typescript']"></code></pre>
+  </div>
+</ng-template>
+
+<ng-template #bestPracticesTemplate>
+  <h2>Best Practices</h2>
+
+  <h3>Organization</h3>
+  <ul>
+    <li>
+      <strong>Feature-based organization:</strong> Group related standalone components, directives, and pipes by feature.
+    </li>
+    <li>
+      <strong>Public API pattern:</strong> Use barrel files (index.ts) to export multiple related standalone components.
+    </li>
+    <li>
+      <strong>Keep imports lean:</strong> Only import what you need to minimize bundle size.
+    </li>
+    <li>
+      <strong>Be mindful of circular dependencies:</strong> They can be more common with standalone components, so structure your code carefully.
+    </li>
+  </ul>
+
+  <h3>Migration Strategy</h3>
+  <ul>
+    <li>
+      <strong>Incremental adoption:</strong> Migrate to standalone components gradually, starting with leaf components.
+    </li>
+    <li>
+      <strong>Use the standalone migration schematic:</strong> Angular provides schematics to help migrate NgModule-based components to standalone.
+    </li>
+    <li>
+      <strong>Test thoroughly:</strong> Ensure components still work correctly after migration.
+    </li>
+  </ul>
+
+  <h3>Performance</h3>
+  <ul>
+    <li>
+      <strong>Lazy load when possible:</strong> Standalone components make it easier to implement lazy loading.
+    </li>
+    <li>
+      <strong>Share common dependencies:</strong> Use shared imports for common modules to avoid duplication.
+    </li>
+    <li>
+      <strong>Use library-level providers:</strong> For services shared across many components.
+    </li>
+  </ul>
+
+  <div class="workflow-diagram">
+    <h4>Recommended Development Workflow:</h4>
+    <ol>
+      <li>Identify a feature to implement</li>
+      <li>Create standalone components, directives, and pipes for the feature</li>
+      <li>Use an index.ts file to export all public API elements</li>
+      <li>Import only what's needed in each component</li>
+      <li>Add route configurations if needed</li>
+      <li>Configure providers at the appropriate level</li>
+    </ol>
+  </div>
+</ng-template>
+
+<ng-template #prosConsTemplate>
+  <h2>Pros and Cons</h2>
+
+  <h3>Advantages</h3>
+  <ul>
+    <li><strong>Reduced Boilerplate:</strong> Eliminates the need for NgModules in many cases</li>
+    <li><strong>Simplified Mental Model:</strong> More intuitive component architecture</li>
+    <li><strong>Improved Developer Experience:</strong> Easier to understand what dependencies a component has</li>
+    <li><strong>Better Tree Shaking:</strong> More efficient build optimization</li>
+    <li><strong>Easier Lazy Loading:</strong> Simplified route configuration</li>
+    <li><strong>Smoother Migration Path:</strong> Can coexist with NgModule-based components</li>
+  </ul>
+
+  <h3>Challenges</h3>
+  <ul>
+    <li><strong>Potential for Duplication:</strong> Services might be provided multiple times if not careful</li>
+    <li><strong>Transition Period:</strong> Applications may mix NgModule-based and standalone components</li>
+    <li><strong>Learning Curve:</strong> For developers familiar with NgModule patterns</li>
+    <li><strong>Configuration Management:</strong> Need to manage providers carefully</li>
+  </ul>
+
+  <h3>Standalone vs. NgModule Comparison</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Standalone Components</th>
+        <th>NgModule-based Components</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Declaration</td>
+        <td>Self-declared with standalone: true</td>
+        <td>Must be declared in an NgModule</td>
+      </tr>
+      <tr>
+        <td>Dependency Management</td>
+        <td>Direct imports in @Component</td>
+        <td>Via NgModule imports</td>
+      </tr>
+      <tr>
+        <td>Lazy Loading</td>
+        <td>Direct component loading</td>
+        <td>Module-based loading</td>
+      </tr>
+      <tr>
+        <td>Provider Scope</td>
+        <td>Component, route, or application</td>
+        <td>NgModule (root, feature, or component)</td>
+      </tr>
+      <tr>
+        <td>Testing</td>
+        <td>Simpler test setup</td>
+        <td>Requires TestBed with modules</td>
+      </tr>
+      <tr>
+        <td>Library Creation</td>
+        <td>More flexible export options</td>
+        <td>Public API through modules</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #relatedTopicsTemplate>
+  <h2>Related Topics</h2>
+
+  <ul>
+    <li>
+      <strong>Angular Modules:</strong> The previous way of organizing components, still used for some cases.
+    </li>
+    <li>
+      <strong>Dependency Injection:</strong> The system for providing services to components.
+    </li>
+    <li>
+      <strong>Routing in Angular:</strong> How to set up navigation with standalone components.
+    </li>
+    <li>
+      <strong>Lazy Loading:</strong> Loading components or features only when needed.
+    </li>
+    <li>
+      <strong>Tree Shaking:</strong> Build optimization technique to remove unused code.
+    </li>
+    <li>
+      <strong>Angular Libraries:</strong> Building and sharing reusable standalone components.
+    </li>
+    <li>
+      <strong>Signal-based Components:</strong> New reactive programming model that works well with standalone components.
+    </li>
+    <li>
+      <strong>Testing:</strong> How to test standalone components effectively.
+    </li>
+  </ul>
+
+  <h3>Changes in Angular 19</h3>
+  <p>
+    Angular 19 enhances standalone components with:
+  </p>
+  <ul>
+    <li>Improved tooling and schematics for migration</li>
+    <li>Better integration with signals</li>
+    <li>Enhanced performance through more efficient change detection</li>
+    <li>Simplified bootstrapping process</li>
+    <li>Better support for Server-Side Rendering (SSR) and hydration</li>
+  </ul>
+</ng-template>

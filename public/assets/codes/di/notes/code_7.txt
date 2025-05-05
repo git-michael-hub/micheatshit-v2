@@ -1,0 +1,4 @@
+export const EXAMPLE_VALUE_PROVIDER = {
+  provide: 'ExampleValue',
+  useValue: 'example string'
+};

@@ -1,0 +1,593 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Server-Side Rendering (SSR)
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Server-Side Rendering (SSR)</span>
+      in Angular 19 enables generating complete HTML pages on the server for each request. This approach improves initial page load performance, enhances SEO, and provides better user experience across devices, with significant enhancements in Angular 19 for partial hydration, performance, and developer experience.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What is Server-Side Rendering?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Pre-Rendered HTML</strong>:
+      Angular SSR pre-renders the application on the server, sending complete HTML to the client, rather than just the app shell.
+    </li>
+    <li>
+      <strong>Client Hydration</strong>:
+      After the initial HTML is delivered, the client-side Angular application "hydrates" the content, making it interactive.
+    </li>
+    <li>
+      <strong>SEO Benefits</strong>:
+      Search engines receive fully-rendered HTML, improving SEO performance for Angular applications.
+    </li>
+    <li>
+      <strong>Performance</strong>:
+      Users see meaningful content faster, especially on slower devices or networks.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 SSR Improvements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Partial Hydration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces fine-grained control over which components get hydrated, allowing non-interactive components to remain static.</li>
+        <li>Components can be marked for hydration with different modes: 'full', 'lazy', or 'none'.</li>
+        <li>This results in smaller bundle sizes and faster interactivity for critical parts of the application.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Optimizations</strong>:
+      <ul class="list-disc pl-4">
+        <li>Improved serialization between server and client for faster state transfer.</li>
+        <li>Enhanced hydration algorithm that reduces content flicker during rehydration.</li>
+        <li>Optimized component detection to prevent double-rendering during hydration.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Integration with Signal-Based Components</strong>:
+      <ul class="list-disc pl-4">
+        <li>Signal-based components work seamlessly with SSR and hydration.</li>
+        <li>Signal state can be preserved during transfer from server to client.</li>
+        <li>Fine-grained reactivity improves hydration performance.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Simplified Developer Experience</strong>:
+      <ul class="list-disc pl-4">
+        <li>New <code>ng add @angular/ssr</code> command for easy setup in new or existing projects.</li>
+        <li>Auto-detection of common SSR issues during development and build process.</li>
+        <li>Better error messaging for debugging server/client mismatches.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Testing Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>Improved testing utilities for SSR applications.</li>
+        <li>Test helpers to simulate server and client environments.</li>
+        <li>Methods to test partial hydration behavior.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Basic SSR Setup in Angular</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="ssrSetupCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Angular.json Configuration for SSR</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>json</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="angularJsonCode"
+        [languages]="['json']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Angular 19 SSR Setup with Partial Hydration</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="v19SetupCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Partial Hydration in Components</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="partialHydrationCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Server vs. Browser Environment Detection</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="isBrowserCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>SSR Build Commands</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Command</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng add @angular/ssr</code></td>
+        <td class="py-3 px-4">Add SSR capabilities to an Angular application with Angular 19's new simplified setup.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng serve --ssr</code></td>
+        <td class="py-3 px-4">Serve the application with SSR enabled during development.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng build && ng run my-app:server && ng run my-app:prerender</code></td>
+        <td class="py-3 px-4">Build the client app, server app, and prerender specific routes.</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>npm run dev:ssr</code></td>
+        <td class="py-3 px-4">Run the SSR application in development mode after setup.</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Strategic Partial Hydration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Identify Critical Components</strong>:
+          Prioritize hydration for components that require immediate interactivity, keeping others static to improve initial load time.
+        </li>
+        <li>
+          <strong>Use Lazy Hydration</strong>:
+          For components below the fold, use lazy hydration to defer their interactive initialization until they become visible.
+        </li>
+        <li>
+          <strong>No Hydration for Static Content</strong>:
+          Use <code>hydration: {{ '{' }} mode: 'none' {{ '}' }}</code> for purely static components that don't need interactivity.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">State Transfer Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Minimize State Transfer Size</strong>:
+          Only transfer essential state from server to client to reduce payload size and improve hydration speed.
+        </li>
+        <li>
+          <strong>Use the Transfer State API</strong>:
+          Leverage Angular's <code>TransferState</code> to avoid duplicate data fetching on the client.
+        </li>
+        <li>
+          <strong>Plan API Calls Carefully</strong>:
+          For data-heavy components, consider if data should be fetched on server, client, or both.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Environment-Aware Code</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Check Execution Environment</strong>:
+          Always use <code>isPlatformBrowser</code> or <code>isPlatformServer</code> before accessing browser or server-specific APIs.
+        </li>
+        <li>
+          <strong>Abstract Browser APIs</strong>:
+          Create abstraction services for browser-specific functionality to avoid SSR errors.
+        </li>
+        <li>
+          <strong>Use SERVER_APP_ID Token</strong>:
+          Use Angular's built-in tokens to adjust behavior between server and client environments.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Performance Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Keep Server Rendering Fast</strong>:
+          Optimize server-side code to render quickly, avoiding unnecessary delays for initial HTML delivery.
+        </li>
+        <li>
+          <strong>Cache Aggressively</strong>:
+          Implement server-side caching for rendered pages to reduce server load and improve response times.
+        </li>
+        <li>
+          <strong>Monitor Server Resources</strong>:
+          SSR increases server load, so monitor memory usage and CPU to ensure stability under load.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Integration with Other Angular 19 Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Signal-Based Components</strong>:
+          Signal-based components integrate well with SSR and partial hydration in Angular 19.
+        </li>
+        <li>
+          <strong>Combine with App Shell</strong>:
+          For complex applications, use App Shell with SSR to provide immediate visual feedback.
+        </li>
+        <li>
+          <strong>Leverage Defer Blocks</strong>:
+          Use Angular's defer blocks to complement partial hydration strategies for lazy-loading content.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Improved Initial Load Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Faster First Contentful Paint</span>:
+          Users see meaningful content more quickly as the server delivers fully rendered HTML.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Reduced Loading Flicker</span>:
+          Eliminates the blank screen or loading spinner typical of client-side-only applications.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Better User Experience on Slow Devices</span>:
+          Less JavaScript parsing and execution required on the client before displaying content.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>SEO Benefits</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Search Engine Indexability</span>:
+          Search engines receive complete HTML rather than an empty shell, improving content indexing.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Social Media Sharing</span>:
+          Enables proper metadata for social media platforms that don't execute JavaScript.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Structured Data Support</span>:
+          Server-rendered markup can include structured data for rich search results.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Optimizations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Partial Hydration</span>:
+          Angular 19's fine-grained hydration reduces client-side JavaScript execution for faster interactivity.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Reduced Time to Interactive</span>:
+          Critical interactive elements can be prioritized in hydration order.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Smaller Client Bundle</span>:
+          With partial hydration, components that don't require interactivity can be excluded from client JS bundles.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Developer Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Simplified Setup</span>:
+          Angular 19 streamlines SSR configuration with improved CLI commands and schematics.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Better Debugging Tools</span>:
+          Enhanced error messages and improved tooling for identifying SSR-specific issues.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Component-Level Control</span>:
+          Developers can fine-tune hydration behavior at the component level for optimal performance.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Increased Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Server Environment Requirements</span>:
+          Requires Node.js runtime on the server, which may complicate deployment environments.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Universal Code Constraints</span>:
+          Code must work in both server and browser environments, requiring careful consideration of APIs used.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Hydration Management</span>:
+          Developers need to understand and manage hydration strategies for optimal performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Server Resources</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Higher Server Load</span>:
+          Rendering on the server requires more CPU and memory resources compared to serving static files.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Scaling Considerations</span>:
+          High-traffic applications may require more robust server infrastructure to handle rendering load.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Cold Start Issues</span>:
+          Serverless deployments may experience cold start delays for server rendering.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Development Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Browser API Limitations</span>:
+          Browser-specific APIs (localStorage, window, etc.) are unavailable during server rendering.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">State Management Complexity</span>:
+          Transferring initial state from server to client adds complexity to application architecture.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Debugging Difficulty</span>:
+          Debugging server-client hydration issues can be challenging due to environment differences.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Build and Deployment Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Longer Build Times</span>:
+          SSR requires additional build steps for the server bundle, increasing CI/CD pipeline duration.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Complex Deployments</span>:
+          Deployment requires both server and client artifacts, complicating deployment pipelines.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Environment Configuration</span>:
+          Different environments (development, staging, production) may require different SSR configurations.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #topicsRef>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Partial Hydration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular 19's approach to selectively making components interactive after server rendering.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to SSR</strong>:
+          Builds upon SSR by optimizing the client-side JavaScript execution, only hydrating components that need interactivity.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>App Shell</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Minimal HTML, CSS, and JavaScript for displaying a static application shell while content loads.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to SSR</strong>:
+          Can be combined with SSR, where an App Shell is pre-rendered, and then dynamic content is added through SSR.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Prerendering</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Generating static HTML for routes at build time rather than at request time.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to SSR</strong>:
+          Uses the same rendering mechanism as SSR but happens during build rather than per request.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Transfer State</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Mechanism to transfer data fetched during server rendering to the client to avoid duplicate requests.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to SSR</strong>:
+          Enhances SSR performance by eliminating redundant data fetching on the client side.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zone.js and Zoneless Applications</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Zone.js handles change detection in Angular; zoneless applications use signals instead.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to SSR</strong>:
+          Zoneless applications with signals can improve SSR performance and hydration efficiency.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Angular Universal</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular's server-side rendering platform, now integrated directly into the Angular framework.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to SSR</strong>:
+          The official implementation of SSR for Angular applications, now simplified in Angular 19.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Progressive Web Apps (PWAs)</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Web applications that use modern web capabilities to deliver app-like experiences.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to SSR</strong>:
+          SSR can enhance PWA initial load performance while maintaining offline capabilities.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>

@@ -1,0 +1,279 @@
+<div class="container">
+  <h1>View Hierarchy in Angular</h1>
+  <p>
+    Angular's view hierarchy defines how components, templates, and DOM elements are organized and rendered. Understanding this hierarchy is crucial for effective component composition and dynamic content rendering.
+  </p>
+
+  <div class="tab-navigation">
+    <button
+      type="button"
+      [class.active]="selectedTab === 'notes'"
+      (click)="selectedTab = 'notes'">
+      Notes
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'bestPractices'"
+      (click)="selectedTab = 'bestPractices'">
+      Best Practices
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'prosCons'"
+      (click)="selectedTab = 'prosCons'">
+      Pros and Cons
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'relatedTopics'"
+      (click)="selectedTab = 'relatedTopics'">
+      Related Topics
+    </button>
+  </div>
+
+  <ng-container [ngSwitch]="selectedTab">
+    <ng-container *ngSwitchCase="'notes'">
+      <ng-container *ngTemplateOutlet="notesTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'bestPractices'">
+      <ng-container *ngTemplateOutlet="bestPracticesTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'prosCons'">
+      <ng-container *ngTemplateOutlet="prosConsTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'relatedTopics'">
+      <ng-container *ngTemplateOutlet="relatedTopicsTemplate"></ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #notesTemplate>
+  <h2>Understanding View Hierarchy</h2>
+  <p>
+    In Angular, a view is the fundamental rendering unit that represents a portion of the UI. The view hierarchy is the tree-like structure of these UI components and their relationships.
+  </p>
+
+  <h3>Types of Views in Angular</h3>
+  <ul>
+    <li>
+      <strong>Host Views:</strong> Created for components. When you create a component, Angular creates a host view that hosts the component's template.
+    </li>
+    <li>
+      <strong>Embedded Views:</strong> Created from templates using structural directives like *ngIf, *ngFor, or from TemplateRef.
+    </li>
+  </ul>
+
+  <h3>Component Hierarchy Example</h3>
+  <div class="code-container">
+    <pre><code [highlight]="componentExampleCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Resulting View Tree</h3>
+  <div class="code-container">
+    <pre><code [highlight]="viewTreeCode" [languages]="['html']"></code></pre>
+  </div>
+
+  <div class="hierarchy-diagram">
+    <div class="component level-1">
+      <span class="view-type host">Host View</span> ParentComponent
+      <div class="component level-2">
+        <span class="view-type host">Host View</span> ChildComponent
+        <div class="component level-3">
+          <span class="view-type host">Host View</span> GrandchildComponent
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Embedded Views & ViewContainerRef</h3>
+  <p>
+    Embedded views are created from templates using structural directives or manually through the ViewContainerRef API.
+  </p>
+
+  <div class="code-container">
+    <pre><code [highlight]="embeddedViewsCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Dynamic Content with ViewContainerRef</h3>
+  <p>
+    The ViewContainerRef is a powerful API for managing views dynamically, allowing for insertion, movement, and removal of views.
+  </p>
+
+  <div class="code-container">
+    <pre><code [highlight]="viewContainerRefCode" [languages]="['typescript']"></code></pre>
+  </div>
+</ng-template>
+
+<ng-template #bestPracticesTemplate>
+  <h2>Best Practices</h2>
+
+  <h3>Component Design</h3>
+  <ul>
+    <li>
+      <strong>Keep component hierarchies shallow:</strong> Deep component trees can lead to performance issues. Consider flattening your component tree when possible.
+    </li>
+    <li>
+      <strong>Maintain logical component boundaries:</strong> Components should have a single responsibility and represent a coherent part of the UI.
+    </li>
+    <li>
+      <strong>Use content projection strategically:</strong> For reusable components that need to accept varying content.
+    </li>
+    <li>
+      <strong>Design for reusability:</strong> Components should be designed to be reused in different contexts when appropriate.
+    </li>
+  </ul>
+
+  <h3>View Management</h3>
+  <ul>
+    <li>
+      <strong>Avoid deep nesting of *ngIf and *ngFor:</strong> This creates many embedded views and can affect performance.
+    </li>
+    <li>
+      <strong>Clean up dynamically created views:</strong> Always call clear() on ViewContainerRef when components are destroyed to prevent memory leaks.
+    </li>
+    <li>
+      <strong>Use trackBy with *ngFor:</strong> This helps Angular identify which items have changed and need to be re-rendered.
+    </li>
+    <li>
+      <strong>Limit DOM manipulations:</strong> Excessive DOM manipulations can lead to performance issues, especially in complex applications.
+    </li>
+  </ul>
+
+  <h3>Performance Considerations</h3>
+  <ul>
+    <li>
+      <strong>Use OnPush change detection:</strong> This can significantly improve performance by reducing unnecessary change detection cycles.
+    </li>
+    <li>
+      <strong>Lazy load components:</strong> Load components only when needed to improve initial loading time.
+    </li>
+    <li>
+      <strong>Consider virtual scrolling:</strong> For lists with many items, virtual scrolling can greatly improve performance.
+    </li>
+    <li>
+      <strong>Optimize change detection:</strong> Use appropriate lifecycle hooks and avoid unnecessary data binding.
+    </li>
+  </ul>
+
+  <div class="diagram">
+    <h4>Recommended View Hierarchy Pattern:</h4>
+    <ol>
+      <li>Smart/Container components at the top level (handle data and logic)</li>
+      <li>Presentation/UI components in the middle (display data, emit events)</li>
+      <li>Reusable UI elements at the bottom (buttons, inputs, etc.)</li>
+    </ol>
+  </div>
+</ng-template>
+
+<ng-template #prosConsTemplate>
+  <h2>Pros and Cons</h2>
+
+  <h3>Advantages of Angular's View Hierarchy</h3>
+  <ul>
+    <li><strong>Component-Based Architecture:</strong> Encourages reusable, modular code</li>
+    <li><strong>Clear Separation of Concerns:</strong> Components have well-defined responsibilities</li>
+    <li><strong>Powerful Rendering Control:</strong> Fine-grained control over how and when content is rendered</li>
+    <li><strong>Dynamic Content Capabilities:</strong> Views can be created and manipulated at runtime</li>
+    <li><strong>Change Detection Optimization:</strong> View hierarchy enables efficient change detection strategies</li>
+  </ul>
+
+  <h3>Challenges and Limitations</h3>
+  <ul>
+    <li><strong>Learning Curve:</strong> Understanding view manipulation APIs can be challenging</li>
+    <li><strong>Performance Overhead:</strong> Deep component hierarchies can impact performance</li>
+    <li><strong>Complexity:</strong> Dynamic view manipulation can lead to complex and hard-to-maintain code</li>
+    <li><strong>Memory Management:</strong> Improper view handling can lead to memory leaks</li>
+    <li><strong>Debugging Difficulty:</strong> Issues in dynamic views can be harder to debug</li>
+  </ul>
+
+  <h3>View Types Comparison</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Host Views</th>
+        <th>Embedded Views</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Creation</td>
+        <td>Created for components</td>
+        <td>Created from templates</td>
+      </tr>
+      <tr>
+        <td>Lifecycle Hooks</td>
+        <td>Has component lifecycle hooks</td>
+        <td>No component lifecycle hooks</td>
+      </tr>
+      <tr>
+        <td>Change Detection</td>
+        <td>Can use OnPush strategy</td>
+        <td>Follows parent's strategy</td>
+      </tr>
+      <tr>
+        <td>Dynamic Creation</td>
+        <td>ComponentFactoryResolver</td>
+        <td>TemplateRef.createEmbeddedView</td>
+      </tr>
+      <tr>
+        <td>Typical Use Cases</td>
+        <td>Standalone UI elements</td>
+        <td>Conditional content, lists</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #relatedTopicsTemplate>
+  <h2>Related Topics</h2>
+
+  <ul>
+    <li>
+      <strong>Components:</strong> The building blocks of Angular applications that create host views
+    </li>
+    <li>
+      <strong>Templates:</strong> Define the HTML and bindings that Angular renders
+    </li>
+    <li>
+      <strong>Content Projection:</strong> Allows components to accept content from their parent
+    </li>
+    <li>
+      <strong>Structural Directives:</strong> Create embedded views conditionally (*ngIf, *ngFor)
+    </li>
+    <li>
+      <strong>ViewChild/ViewChildren:</strong> Query child elements within a component's view
+    </li>
+    <li>
+      <strong>ContentChild/ContentChildren:</strong> Query projected content
+    </li>
+    <li>
+      <strong>Change Detection:</strong> How Angular determines when to update the DOM
+    </li>
+    <li>
+      <strong>Dynamic Component Loading:</strong> Creating components programmatically
+    </li>
+    <li>
+      <strong>Zones:</strong> Angular's mechanism for detecting changes
+    </li>
+    <li>
+      <strong>Rendering Pipeline:</strong> How Angular processes templates and updates the DOM
+    </li>
+  </ul>
+
+  <h3>Modern Angular Features Related to View Hierarchy</h3>
+  <ul>
+    <li>
+      <strong>Standalone Components:</strong> Simplifies component organization without NgModules
+    </li>
+    <li>
+      <strong>Signal-based Rendering:</strong> More efficient change detection with fine-grained reactivity
+    </li>
+    <li>
+      <strong>Deferrable Views:</strong> Load components lazily within templates
+    </li>
+    <li>
+      <strong>Hydration:</strong> Reusing server-rendered DOM instead of recreating it
+    </li>
+  </ul>
+</ng-template>

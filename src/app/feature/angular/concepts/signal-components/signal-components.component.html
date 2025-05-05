@@ -1,0 +1,579 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Signal-Based Components
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Signal-Based Components</span>
+      in Angular 19 introduce a fully reactive programming model for building web interfaces. This new component architecture leverages signals for fine-grained reactivity, offering improved performance, simplified two-way binding, and better developer experience through a streamlined API surface.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What are Signal-Based Components?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Reactive Programming Model</strong>:
+      Components built using Angular's signals system, offering fine-grained reactivity and improved change detection.
+    </li>
+    <li>
+      <strong>Simplified API</strong>:
+      Streamlined API for inputs, outputs, models (two-way binding), and view queries.
+    </li>
+    <li>
+      <strong>Improved Performance</strong>:
+      Better performance through fine-grained reactivity and more efficient change detection.
+    </li>
+    <li>
+      <strong>Enhanced Developer Experience</strong>:
+      More intuitive programming model with a functional approach to reactivity.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic Signal Component Example</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="basicSignalComponentCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Advanced Signal Component Features</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="signalComponentFeaturesCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Performance Optimizations with Signal Components</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="signalComponentPerformanceCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Signal Component System</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="v19EnhancementsCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Key Features of Signal-Based Components in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Signal-Based Inputs and Outputs</strong>:
+      <ul class="list-disc pl-4">
+        <li>Input signals with default values: <code>maxValue = input(100)</code></li>
+        <li>Required inputs: <code>userId = input.required&lt;string&gt;()</code></li>
+        <li>Input transforms for validation and conversion</li>
+        <li>Output signals for events: <code>countChanged = output&lt;number&gt;()</code></li>
+      </ul>
+    </li>
+    <li>
+      <strong>Model Signal for Two-Way Binding</strong>:
+      <ul class="list-disc pl-4">
+        <li>Simplified two-way binding with model signals: <code>count = model(0)</code></li>
+        <li>Use with <code>[(property)]</code> in templates for cleaner binding syntax</li>
+        <li>Automatic update propagation both ways</li>
+      </ul>
+    </li>
+    <li>
+      <strong>View Queries as Signals</strong>:
+      <ul class="list-disc pl-4">
+        <li>ViewChild as signal: <code>element = viewChild('elementRef')</code></li>
+        <li>ViewChildren as signal: <code>items = viewChildren('itemRef')</code></li>
+        <li>Reactive updates when queries change</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Computed Values and Effects</strong>:
+      <ul class="list-disc pl-4">
+        <li>Computed signals for derived state: <code>doubled = computed(() => count() * 2)</code></li>
+        <li>Effects for side effects: <code>effect(() => {{ '{' }} ... {{ '}' }})</code></li>
+        <li>Automatic cleanup of effects when component is destroyed</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Dependency Injection Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Simplified DI with inject function: <code>service = inject(Service)</code></li>
+        <li>No more constructor parameter injection needed</li>
+        <li>Better tree-shaking and improved bundle size</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Performance Comparison: Signal Components vs NgOnChanges</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Aspect</th>
+        <th class="py-3 px-4 text-left">Signal Components</th>
+        <th class="py-3 px-4 text-left">Traditional Components</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Change Detection</td>
+        <td class="py-3 px-4">Fine-grained, only affected signals</td>
+        <td class="py-3 px-4">Component-level, often causes unnecessary checks</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Component Reactivity</td>
+        <td class="py-3 px-4">Automatic, based on signal dependencies</td>
+        <td class="py-3 px-4">Manual, requires ngOnChanges handling</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Memory Usage</td>
+        <td class="py-3 px-4">Lower, no change detection tree traversal</td>
+        <td class="py-3 px-4">Higher, especially in large component trees</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Bundle Size</td>
+        <td class="py-3 px-4">Smaller due to tree-shaking improvements</td>
+        <td class="py-3 px-4">Larger, especially with decorator metadata</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Design with Signals in Mind</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Signal-First Architecture</strong>:
+          Start by defining your component's state as signals, and build from there.
+        </li>
+        <li>
+          <strong>Minimize Stateful Services</strong>:
+          Prefer injecting stateless services and managing state with signals in components.
+        </li>
+        <li>
+          <strong>Single Source of Truth</strong>:
+          Keep related state in one signal rather than spreading it across multiple signals.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Computed Signals</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Keep Computations Pure</strong>:
+          Avoid side effects in computed signals; use effects for side effects instead.
+        </li>
+        <li>
+          <strong>Granular Computations</strong>:
+          Break complex computations into smaller, reusable computed signals.
+        </li>
+        <li>
+          <strong>Use Untracked When Needed</strong>:
+          Use <code>untracked()</code> to prevent unnecessary dependencies in computed signals.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Manage Effects Carefully</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Return Cleanup Functions</strong>:
+          Always return cleanup functions from effects when subscribing to external resources.
+        </li>
+        <li>
+          <strong>Avoid Complex Logic</strong>:
+          Keep effects focused on side effects, not complex state transformations.
+        </li>
+        <li>
+          <strong>Batch Updates</strong>:
+          Group signal updates to minimize the number of effect executions.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Input/Output Best Practices</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Default Values</strong>:
+          Provide sensible defaults for input signals when possible.
+        </li>
+        <li>
+          <strong>Consider Required Inputs</strong>:
+          Use <code>input.required()</code> for truly required inputs to catch missing inputs early.
+        </li>
+        <li>
+          <strong>Transform Inputs When Needed</strong>:
+          Use input transform functions to validate or convert incoming values.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Component Integration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Models for Two-Way Binding</strong>:
+          Leverage model signals for clean two-way binding between components.
+        </li>
+        <li>
+          <strong>Connect with Zoneless Applications</strong>:
+          Signal components work perfectly with zoneless applications for maximum performance.
+        </li>
+        <li>
+          <strong>Combine with Partial Hydration</strong>:
+          Use signal components with partial hydration for optimal SSR performance.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Performance Improvements</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Fine-Grained Reactivity</span>:
+          Only the parts of the UI that depend on changed signals are updated, reducing unnecessary work.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Simplified Change Detection</span>:
+          No need for OnPush strategy or managing change detection manually.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Smaller Bundle Size</span>:
+          Better tree-shaking and less decorator metadata lead to smaller application bundles.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Developer Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Intuitive API</span>:
+          Clear, functional API for inputs, outputs, computed values, and side effects.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Improved Type Safety</span>:
+          Better TypeScript integration with less reliance on string literals and generics.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Clear Data Flow</span>:
+          Signal dependencies make it easier to understand and trace data flow in components.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Modern Reactivity Model</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Automatic Dependency Tracking</span>:
+          Computed signals and effects automatically track their dependencies.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Simplified Two-Way Binding</span>:
+          Model signals make two-way binding cleaner and more intuitive.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Reactive View Queries</span>:
+          ViewChild and ViewChildren as signals provide reactive access to DOM elements.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Integration with Angular 19 Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Zoneless Applications</span>:
+          Perfect for use in zoneless applications for ultimate performance.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Partial Hydration</span>:
+          Works seamlessly with partial hydration for optimized SSR applications.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Control Flow Integration</span>:
+          Clean integration with built-in control flow syntax for purely declarative templates.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">New Programming Model</span>:
+          Requires learning and adapting to a different way of building components.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Reactive Thinking</span>:
+          Developers need to think reactively, which may be challenging for some.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Migration Effort</span>:
+          Converting existing components to the signal-based approach requires effort.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Pitfalls</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Signal Overuse</span>:
+          Creating too many fine-grained signals can lead to complex component logic.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Effect Side Effects</span>:
+          Improper use of effects can lead to infinite update loops or other unexpected behavior.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Mental Model Shift</span>:
+          Moving between traditional and signal-based components in the same application can be confusing.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Ecosystem Integration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Library Support</span>:
+          Some third-party libraries may not yet be optimized for signal-based components.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Tools and Testing</span>:
+          Testing tools and methodologies may need updates to work optimally with signal components.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Documentation and Resources</span>:
+          Fewer examples and resources compared to traditional components (though rapidly improving).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Transition Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Mixed Component Types</span>:
+          Managing applications with both traditional and signal-based components can be challenging.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Training and Adoption</span>:
+          Teams need time and resources to adopt and become proficient with the new approach.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Legacy Integration</span>:
+          Integrating with legacy code or libraries optimized for the traditional component model.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #topicsRef>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Signals</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular's reactive primitives for state management introduced in Angular 16+.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signal Components</strong>:
+          Signal Components are built on and extend the basic signals system, providing a complete component model.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Applications</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular applications that run without Zone.js, using explicit change detection.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signal Components</strong>:
+          Signal Components provide the ideal programming model for zoneless applications, as they handle their own change detection.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Reactive Programming</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Programming paradigm focused on data streams and propagation of change.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signal Components</strong>:
+          Signal Components implement reactive programming principles within the Angular component model.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Partial Hydration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Technique to selectively hydrate server-rendered components based on need.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signal Components</strong>:
+          Signal Components work well with partial hydration for fine-grained control over which parts of an app become interactive.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Two-Way Binding</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Data binding that works in both directions between parent and child components.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signal Components</strong>:
+          Signal Components introduce model signals, a cleaner approach to two-way binding with <code>[(property)]</code> syntax.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>RxJS and Observables</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Library for reactive programming using Observables to compose asynchronous code.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signal Components</strong>:
+          While different in API, both signals and RxJS provide reactive programming models, and can be used together.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular's mechanism for updating the DOM when component data changes.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Signal Components</strong>:
+          Signal Components provide fine-grained, automatic change detection, eliminating the need for manual change detection management.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>

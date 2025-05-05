@@ -1,0 +1,3 @@
+this.ngZone.runOutsideAngular(() => {
+  // long running task without triggering change detection
+});

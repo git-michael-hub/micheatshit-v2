@@ -1,0 +1,227 @@
+<div class="container">
+  <h1>Dependency Injection (DI)</h1>
+  <p>
+    Dependency Injection is a design pattern and mechanism in Angular that allows a class to receive its dependencies from an external source rather than creating them itself.
+  </p>
+
+  <div class="tab-navigation">
+    <button [class.active]="activeTab === 'notes'" (click)="setActiveTab('notes')">Notes</button>
+    <button [class.active]="activeTab === 'bestPractices'" (click)="setActiveTab('bestPractices')">Best Practices</button>
+    <button [class.active]="activeTab === 'prosCons'" (click)="setActiveTab('prosCons')">Pros & Cons</button>
+    <button [class.active]="activeTab === 'relatedTopics'" (click)="setActiveTab('relatedTopics')">Related Topics</button>
+  </div>
+
+  <ng-container [ngSwitch]="activeTab">
+    <ng-container *ngSwitchCase="'notes'" [ngTemplateOutlet]="notesTemplate"></ng-container>
+    <ng-container *ngSwitchCase="'bestPractices'" [ngTemplateOutlet]="bestPracticesTemplate"></ng-container>
+    <ng-container *ngSwitchCase="'prosCons'" [ngTemplateOutlet]="prosConsTemplate"></ng-container>
+    <ng-container *ngSwitchCase="'relatedTopics'" [ngTemplateOutlet]="relatedTopicsTemplate"></ng-container>
+  </ng-container>
+
+  <ng-template #notesTemplate>
+    <h2>Understanding Dependency Injection</h2>
+    <p>
+      Angular's DI system provides services or objects that a class needs without the class constructing them itself.
+      This promotes loose coupling, modularity, and testability.
+    </p>
+
+    <div class="di-diagram">
+      <strong>The Angular DI System:</strong>
+      <ul>
+        <li>Providers: Instruct Angular how to create instances of dependencies</li>
+        <li>Injectors: Maintain a container of service instances</li>
+        <li>Dependencies: The services or objects that a class needs</li>
+      </ul>
+    </div>
+
+    <h3>Basic Service with DI</h3>
+    <div class="code-example">
+      <pre><code [highlight]="basicServiceCode" [languages]="['typescript']"></code></pre>
+    </div>
+
+    <h3>Hierarchical Injectors</h3>
+    <p>
+      Angular has a hierarchical injection system with different levels where services can be provided:
+    </p>
+
+    <div class="di-level root">
+      <strong>Root Injector:</strong> Application-wide singleton services
+      <div class="code-example">
+        <pre><code [highlight]="provideInRootCode" [languages]="['typescript']"></code></pre>
+      </div>
+    </div>
+
+    <div class="di-level module">
+      <strong>Module Injector:</strong> Services provided in a specific NgModule
+    </div>
+
+    <div class="di-level component">
+      <strong>Component Injector:</strong> Services scoped to a component and its children
+      <div class="code-example">
+        <pre><code [highlight]="componentInjectionCode" [languages]="['typescript']"></code></pre>
+      </div>
+    </div>
+
+    <h3>Provider Types</h3>
+    <ul>
+      <li><strong>Class Provider:</strong> Most common, provides an instance of a class</li>
+      <li><strong>Value Provider:</strong> Provides a pre-defined object</li>
+      <li><strong>Factory Provider:</strong> Provides a factory function to create an instance</li>
+      <li><strong>Existing Provider:</strong> Maps one token to another</li>
+    </ul>
+
+    <div class="code-example">
+      <h4>Factory Provider Example</h4>
+      <pre><code [highlight]="factoryProviderCode" [languages]="['typescript']"></code></pre>
+    </div>
+
+    <h3>Injection Tokens</h3>
+    <p>
+      Used when you want to inject something that isn't a class, like strings, numbers, or objects:
+    </p>
+    <div class="code-example">
+      <pre><code [highlight]="tokenInjectionCode" [languages]="['typescript']"></code></pre>
+    </div>
+
+    <h3>DI in Standalone Components</h3>
+    <p>
+      With Angular's standalone components, DI works without modules:
+    </p>
+    <div class="code-example">
+      <pre><code [highlight]="standaloneInjectionCode" [languages]="['typescript']"></code></pre>
+    </div>
+  </ng-template>
+
+  <ng-template #bestPracticesTemplate>
+    <h2>Dependency Injection Best Practices</h2>
+
+    <h3>Service Design</h3>
+    <ul>
+      <li><strong>Single Responsibility:</strong> Create services that focus on a single concern</li>
+      <li><strong>Reusability:</strong> Design services to be reusable across components</li>
+      <li><strong>Service Composition:</strong> Inject services into other services when needed</li>
+      <li><strong>Stateful vs. Stateless:</strong> Be intentional about state management in services</li>
+    </ul>
+
+    <h3>Injection Scope</h3>
+    <ul>
+      <li><strong>Use providedIn: 'root'</strong> for application-wide singleton services</li>
+      <li><strong>Provide at component level</strong> when the service should be scoped to a component and its children</li>
+      <li><strong>Consider lazy modules</strong> for feature-specific services that should be loaded on demand</li>
+    </ul>
+
+    <h3>Testing with DI</h3>
+    <ul>
+      <li>Use TestBed to configure testing modules with mock dependencies</li>
+      <li>Leverage Angular's testing utilities like SpyOn for service method mocking</li>
+      <li>Create test doubles (mocks, stubs) for services to isolate components during testing</li>
+    </ul>
+
+    <h3>Performance Considerations</h3>
+    <ul>
+      <li>Avoid creating services with heavy initialization in the constructor</li>
+      <li>Use lazy loading to defer service initialization when possible</li>
+      <li>Consider using factory providers for complex service creation logic</li>
+    </ul>
+
+    <h3>Migration to Angular v19 DI</h3>
+    <ul>
+      <li>Prefer standalone components with their own providers</li>
+      <li>Use functional providers (provideHttpClient, provideRouter, etc.)</li>
+      <li>Migrate from NgModules to standalone APIs</li>
+      <li>Leverage environment injectors for better control over provider scope</li>
+    </ul>
+  </ng-template>
+
+  <ng-template #prosConsTemplate>
+    <h2>Pros and Cons of Dependency Injection</h2>
+
+    <h3>Advantages</h3>
+    <ul>
+      <li><strong>Loose Coupling:</strong> Components don't need to know how their dependencies are created</li>
+      <li><strong>Testability:</strong> Easy to provide mock implementations for testing</li>
+      <li><strong>Maintainability:</strong> Dependencies can be swapped without changing consumer code</li>
+      <li><strong>Reusability:</strong> Services can be reused across different parts of the application</li>
+      <li><strong>Singleton Management:</strong> Easy to control the lifecycle and scope of services</li>
+    </ul>
+
+    <h3>Challenges</h3>
+    <ul>
+      <li><strong>Learning Curve:</strong> Understanding hierarchical injection can be complex for beginners</li>
+      <li><strong>Debugging:</strong> Errors related to missing providers can be hard to track</li>
+      <li><strong>Potential Memory Leaks:</strong> Long-lived services need careful management of subscriptions</li>
+      <li><strong>Overuse:</strong> Creating too many small services can lead to fragmentation</li>
+    </ul>
+
+    <h3>Comparison: Angular DI vs Manual Dependency Creation</h3>
+    <table class="comparison-table">
+      <tr>
+        <th>Aspect</th>
+        <th>Angular DI</th>
+        <th>Manual Creation</th>
+      </tr>
+      <tr>
+        <td>Code Complexity</td>
+        <td>Lower - Angular handles instantiation</td>
+        <td>Higher - Need to manage object creation</td>
+      </tr>
+      <tr>
+        <td>Testability</td>
+        <td>Better - Easy to substitute dependencies</td>
+        <td>Worse - Hard-coded dependencies</td>
+      </tr>
+      <tr>
+        <td>Flexibility</td>
+        <td>Higher - Can change implementations without changing consumers</td>
+        <td>Lower - Tightly coupled to specific implementations</td>
+      </tr>
+      <tr>
+        <td>Performance</td>
+        <td>Slight overhead for the DI system</td>
+        <td>Direct instantiation can be faster</td>
+      </tr>
+      <tr>
+        <td>Maintainability</td>
+        <td>Better for large applications</td>
+        <td>Simpler for very small applications</td>
+      </tr>
+    </table>
+  </ng-template>
+
+  <ng-template #relatedTopicsTemplate>
+    <h2>Related Topics</h2>
+
+    <h3>Angular Core Concepts</h3>
+    <ul>
+      <li><strong>Services:</strong> Classes with a specific purpose that can be injected</li>
+      <li><strong>Providers:</strong> Instructions for DI on how to create a dependency</li>
+      <li><strong>Injectors:</strong> The service locator responsible for retrieving dependencies</li>
+      <li><strong>ModuleInjector & ElementInjector:</strong> The two injector hierarchies in Angular</li>
+    </ul>
+
+    <h3>Advanced DI Features</h3>
+    <ul>
+      <li><strong>Multi Providers:</strong> Inject an array of values for a single token</li>
+      <li><strong>Forward References:</strong> Reference a dependency that's defined later in the code</li>
+      <li><strong>Circular Dependencies:</strong> Handling dependencies that depend on each other</li>
+      <li><strong>Optional Dependencies:</strong> Components can function without certain dependencies</li>
+    </ul>
+
+    <h3>DI for Specific Scenarios</h3>
+    <ul>
+      <li><strong>HTTP Services:</strong> Using HttpClient with DI for API communication</li>
+      <li><strong>State Management:</strong> Using services for application state</li>
+      <li><strong>Route Guards:</strong> Protecting routes using injectable services</li>
+      <li><strong>Interceptors:</strong> Processing HTTP requests/responses using DI</li>
+    </ul>
+
+    <h3>Angular v19 Enhancements</h3>
+    <ul>
+      <li><strong>Functional Providers:</strong> New provider functions for better type safety</li>
+      <li><strong>Environment Injectors:</strong> Creating injectors outside of components</li>
+      <li><strong>Runnable Injector:</strong> Application-wide injector available before bootstrap</li>
+      <li><strong>Injection Context:</strong> More control over where dependencies are retrieved from</li>
+      <li><strong>Signal-based Injection:</strong> Better integration with Angular's reactivity system</li>
+    </ul>
+  </ng-template>
+</div>

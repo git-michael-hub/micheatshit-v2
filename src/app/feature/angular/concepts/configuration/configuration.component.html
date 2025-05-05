@@ -1,0 +1,361 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Configuration in Angular
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Configuration</span>
+      refers to the various settings and options that control how an Angular application is built, served, and deployed. This includes workspace configuration, build options, environment-specific settings, and more. In Angular 19, configuration has been enhanced with improved flexibility, better performance optimization options, and streamlined workflows for modern development approaches like Server-Side Rendering (SSR) and partial hydration.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <div *ngIf="selectedTab === 1">
+          <!-- Notes Tab -->
+          <p>Core Configuration Files and Options</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>angular.json</strong>
+              <ul class="list-disc pl-4">
+                <li>The primary workspace configuration file for Angular projects</li>
+                <li>Configures build options, server settings, testing, and more</li>
+                <li>Defines defaults for generated components and other artifacts</li>
+                <li>Updated in Angular 19 to support the new application builder by default</li>
+                <button (click)="angularJsonCodeEl.hidden = !angularJsonCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #angularJsonCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>json</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="angularJsonCode" [languages]="['json']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>Environment Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>Environment-specific settings stored in separate TypeScript files</li>
+                <li>Allows for different configuration in development, testing, and production</li>
+                <li>Typically includes API endpoints, feature flags, and other runtime settings</li>
+                <li>Angular 19 supports improved environment file swapping during builds</li>
+                <button (click)="environmentConfigCodeEl.hidden = !environmentConfigCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #environmentConfigCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="environmentConfigCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>TypeScript and Package Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>tsconfig.json controls TypeScript compiler options</li>
+                <li>package.json manages dependencies and defines scripts</li>
+                <li>Both work together to define the development and build environment</li>
+                <li>Updated in Angular 19 for better modern JavaScript support</li>
+                <button (click)="workspaceConfigCodeEl.hidden = !workspaceConfigCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #workspaceConfigCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="workspaceConfigCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Angular 19 Configuration Enhancements</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Application Builder</strong>
+              <ul class="list-disc pl-4">
+                <li>New default builder with improved bundling and optimization</li>
+                <li>Enhanced support for code splitting and lazy loading</li>
+                <li>Better tree-shaking for smaller production bundles</li>
+                <li>Integrated support for SSR and hydration configuration</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Standalone-first Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>Default configuration optimized for standalone components</li>
+                <li>Simplified setup for new projects without NgModules</li>
+                <li>Improved tree-shaking for standalone-based applications</li>
+                <li>Streamlined configuration for modern Angular development</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Modern Bundling Options</strong>
+              <ul class="list-disc pl-4">
+                <li>Angular 19 adds improved support for ESM and modern bundlers</li>
+                <li>Vite integration through AnalogJS is now better supported</li>
+                <li>New options for optimizing Initial and Largest Contentful Paint</li>
+                <li>Enhanced configuration for partial hydration and island architecture</li>
+                <button (click)="modernBundlingCodeEl.hidden = !modernBundlingCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #modernBundlingCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="modernBundlingCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Configuration Types in Angular 19</p>
+          <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+            <thead>
+              <tr class="bg-gray-800 text-gray-100">
+                <th class="py-3 px-4 text-left">Configuration Type</th>
+                <th class="py-3 px-4 text-left">Purpose</th>
+                <th class="py-3 px-4 text-left">Angular 19 Enhancements</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Workspace Configuration</td>
+                <td class="py-3 px-4">Project structure, builders, and defaults</td>
+                <td class="py-3 px-4">Improved standalone defaults, new application builder</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Build Configuration</td>
+                <td class="py-3 px-4">Optimization, bundling, and output settings</td>
+                <td class="py-3 px-4">Better tree-shaking, ESM support, smaller bundles</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">SSR Configuration</td>
+                <td class="py-3 px-4">Server-side rendering settings</td>
+                <td class="py-3 px-4">Simplified setup, partial hydration options</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">TypeScript Configuration</td>
+                <td class="py-3 px-4">Language and compiler options</td>
+                <td class="py-3 px-4">Updated defaults for modern JavaScript features</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Testing Configuration</td>
+                <td class="py-3 px-4">Test runner and framework settings</td>
+                <td class="py-3 px-4">Better integration with modern testing patterns</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Environment Configuration</td>
+                <td class="py-3 px-4">Runtime settings for different environments</td>
+                <td class="py-3 px-4">Enhanced file replacement, feature flag support</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Dependency Configuration</td>
+                <td class="py-3 px-4">Package dependencies and versions</td>
+                <td class="py-3 px-4">Streamlined peer dependencies, better migrations</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="selectedTab === 2">
+          <!-- Best Practices Tab -->
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Organize Configuration by Environment</strong>
+              <ul class="list-disc pl-4">
+                <li>Create separate environment files for development, testing, and production</li>
+                <li>Use environment-specific API endpoints and feature flags</li>
+                <li>Configure file replacements in angular.json for environment switching</li>
+                <li>Keep sensitive configuration out of source control</li>
+                <li>Consider using environment variables for deployment-specific settings</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Optimize Build Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>Set appropriate budget thresholds to monitor bundle sizes</li>
+                <li>Enable production optimizations like minification and tree-shaking</li>
+                <li>Configure code splitting for optimal loading performance</li>
+                <li>Use the new Angular 19 application builder for better defaults</li>
+                <li>Enable source maps in development but disable in production</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Implement Proper TypeScript Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>Enable strict type checking for better code quality</li>
+                <li>Set proper target and module settings for browser compatibility</li>
+                <li>Configure paths aliases for cleaner imports</li>
+                <li>Use strict template checking for better component safety</li>
+                <li>Configure Angular-specific compiler options appropriately</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Streamline Dependency Management</strong>
+              <ul class="list-disc pl-4">
+                <li>Lock versions for consistent builds across environments</li>
+                <li>Separate dev dependencies from runtime dependencies</li>
+                <li>Define custom scripts for common development workflows</li>
+                <li>Consider using nx or npm workspaces for monorepo management</li>
+                <li>Regularly update dependencies with ng update</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Configure for Modern Angular Features</strong>
+              <ul class="list-disc pl-4">
+                <li>Enable standalone component defaults in schematics configuration</li>
+                <li>Configure SSR and hydration options for improved performance</li>
+                <li>Set up proper bundling for signal-based components</li>
+                <li>Configure module federation if building micro frontends</li>
+                <li>Use the latest ESM and zone-less configurations where appropriate</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div *ngIf="selectedTab === 3">
+          <!-- Pros and Cons Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Advantages of Angular Configuration System</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Centralized Management</strong>: Core configuration in a single angular.json file</li>
+              <li><strong>Environment Support</strong>: Easy switching between development and production settings</li>
+              <li><strong>Build Optimization</strong>: Powerful options for bundle size reduction and performance</li>
+              <li><strong>Convention over Configuration</strong>: Sensible defaults reduce boilerplate</li>
+              <li><strong>Extensibility</strong>: Support for custom builders and configuration extensions</li>
+              <li><strong>TypeScript Integration</strong>: Deep integration with TypeScript configuration</li>
+              <li><strong>Tooling Support</strong>: Excellent IDE and command-line tooling for configuration</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Challenges with Angular Configuration</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Complexity</strong>: Many configuration files and options can be overwhelming</li>
+              <li><strong>Learning Curve</strong>: Understanding all configuration options requires time</li>
+              <li><strong>Verbosity</strong>: Some configuration requires significant boilerplate</li>
+              <li><strong>Migration Challenges</strong>: Configuration changes between versions can be difficult</li>
+              <li><strong>Limited Runtime Configuration</strong>: Some settings require rebuilding the application</li>
+              <li><strong>Interdependencies</strong>: Configuration options often depend on each other</li>
+              <li><strong>Build Performance</strong>: Complex configuration can lead to slower builds</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Angular 19 Configuration Improvements Over Previous Versions</p>
+            <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+              <thead>
+                <tr class="bg-gray-800 text-gray-100">
+                  <th class="py-3 px-4 text-left">Feature</th>
+                  <th class="py-3 px-4 text-left">Before Angular 19</th>
+                  <th class="py-3 px-4 text-left">Angular 19 Improvements</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Build System</td>
+                  <td class="py-3 px-4">browser and server builders</td>
+                  <td class="py-3 px-4">New unified application builder with better defaults</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">Component Generation</td>
+                  <td class="py-3 px-4">NgModule-based defaults</td>
+                  <td class="py-3 px-4">Standalone and signal-based defaults</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Server-Side Rendering</td>
+                  <td class="py-3 px-4">Complex, separate configuration</td>
+                  <td class="py-3 px-4">Integrated SSR and hydration configuration</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">TypeScript Integration</td>
+                  <td class="py-3 px-4">Older ECMAScript targets</td>
+                  <td class="py-3 px-4">Modern ES2022 targets with better typing</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Bundling Options</td>
+                  <td class="py-3 px-4">Limited optimization controls</td>
+                  <td class="py-3 px-4">Enhanced tree-shaking and code splitting options</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab === 4">
+          <!-- Related Topics Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Angular CLI</strong>: Command-line tool that uses the configuration to build and serve apps</li>
+              <li><strong>Workspace</strong>: Overall project structure defined by configuration</li>
+              <li><strong>Schematics</strong>: Generation templates that use and extend configuration</li>
+              <li><strong>Builders</strong>: Tools that implement the build processes defined in configuration</li>
+              <li><strong>SSR (Server-Side Rendering)</strong>: Features configured in angular.json</li>
+              <li><strong>Dependency Injection</strong>: Providers often configured through environment files</li>
+              <li><strong>Code Splitting</strong>: Configured through build options for performance</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Configuration FAQ</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li>
+                <strong>Q: How do I configure my Angular 19 app for server-side rendering?</strong><br>
+                A: In Angular 19, SSR configuration is simplified. Use the application builder in angular.json and set the "ssr" option with an entry point to your server file. To enable SSR in an existing project, run <code>ng add &#64;angular/ssr</code>, which will update your configuration automatically. The new configuration also supports partial hydration through additional settings in the component or application configuration.
+              </li>
+              <li>
+                <strong>Q: What's the best way to handle environment-specific configuration in Angular 19?</strong><br>
+                A: Create multiple environment files (environment.ts, environment.development.ts, environment.production.ts) in the src/environments directory. Configure file replacements in the angular.json "fileReplacements" section under the appropriate build configuration. For sensitive values like API keys, consider using environment variables with a .env file (not committed to source control) and the @angular-builders/custom-webpack builder to inject them at build time.
+              </li>
+              <li>
+                <strong>Q: How can I optimize bundle size in Angular 19 through configuration?</strong><br>
+                A: Use the budgets configuration in angular.json to set size limits and get warnings/errors when exceeded. Enable build optimizer and production mode. Configure proper code splitting through the route configuration with lazy loading. Use the new application builder which has better tree-shaking. Consider setting up module federation for micro frontends. In Angular 19, you can also leverage the new standalone defaults and defer blocks for further optimization.
+              </li>
+              <li>
+                <strong>Q: What TypeScript configuration is recommended for Angular 19 projects?</strong><br>
+                A: For Angular 19, use TypeScript 5.2 or newer with "target": "ES2022" and "module": "ES2022". Enable strict type checking with "strict": true. Configure Angular-specific options in angularCompilerOptions with strictTemplates and strictInjectionParameters set to true for better type safety. The recommended lib settings include ES2022 and DOM. For better debugging, enable sourceMap in development configurations.
+              </li>
+              <li>
+                <strong>Q: How do I migrate my configuration from older Angular versions to Angular 19?</strong><br>
+                A: Use <code>ng update &#64;angular/cli &#64;angular/core</code> to automatically update configuration files to Angular 19 format. Review the browser builder to application builder migration. Update TypeScript configuration to use ES2022. Check for standalone component defaults in schematics. Review SSR configuration if you're using it, as the API has changed. The Angular update tool will handle most migrations automatically, but some manual adjustments might be needed, especially for custom builders or complex setups.
+              </li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Useful Resources</p>
+            <ul class="list-disc pl-4">
+              <li><a href="https://angular.dev/guide/workspace-config" class="text-sky-400 hover:underline">Angular Workspace Configuration Guide</a></li>
+              <li><a href="https://angular.dev/guide/build" class="text-sky-400 hover:underline">Angular Build Configuration</a></li>
+              <li><a href="https://angular.dev/guide/deployment" class="text-sky-400 hover:underline">Deployment Configuration</a></li>
+              <li><a href="https://angular.dev/guide/ssr" class="text-sky-400 hover:underline">Server-Side Rendering Configuration</a></li>
+              <li><a href="https://angular.dev/tools/cli/configs" class="text-sky-400 hover:underline">CLI Configuration Reference</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

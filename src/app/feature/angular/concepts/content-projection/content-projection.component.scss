@@ -1,0 +1,70 @@
+p {
+  margin: 0px;
+}
+
+.code-example {
+  margin: 20px 0;
+}
+
+.example-container {
+  margin: 25px 0;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.visual-diagram {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+}
+
+.projection-slot {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px dashed #ccc;
+  background-color: #fafafa;
+  border-radius: 4px;
+
+  &.header {
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.1);
+  }
+
+  &.default {
+    border-color: #198754;
+    background-color: rgba(25, 135, 84, 0.1);
+  }
+
+  &.footer {
+    border-color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.1);
+  }
+}
+
+table.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+}

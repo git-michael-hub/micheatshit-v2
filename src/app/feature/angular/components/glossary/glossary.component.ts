@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StateService } from '../../data-access/state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-glossary',
@@ -8,7 +9,7 @@ import { StateService } from '../../data-access/state.service';
   styleUrls: ['./glossary.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GlossaryComponent {
+export class GlossaryComponent implements OnInit {
   components = [
     {
       "name": "ahead-of-time (AOT) compilation",
@@ -23,7 +24,7 @@ export class GlossaryComponent {
       "file_location": "components/after-next-render",
       "url": "after-next-render",
       "hashtags": [
-        'lifecycle', 'v17+'
+        'lifecycle', 'v19'
       ]
     },
     {
@@ -31,7 +32,7 @@ export class GlossaryComponent {
       "file_location": "components/after-render",
       "url": "after-render",
       "hashtags": [
-        'lifecycle', 'v17+'
+        'lifecycle', 'v19'
       ]
     },
     {
@@ -63,7 +64,7 @@ export class GlossaryComponent {
       "file_location": "components/app-shell",
       "url": "app-shell",
       "hashtags": [
-        ''
+        'v19', 'performance', 'ssr'
       ]
     },
     {
@@ -71,7 +72,7 @@ export class GlossaryComponent {
       "file_location": "components/architect",
       "url": "architect",
       "hashtags": [
-        ''
+        'v19', 'cli', 'build'
       ]
     },
     {
@@ -103,7 +104,7 @@ export class GlossaryComponent {
       "file_location": "components/control-flow",
       "url": "control-flow",
       "hashtags": [
-        'v17+', 'stable-v19'
+        'v19'
       ]
     },
     {
@@ -143,7 +144,7 @@ export class GlossaryComponent {
       "file_location": "components/class-field-decorator",
       "url": "class-field-decorator",
       "hashtags": [
-        ''
+        'v19'
       ]
     },
     {
@@ -151,7 +152,7 @@ export class GlossaryComponent {
       "file_location": "components/collection",
       "url": "collection",
       "hashtags": [
-        ''
+        'v19', 'cli', 'schematics'
       ]
     },
     {
@@ -159,7 +160,7 @@ export class GlossaryComponent {
       "file_location": "components/cli",
       "url": "cli",
       "hashtags": [
-        ''
+        'v19', 'tools', 'productivity'
       ]
     },
     {
@@ -167,7 +168,7 @@ export class GlossaryComponent {
       "file_location": "components/component",
       "url": "component",
       "hashtags": [
-        ''
+        'v19', 'fundamentals', 'architecture'
       ]
     },
     {
@@ -175,7 +176,7 @@ export class GlossaryComponent {
       "file_location": "components/configuration",
       "url": "configuration",
       "hashtags": [
-        ''
+        'v19', 'workspace', 'build'
       ]
     },
     {
@@ -183,7 +184,7 @@ export class GlossaryComponent {
       "file_location": "components/content-projection",
       "url": "content-projection",
       "hashtags": [
-        ''
+        'v19', 'component', 'template'
       ]
     },
     {
@@ -223,7 +224,7 @@ export class GlossaryComponent {
       "file_location": "components/deferrable-views",
       "url": "deferrable-views",
       "hashtags": [
-        'v17+', 'performance', 'enhanced-v19'
+        'v19', 'performance', 'lazy-loading'
       ]
     },
     {
@@ -231,7 +232,7 @@ export class GlossaryComponent {
       "file_location": "components/di",
       "url": "di",
       "hashtags": [
-        ''
+        'v19', 'core', 'services'
       ]
     },
     {
@@ -327,7 +328,7 @@ export class GlossaryComponent {
       "file_location": "components/hydration",
       "url": "hydration",
       "hashtags": [
-        'v17+', 'performance', 'enhanced-v19'
+        'v19', 'performance', 'ssr'
       ]
     },
     {
@@ -367,7 +368,7 @@ export class GlossaryComponent {
       "file_location": "components/input-transform",
       "url": "input-transform",
       "hashtags": [
-        'v17+'
+        'v19'
       ]
     },
     {
@@ -623,7 +624,7 @@ export class GlossaryComponent {
       "file_location": "components/ssr",
       "url": "ssr",
       "hashtags": [
-        'enhanced-v19', 'performance'
+        'v19', 'performance', 'seo'
       ]
     },
     {
@@ -639,7 +640,7 @@ export class GlossaryComponent {
       "file_location": "components/signal-components",
       "url": "signal-components",
       "hashtags": [
-        'v19', 'reactivity'
+        'v19', 'performance', 'reactive'
       ]
     },
     {
@@ -647,7 +648,7 @@ export class GlossaryComponent {
       "file_location": "components/signals",
       "url": "signals",
       "hashtags": [
-        'v17+', 'reactivity', 'enhanced-v19'
+        'v19', 'reactivity', 'performance'
       ]
     },
     {
@@ -655,7 +656,7 @@ export class GlossaryComponent {
       "file_location": "components/standalone",
       "url": "standalone",
       "hashtags": [
-        ''
+        'v19', 'architecture', 'performance'
       ]
     },
     {
@@ -671,7 +672,7 @@ export class GlossaryComponent {
       "file_location": "components/style-url",
       "url": "style-url",
       "hashtags": [
-        'v17+'
+        'v19'
       ]
     },
     {
@@ -783,7 +784,7 @@ export class GlossaryComponent {
       "file_location": "components/universal",
       "url": "universal",
       "hashtags": [
-        ''
+        'v19', 'ssr', 'performance'
       ]
     },
     {
@@ -807,7 +808,7 @@ export class GlossaryComponent {
       "file_location": "components/view-hierarchy",
       "url": "view-hierarchy",
       "hashtags": [
-        ''
+        'v19', 'performance', 'rendering'
       ]
     },
     {
@@ -815,7 +816,7 @@ export class GlossaryComponent {
       "file_location": "components/view-transitions",
       "url": "view-transitions",
       "hashtags": [
-        'v17+', 'animation'
+        'v19', 'animation'
       ]
     },
     {
@@ -855,7 +856,7 @@ export class GlossaryComponent {
       "file_location": "components/zoneless-applications",
       "url": "zoneless-applications",
       "hashtags": [
-        'v19', 'performance'
+        'v19', 'performance', 'signals'
       ]
     },
   ];
@@ -863,7 +864,8 @@ export class GlossaryComponent {
   // bottomPills$!: Observable<{}[]>;
 
   constructor(
-    private stateService: StateService
+    private stateService: StateService,
+    private router: Router
   ) {
     // this.bottomPills$ = this.stateService.getBottomPills()
   }
@@ -873,5 +875,13 @@ export class GlossaryComponent {
     this.stateService.addBottomPills(s)
   }
 
-
+  ngOnInit() {
+    // Update URLs based on routes
+    this.components.forEach(item => {
+      if (item.name === 'built-in control flow') {
+        item.url = '/angular/control-flow';
+      }
+      // ... existing code for other items ...
+    });
+  }
 }

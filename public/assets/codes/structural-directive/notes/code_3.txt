@@ -1,0 +1,5 @@
+<div [ngSwitch]="value">
+  <div *ngSwitchCase="'case1'">Content for case1</div>
+  <div *ngSwitchCase="'case2'">Content for case2</div>
+  <div *ngSwitchDefault>Default content</div>
+</div>

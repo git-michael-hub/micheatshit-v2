@@ -1,20 +1,326 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    app-shell
+    App Shell
   </p>
 
   <div class="text-content">
     <p>
-      App shell is a way to render a portion of your application using a route at build time. This gives users a meaningful first paint of your application that appears quickly because the browser can render static HTML and CSS without the need to initialize JavaScript. To learn more, see <a>The App Shell Model</a>.
+      <span class="text-zinc-50 tw-font-medium">App Shell</span>
+      in Angular 19 is a technique that delivers a minimal HTML, CSS, and JavaScript needed to power a user interface before the full application has loaded. It helps improve perceived performance by showing a static rendering of your application while the full JavaScript bundle downloads and executes in the background.
     </p>
 
     <br>
 
-    <p>
-      You can use the Angular CLI to <a>generate</a> an app shell. This can improve the user experience by quickly launching a static rendered page while the browser downloads the full client version and switches to it automatically after the code loads. A static rendered page is a skeleton common to all pages. To learn more, see <a>Service Worker and PWA</a>.
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <div *ngIf="selectedTab === 1">
+          <!-- Notes Tab -->
+          <p>Key Benefits of App Shell</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Enhanced Perceived Performance</strong>:
+              Users see a meaningful interface almost immediately instead of a blank screen or loading spinner, creating a better first impression.
+            </li>
+            <li>
+              <strong>Improved SEO</strong>:
+              Search engines can more effectively index your static content, leading to better search rankings.
+            </li>
+            <li>
+              <strong>Progressive Enhancement</strong>:
+              App Shell delivers a basic user interface that works without JavaScript, then enhances the experience as resources load.
+            </li>
+            <li>
+              <strong>Reliable Loading Experience</strong>:
+              Provides a consistent loading experience regardless of network conditions or device capabilities.
+            </li>
+          </ul>
 
+          <br>
+          <br>
 
-    </p>
+          <p>Angular 19 App Shell Enhancements</p>
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong>Improved Hydration Process</strong>:
+              <ul class="list-disc pl-4">
+                <li>Angular 19 introduces advanced hydration techniques that preserve the server-rendered DOM while progressively activating client-side features.</li>
+                <li>New <code>withNoDomReuse</code> option lets you control DOM preservation during hydration for full control over the rendering process.</li>
+                <li>Enhanced state transfer between server and client keeps user interactions consistent during hydration.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Partial Hydration Support</strong>:
+              <ul class="list-disc pl-4">
+                <li>Selectively hydrate components based on their importance or visibility, prioritizing interactive elements.</li>
+                <li>Deferrable views work seamlessly with App Shell to progressively load and hydrate components as needed.</li>
+                <li>Reduces Time to Interactive (TTI) by focusing on critical UI components first.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Standalone Component Support</strong>:
+              <ul class="list-disc pl-4">
+                <li>App Shell now works seamlessly with standalone components, simplifying implementation.</li>
+                <li>Reduced configuration complexity with the new App Shell builder that integrates with standalone architecture.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Streamlined Setup Process</strong>:
+              <ul class="list-disc pl-4">
+                <li>The new <code>&#64;angular/ssr</code> package includes App Shell functionality with a simpler setup process.</li>
+                <li>CLI command <code>ng add &#64;angular/ssr --app-shell</code> automatically configures everything needed for App Shell.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Zoneless Support</strong>:
+              <ul class="list-disc pl-4">
+                <li>App Shell now works efficiently with zoneless applications, improving performance by reducing the JavaScript bundle size.</li>
+                <li>Better integration with signal-based components for more efficient rendering and hydration.</li>
+              </ul>
+            </li>
+          </ol>
+
+          <br>
+          <br>
+
+          <p>Implementation in Angular 19</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Modern App Shell Setup Commands</strong>:
+              <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+              <span #code1 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>bash</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+                <pre>
+                  <code [highlight]="shellCommandCode" [languages]="['bash']"></code>
+                </pre>
+              </span>
+            </li>
+            <li>
+              <strong>Configuration in angular.json</strong>:
+              <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+              <span #code2 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>json</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+                <pre>
+                  <code [highlight]="configCode" [languages]="['json']"></code>
+                </pre>
+              </span>
+            </li>
+            <li>
+              <strong>App Module Setup (Traditional Approach)</strong>:
+              <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+              <span #code3 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+                <pre>
+                  <code [highlight]="appModuleCode" [languages]="['typescript']"></code>
+                </pre>
+              </span>
+            </li>
+            <li>
+              <strong>Modern App Config with Standalone Components</strong>:
+              <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+              <span #code4 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+                <pre>
+                  <code [highlight]="standaloneCode" [languages]="['typescript']"></code>
+                </pre>
+              </span>
+            </li>
+            <li>
+              <strong>Shell Component Implementation</strong>:
+              <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+              <span #code5 hidden copyToClipboard>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+                <pre>
+                  <code [highlight]="shellComponentCode" [languages]="['typescript']"></code>
+                </pre>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div *ngIf="selectedTab === 2">
+          <!-- Best Practices Tab -->
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Design for Progressive Enhancement</strong>
+              <ul class="list-disc pl-4">
+                <li>Create a minimal, functional UI that works without JavaScript first</li>
+                <li>Focus on critical UI elements that users need immediately</li>
+                <li>Avoid complex animations or interactions in the shell component</li>
+                <li>Keep the App Shell lightweight (under 50KB compressed) for fast loading</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Implement Efficient Hydration</strong>
+              <ul class="list-disc pl-4">
+                <li>Use <code>provideClientHydration()</code> with appropriate options in your app config</li>
+                <li>Consider <code>withNoDomReuse()</code> for dynamic content that changes significantly between server and client</li>
+                <li>Implement partial hydration for large applications to prioritize interactive components</li>
+                <li>Use <code>&#64;defer</code> blocks for non-critical components to reduce initial load time</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Cache Shell Resources Effectively</strong>
+              <ul class="list-disc pl-4">
+                <li>Configure appropriate cache headers for App Shell static resources</li>
+                <li>Use service workers to cache the App Shell for offline access</li>
+                <li>Implement a versioning strategy to update the shell when your application changes</li>
+                <li>Consider using HTTP/2 server push to deliver critical shell resources</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Optimize for SEO</strong>
+              <ul class="list-disc pl-4">
+                <li>Include proper metadata (title, description, OpenGraph tags) in the shell</li>
+                <li>Implement schema.org structured data where appropriate</li>
+                <li>Test your App Shell with Google's Mobile-Friendly and Rich Results Test tools</li>
+                <li>Ensure all critical content is visible in the initial server-rendered HTML</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Measure and Improve Performance</strong>
+              <ul class="list-disc pl-4">
+                <li>Track Core Web Vitals (LCP, FID, CLS) before and after implementing App Shell</li>
+                <li>Use Chrome DevTools "Performance" tab to analyze loading and hydration</li>
+                <li>Implement analytics to measure real-user metrics (RUM) for different devices and connections</li>
+                <li>Set performance budgets for your App Shell and main application bundle</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div *ngIf="selectedTab === 3">
+          <!-- Pros and Cons Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Advantages of App Shell</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Faster Perceived Loading</strong>: Users see content immediately, even on slow connections</li>
+              <li><strong>Improved Core Web Vitals</strong>: Helps with Largest Contentful Paint (LCP) and First Contentful Paint (FCP)</li>
+              <li><strong>Better SEO Performance</strong>: Search engines can index the static content effectively</li>
+              <li><strong>Works with Progressive Web Apps</strong>: Enables offline-first experience when combined with Service Workers</li>
+              <li><strong>Smooth Transitions</strong>: Creates a seamless transition from static to interactive content</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Challenges with App Shell</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Implementation Complexity</strong>: Requires server-side rendering configuration</li>
+              <li><strong>Increased Build Time</strong>: Adds an additional step to the build process</li>
+              <li><strong>Hydration Issues</strong>: Potential for hydration mismatches if not implemented carefully</li>
+              <li><strong>Additional Testing</strong>: Requires testing both server-rendered and client-rendered states</li>
+              <li><strong>Content Flickering</strong>: May cause visual shifts during hydration if not properly designed</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Performance Comparison: With vs. Without App Shell</p>
+            <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+              <thead>
+                <tr class="bg-gray-800 text-gray-100">
+                  <th class="py-3 px-4 text-left">Metric</th>
+                  <th class="py-3 px-4 text-left">Without App Shell</th>
+                  <th class="py-3 px-4 text-left">With App Shell</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">First Contentful Paint</td>
+                  <td class="py-3 px-4">2-3 seconds</td>
+                  <td class="py-3 px-4">0.8-1.2 seconds</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">Largest Contentful Paint</td>
+                  <td class="py-3 px-4">3-5 seconds</td>
+                  <td class="py-3 px-4">1.5-2.5 seconds</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Time to Interactive</td>
+                  <td class="py-3 px-4">4-7 seconds</td>
+                  <td class="py-3 px-4">3-5 seconds</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">Initial Bundle Size</td>
+                  <td class="py-3 px-4">Full application</td>
+                  <td class="py-3 px-4">Shell only (20-50KB)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab === 4">
+          <!-- Related Topics Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Server-Side Rendering (SSR)</strong>: The foundation that enables App Shell, rendering the initial HTML on the server</li>
+              <li><strong>Hydration</strong>: The process of making server-rendered content interactive on the client</li>
+              <li><strong>Partial Hydration</strong>: Selectively hydrating components based on priority or visibility</li>
+              <li><strong>Deferrable Views</strong>: Delaying the loading and rendering of non-critical components</li>
+              <li><strong>Progressive Web Apps (PWAs)</strong>: Web applications that can work offline and provide app-like experiences</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">App Shell FAQ</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li>
+                <strong>Q: How is App Shell different from regular SSR?</strong><br>
+                A: App Shell focuses on rendering a minimal UI skeleton, while full SSR renders the complete initial state of your application.
+              </li>
+              <li>
+                <strong>Q: Can I use App Shell with standalone components?</strong><br>
+                A: Yes, Angular 19 fully supports App Shell with standalone components and provides simplified setup.
+              </li>
+              <li>
+                <strong>Q: How does App Shell affect SEO?</strong><br>
+                A: App Shell improves SEO by ensuring search engines can index meaningful content without executing JavaScript.
+              </li>
+              <li>
+                <strong>Q: Does App Shell work with lazy-loaded modules?</strong><br>
+                A: Yes, App Shell can work with lazy-loaded modules. The shell loads first, then lazy modules load as needed.
+              </li>
+              <li>
+                <strong>Q: Is App Shell compatible with signal-based components?</strong><br>
+                A: Yes, Angular 19's App Shell is fully compatible with signal-based reactivity and provides efficient hydration.
+              </li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Useful Resources</p>
+            <ul class="list-disc pl-4">
+              <li><a href="https://angular.dev/guide/ssr" class="text-sky-400 hover:underline">Angular Server-Side Rendering Guide</a></li>
+              <li><a href="https://angular.dev/api/platform-server" class="text-sky-400 hover:underline">Angular Platform Server API</a></li>
+              <li><a href="https://web.dev/articles/performance-get-started" class="text-sky-400 hover:underline">Web Performance Optimization Guide</a></li>
+              <li><a href="https://web.dev/articles/app-shell" class="text-sky-400 hover:underline">App Shell Model</a></li>
+              <li><a href="https://web.dev/articles/service-workers" class="text-sky-400 hover:underline">Service Workers and PWAs</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

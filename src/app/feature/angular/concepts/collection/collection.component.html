@@ -1,0 +1,354 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Collections in Angular
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Collections</span>
+      in Angular are organized sets of schematics that provide a way to generate or modify code in a standardized way. They act as libraries of blueprints for generating components, services, and other parts of Angular applications. In Angular 19, collections have received significant enhancements for improved type safety, better error handling, and more flexible template generation.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <div *ngIf="selectedTab === 1">
+          <!-- Notes Tab -->
+          <p>Core Concepts of Angular Collections</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>What is a Collection?</strong>
+              <ul class="list-disc pl-4">
+                <li>A collection is a package of schematics defining a set of code generators</li>
+                <li>Collections can be published to npm for easy sharing and reuse</li>
+                <li>Each collection defines one or more schematics with specific functionality</li>
+                <li>Angular CLI uses collections to generate code (components, services, modules, etc.)</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Built-in Collections</strong>
+              <ul class="list-disc pl-4">
+                <li>Angular provides official collections like <code>@schematics/angular</code></li>
+                <li>These collections contain blueprints for standard Angular elements</li>
+                <li>Used when running commands like <code>ng generate component</code></li>
+                <button (click)="schematicoCodeEl.hidden = !schematicoCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #schematicoCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="schematicoCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>Custom Collections</strong>
+              <ul class="list-disc pl-4">
+                <li>Developers can create their own schematics collections</li>
+                <li>Custom collections enable standardized code generation specific to a project or organization</li>
+                <li>Defined in a <code>collection.json</code> file at the package root</li>
+                <li>Each schematic has its own schema and implementation</li>
+                <button (click)="customCollectionCodeEl.hidden = !customCollectionCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #customCollectionCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>json</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="customCollectionCode" [languages]="['json']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>Workspace Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>Angular workspaces can configure default schematic collections</li>
+                <li>Default options for schematics can be set in <code>angular.json</code></li>
+                <li>This allows for consistent code generation across projects</li>
+                <button (click)="workspaceCodeEl.hidden = !workspaceCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #workspaceCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>json</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="workspaceCode" [languages]="['json']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Angular 19 Collection Enhancements</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Enhanced Typings and Error Handling</strong>
+              <ul class="list-disc pl-4">
+                <li>Improved TypeScript interfaces for schematic options</li>
+                <li>Better error messages for misconfigured schematics</li>
+                <li>Type-safe template generation with stricter checks</li>
+                <li>Enhanced validation of schematic parameters</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Improved CLI Integration</strong>
+              <ul class="list-disc pl-4">
+                <li>Enhanced discovery and loading of third-party collections</li>
+                <li>Better performance when executing schematics</li>
+                <li>More accurate dependency resolution</li>
+                <li>Clearer CLI feedback during schematic execution</li>
+              </ul>
+            </li>
+            <li>
+              <strong>New Rule Helpers and Utilities</strong>
+              <ul class="list-disc pl-4">
+                <li>Additional path handling utilities for more flexible file manipulation</li>
+                <li>Enhanced template functions for interpolation</li>
+                <li>New utility functions for common schematic operations</li>
+                <li>Improved testing capabilities for custom schematics</li>
+                <button (click)="v19EnhancementsCodeEl.hidden = !v19EnhancementsCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #v19EnhancementsCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="v19EnhancementsCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Key Collection Types in Angular 19</p>
+          <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+            <thead>
+              <tr class="bg-gray-800 text-gray-100">
+                <th class="py-3 px-4 text-left">Collection Type</th>
+                <th class="py-3 px-4 text-left">Purpose</th>
+                <th class="py-3 px-4 text-left">Common Use Cases</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">@schematics/angular</td>
+                <td class="py-3 px-4">Core Angular generators</td>
+                <td class="py-3 px-4">Components, services, modules, interfaces</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">@angular/material</td>
+                <td class="py-3 px-4">Material UI components</td>
+                <td class="py-3 px-4">Material components, navigation, theming</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">@ngrx/schematics</td>
+                <td class="py-3 px-4">NgRx state management</td>
+                <td class="py-3 px-4">Stores, actions, reducers, effects</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">@nx/angular</td>
+                <td class="py-3 px-4">Nx workspace generators</td>
+                <td class="py-3 px-4">Libraries, applications, e2e tests</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Custom collections</td>
+                <td class="py-3 px-4">Organization-specific code generators</td>
+                <td class="py-3 px-4">Company-standard components, business logic</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="selectedTab === 2">
+          <!-- Best Practices Tab -->
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Define Default Collection in Workspace</strong>
+              <ul class="list-disc pl-4">
+                <li>Set a default collection in <code>angular.json</code> to avoid specifying it in every command</li>
+                <li>Configure with <code>"cli": {{ '{' }} "defaultCollection": "my-collection" {{ '}' }}</code></li>
+                <li>Use this for organization-specific or project-specific standardization</li>
+                <li>Ensure all developers know which collection is being used as default</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Configure Default Options for Common Schematics</strong>
+              <ul class="list-disc pl-4">
+                <li>Set default options for commonly used schematics in <code>angular.json</code></li>
+                <li>Use this to enforce standards like standalone components, OnPush change detection, etc.</li>
+                <li>Include reasonable defaults to reduce repetitive option flags</li>
+                <li>Document any non-standard defaults in project README</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Create Project-Specific Schematics</strong>
+              <ul class="list-disc pl-4">
+                <li>For large or complex projects, create custom schematics for common patterns</li>
+                <li>Build schematics for domain-specific components or features</li>
+                <li>Standardize layout components, forms, tables, or other recurring patterns</li>
+                <li>Include documentation generation in custom schematics</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Use Prompts for Better Developer Experience</strong>
+              <ul class="list-disc pl-4">
+                <li>Implement <code>x-prompt</code> properties in schematic schemas for interactive options</li>
+                <li>Provide clear descriptions and defaults for all options</li>
+                <li>Use enums or predefined lists for constrained choices</li>
+                <li>Implement validation to prevent common mistakes</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Test Custom Schematics Thoroughly</strong>
+              <ul class="list-disc pl-4">
+                <li>Use Angular's schematic testing utilities for unit tests</li>
+                <li>Test with multiple option combinations to ensure all paths work</li>
+                <li>Create integration tests that validate generated code compiles</li>
+                <li>Run a full <code>ng build</code> after generating with custom schematics</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Version and Document Collections</strong>
+              <ul class="list-disc pl-4">
+                <li>Maintain thorough documentation for custom collections</li>
+                <li>Include detailed descriptions of each schematic and its options</li>
+                <li>Follow semantic versioning for published collections</li>
+                <li>Document migration paths when making breaking changes</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div *ngIf="selectedTab === 3">
+          <!-- Pros and Cons Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Advantages of Using Collections</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Consistency</strong>: Ensures consistent code structure across a project or organization</li>
+              <li><strong>Productivity</strong>: Significantly speeds up repetitive code creation</li>
+              <li><strong>Standards Enforcement</strong>: Enforces architectural and code style standards</li>
+              <li><strong>Reduced Boilerplate</strong>: Minimizes manual creation of boilerplate code</li>
+              <li><strong>Knowledge Sharing</strong>: Encapsulates best practices in reusable generators</li>
+              <li><strong>Onboarding</strong>: Makes it easier for new developers to follow project patterns</li>
+              <li><strong>Customization</strong>: Can be tailored to specific business or project needs</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Challenges with Collections</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Learning Curve</strong>: Creating custom schematics requires specific knowledge</li>
+              <li><strong>Maintenance</strong>: Custom collections need ongoing maintenance as Angular evolves</li>
+              <li><strong>Over-Engineering</strong>: Risk of creating overly complex schematics for simple tasks</li>
+              <li><strong>Testing Complexity</strong>: Testing schematics thoroughly can be challenging</li>
+              <li><strong>Rigidity</strong>: Poorly designed schematics can be too restrictive</li>
+              <li><strong>Version Compatibility</strong>: Collections may need updates for new Angular versions</li>
+              <li><strong>Documentation Overhead</strong>: Custom collections require thorough documentation</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">When to Use Collections in Angular 19</p>
+            <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+              <thead>
+                <tr class="bg-gray-800 text-gray-100">
+                  <th class="py-3 px-4 text-left">Scenario</th>
+                  <th class="py-3 px-4 text-left">Recommendation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Small/personal projects</td>
+                  <td class="py-3 px-4">Use built-in Angular collections; customize defaults if needed</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">Medium-sized projects</td>
+                  <td class="py-3 px-4">Configure workspace defaults; consider third-party collections</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Large enterprise applications</td>
+                  <td class="py-3 px-4">Create custom collections for organization-specific patterns</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">Open-source libraries</td>
+                  <td class="py-3 px-4">Include schematics to simplify integration for consumers</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Monorepos/multi-project workspaces</td>
+                  <td class="py-3 px-4">Use specialized collections like Nx to manage project relationships</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab === 4">
+          <!-- Related Topics Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Angular CLI</strong>: Command-line tool that uses collections for code generation</li>
+              <li><strong>Schematics</strong>: Individual blueprints within collections that define what code to generate</li>
+              <li><strong>Workspace Configuration</strong>: Settings in angular.json that control collection behavior</li>
+              <li><strong>Builders</strong>: Similar to schematics but focused on build processes rather than code generation</li>
+              <li><strong>Angular DevKit</strong>: Framework underlying schematics and builders</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Collection FAQ</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li>
+                <strong>Q: How do I create a custom collection in Angular 19?</strong><br>
+                A: Start by installing the schematic utilities: <code>npm i -g @angular-devkit/schematics-cli</code>. Then create a new collection with <code>schematics blank --name=my-collection</code>. Add schematics to the collection by defining them in the collection.json file and implementing their logic in TypeScript files.
+              </li>
+              <li>
+                <strong>Q: How do I set a default collection for my workspace?</strong><br>
+                A: Add <code>"cli": {{ '{' }} "defaultCollection": "my-collection" {{ '}' }}</code> to your angular.json file at the root level. This will make the specified collection the default for all ng generate commands in the workspace.
+              </li>
+              <li>
+                <strong>Q: Can I combine multiple collections?</strong><br>
+                A: Yes, you can use schematics from different collections by explicitly specifying the collection name: <code>ng generate @my-collection/my-schematic</code>. You can also create a meta-collection that re-exports schematics from other collections.
+              </li>
+              <li>
+                <strong>Q: How do I update my custom collection for Angular 19?</strong><br>
+                A: Check for API changes in the Angular DevKit libraries. Update your dependencies to be compatible with Angular 19. Test your schematics with the new version to ensure they work correctly. Leverage the new typings and utilities introduced in Angular 19.
+              </li>
+              <li>
+                <strong>Q: What's new for collections in Angular 19?</strong><br>
+                A: Angular 19 improves schematic typings, adds new utility functions for path handling, enhances error reporting, and improves performance of schematic execution. It also adds better support for ESM modules and improves the testing utilities for schematics.
+              </li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Useful Resources</p>
+            <ul class="list-disc pl-4">
+              <li><a href="https://angular.dev/tools/cli/schematics" class="text-sky-400 hover:underline">Angular Schematics Guide</a></li>
+              <li><a href="https://angular.dev/tools/cli/generators" class="text-sky-400 hover:underline">Angular Generators Documentation</a></li>
+              <li><a href="https://angular.dev/guide/workspace-config" class="text-sky-400 hover:underline">Workspace Configuration Guide</a></li>
+              <li><a href="https://github.com/angular/angular-cli" class="text-sky-400 hover:underline">Angular CLI GitHub Repository</a></li>
+              <li><a href="https://nx.dev/angular/schematics/create-a-library" class="text-sky-400 hover:underline">Nx Schematics for Large Scale Applications</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

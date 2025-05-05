@@ -1,0 +1,5 @@
+ngOnDestroy() {
+  if (this.mySubscription) {
+    this.mySubscription.unsubscribe();
+  }
+}

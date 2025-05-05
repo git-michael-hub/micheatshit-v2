@@ -1,0 +1,531 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    styleUrl
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">styleUrl</span>
+      is a streamlined way to specify a single stylesheet for an Angular component, introduced in Angular 19. It provides a more concise alternative to the styleUrls array when only one stylesheet is needed, while still supporting advanced features like placeholder interpolation and relative paths.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What is styleUrl?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Simplified Style Declaration</strong>:
+      A more concise way to specify a single stylesheet for a component.
+    </li>
+    <li>
+      <strong>Alternative to styleUrls</strong>:
+      Provides a cleaner syntax when only one stylesheet is needed.
+    </li>
+    <li>
+      <strong>Enhanced in Angular 19</strong>:
+      Supports dynamic values, relative paths, and optimization features.
+    </li>
+    <li>
+      <strong>Compatible with styleUrls</strong>:
+      Can be used alongside styleUrls for additional stylesheets when needed.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic styleUrl Example</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="basicExampleCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Using styleUrl with Additional Styles</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="multipleStylesCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Combining styleUrl with Inline Styles</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="inlineWithStyleUrlCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Angular 19 styleUrl Enhancements</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="v19EnhancementsCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>styleUrl vs. styleUrls Comparison</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Feature</th>
+        <th class="py-3 px-4 text-left">styleUrl</th>
+        <th class="py-3 px-4 text-left">styleUrls</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Syntax</td>
+        <td class="py-3 px-4">Single string value</td>
+        <td class="py-3 px-4">Array of strings</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Multiple Stylesheets</td>
+        <td class="py-3 px-4">Not supported (single file only)</td>
+        <td class="py-3 px-4">Supported natively</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Dynamic Interpolation</td>
+        <td class="py-3 px-4">Supported in Angular 19+</td>
+        <td class="py-3 px-4">Limited support</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Bundle Optimization</td>
+        <td class="py-3 px-4">Enhanced in Angular 19</td>
+        <td class="py-3 px-4">Standard optimization</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Choose the Right Style Approach</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use styleUrl for Single Stylesheets</strong>:
+          When a component only needs one stylesheet, prefer styleUrl for cleaner syntax.
+        </li>
+        <li>
+          <strong>Combine with styleUrls When Necessary</strong>:
+          For components that need multiple stylesheets, use styleUrl for the main styles and styleUrls for additional style files.
+        </li>
+        <li>
+          <strong>Consider Inline Styles for Critical CSS</strong>:
+          Use the styles property alongside styleUrl for critical CSS that should load immediately.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Organize Styles Effectively</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Component-Specific Styles</strong>:
+          Keep component-specific styles in the file referenced by styleUrl.
+        </li>
+        <li>
+          <strong>Shared Styles</strong>:
+          Place shared styles in separate files and reference them with styleUrls.
+        </li>
+        <li>
+          <strong>Follow a Consistent Pattern</strong>:
+          Adopt a consistent approach across your application for better maintainability.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Dynamic Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Interpolation for Theming</strong>:
+          Take advantage of styleUrl interpolation for theme switching or feature toggles.
+        </li>
+        <li>
+          <strong>Implement Conditional Styling</strong>:
+          Use dynamic styleUrl paths to load different styles based on app state.
+        </li>
+        <li>
+          <strong>Plan for Reactivity</strong>:
+          Remember that changing variables in dynamic styleUrl paths will trigger style reloading.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize for Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Keep Stylesheet Size in Check</strong>:
+          Split large stylesheets into logical chunks to improve loading times.
+        </li>
+        <li>
+          <strong>Use Relative Paths Carefully</strong>:
+          Take advantage of relative path support in Angular 19+ for better organization.
+        </li>
+        <li>
+          <strong>Leverage Build Optimizations</strong>:
+          Angular 19's enhanced style bundling will help optimize styleUrl references.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Maintain Compatibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Check Version Support</strong>:
+          Remember that styleUrl is only fully supported in Angular 19+.
+        </li>
+        <li>
+          <strong>Provide Backwards Compatibility</strong>:
+          Consider using styleUrls for libraries that need to support older Angular versions.
+        </li>
+        <li>
+          <strong>Document Usage Patterns</strong>:
+          Clearly document your team's approach to using styleUrl vs. styleUrls.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Cleaner Syntax</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">More Concise</span>:
+          Simpler, more readable syntax for the common case of a single stylesheet.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Less Boilerplate</span>:
+          Eliminates unnecessary array syntax when only one stylesheet is needed.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Intuitive</span>:
+          Syntax more closely matches other component metadata properties.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Features in Angular 19</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Dynamic Paths</span>:
+          Support for interpolated values in stylesheet paths.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Improved Relative Paths</span>:
+          Better handling of relative paths with special prefixes like $styles/.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Bundle Optimization</span>:
+          Enhanced style bundling and tree-shaking for better performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Flexibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Compatible with styleUrls</span>:
+          Can be used alongside styleUrls for additional stylesheets.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Works with Inline Styles</span>:
+          Can be combined with the styles property for hybrid styling approaches.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Theme Switching</span>:
+          Supports theme switching through dynamic path interpolation.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Modern Development Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Aligns with Best Practices</span>:
+          Encourages component-specific stylesheets for better encapsulation.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">IDE Support</span>:
+          Better IDE integration and type checking for stylesheet paths.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Future-Ready</span>:
+          Prepared for future Angular styling enhancements.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Limited to Single Stylesheet</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">One File Only</span>:
+          Cannot specify multiple stylesheets directly with styleUrl alone.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Needs styleUrls Fallback</span>:
+          Still requires styleUrls for components with multiple stylesheet needs.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Potential Inconsistency</span>:
+          May lead to mixed usage patterns across an application.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Version Compatibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Angular 19+ Requirement</span>:
+          Enhanced features only available in Angular 19 and later.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Migration Concerns</span>:
+          Requires updating code when upgrading from older versions.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Library Compatibility</span>:
+          May not be suitable for libraries that support multiple Angular versions.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Dynamic Feature Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Runtime Changes</span>:
+          Changing interpolated values causes style reloading, which may impact performance.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Error Handling</span>:
+          Dynamic paths that resolve to missing files may be harder to debug.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Testing Complexity</span>:
+          Adds complexity to unit testing when styles are dynamically loaded.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Developer Adoption</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">New Pattern</span>:
+          Requires learning and adjusting to a new styling approach.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Team Consistency</span>:
+          May be challenging to ensure consistent usage across development teams.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Documentation</span>:
+          Newer feature with evolving best practices and documentation.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #topicsRef>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Component Styling</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Approaches to styling Angular components, including various options like inline styles, external stylesheets, and CSS-in-JS.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to styleUrl</strong>:
+          styleUrl is one approach to component styling that focuses on a single external stylesheet.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>View Encapsulation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          How Angular isolates component styles to prevent them from affecting other components.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to styleUrl</strong>:
+          Styles loaded via styleUrl still follow Angular's view encapsulation rules.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Theming</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Implementing theme support in Angular applications, allowing users to switch between different visual styles.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to styleUrl</strong>:
+          Dynamic styleUrl paths with interpolation can be used for theme switching.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Angular Builder</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Tools that process and bundle Angular applications during the build process.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to styleUrl</strong>:
+          Angular 19 builders include optimizations for styleUrl references and bundling.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>CSS Preprocessors</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Tools like Sass, Less, and Stylus that extend CSS with features like variables and nesting.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to styleUrl</strong>:
+          styleUrl supports preprocessor files just like styleUrls, using file extensions like .scss or .less.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Lazy Loading Styles</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Loading styles only when they are needed, typically alongside lazy-loaded components.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to styleUrl</strong>:
+          Styles specified with styleUrl in lazy-loaded components benefit from automatic lazy loading.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>CSS Modules</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          A CSS file in which all class names and animation names are scoped locally by default.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to styleUrl</strong>:
+          Angular's component styling approach with styleUrl provides similar benefits to CSS Modules through view encapsulation.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>

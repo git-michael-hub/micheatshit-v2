@@ -1,0 +1,68 @@
+import { Component, ElementRef, ViewChild, afterNextRender } from '@angular/core';
+// Import a third-party library
+import * as ChartJS from 'chart.js';
+
+@Component({
+  selector: 'app-chart',
+  template: `
+    <div class="chart-wrapper">
+      <canvas #chartCanvas></canvas>
+    </div>
+  `,
+  styles: [`
+    .chart-wrapper {
+      width: 100%;
+      height: 400px;
+    }
+  `]
+})
+export class ChartComponent {
+  @ViewChild('chartCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
+  private chart: any;
+
+  constructor() {
+    afterNextRender(() => {
+      // Canvas element is now in the DOM and has proper dimensions
+      this.initializeChart();
+    });
+  }
+
+  private initializeChart(): void {
+    const canvas = this.canvasRef.nativeElement;
+    const ctx = canvas.getContext('2d');
+
+    if (ctx) {
+      // Initialize Chart.js with the canvas
+      this.chart = new ChartJS.Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      });
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Clean up the chart when component is destroyed
+    if (this.chart) {
+      this.chart.destroy();
+    }
+  }
+}

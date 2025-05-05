@@ -1,0 +1,5 @@
+constructor(private el: ElementRef, private renderer: Renderer2) {}
+
+ngOnInit() {
+  this.renderer.setStyle(this.el.nativeElement, 'color', 'blue');
+}

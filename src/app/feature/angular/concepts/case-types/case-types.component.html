@@ -1,110 +1,370 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    case types
+    Case Types in Angular
   </p>
 
   <div class="text-content">
     <p>
-      Angular uses capitalization conventions to distinguish the names of various types, as described in the <a href="">naming guidelines section</a> of the Style Guide. Here is a summary of the case types:
+      <span class="text-zinc-50 tw-font-medium">Case Types</span>
+      in Angular 19 follow specific naming conventions that improve code readability, maintainability, and adherence to TypeScript and JavaScript best practices. These conventions apply to different elements like components, interfaces, services, and variables, each with its own recommended case style.
     </p>
 
     <br>
 
-    <div class="">
-      <table class="w-fit divide-gray-200">
-        <thead class="bg-gray-800">
-          <tr>
-            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-800 sm:pl-6"></th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">Details</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">Example</th>
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ol class="list-decimal px-4 text-sm">
+              <li>
+                <strong class="text-sky-400">Maintain Consistency</strong>
+                <ul class="list-disc pl-4">
+                  <li>Follow established conventions consistently throughout the project</li>
+                  <li>Establish team-wide conventions and document them</li>
+                  <li>Align with library conventions when working with specific libraries</li>
+                </ul>
+              </li>
+              <li>
+                <strong class="text-sky-400">Use Proper Casing for File Names</strong>
+                <ul class="list-disc pl-4">
+                  <li>Angular files should use kebab-case: user-profile.component.ts</li>
+                  <li>Always include appropriate suffixes (.component, .service, etc.)</li>
+                  <li>Use kebab-case for folder names as well</li>
+                </ul>
+              </li>
+              <li>
+                <strong class="text-sky-400">Component and Class Naming</strong>
+                <ul class="list-disc pl-4">
+                  <li>Use descriptive PascalCase names for component classes</li>
+                  <li>Always include appropriate suffixes (Component, Service, etc.)</li>
+                  <li>Use a consistent prefix for selectors (e.g., app-)</li>
+                </ul>
+              </li>
+              <li>
+                <strong class="text-sky-400">Constants and Configuration</strong>
+                <ul class="list-disc pl-4">
+                  <li>Prefer camelCase for constants in Angular 19 applications</li>
+                  <li>Reserve UPPER_SNAKE_CASE for truly immutable values</li>
+                  <li>Use camelCase for properties in configuration objects</li>
+                </ul>
+              </li>
+              <li>
+                <strong class="text-sky-400">Automated Enforcement</strong>
+                <ul class="list-disc pl-4">
+                  <li>Configure ESLint to enforce naming conventions</li>
+                  <li>Share editor config files across the team</li>
+                  <li>Use pre-commit hooks to validate naming conventions</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+          <div *ngSwitchCase="3">
+            <div class="text-sm">
+              <p class="font-semibold text-sky-400 mb-2">Benefits of Standardized Case Types</p>
+              <ul class="list-disc pl-4 mb-6">
+                <li><strong>Code Readability</strong>: Cases provide visual cues about element types</li>
+                <li><strong>Searchability</strong>: Consistent casing improves search in large codebases</li>
+                <li><strong>Framework Alignment</strong>: Follows TypeScript and JavaScript best practices</li>
+                <li><strong>Automated Tooling</strong>: Enables effective linting and code generation</li>
+                <li><strong>Reduced Cognitive Load</strong>: Developers follow established patterns</li>
+              </ul>
 
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200 bg-gray-800">
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-              camelCase
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              Symbols, properties, methods, pipe names, non-component directive selectors, constants.
-              <br>
-              Standard or lower camel case uses lowercase on the first letter of the item.
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              <code>selectedHero</code>
-            </td>
-          </tr>
+              <p class="font-semibold text-sky-400 mb-2">Challenges with Case Types</p>
+              <ul class="list-disc pl-4 mb-6">
+                <li><strong>Legacy Integration</strong>: May conflict with older codebases</li>
+                <li><strong>Library Conflicts</strong>: Third-party libraries may use different conventions</li>
+                <li><strong>Cross-Language Projects</strong>: Different languages have different conventions</li>
+                <li><strong>Learning Curve</strong>: New team members may need to adapt</li>
+                <li><strong>Constants Debate</strong>: Ongoing camelCase vs. UPPER_SNAKE_CASE discussion</li>
+              </ul>
 
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-              UpperCamelCase
-              <br>
-              PascalCase
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              Class names, including classes that define components, interfaces, NgModules, directives, and pipes.
-              <br>
-              Upper camel case uses uppercase on the first letter of the item.
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              <code>HeroComponent</code>
-            </td>
-          </tr>
+              <p class="font-semibold text-sky-400 mb-2">Case Type Evolution in Angular</p>
+              <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+                <thead>
+                  <tr class="bg-gray-800 text-gray-100">
+                    <th class="py-3 px-4 text-left">Early Angular</th>
+                    <th class="py-3 px-4 text-left">Angular 19</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-700 bg-gray-900">
+                    <td class="py-3 px-4">UPPER_SNAKE_CASE common for constants</td>
+                    <td class="py-3 px-4">camelCase preferred for most constants</td>
+                  </tr>
+                  <tr class="border-b border-gray-700 bg-gray-950">
+                    <td class="py-3 px-4">Less strict naming requirements</td>
+                    <td class="py-3 px-4">More formalized conventions in style guide</td>
+                  </tr>
+                  <tr class="border-b border-gray-700 bg-gray-900">
+                    <td class="py-3 px-4">Module-based structure influenced naming</td>
+                    <td class="py-3 px-4">Standalone components maintain same patterns</td>
+                  </tr>
+                  <tr class="border-b border-gray-700 bg-gray-950">
+                    <td class="py-3 px-4">Limited signal/reactive naming guidance</td>
+                    <td class="py-3 px-4">Clear naming patterns for signals and reactive primitives</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div *ngSwitchCase="4">
+            <div class="text-sm">
+              <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+              <ul class="list-disc pl-4 mb-6">
+                <li><strong>Style Guide</strong>: Official guide with naming recommendations</li>
+                <li><strong>Angular CLI</strong>: Generates files with proper conventions</li>
+                <li><strong>ESLint Configuration</strong>: Enforces case conventions</li>
+                <li><strong>TypeScript Conventions</strong>: Angular follows TypeScript patterns</li>
+                <li><strong>Component Architecture</strong>: Cases distinguish architectural elements</li>
+              </ul>
 
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-              dash-case
-              <br>
-              kebab-case
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              Descriptive part of file names, component selectors.
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              <code>app-hero-list</code>
-            </td>
-          </tr>
+              <p class="font-semibold text-sky-400 mb-2">Case Type FAQ</p>
+              <ul class="list-disc pl-4 mb-6">
+                <li>
+                  <strong>Q: camelCase or UPPER_SNAKE_CASE for constants?</strong><br>
+                  A: Angular 19 prefers camelCase for most constants, reserving UPPER_SNAKE_CASE for special configuration
+                </li>
+                <li>
+                  <strong>Q: How to name signals in Angular 19?</strong><br>
+                  A: Use camelCase for signals just like regular properties
+                </li>
+                <li>
+                  <strong>Q: Where to use kebab-case?</strong><br>
+                  A: Only for selectors in decorators and file names, not for TypeScript variables
+                </li>
+                <li>
+                  <strong>Q: Do standalone components follow the same conventions?</strong><br>
+                  A: Yes, PascalCase for class names and kebab-case for selectors
+                </li>
+                <li>
+                  <strong>Q: How to name services?</strong><br>
+                  A: PascalCase with a descriptive name and 'Service' suffix
+                </li>
+              </ul>
 
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-              underscore_case
-              <br>
-              snake_case
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              Not typically used in Angular.
-              <br>
-              Snake case uses words connected with underscores.
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              <code>convert_link_mode</code>
-            </td>
-          </tr>
+              <p class="font-semibold text-sky-400 mb-2">Useful Resources</p>
+              <ul class="list-disc pl-4">
+                <li><a href="https://angular.dev/style-guide" class="text-sky-400 hover:underline">Angular Style Guide</a></li>
+                <li><a href="https://typescript-eslint.io/rules/" class="text-sky-400 hover:underline">TypeScript ESLint Rules</a></li>
+                <li><a href="https://github.com/angular-eslint/angular-eslint" class="text-sky-400 hover:underline">Angular ESLint</a></li>
+                <li><a href="https://angular.dev/guide/signals" class="text-sky-400 hover:underline">Angular Signals Guide</a></li>
+                <li><a href="https://angular.dev/guide/standalone-components" class="text-sky-400 hover:underline">Standalone Components Guide</a></li>
+              </ul>
+            </div>
+          </div>
+          <div *ngSwitchDefault>
+            <p>Case Types in Angular 19</p>
+            <div class="overflow-x-auto">
+              <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+                <thead>
+                  <tr class="bg-gray-800 text-gray-100">
+                    <th class="py-3 px-4 text-left">Case Type</th>
+                    <th class="py-3 px-4 text-left">Usage</th>
+                    <th class="py-3 px-4 text-left">Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                    <td class="py-3 px-4 text-rose-400 font-medium">camelCase</td>
+                    <td class="py-3 px-4">
+                      <ul class="list-disc pl-4">
+                        <li>Properties</li>
+                        <li>Variables</li>
+                        <li>Methods</li>
+                        <li>Function names</li>
+                        <li>Signal declarations</li>
+                        <li>Input/Output properties</li>
+                      </ul>
+                    </td>
+                    <td class="py-3 px-4 font-mono">
+                      userName<br>
+                      firstName<br>
+                      getUserData()<br>
+                      httpClient<br>
+                      counterValue = signal(0)
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                    <td class="py-3 px-4 text-rose-400 font-medium">PascalCase</td>
+                    <td class="py-3 px-4">
+                      <ul class="list-disc pl-4">
+                        <li>Classes</li>
+                        <li>Interfaces</li>
+                        <li>Type aliases</li>
+                        <li>Enums</li>
+                        <li>Components</li>
+                        <li>Directives</li>
+                        <li>Pipes</li>
+                      </ul>
+                    </td>
+                    <td class="py-3 px-4 font-mono">
+                      UserProfile<br>
+                      AuthService<br>
+                      AppComponent<br>
+                      HoverDirective<br>
+                      DateFormatPipe
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                    <td class="py-3 px-4 text-rose-400 font-medium">kebab-case</td>
+                    <td class="py-3 px-4">
+                      <ul class="list-disc pl-4">
+                        <li>Component selectors</li>
+                        <li>File names</li>
+                        <li>Directive selectors</li>
+                        <li>Custom elements</li>
+                        <li>Angular CLI commands</li>
+                      </ul>
+                    </td>
+                    <td class="py-3 px-4 font-mono">
+                      app-user-profile<br>
+                      user-profile.component.ts<br>
+                      app-hover-effect<br>
+                      ng-container
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                    <td class="py-3 px-4 text-rose-400 font-medium">UPPER_SNAKE_CASE</td>
+                    <td class="py-3 px-4">
+                      <ul class="list-disc pl-4">
+                        <li>Traditional constants</li>
+                        <li>Enum values (sometimes)</li>
+                        <li>Hard-coded config values</li>
+                      </ul>
+                    </td>
+                    <td class="py-3 px-4 font-mono">
+                      MAX_RETRY_ATTEMPTS<br>
+                      DEFAULT_LANGUAGE<br>
+                      API_ENDPOINTS
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                    <td class="py-3 px-4 text-rose-400 font-medium">snake_case</td>
+                    <td class="py-3 px-4">
+                      <ul class="list-disc pl-4">
+                        <li>Not commonly used in Angular</li>
+                        <li>Sometimes in configuration files</li>
+                        <li>Legacy code bases</li>
+                      </ul>
+                    </td>
+                    <td class="py-3 px-4 font-mono">
+                      user_profile<br>
+                      convert_currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-              UPPER_UNDERSCORE_CASE
-              <br>
-              UPPER_SNAKE_CASE
-              <br>
-              SCREAMING_SNAKE_CASE
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              Traditional for constants.
-              <br>
-              This case is acceptable, but camelCase is preferred.
-              <br>
-              Upper snake case uses words in all capital letters connected with underscores.
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              <code>FIX_ME</code>
-            </td>
-          </tr>
+            <br>
+            <br>
 
-        </tbody>
-      </table>
+            <p>Angular 19 Case Type Guidelines</p>
+            <ol class="list-decimal pl-4 text-sm">
+              <li>
+                <strong>Signals and Reactivity</strong>:
+                <ul class="list-disc pl-4">
+                  <li>Signal declarations use camelCase like regular properties</li>
+                  <li>Signal accessors maintain camelCase in templates</li>
+                  <li>Computed signals follow the same pattern</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Standalone Components</strong>:
+                <ul class="list-disc pl-4">
+                  <li>Follow the same casing rules as NgModule-based components</li>
+                  <li>Class names: PascalCase</li>
+                  <li>Selector: kebab-case</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Type Safety Enhancements</strong>:
+                <ul class="list-disc pl-4">
+                  <li>Interface names use PascalCase</li>
+                  <li>Type aliases use PascalCase</li>
+                  <li>Generic type parameters use PascalCase, typically single letters</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Angular Control Flow</strong>:
+                <ul class="list-disc pl-4">
+                  <li>New control flow keywords (&#64;if, &#64;for, &#64;switch) are lowercase in templates</li>
+                  <li>Template variables are camelCase</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Configuration and Constants</strong>:
+                <ul class="list-disc pl-4">
+                  <li>Angular 19 recommends camelCase for constants</li>
+                  <li>Configuration objects use camelCase</li>
+                  <li>UPPER_SNAKE_CASE is acceptable but camelCase is preferred</li>
+                </ul>
+              </li>
+            </ol>
+
+            <br>
+            <br>
+
+            <p>Code Examples</p>
+            <ul class="list-disc pl-4 text-sm">
+              <li>
+                <strong>Component Example</strong>:
+                <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #code1 hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="componentCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </li>
+              <li>
+                <strong>Interface and Type Example</strong>:
+                <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #code2 hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="interfaceCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </li>
+              <li>
+                <strong>Constants Example</strong>:
+                <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #code3 hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="constantsCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
+      </div>
     </div>
-
   </div>
 </section>
 

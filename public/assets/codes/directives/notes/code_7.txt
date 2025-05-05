@@ -1,0 +1,1 @@
+@HostListener('click', ['$event']) onClick(event: Event) {}

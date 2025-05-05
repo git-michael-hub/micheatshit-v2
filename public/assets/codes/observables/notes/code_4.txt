@@ -1,0 +1,14 @@
+import { Subject } from 'rxjs';
+
+const mySubject = new Subject<number>();
+
+mySubject.subscribe(
+  next => console.log(`Subscriber 1: ${next}`)
+);
+
+mySubject.subscribe(
+  next => console.log(`Subscriber 2: ${next}`)
+);
+
+mySubject.next(1);
+mySubject.next(2);

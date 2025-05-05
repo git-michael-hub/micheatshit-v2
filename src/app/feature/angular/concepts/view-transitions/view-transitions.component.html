@@ -1,0 +1,240 @@
+<div class="container">
+  <h1>View Transitions API in Angular</h1>
+  <p>
+    Angular 19 introduces integration with the Web View Transitions API, which provides a standardized way to create smooth, animated transitions between different views and states in your web applications.
+  </p>
+
+  <div class="tab-navigation">
+    <button
+      type="button"
+      [class.active]="selectedTab === 'notes'"
+      (click)="selectedTab = 'notes'">
+      Notes
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'bestPractices'"
+      (click)="selectedTab = 'bestPractices'">
+      Best Practices
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'prosCons'"
+      (click)="selectedTab = 'prosCons'">
+      Pros and Cons
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedTab === 'relatedTopics'"
+      (click)="selectedTab = 'relatedTopics'">
+      Related Topics
+    </button>
+  </div>
+
+  <ng-container [ngSwitch]="selectedTab">
+    <ng-container *ngSwitchCase="'notes'">
+      <ng-container *ngTemplateOutlet="notesTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'bestPractices'">
+      <ng-container *ngTemplateOutlet="bestPracticesTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'prosCons'">
+      <ng-container *ngTemplateOutlet="prosConsTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'relatedTopics'">
+      <ng-container *ngTemplateOutlet="relatedTopicsTemplate"></ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #notesTemplate>
+  <h2>Overview</h2>
+  <p>
+    The View Transitions API provides a standardized way to animate changes in your web application, making page and state transitions more visually appealing and improving user experience.
+  </p>
+
+  <h3>Key Features:</h3>
+  <ul>
+    <li>Smooth transitions between routes</li>
+    <li>API integration with Angular Router</li>
+    <li>Control over transition timing and effects</li>
+    <li>Support for cross-fade, slide, and custom transitions</li>
+    <li>Browser-native implementation for performance</li>
+  </ul>
+
+  <h3>Basic Example:</h3>
+  <div class="code-container">
+    <pre><code [highlight]="basicExampleCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Integration with Angular Router</h3>
+  <p>
+    Angular 19 provides built-in integration with the Router through the <code>withViewTransitions</code> feature:
+  </p>
+  <div class="code-container">
+    <pre><code [highlight]="routerExampleCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Customizing Transitions</h3>
+  <p>
+    You can customize how transitions work with configuration options:
+  </p>
+  <div class="code-container">
+    <pre><code [highlight]="customTransitionsCode" [languages]="['typescript']"></code></pre>
+  </div>
+
+  <h3>Targeted Transitions</h3>
+  <p>
+    Angular allows you to specify different transitions for different links:
+  </p>
+  <div class="code-container">
+    <pre><code [highlight]="targetedTransitionsCode" [languages]="['typescript']"></code></pre>
+  </div>
+</ng-template>
+
+<ng-template #bestPracticesTemplate>
+  <h2>Best Practices</h2>
+
+  <ul>
+    <li>
+      <strong>Keep transitions short:</strong> Aim for transitions that are 300ms or less. Anything longer can make your app feel sluggish.
+    </li>
+    <li>
+      <strong>Use appropriate easing:</strong> Different easings communicate different feelings. For most UI transitions, use ease-out or ease-in-out.
+    </li>
+    <li>
+      <strong>Consider reduced motion preferences:</strong> Respect user preferences for reduced motion using media queries.
+    </li>
+    <li>
+      <strong>Test across browsers:</strong> View Transitions API has varying levels of support across browsers.
+    </li>
+    <li>
+      <strong>Provide fallbacks:</strong> Have CSS-only fallbacks for browsers that don't support View Transitions API.
+    </li>
+    <li>
+      <strong>Don't overuse:</strong> Transitions should enhance UX, not distract from it. Use them purposefully.
+    </li>
+    <li>
+      <strong>Consider performance:</strong> Transition complex UIs carefully to avoid janky animations.
+    </li>
+  </ul>
+
+  <h3>Implementation Patterns</h3>
+  <ol>
+    <li>
+      <strong>Route Transitions:</strong> Use with router navigation to transition between pages.
+    </li>
+    <li>
+      <strong>Component State Transitions:</strong> Apply when component's internal state changes significantly.
+    </li>
+    <li>
+      <strong>List Item Transitions:</strong> Use when items are added/removed from lists.
+    </li>
+    <li>
+      <strong>Form Feedback Transitions:</strong> Apply subtle transitions for form validations and submissions.
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsTemplate>
+  <h2>Pros and Cons</h2>
+
+  <h3>Advantages</h3>
+  <ul>
+    <li><strong>Native Performance:</strong> Uses browser's native capabilities for smooth animations</li>
+    <li><strong>Easy Integration:</strong> Simple to add to existing Angular applications</li>
+    <li><strong>Better UX:</strong> Improves user experience by providing visual continuity</li>
+    <li><strong>Angular Integration:</strong> Built-in support with Router and declarative syntax</li>
+    <li><strong>Standardized:</strong> Uses web standards rather than framework-specific solutions</li>
+  </ul>
+
+  <h3>Limitations</h3>
+  <ul>
+    <li><strong>Browser Support:</strong> Not fully supported in all browsers</li>
+    <li><strong>Complex Transitions:</strong> Advanced transitions may require additional work</li>
+    <li><strong>Performance Overhead:</strong> Can introduce performance issues if overused</li>
+    <li><strong>Accessibility Concerns:</strong> Need to consider users who prefer reduced motion</li>
+  </ul>
+
+  <h3>Comparison with Other Animation Approaches</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>View Transitions API</th>
+        <th>Angular Animations</th>
+        <th>CSS Transitions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Performance</td>
+        <td>Excellent (browser-native)</td>
+        <td>Good</td>
+        <td>Very Good</td>
+      </tr>
+      <tr>
+        <td>Complexity</td>
+        <td>Medium</td>
+        <td>High</td>
+        <td>Low</td>
+      </tr>
+      <tr>
+        <td>Control</td>
+        <td>Medium</td>
+        <td>High</td>
+        <td>Limited</td>
+      </tr>
+      <tr>
+        <td>Browser Support</td>
+        <td>Limited</td>
+        <td>Excellent</td>
+        <td>Excellent</td>
+      </tr>
+      <tr>
+        <td>Integration with Router</td>
+        <td>Built-in with Angular 19</td>
+        <td>Yes, with setup</td>
+        <td>Requires manual integration</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #relatedTopicsTemplate>
+  <h2>Related Topics</h2>
+
+  <ul>
+    <li>
+      <strong>Angular Router:</strong> Works closely with the Router for page transitions
+    </li>
+    <li>
+      <strong>Angular Animations:</strong> Can be used alongside View Transitions for more complex animations
+    </li>
+    <li>
+      <strong>CSS Animations:</strong> Used as fallbacks for browsers without View Transitions support
+    </li>
+    <li>
+      <strong>Server-Side Rendering (SSR):</strong> View Transitions can enhance user experience in SSR applications
+    </li>
+    <li>
+      <strong>Performance Optimization:</strong> Understanding browser rendering to optimize transitions
+    </li>
+    <li>
+      <strong>Accessibility:</strong> Ensuring transitions don't affect users with motion sensitivity
+    </li>
+  </ul>
+
+  <h3>Further Reading</h3>
+  <ul>
+    <li>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API" target="_blank">MDN Web Docs: View Transitions API</a>
+    </li>
+    <li>
+      <a href="https://angular.dev/guide/animations" target="_blank">Angular Animations Guide</a>
+    </li>
+    <li>
+      <a href="https://angular.dev/guide/routing" target="_blank">Angular Routing & Navigation</a>
+    </li>
+  </ul>
+</ng-template>

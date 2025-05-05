@@ -1,25 +1,404 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    bootstrap
+    Bootstrapping Angular Applications
   </p>
 
   <div class="text-content">
     <p>
-      A way to initialize and launch an application or system.
+      <span class="text-zinc-50 tw-font-medium">Bootstrapping</span>
+      in Angular 19 is the process of initializing and launching an application. Angular 19 provides a modern, streamlined bootstrapping approach that focuses on performance, flexibility, and developer experience with support for standalone components, zoneless operation, and server-side rendering.
     </p>
 
     <br>
 
-    <p>
-      In Angular, the <code>AppModule</code> root NgModule of an application has a <code>bootstrap</code> property that identifies the top-level <a href="">components</a> of the application. During the bootstrap process, Angular creates and inserts these components into the <code>index.html</code> host web page. You can bootstrap multiple applications in the same <code>index.html</code>. Each application contains its own components.
-    </p>
-
-    <br>
-
-    <p>
-      Learn more in <a href="">Bootstrapping</a>.
-    </p>
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </section>
+
+<ng-template #notesRef>
+  <p>Angular 19 Bootstrapping Methods</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Standalone Component Bootstrapping</strong>:
+      Bootstrap directly with a standalone root component without a root NgModule.
+    </li>
+    <li>
+      <strong>Zoneless Bootstrapping</strong>:
+      Bootstrap without Zone.js for better performance and more explicit change detection.
+    </li>
+    <li>
+      <strong>Server-Side Rendering (SSR) Bootstrap</strong>:
+      Specialized bootstrapping for server-rendered applications with hydration.
+    </li>
+    <li>
+      <strong>Progressive Web App Bootstrap</strong>:
+      Bootstrap with service worker integration for offline capabilities.
+    </li>
+    <li>
+      <strong>Multiple App Bootstrap</strong>:
+      Bootstrap multiple Angular applications in the same page.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Bootstrapping Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Streamlined Configuration API</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 provides a cleaner, more modular approach to application configuration using provider functions.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Advanced Dependency Injection</strong>:
+      <ul class="list-disc pl-4">
+        <li>Improved provider handling with more granular control over provider scopes and environments.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Optimized Hydration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Better client-side hydration for server-rendered applications with preserved DOM state and minimized layout shifts.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Stable Zoneless Operation</strong>:
+      <ul class="list-disc pl-4">
+        <li>Fully stabilized zoneless change detection that eliminates the need for Zone.js, reducing bundle size and improving runtime performance.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Server-Side Rendering</strong>:
+      <ul class="list-disc pl-4">
+        <li>Improved integration with modern server environments including support for partial hydration and streaming.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Bootstrapping Code Examples</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Standalone Component Bootstrapping (main.ts)</strong>:
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="mainTsCode" [languages]="['typescript']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Application Configuration (app.config.ts)</strong>:
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="appConfigCode" [languages]="['typescript']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Standalone Root Component</strong>:
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="appComponentCode" [languages]="['typescript']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Zoneless Bootstrapping</strong>:
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="zonelessBootstrapCode" [languages]="['typescript']"></code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Server-Side Rendering Bootstrap</strong>:
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+        <pre>
+          <code [highlight]="serverBootstrapCode" [languages]="['typescript']"></code>
+        </pre>
+      </span>
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Bootstrapping Providers Reference</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Provider Function</th>
+        <th class="py-3 px-4 text-left">Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>provideRouter()</code></td>
+        <td class="py-3 px-4">Configure routing capabilities for the application</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>provideHttpClient()</code></td>
+        <td class="py-3 px-4">Enable HTTP capabilities with optional features like fetch API</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>provideClientHydration()</code></td>
+        <td class="py-3 px-4">Enable client-side hydration for server-rendered applications</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>provideAnimations()</code></td>
+        <td class="py-3 px-4">Configure animation capabilities for the application</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>provideZoneChangeDetection()</code></td>
+        <td class="py-3 px-4">Configure change detection with or without Zone.js</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Standalone Component Bootstrapping</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Default for New Applications</strong>:
+          Use standalone bootstrapping for all new Angular 19 applications for a more streamlined experience.
+        </li>
+        <li>
+          <strong>Use Application Config</strong>:
+          Keep the configuration in a separate app.config.ts file to maintain clean separation of concerns.
+        </li>
+        <li>
+          <strong>Explicit Provider Functions</strong>:
+          Use the provider functions (provideX) instead of direct provider arrays for better tree-shaking.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Consider Zoneless Bootstrapping</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Evaluate Performance Benefits</strong>:
+          Measure if the zoneless approach provides meaningful benefits for your specific application.
+        </li>
+        <li>
+          <strong>Signal-Based Components</strong>:
+          If using zoneless bootstrapping, ensure components use signals for state management.
+        </li>
+        <li>
+          <strong>Manual Change Detection</strong>:
+          Be disciplined about triggering change detection manually when needed in zoneless mode.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Server-Side Rendering</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Enable Partial Hydration</strong>:
+          Configure bootstrapping to support partial hydration for better performance.
+        </li>
+        <li>
+          <strong>Use Transfer State</strong>:
+          Configure state transfer between server and client to avoid duplicate data fetching.
+        </li>
+        <li>
+          <strong>Appropriate Prerendering Strategy</strong>:
+          Choose between static prerendering and dynamic SSR based on content update frequency.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Configure for Production</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Environment-Specific Configuration</strong>:
+          Use different bootstrap configurations for development and production.
+        </li>
+        <li>
+          <strong>Enable Strict Mode</strong>:
+          Bootstrap with strict runtime checks during development but disable for production.
+        </li>
+        <li>
+          <strong>Configure Error Handling</strong>:
+          Add global error handling during bootstrap to gracefully handle application errors.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Consider Progressive Web App Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Service Worker Registration</strong>:
+          Configure service worker during bootstrap for offline capabilities.
+        </li>
+        <li>
+          <strong>Lazy Loading Strategy</strong>:
+          Plan your bootstrapping to support efficient lazy loading of application modules.
+        </li>
+        <li>
+          <strong>Initial Render Optimization</strong>:
+          Bootstrap with a focus on fast initial rendering through preloading critical components.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Advantages of Angular 19 Bootstrapping</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Simplified Configuration</strong>: More intuitive application setup with provider functions</li>
+      <li><strong>Better Performance</strong>: Zoneless bootstrapping and optimized change detection</li>
+      <li><strong>Improved Tree-shaking</strong>: More granular inclusion of framework features</li>
+      <li><strong>Enhanced SSR Support</strong>: Better hydration and server integration</li>
+      <li><strong>Modular Provider System</strong>: Ability to conditionally include or configure providers</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Challenges</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Migration Complexity</strong>: Adapting existing NgModule-based applications can be challenging</li>
+      <li><strong>Zoneless Learning Curve</strong>: Understanding when to trigger change detection manually</li>
+      <li><strong>Configuration Spread</strong>: Application configuration can be spread across multiple files</li>
+      <li><strong>Third-party Library Compatibility</strong>: Some libraries may not be fully compatible with new bootstrapping</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">NgModule vs. Standalone Bootstrapping</p>
+    <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+      <thead>
+        <tr class="bg-gray-800 text-gray-100">
+          <th class="py-3 px-4 text-left">Feature</th>
+          <th class="py-3 px-4 text-left">NgModule Bootstrapping</th>
+          <th class="py-3 px-4 text-left">Standalone Bootstrapping</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Configuration</td>
+          <td class="py-3 px-4">Via module imports and providers</td>
+          <td class="py-3 px-4">Via provider functions</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Bundle Size</td>
+          <td class="py-3 px-4">Potentially larger due to module structure</td>
+          <td class="py-3 px-4">Typically smaller with better tree-shaking</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Compatibility</td>
+          <td class="py-3 px-4">Works with all Angular libraries</td>
+          <td class="py-3 px-4">May require adapters for older libraries</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+          <td class="py-3 px-4">Flexibility</td>
+          <td class="py-3 px-4">Constrained by module boundaries</td>
+          <td class="py-3 px-4">More granular control over dependencies</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Related Angular 19 Features</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Standalone Components</strong>: Self-contained components that don't require NgModules</li>
+      <li><strong>Server-Side Rendering</strong>: Rendering Angular applications on the server</li>
+      <li><strong>Hydration</strong>: Process of attaching event listeners to server-rendered HTML</li>
+      <li><strong>Signals</strong>: Reactive primitives for state management and change detection</li>
+      <li><strong>Dependency Injection</strong>: Framework for providing services to components</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Advanced Bootstrapping Scenarios</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Multiple Apps in One Page</strong>: Bootstrapping separate Angular applications in different DOM elements</li>
+      <li><strong>Dynamic Component Loading</strong>: Loading components programmatically after bootstrap</li>
+      <li><strong>Micro-Frontend Architecture</strong>: Creating modular applications with separate bootstrapping</li>
+      <li><strong>Testing Environment Setup</strong>: Bootstrapping components for isolated testing</li>
+      <li><strong>Custom Elements Integration</strong>: Bootstrapping Angular as web components</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Performance Considerations</p>
+    <ul class="list-disc pl-4">
+      <li>Zoneless bootstrapping for applications with frequent updates</li>
+      <li>Server-side rendering for improved initial load performance</li>
+      <li>Deferred loading of non-critical components</li>
+      <li>Strategic preloading of commonly accessed features</li>
+      <li>Environment-specific providers for development vs. production</li>
+      <li>Careful configuration of global providers to minimize bundle size</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mt-6 mb-2">Recommended Documentation</p>
+    <ul class="list-disc pl-4">
+      <li><a href="https://angular.dev/guide/standalone-components" class="text-sky-400 hover:underline">Angular.dev: Standalone Components</a></li>
+      <li><a href="https://angular.dev/guide/ssr" class="text-sky-400 hover:underline">Angular.dev: Server-side Rendering</a></li>
+      <li><a href="https://angular.dev/guide/signals" class="text-sky-400 hover:underline">Angular.dev: Signals</a></li>
+      <li><a href="https://angular.dev/guide/dependency-injection" class="text-sky-400 hover:underline">Angular.dev: Dependency Injection</a></li>
+    </ul>
+  </div>
+</ng-template>
 
 

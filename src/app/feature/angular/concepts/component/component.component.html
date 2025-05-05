@@ -1,0 +1,362 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Components in Angular
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Components</span>
+      are the fundamental building blocks of Angular applications. They encapsulate the template, styles, and behavior for a specific part of the UI. Each component defines a TypeScript class with application logic and is associated with an HTML template that defines the view. In Angular 19, components have been enhanced with improved performance, streamlined APIs, and tighter integration with signals and other modern Angular features.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <div *ngIf="selectedTab === 1">
+          <!-- Notes Tab -->
+          <p>Component Fundamentals</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Basic Component Structure</strong>
+              <ul class="list-disc pl-4">
+                <li>Components consist of a TypeScript class with the <code>@Component</code> decorator</li>
+                <li>Every component needs a template (inline or external) defining its view</li>
+                <li>Components can include styles, which are encapsulated by default</li>
+                <li>Modern components are typically standalone and self-contained</li>
+                <button (click)="basicComponentCodeEl.hidden = !basicComponentCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #basicComponentCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="basicComponentCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>Component Decorators and Metadata</strong>
+              <ul class="list-disc pl-4">
+                <li><code>@Component</code> defines the core metadata for a component</li>
+                <li>Selector specifies the custom HTML tag used to instantiate the component</li>
+                <li>Templates can be defined inline with <code>template</code> or externally with <code>templateUrl</code></li>
+                <li>Similarly, styles can be defined with <code>styles</code> or <code>styleUrls</code></li>
+                <li>The <code>changeDetection</code> property controls how Angular detects changes</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Component Lifecycle</strong>
+              <ul class="list-disc pl-4">
+                <li>Components have a well-defined lifecycle with specific hooks</li>
+                <li>Angular calls these hooks at specific times during component execution</li>
+                <li>Common hooks include <code>ngOnInit</code>, <code>ngOnChanges</code>, and <code>ngOnDestroy</code></li>
+                <li>Lifecycle hooks allow implementing custom logic at different stages</li>
+                <button (click)="lifecycleHooksCodeEl.hidden = !lifecycleHooksCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #lifecycleHooksCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="lifecycleHooksCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Angular 19 Component Enhancements</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Signal-based Components</strong>
+              <ul class="list-disc pl-4">
+                <li>Angular 19 fully integrates signals into the component architecture</li>
+                <li>Signal-based inputs simplify component communication</li>
+                <li>Signal-based reactive state management is more efficient than traditional approaches</li>
+                <li>Change detection is more granular and performance is improved</li>
+                <button (click)="signalComponentCodeEl.hidden = !signalComponentCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #signalComponentCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="signalComponentCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>Deferrable Components &amp; Views</strong>
+              <ul class="list-disc pl-4">
+                <li>Angular 19 introduces the <code>@defer</code> block for lazy-loading component content</li>
+                <li>Deferred content loads only when specified conditions are met</li>
+                <li>Loading, placeholder, and error states can be specified</li>
+                <li>This feature enhances initial page load performance</li>
+                <button (click)="deferredComponentsCodeEl.hidden = !deferredComponentsCodeEl.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+                <span #deferredComponentsCodeEl hidden copyToClipboard>
+                  <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                    <span>typescript</span>
+                    <span class="copy-button-wrapper bg-gray-700"></span>
+                  </div>
+                  <pre>
+                    <code [highlight]="deferredComponentsCode" [languages]="['typescript']"></code>
+                  </pre>
+                </span>
+              </ul>
+            </li>
+            <li>
+              <strong>Hydration Improvements</strong>
+              <ul class="list-disc pl-4">
+                <li>Components can now specify their hydration strategy</li>
+                <li>Partial hydration allows for more efficient client-side reuse of server-rendered components</li>
+                <li>Components can be marked for manual hydration in performance-critical applications</li>
+                <li>These features result in faster First Contentful Paint and Time to Interactive metrics</li>
+              </ul>
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Component Types in Angular 19</p>
+          <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+            <thead>
+              <tr class="bg-gray-800 text-gray-100">
+                <th class="py-3 px-4 text-left">Component Type</th>
+                <th class="py-3 px-4 text-left">Description</th>
+                <th class="py-3 px-4 text-left">Angular 19 Features</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Standalone Components</td>
+                <td class="py-3 px-4">Self-contained, don't require NgModules</td>
+                <td class="py-3 px-4">Improved performance, simplified dependencies</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Presentational Components</td>
+                <td class="py-3 px-4">Focus on UI, receive data via inputs</td>
+                <td class="py-3 px-4">Signal inputs, performance optimizations</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Container Components</td>
+                <td class="py-3 px-4">Handle data fetching and state management</td>
+                <td class="py-3 px-4">Improved signal-based state management</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Dynamic Components</td>
+                <td class="py-3 px-4">Created and loaded at runtime</td>
+                <td class="py-3 px-4">Enhanced dynamic component loading API</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Layout Components</td>
+                <td class="py-3 px-4">Structure other components, often use content projection</td>
+                <td class="py-3 px-4">Enhanced content projection performance</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Page/Route Components</td>
+                <td class="py-3 px-4">Top-level components for routes</td>
+                <td class="py-3 px-4">Improved SSR integration and hydration</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Deferrable Components</td>
+                <td class="py-3 px-4">Components with lazy loaded parts</td>
+                <td class="py-3 px-4">New @defer syntax for conditional loading</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="selectedTab === 2">
+          <!-- Best Practices Tab -->
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Keep Components Focused and Cohesive</strong>
+              <ul class="list-disc pl-4">
+                <li>Each component should have a single responsibility</li>
+                <li>Break large components into smaller, reusable ones</li>
+                <li>Follow the Single Responsibility Principle</li>
+                <li>Keep component templates under 100 lines for maintainability</li>
+                <li>Consider using sub-components for complex UI sections</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Optimize Change Detection</strong>
+              <ul class="list-disc pl-4">
+                <li>Use OnPush change detection for performance improvements</li>
+                <li>Leverage signals for reactive, granular updates</li>
+                <li>Make components immutable where possible</li>
+                <li>Avoid deep object mutations that can trigger change detection</li>
+                <li>Use async pipe in templates to automatically handle subscriptions</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Implement Smart Component Architecture</strong>
+              <ul class="list-disc pl-4">
+                <li>Separate components into presentational and container types</li>
+                <li>Presentational components should be pure and focus on display</li>
+                <li>Container components should handle data fetching and business logic</li>
+                <li>Use inputs/outputs for component communication</li>
+                <li>Consider signal-based inputs for improved performance</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Manage Component Lifecycle Appropriately</strong>
+              <ul class="list-disc pl-4">
+                <li>Implement <code>ngOnInit</code> for initialization logic</li>
+                <li>Clean up resources in <code>ngOnDestroy</code> to prevent memory leaks</li>
+                <li>Use <code>ngOnChanges</code> to react to input changes</li>
+                <li>Be cautious with <code>ngAfterViewInit</code> to avoid ExpressionChangedAfterItHasBeenCheckedError</li>
+                <li>Consider extending from UnsubscribeService or similar to manage subscriptions</li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Enhance Performance with Angular 19 Features</strong>
+              <ul class="list-disc pl-4">
+                <li>Use standalone components to reduce bundle size</li>
+                <li>Implement the @defer directive for lazy loading expensive content</li>
+                <li>Consider partial hydration for SSR components</li>
+                <li>Leverage signals for reactive state management</li>
+                <li>Implement zoneless change detection when appropriate</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div *ngIf="selectedTab === 3">
+          <!-- Pros and Cons Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Advantages of Angular Components</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Encapsulation</strong>: Components bundle HTML, CSS, and TypeScript together</li>
+              <li><strong>Reusability</strong>: Components can be reused throughout the application</li>
+              <li><strong>Testability</strong>: Components are easy to test in isolation</li>
+              <li><strong>Maintainability</strong>: Component architecture makes code more maintainable</li>
+              <li><strong>Structure</strong>: Components provide clear structure to applications</li>
+              <li><strong>Performance</strong>: Angular 19's signal-based components offer improved performance</li>
+              <li><strong>Modularity</strong>: Components can be easily split, combined, or refactored</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Challenges with Angular Components</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Learning Curve</strong>: Component architecture can be complex for newcomers</li>
+              <li><strong>Boilerplate</strong>: Components can require significant setup code</li>
+              <li><strong>Over-decomposition</strong>: Breaking into too many small components can increase complexity</li>
+              <li><strong>Communication Complexity</strong>: Component communication can become complex in large apps</li>
+              <li><strong>Change Detection Pitfalls</strong>: OnPush and other optimizations can introduce subtle bugs</li>
+              <li><strong>Bundle Size</strong>: Many components can increase overall bundle size if not lazy-loaded</li>
+              <li><strong>Lifecycle Management</strong>: Complex lifecycle hooks can be difficult to reason about</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Angular 19 Component Improvements Over Previous Versions</p>
+            <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+              <thead>
+                <tr class="bg-gray-800 text-gray-100">
+                  <th class="py-3 px-4 text-left">Feature</th>
+                  <th class="py-3 px-4 text-left">Before Angular 19</th>
+                  <th class="py-3 px-4 text-left">Angular 19 Improvements</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">State Management</td>
+                  <td class="py-3 px-4">NgRx, RxJS, or manual state handling</td>
+                  <td class="py-3 px-4">First-class signals integration for reactive state</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">Change Detection</td>
+                  <td class="py-3 px-4">Zone.js based or OnPush strategy</td>
+                  <td class="py-3 px-4">Signal-based fine-grained updates, zoneless support</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Component Loading</td>
+                  <td class="py-3 px-4">Route-level lazy loading only</td>
+                  <td class="py-3 px-4">Component-level lazy loading with @defer</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-950">
+                  <td class="py-3 px-4">Component Input</td>
+                  <td class="py-3 px-4">Basic @Input() declaration</td>
+                  <td class="py-3 px-4">Signal inputs with transform functions</td>
+                </tr>
+                <tr class="border-b border-gray-700 bg-gray-900">
+                  <td class="py-3 px-4">Server Rendering</td>
+                  <td class="py-3 px-4">Basic SSR with full hydration</td>
+                  <td class="py-3 px-4">Improved SSR with partial and manual hydration</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab === 4">
+          <!-- Related Topics Tab -->
+          <div class="text-sm">
+            <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li><strong>Directives</strong>: Add behavior to existing elements or components</li>
+              <li><strong>Pipes</strong>: Transform data for display within component templates</li>
+              <li><strong>Services</strong>: Share data and logic between components</li>
+              <li><strong>Dependency Injection</strong>: Provide services and other dependencies to components</li>
+              <li><strong>Signals</strong>: Reactive primitives for component state management</li>
+              <li><strong>Content Projection</strong>: Allow components to receive and display external content</li>
+              <li><strong>View Encapsulation</strong>: Control how component styles affect the application</li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Component FAQ</p>
+            <ul class="list-disc pl-4 mb-6">
+              <li>
+                <strong>Q: How do I decide between regular and signal-based inputs in Angular 19?</strong><br>
+                A: Use signal-based inputs when you need fine-grained reactivity and better change detection performance. Regular inputs are simpler and sufficient for basic cases where the input doesn't change frequently or if backward compatibility is required. Signal inputs are especially valuable for performance-critical components or those with complex data transformations.
+              </li>
+              <li>
+                <strong>Q: How can I optimize component performance in Angular 19?</strong><br>
+                A: Use OnPush change detection, implement signal-based state, leverage the defer directive for lazy loading expensive content, use pure pipes for calculations, avoid excessive DOM manipulation, keep templates simple, and consider implementing zoneless change detection for performance-critical components. Also, ensure proper unsubscribing from observables to prevent memory leaks.
+              </li>
+              <li>
+                <strong>Q: What's the best way to communicate between components in Angular 19?</strong><br>
+                A: For parent-child: use inputs and outputs, with signal inputs for better performance. For unrelated components: use services with signals or observables, or use a state management pattern. The new signal-based state makes communication simpler by allowing components to directly observe state changes in a performant way. For simple state, a service with signals is often sufficient; for complex state, consider SignalStore or NgRx.
+              </li>
+              <li>
+                <strong>Q: When should I use standalone components vs. module-based components?</strong><br>
+                A: In Angular 19, standalone components are the recommended approach for most use cases. They're simpler to manage, easier to test, and allow for better tree-shaking. Use standalone components for new development and when refactoring existing code. Module-based components are primarily useful for legacy applications or when integrating with libraries that still require NgModules.
+              </li>
+              <li>
+                <strong>Q: How do I handle dynamic component creation in Angular 19?</strong><br>
+                A: Angular 19 provides an improved API for dynamic component creation. Use ViewContainerRef's createComponent method, which now works well with standalone components. For advanced cases, you can use ComponentFactoryResolver. Component lazy loading can also be handled with the new defer block, which provides a cleaner way to conditionally load components with loading, error, and placeholder states.
+              </li>
+            </ul>
+
+            <p class="font-semibold text-sky-400 mb-2">Useful Resources</p>
+            <ul class="list-disc pl-4">
+              <li><a href="https://angular.dev/guide/components" class="text-sky-400 hover:underline">Angular Components Guide</a></li>
+              <li><a href="https://angular.dev/guide/signals" class="text-sky-400 hover:underline">Angular Signals Documentation</a></li>
+              <li><a href="https://angular.dev/guide/defer" class="text-sky-400 hover:underline">Deferrable Views Guide</a></li>
+              <li><a href="https://angular.dev/guide/standalone-components" class="text-sky-400 hover:underline">Standalone Components Guide</a></li>
+              <li><a href="https://angular.dev/guide/change-detection" class="text-sky-400 hover:underline">Change Detection in Angular</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

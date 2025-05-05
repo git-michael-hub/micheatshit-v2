@@ -1,0 +1,573 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Partial Hydration
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Partial Hydration</span>
+      in Angular 19 provides selective rehydration of static server-rendered HTML, enabling fine-grained control over which parts of an application become interactive. This approach significantly improves performance by reducing the JavaScript needed for initial interactivity, prioritizing critical user interfaces, and optimizing for Core Web Vitals metrics.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What is Partial Hydration?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Selective Rehydration</strong>:
+      Enables an app to selectively rehydrate only the interactive parts of server-rendered HTML, leaving static content as-is.
+    </li>
+    <li>
+      <strong>Performance Optimization</strong>:
+      Reduces JavaScript bundle size and execution overhead by not rehydrating static content.
+    </li>
+    <li>
+      <strong>Island Architecture</strong>:
+      Enables "islands of interactivity" within static content, focused on specific interactive components.
+    </li>
+    <li>
+      <strong>Progressive Enhancement</strong>:
+      Improves initial load performance while gradually adding interactivity where needed.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic Hydration Setup</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="basicHydrationCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Selective Hydration Example</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="partialHydrationCode"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Progressive Hydration Strategy</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="hydrationStrategyCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>New in Angular 19: Enhanced Partial Hydration</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="v19EnhancementsCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Key Enhancements in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Component-Level Hydration Control</strong>:
+      <ul class="list-disc pl-4">
+        <li>Ability to set hydration preferences at the component level through a new API.</li>
+        <li>Options for on, off, conditional, or deferred hydration based on component needs.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Integration with Signal-Based Components</strong>:
+      <ul class="list-disc pl-4">
+        <li>Fine-grained reactivity control allowing specific parts of a component to be reactive while others remain static.</li>
+        <li>Optimized hydration for signals-based reactivity with minimal JavaScript overhead.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Hydration Trigger API</strong>:
+      <ul class="list-disc pl-4">
+        <li>New triggers like viewport visibility, user interaction, and idle browser time.</li>
+        <li>Programmatic control to hydrate components when needed, rather than automatically.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Island Architecture Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>First-class support for island architecture pattern with isolated islands of interactivity.</li>
+        <li>Improved tree-shaking for non-hydrated components to further reduce bundle size.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Integration with Deferrable Views</strong>:
+      <ul class="list-disc pl-4">
+        <li>Combination of partial hydration with deferrable views for optimal loading strategies.</li>
+        <li>Ability to selectively hydrate different parts of a deferred block when loaded.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Performance Impact of Partial Hydration</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Metric</th>
+        <th class="py-3 px-4 text-left">Improvement</th>
+        <th class="py-3 px-4 text-left">Typical Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Time to Interactive (TTI)</td>
+        <td class="py-3 px-4">Prioritizes critical UI hydration</td>
+        <td class="py-3 px-4">30-50% faster TTI</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">JavaScript Bundle Size</td>
+        <td class="py-3 px-4">Reduced framework code per component</td>
+        <td class="py-3 px-4">20-40% smaller bundles</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">First Input Delay (FID)</td>
+        <td class="py-3 px-4">Less JavaScript execution on load</td>
+        <td class="py-3 px-4">Improved by 25-45%</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Memory Usage</td>
+        <td class="py-3 px-4">Fewer active Angular components</td>
+        <td class="py-3 px-4">Reduced by up to 35%</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Analyze Your Components for Hydration Needs</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Classify Components</strong>:
+          Categorize components as static (never need hydration), interactive (always need hydration), or conditionally interactive.
+        </li>
+        <li>
+          <strong>Audit Interactivity Requirements</strong>:
+          For each component, determine if it needs immediate interactivity or can be hydrated later.
+        </li>
+        <li>
+          <strong>Consider User Flow</strong>:
+          Prioritize hydration based on the typical user journey through your application.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Design with Island Architecture in Mind</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Isolate Interactive Components</strong>:
+          Design your UI with clear boundaries between interactive and static content.
+        </li>
+        <li>
+          <strong>Minimize Component Dependencies</strong>:
+          Reduce dependencies between hydrated and non-hydrated components to avoid forced hydration.
+        </li>
+        <li>
+          <strong>State Management Boundaries</strong>:
+          Design state management to work with partially hydrated applications.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Progressive Hydration Strategies</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Critical Path First</strong>:
+          Hydrate components on the critical user path first, deferring others.
+        </li>
+        <li>
+          <strong>Visibility-Based Hydration</strong>:
+          Use viewport-based hydration triggers for below-the-fold content.
+        </li>
+        <li>
+          <strong>Interaction-Based Hydration</strong>:
+          Hydrate some components only when users interact with related UI elements.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Combine with Other Performance Techniques</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use with Deferrable Views</strong>:
+          Combine partial hydration with deferrable views for optimal loading performance.
+        </li>
+        <li>
+          <strong>Signal-Based Reactivity</strong>:
+          Use signal-based components for fine-grained reactivity control in hydrated components.
+        </li>
+        <li>
+          <strong>Lazy Loading</strong>:
+          Implement route-level lazy loading alongside partial hydration for best results.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Test and Measure Performance Impact</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Angular DevTools</strong>:
+          Leverage Angular DevTools' hydration visualization to see which components are hydrated.
+        </li>
+        <li>
+          <strong>Monitor Core Web Vitals</strong>:
+          Track improvements in FID, LCP, and CLS metrics when implementing partial hydration.
+        </li>
+        <li>
+          <strong>Test on Real Devices</strong>:
+          Verify performance improvements on lower-powered devices where the impact will be most noticeable.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Performance Improvements</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Faster Initial Interactivity</span>:
+          By hydrating only critical components first, Time to Interactive (TTI) is significantly reduced.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Reduced JavaScript Overhead</span>:
+          Only the necessary JavaScript for interactive components is loaded and executed.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Improved Core Web Vitals</span>:
+          First Input Delay (FID) and Largest Contentful Paint (LCP) metrics typically improve.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced User Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Progressive Enhancement</span>:
+          Content is visible immediately, with interactivity progressively added as needed.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Prioritized Interactivity</span>:
+          Critical interactive elements become responsive faster than non-essential ones.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Better Mobile Experience</span>:
+          Particularly beneficial for mobile users with limited processing power and bandwidth.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Resource Efficiency</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Reduced Memory Usage</span>:
+          Fewer active Angular components mean less memory consumption by the application.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Lower CPU Utilization</span>:
+          Less change detection and reactive processing for non-hydrated parts of the app.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Battery Efficiency</span>:
+          Less JavaScript execution translates to better battery life on mobile devices.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Angular 19 Specific Benefits</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Fine-grained Control</span>:
+          Component-level hydration options provide unprecedented control over the hydration process.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Integration with Signals</span>:
+          Signal-based reactivity works perfectly with partial hydration for efficient updates.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Developer Experience</span>:
+          Built-in tooling and APIs make implementing partial hydration more straightforward.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Increased Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Architecture Planning</span>:
+          Requires careful planning of component boundaries and interaction patterns.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Hydration Strategy</span>:
+          Determining which components to hydrate and when adds complexity to application design.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Debugging Challenges</span>:
+          Issues with partially hydrated applications can be more difficult to debug.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Development Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Component Design Constraints</span>:
+          Components must be designed with hydration boundaries in mind, potentially limiting reuse.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">State Management Complexity</span>:
+          Managing state between hydrated and non-hydrated components requires careful planning.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Integration Challenges</span>:
+          Some third-party libraries may not work well with partial hydration strategies.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Pitfalls</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Unexpected Hydration</span>:
+          Component dependencies can trigger unexpected hydration of supposedly static content.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Delayed Interactivity</span>:
+          If hydration triggers are misconfigured, users might experience delays in interactive elements.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Hydration Mismatches</span>:
+          Server-rendered content that doesn't match client expectations can cause hydration errors.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Testing Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Complex Test Scenarios</span>:
+          Testing hydration scenarios requires more sophisticated testing approaches.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">Environment Dependencies</span>:
+          Behavior may vary between development and production environments.
+        </li>
+        <li>
+          <span class="text-zinc-50 tw-font-medium">User Experience Variability</span>:
+          Different users may experience different hydration timing based on their devices and behavior.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #topicsRef>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Server-Side Rendering (SSR)</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Rendering Angular applications on the server before sending HTML to the client.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Partial Hydration</strong>:
+          SSR is the foundation for partial hydration, which builds upon server-rendered content by selectively making it interactive.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Hydration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          The process of making server-rendered HTML interactive by attaching event listeners and Angular components.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Partial Hydration</strong>:
+          Partial hydration is a more selective approach to hydration, where only specific components are hydrated.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Deferrable Views</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Angular's <code>&#64;defer</code> blocks that enable lazy loading of template fragments.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Partial Hydration</strong>:
+          Can be combined with partial hydration to create highly optimized loading patterns where content is both deferred and selectively hydrated.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal-Based Components</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Components built using Angular's signals system for fine-grained reactivity.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Partial Hydration</strong>:
+          Signal-based components integrate well with partial hydration, enabling efficient reactive updates only where needed.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Island Architecture</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Web development approach where interactive islands exist within a sea of static content.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Partial Hydration</strong>:
+          Partial hydration is the technical implementation that enables island architecture in Angular applications.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Core Web Vitals</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Google's metrics for measuring user experience quality, including LCP, FID, and CLS.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Partial Hydration</strong>:
+          Partial hydration improves Core Web Vitals metrics by reducing JavaScript execution and prioritizing critical interactivity.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Progressive Enhancement</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong class="text-sky-400">Description</strong>:
+          Strategy of starting with essential content and functionality, then enhancing the experience for capable browsers/devices.
+        </li>
+        <li>
+          <strong class="text-sky-400">Relation to Partial Hydration</strong>:
+          Partial hydration is a modern implementation of progressive enhancement, starting with static content and progressively adding interactivity.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>

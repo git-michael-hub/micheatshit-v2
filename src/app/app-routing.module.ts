@@ -31,6 +31,12 @@ import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-
 import { AfterRenderComponent } from './feature/angular/concepts/after-render/after-render.component';
 import { AngularDevToolsComponent } from './feature/angular/concepts/angular-devtools/angular-devtools.component';
 import { AnnotationComponent } from './feature/angular/concepts/annotation/annotation.component';
+import { AppShellComponent } from './feature/angular/concepts/app-shell/app-shell.component';
+import { ArchitectComponent } from './feature/angular/concepts/architect/architect.component';
+import { BindingComponent } from './feature/angular/concepts/binding/binding.component';
+import { BootstrapComponent } from './feature/angular/concepts/bootstrap/bootstrap.component';
+import { ControlFlowComponent } from './feature/angular/concepts/control-flow/control-flow.component';
+import { BuilderComponent } from './feature/angular/concepts/builder/builder.component';
 
 const routes: Routes = [
   {
@@ -63,8 +69,28 @@ const routes: Routes = [
         component: AnnotationComponent
       },
       {
+        path: 'app-shell',
+        component: AppShellComponent
+      },
+      {
+        path: 'architect',
+        component: ArchitectComponent
+      },
+      {
         path: 'attribute-directive',
         component: AttributeDirectiveComponent
+      },
+      {
+        path: 'binding',
+        component: BindingComponent
+      },
+      {
+        path: 'bootstrap',
+        component: BootstrapComponent
+      },
+      {
+        path: 'builder',
+        component: BuilderComponent
       },
       {
         path: 'case-types',
@@ -87,6 +113,10 @@ const routes: Routes = [
         component: DynamicComponentLoadingComponent
       },
       {
+        path: 'deferrable-views',
+        loadComponent: () => import('./feature/angular/concepts/deferrable-views/deferrable-views.component').then(c => c.DeferrableViewsComponent),
+      },
+      {
         path: 'form-control',
         component: FormControlComponent
       },
@@ -99,6 +129,14 @@ const routes: Routes = [
         component: FormValidationComponent
       },
       {
+        path: 'hydration',
+        loadComponent: () => import('./feature/angular/concepts/hydration/hydration.component').then(c => c.HydrationComponent),
+      },
+      {
+        path: 'input-transform',
+        loadComponent: () => import('./feature/angular/concepts/input-transform').then(c => c.InputTransformComponent),
+      },
+      {
         path: 'lazy-loading',
         component: LazyLoadingComponent
       },
@@ -109,6 +147,14 @@ const routes: Routes = [
       {
         path: 'observable',
         component: ObservableComponent
+      },
+      {
+        path: 'partial-hydration',
+        loadComponent: () => import('./feature/angular/concepts/partial-hydration/partial-hydration.component').then(c => c.PartialHydrationComponent),
+      },
+      {
+        path: 'signal-components',
+        loadComponent: () => import('./feature/angular/concepts/signal-components/signal-components.component').then(c => c.SignalComponentsComponent),
       },
       {
         path: 'pipe',
@@ -139,6 +185,14 @@ const routes: Routes = [
         component: RoutingComponentComponent
       },
       {
+        path: 'ssr',
+        loadComponent: () => import('./feature/angular/concepts/ssr/ssr.component').then(c => c.SsrComponent),
+      },
+      {
+        path: 'style-url',
+        loadComponent: () => import('./feature/angular/concepts/style-url').then(c => c.StyleUrlComponent),
+      },
+      {
         path: 'structural-directive',
         component: StructuralDirectiveComponent
       },
@@ -157,6 +211,66 @@ const routes: Routes = [
       {
         path: 'angular-devtools',
         component: AngularDevToolsComponent
+      },
+      {
+        path: 'control-flow',
+        component: ControlFlowComponent,
+      },
+      {
+        path: 'zoneless-applications',
+        loadComponent: () => import('./feature/angular/concepts/zoneless-applications/zoneless-applications.component').then(c => c.ZonelessApplicationsComponent),
+      },
+      {
+        path: 'class-decorator',
+        loadComponent: () => import('./feature/angular/concepts/class-decorator/class-decorator.component').then(c => c.ClassDecoratorComponent),
+      },
+      {
+        path: 'signals',
+        loadComponent: () => import('./feature/angular/concepts/signals/signals.component').then(c => c.SignalsComponent),
+      },
+      {
+        path: 'view-transitions',
+        loadComponent: () => import('./feature/angular/concepts/view-transitions/view-transitions.component').then(c => c.ViewTransitionsComponent),
+      },
+      {
+        path: 'universal',
+        loadComponent: () => import('./feature/angular/concepts/universal/universal.component').then(c => c.UniversalComponent),
+      },
+      {
+        path: 'view-hierarchy',
+        loadComponent: () => import('./feature/angular/concepts/view-hierarchy/view-hierarchy.component').then(c => c.ViewHierarchyComponent),
+      },
+      {
+        path: 'standalone',
+        loadComponent: () => import('./feature/angular/concepts/standalone/standalone.component').then(c => c.StandaloneComponent),
+      },
+      {
+        path: 'content-projection',
+        loadComponent: () => import('./feature/angular/concepts/content-projection/content-projection.component').then(c => c.ContentProjectionComponent),
+      },
+      {
+        path: 'di',
+        loadComponent: () => import('./feature/angular/concepts/di/di.component').then(c => c.DiComponent),
+      },
+      {
+        path: 'class-field-decorator',
+        loadComponent: () => import('./feature/angular/concepts/class-field-decorator/class-field-decorator.component').then(m => m.ClassFieldDecoratorComponent)
+      },
+      {
+        path: 'collection',
+        loadComponent: () => import('./feature/angular/concepts/collection/collection.component').then(m => m.CollectionComponent)
+      },
+      {
+        path: 'cli',
+        loadComponent: () => import('./feature/angular/concepts/cli/cli.component').then(m => m.CliComponent)
+      },
+      {
+        path: 'component',
+        loadComponent: () => import('./feature/angular/concepts/component/component.component').then(m => m.ComponentComponent)
+      },
+      {
+        path: 'configuration',
+        loadComponent: () => import('./feature/angular/concepts/configuration/configuration.component').then(m => m.ConfigurationComponent)
       },
     ]
   },

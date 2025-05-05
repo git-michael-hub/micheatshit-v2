@@ -1,0 +1,14 @@
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+  @HostBinding('style.backgroundColor') bgColor: string;
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.bgColor = 'yellow';
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.bgColor = 'inherit';
+  }
+}
