@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
 import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
 
@@ -8,9 +8,10 @@ import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
   standalone: true,
   imports: [CommonModule, HighlightModule],
   templateUrl: './content-projection.component.html',
-  styleUrls: ['./content-projection.component.scss']
+  styleUrls: ['./content-projection.component.scss'],
+  providers: [UnsubscribeService]
 })
-export class ContentProjectionComponent extends UnsubscribeService {
+export class ContentProjectionComponent implements OnInit, AfterViewInit {
   selectedTab = 'notes';
 
   @ViewChild('notesTemplate', { static: true }) notesTemplate!: TemplateRef<any>;
@@ -18,47 +19,68 @@ export class ContentProjectionComponent extends UnsubscribeService {
   @ViewChild('prosConsTemplate', { static: true }) prosConsTemplate!: TemplateRef<any>;
   @ViewChild('relatedTopicsTemplate', { static: true }) relatedTopicsTemplate!: TemplateRef<any>;
 
-  basicExample = `// Card component definition
+  @ViewChild('basicExampleEl', { static: false }) basicExampleEl!: ElementRef;
+  @ViewChild('usageExampleEl', { static: false }) usageExampleEl!: ElementRef;
+  @ViewChild('contentChildExampleEl', { static: false }) contentChildExampleEl!: ElementRef;
+  @ViewChild('ngContainerExampleEl', { static: false }) ngContainerExampleEl!: ElementRef;
+
+  // Visibility state for code examples
+  showBasicExample = false;
+  showUsageExample = false;
+  showContentChildExample = false;
+  showNgContainerExample = false;
+
+  // Code example strings for syntax highlighting
+  basicExample = '';
+  usageExample = '';
+  contentChildExample = '';
+  ngContainerExample = '';
+
+  constructor(private unsub: UnsubscribeService) {}
+
+  ngOnInit(): void {
+    this.initializeCodeExamples();
+  }
+
+  ngAfterViewInit(): void {
+    // No need to update DOM element content as we're using the string variables directly
+  }
+
+  // Toggle methods for code examples
+  toggleBasicExample(): void {
+    this.showBasicExample = !this.showBasicExample;
+  }
+
+  toggleUsageExample(): void {
+    this.showUsageExample = !this.showUsageExample;
+  }
+
+  toggleContentChildExample(): void {
+    this.showContentChildExample = !this.showContentChildExample;
+  }
+
+  toggleNgContainerExample(): void {
+    this.showNgContainerExample = !this.showNgContainerExample;
+  }
+
+  private initializeCodeExamples(): void {
+    this.basicExample = `// card.component.ts
+import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-card',
   template: \`
     <div class="card">
-      <div class="card-header">
-        <ng-content select="[card-header]"></ng-content>
-      </div>
       <div class="card-body">
         <ng-content></ng-content>
       </div>
-      <div class="card-footer">
-        <ng-content select="[card-footer]"></ng-content>
-      </div>
     </div>
   \`,
-  styles: [\`
-    .card {
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-    }
-    .card-header {
-      padding: 10px 15px;
-      background-color: #f8f9fa;
-      border-bottom: 1px solid #ddd;
-    }
-    .card-body {
-      padding: 15px;
-    }
-    .card-footer {
-      padding: 10px 15px;
-      background-color: #f8f9fa;
-      border-top: 1px solid #ddd;
-    }
-  \`]
+  styleUrls: ['./card.component.scss']
 })
-export class CardComponent { }`;
+export class CardComponent {}`;
 
-  usageExample = `// Using the card component
+    this.usageExample = `<!-- Using the card component -->
 <app-card>
   <h2 card-header>Card Title</h2>
   <p>This is the main content of the card.</p>
@@ -68,16 +90,7 @@ export class CardComponent { }`;
   </div>
 </app-card>`;
 
-  ngContainerExample = `// Using ng-container to avoid extra DOM elements
-<app-tabset>
-  <ng-container *ngFor="let tab of tabs">
-    <app-tab [title]="tab.title">
-      <ng-container *ngTemplateOutlet="tab.content"></ng-container>
-    </app-tab>
-  </ng-container>
-</app-tabset>`;
-
-  contentChildExample = `// Using ContentChild and ContentChildren
+    this.contentChildExample = `// Using ContentChild and ContentChildren
 import { Component, ContentChild, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
 import { TabComponent } from './tab.component';
 
@@ -115,41 +128,23 @@ export class TabsComponent implements AfterContentInit {
   }
 }`;
 
-  namedSlotsExample = `// Component with named slots
-@Component({
-  selector: 'app-dashboard-layout',
-  template: \`
-    <div class="layout">
-      <header class="header">
-        <ng-content select="[header]"></ng-content>
-      </header>
-      <aside class="sidebar">
-        <ng-content select="[sidebar]"></ng-content>
-      </aside>
-      <main class="content">
-        <ng-content select="[content]"></ng-content>
-      </main>
-      <footer class="footer">
-        <ng-content select="[footer]"></ng-content>
-      </footer>
-    </div>
-  \`
-})
-export class DashboardLayoutComponent { }
+    this.ngContainerExample = `<!-- Deferred content projection with @defer -->
+<app-dashboard>
+  <ng-container dashboard-main>
+    <h2>Dashboard Overview</h2>
 
-// Using the dashboard layout
-<app-dashboard-layout>
-  <div header>
-    <app-header [user]="currentUser"></app-header>
-  </div>
-  <div sidebar>
-    <app-navigation-menu [items]="menuItems"></app-navigation-menu>
-  </div>
-  <div content>
-    <router-outlet></router-outlet>
-  </div>
-  <div footer>
-    <app-footer [copyright]="copyrightText"></app-footer>
-  </div>
-</app-dashboard-layout>`;
+    @defer (on viewport) {
+      <app-heavy-chart [data]="chartData"></app-heavy-chart>
+    } @loading {
+      <div class="loading-placeholder">Chart loading...</div>
+    }
+  </ng-container>
+
+  <ng-container dashboard-sidebar>
+    @defer (when sidebarVisible) {
+      <app-sidebar-navigation [items]="navItems"></app-sidebar-navigation>
+    }
+  </ng-container>
+</app-dashboard>`;
+  }
 }

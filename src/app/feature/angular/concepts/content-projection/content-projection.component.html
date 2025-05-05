@@ -1,272 +1,411 @@
-<div class="container">
-  <h1>Content Projection in Angular</h1>
-  <p>
-    Content projection is a pattern in Angular that allows you to insert content from a parent component into a child component. It's similar to "slots" in other frameworks and enables creating highly reusable and composable components.
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Content Projection in Angular
   </p>
 
-  <div class="tab-navigation">
-    <button
-      type="button"
-      [class.active]="selectedTab === 'notes'"
-      (click)="selectedTab = 'notes'">
-      Notes
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'bestPractices'"
-      (click)="selectedTab = 'bestPractices'">
-      Best Practices
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'prosCons'"
-      (click)="selectedTab = 'prosCons'">
-      Pros and Cons
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'relatedTopics'"
-      (click)="selectedTab = 'relatedTopics'">
-      Related Topics
-    </button>
-  </div>
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Content Projection</span>
+      is a powerful pattern in Angular that allows you to insert content from a parent component into specific locations in a child component. In Angular 19, content projection has been enhanced with improved performance, tighter integration with signals, better SSR support, and advanced lazy-loading capabilities through the new &#64;defer block.
+    </p>
 
-  <ng-container [ngSwitch]="selectedTab">
-    <ng-container *ngSwitchCase="'notes'">
-      <ng-container *ngTemplateOutlet="notesTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'bestPractices'">
-      <ng-container *ngTemplateOutlet="bestPracticesTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'prosCons'">
-      <ng-container *ngTemplateOutlet="prosConsTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'relatedTopics'">
-      <ng-container *ngTemplateOutlet="relatedTopicsTemplate"></ng-container>
-    </ng-container>
-  </ng-container>
-</div>
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 'notes'" [class.text-rose-300]="selectedTab==='notes'" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 'bestPractices'" [class.text-rose-300]="selectedTab==='bestPractices'" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 'prosCons'" [class.text-rose-300]="selectedTab==='prosCons'" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 'relatedTopics'" [class.text-rose-300]="selectedTab==='relatedTopics'" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <ng-container *ngSwitchCase="'bestPractices'">
+            <ng-container *ngTemplateOutlet="bestPracticesTemplate"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'prosCons'">
+            <ng-container *ngTemplateOutlet="prosConsTemplate"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'relatedTopics'">
+            <ng-container *ngTemplateOutlet="relatedTopicsTemplate"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesTemplate"></ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
 
 <ng-template #notesTemplate>
-  <h2>Overview</h2>
-  <p>
-    Content projection is a technique for passing content from a parent component to a child component. The content is placed between the opening and closing tags of the child component and is rendered at a specific location within the child's template using the <code>ng-content</code> element.
-  </p>
-
-  <div class="visual-diagram">
-    <h3>How Content Projection Works:</h3>
-    <div>
-      1. Parent component includes content between child component tags<br>
-      2. Child component uses <code>ng-content</code> to define where projected content should appear<br>
-      3. Angular inserts the content from the parent into the child at runtime<br>
-      4. The projected content maintains its original context (parent component's scope)
-    </div>
-  </div>
-
-  <h3>Basic Example</h3>
-  <div class="code-example">
-    <pre><code [highlight]="basicExample" [languages]="['typescript']"></code></pre>
-  </div>
-
-  <h3>Using the Component</h3>
-  <div class="code-example">
-    <pre><code [highlight]="usageExample" [languages]="['html']"></code></pre>
-  </div>
-
-  <h3>Multiple Content Projections</h3>
-  <p>
-    You can define multiple projection slots in a component by using the <code>select</code> attribute on <code>ng-content</code>. The <code>select</code> attribute can target elements by:
-  </p>
-  <ul>
-    <li>Element type (e.g., <code>select="header"</code>)</li>
-    <li>CSS class (e.g., <code>select=".header"</code>)</li>
-    <li>Attribute (e.g., <code>select="[header]"</code>)</li>
-    <li>Combination of selectors</li>
-  </ul>
-
-  <h3>Using ng-container for Cleaner DOM</h3>
-  <p>
-    When projecting content, you can use <code>ng-container</code> to avoid adding extra elements to the DOM:
-  </p>
-  <div class="code-example">
-    <pre><code [highlight]="ngContainerExample" [languages]="['html']"></code></pre>
-  </div>
-
-  <h3>Working with Projected Content</h3>
-  <p>
-    You can interact with projected content using <code>@ContentChild</code> and <code>@ContentChildren</code> decorators:
-  </p>
-  <div class="code-example">
-    <pre><code [highlight]="contentChildExample" [languages]="['typescript']"></code></pre>
-  </div>
-
-  <h3>Advanced Pattern: Named Slots</h3>
-  <p>
-    You can create more complex layouts with named slots for different sections:
-  </p>
-  <div class="code-example">
-    <pre><code [highlight]="namedSlotsExample" [languages]="['typescript', 'html']"></code></pre>
-  </div>
-</ng-template>
-
-<ng-template #bestPracticesTemplate>
-  <h2>Best Practices</h2>
-
-  <h3>Component Design</h3>
-  <ul>
+  <p>Core Concepts of Content Projection</p>
+  <ul class="list-disc pl-4 text-sm">
     <li>
-      <strong>Design components with clear content areas:</strong> Identify what parts of a component should be customizable through projection.
+      <strong>Basic Content Projection</strong>
+      <ul class="list-disc pl-4">
+        <li>The <code>ng-content</code> element is the core mechanism for projecting content</li>
+        <li>Content between component tags is inserted at the <code>ng-content</code> location</li>
+        <li>Projected content maintains the context of its parent component</li>
+        <li>Enables building reusable, customizable components with flexible layouts</li>
+        <button (click)="toggleBasicExample()" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+        <span #basicExampleEl [hidden]="!showBasicExample">
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+          <pre>
+            <code [highlight]="basicExample" [languages]="['typescript']"></code>
+          </pre>
+        </span>
+      </ul>
     </li>
     <li>
-      <strong>Use sensible defaults:</strong> Provide default content for optional slots using <code>ng-content</code> fallback mechanisms.
+      <strong>Multi-slot Projection</strong>
+      <ul class="list-disc pl-4">
+        <li>Multiple <code>ng-content</code> elements can be used with the <code>select</code> attribute</li>
+        <li>The <code>select</code> attribute takes CSS selectors to match specific content</li>
+        <li>Common selectors include element names, CSS classes, and attributes</li>
+        <li>Enables complex component layouts with multiple insertion points</li>
+        <button (click)="toggleUsageExample()" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+        <span #usageExampleEl [hidden]="!showUsageExample">
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>html</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+          <pre>
+            <code [highlight]="usageExample" [languages]="['html']"></code>
+          </pre>
+        </span>
+      </ul>
     </li>
     <li>
-      <strong>Document projection slots:</strong> Clearly document which projections slots are available and their purpose.
-    </li>
-    <li>
-      <strong>Keep selectors simple:</strong> Use attribute selectors for clarity (e.g., <code>[header]</code>, <code>[footer]</code>).
+      <strong>Accessing Projected Content</strong>
+      <ul class="list-disc pl-4">
+        <li>The <code>&#64;ContentChild</code> and <code>&#64;ContentChildren</code> decorators provide access to projected content</li>
+        <li>Content queries are initialized in the <code>ngAfterContentInit</code> lifecycle hook</li>
+        <li>The <code>QueryList.changes</code> Observable tracks changes to projected content</li>
+        <li>Enables components to interact with their projected content programmatically</li>
+        <button (click)="toggleContentChildExample()" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+        <span #contentChildExampleEl [hidden]="!showContentChildExample">
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+          <pre>
+            <code [highlight]="contentChildExample" [languages]="['typescript']"></code>
+          </pre>
+        </span>
+      </ul>
     </li>
   </ul>
 
-  <h3>Performance Considerations</h3>
-  <ul>
+  <br>
+  <br>
+
+  <p>Angular 19 Content Projection Enhancements</p>
+  <ul class="list-disc pl-4 text-sm">
     <li>
-      <strong>Use <code>ng-container</code>:</strong> To avoid unnecessary DOM elements when projecting content.
+      <strong>Integration with Signal Components</strong>
+      <ul class="list-disc pl-4">
+        <li>Better performance with signal-based components and content projection</li>
+        <li>More efficient change detection for projected content</li>
+        <li>Signal-based content queries for reactive access to projected content</li>
+        <li>Improved developer experience when working with dynamic projections</li>
+      </ul>
     </li>
     <li>
-      <strong>Be mindful of scope:</strong> Projected content operates in the parent's scope, which can impact change detection.
+      <strong>Deferred Content Projection</strong>
+      <ul class="list-disc pl-4">
+        <li>Support for the new <code>&#64;defer</code> block within projected content</li>
+        <li>Lazy-loading of heavy projected content for better performance</li>
+        <li>Conditional loading strategies for projected content</li>
+        <li>Placeholder and loading states for deferred projected content</li>
+        <button (click)="toggleNgContainerExample()" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+        <span #ngContainerExampleEl [hidden]="!showNgContainerExample">
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>html</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+          <pre>
+            <code [highlight]="ngContainerExample" [languages]="['html']"></code>
+          </pre>
+        </span>
+      </ul>
     </li>
     <li>
-      <strong>Lazy load when appropriate:</strong> For complex projected content that's not immediately visible.
+      <strong>Server-Side Rendering Improvements</strong>
+      <ul class="list-disc pl-4">
+        <li>Enhanced hydration support for projected content</li>
+        <li>Partial hydration options for content projections</li>
+        <li>Better serialization of projected content during SSR</li>
+        <li>Improved performance metrics for content projection in SSR applications</li>
+      </ul>
     </li>
   </ul>
 
-  <h3>Content Interaction</h3>
-  <ul>
-    <li>
-      <strong>Initialize in ngAfterContentInit:</strong> When working with <code>@ContentChild</code> or <code>@ContentChildren</code>, use the appropriate lifecycle hook.
-    </li>
-    <li>
-      <strong>Listen for changes with ContentChildren.changes:</strong> Monitor changes in projected content using the Observable provided by QueryList.
-    </li>
-    <li>
-      <strong>Implement clear APIs:</strong> Define clear interfaces for communication between container and projected content.
-    </li>
-  </ul>
+  <br>
+  <br>
 
-  <div class="example-container">
-    <h3>Projection Patterns:</h3>
-    <div class="projection-slot header">
-      <strong>Header Slot:</strong> For consistent headers across components
-    </div>
-    <div class="projection-slot default">
-      <strong>Default Slot:</strong> For the main content
-    </div>
-    <div class="projection-slot footer">
-      <strong>Footer Slot:</strong> For actions, buttons, or supplementary information
-    </div>
-  </div>
-</ng-template>
-
-<ng-template #prosConsTemplate>
-  <h2>Pros and Cons</h2>
-
-  <h3>Advantages</h3>
-  <ul>
-    <li><strong>Reusable Components:</strong> Create flexible, reusable components that can adapt to different contexts</li>
-    <li><strong>Composability:</strong> Build complex UIs from simpler components</li>
-    <li><strong>Separation of Concerns:</strong> Keep component logic separate from its presentation</li>
-    <li><strong>Reduced Prop Drilling:</strong> Avoid passing numerous props down the component tree</li>
-    <li><strong>Contextual Rendering:</strong> Content maintains its parent context for data binding and event handling</li>
-  </ul>
-
-  <h3>Challenges</h3>
-  <ul>
-    <li><strong>Learning Curve:</strong> Understanding projection patterns can be challenging for beginners</li>
-    <li><strong>Debugging Complexity:</strong> Can make debugging more difficult with complex projection hierarchies</li>
-    <li><strong>Style Encapsulation:</strong> Styles may require careful management across projected content boundaries</li>
-    <li><strong>Change Detection:</strong> Projected content can trigger change detection in unexpected ways</li>
-    <li><strong>Performance Considerations:</strong> Complex projection patterns may impact performance</li>
-  </ul>
-
-  <h3>Content Projection vs Props</h3>
-  <table class="comparison-table">
+  <p>Content Projection Patterns in Angular 19</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
     <thead>
-      <tr>
-        <th>Consideration</th>
-        <th>Content Projection</th>
-        <th>Props</th>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Pattern</th>
+        <th class="py-3 px-4 text-left">Description</th>
+        <th class="py-3 px-4 text-left">Use Case</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Complex UI Patterns</td>
-        <td>Better for layout components</td>
-        <td>Better for data-driven components</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Single-slot Projection</td>
+        <td class="py-3 px-4">Basic projection with a single <code>ng-content</code></td>
+        <td class="py-3 px-4">Simple container components, wrappers</td>
       </tr>
-      <tr>
-        <td>Flexibility</td>
-        <td>More flexible for UI composition</td>
-        <td>More explicit and type-safe</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Multi-slot Projection</td>
+        <td class="py-3 px-4">Multiple <code>ng-content</code> elements with selectors</td>
+        <td class="py-3 px-4">Layout components, cards, panels</td>
       </tr>
-      <tr>
-        <td>Team Collaboration</td>
-        <td>Clearer separation of concerns</td>
-        <td>More predictable data flow</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Conditional Projection</td>
+        <td class="py-3 px-4">Projecting content based on conditions</td>
+        <td class="py-3 px-4">Tabs, accordions, toggle panels</td>
       </tr>
-      <tr>
-        <td>Reusability</td>
-        <td>Higher for UI patterns</td>
-        <td>Higher for data manipulation</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Deferred Projection</td>
+        <td class="py-3 px-4">Lazy-loading projected content with <code>&#64;defer</code></td>
+        <td class="py-3 px-4">Performance-critical components, heavy content</td>
       </tr>
-      <tr>
-        <td>Learning Curve</td>
-        <td>Steeper initially</td>
-        <td>More intuitive for beginners</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Template Outlet Projection</td>
+        <td class="py-3 px-4">Using <code>ngTemplateOutlet</code> for dynamic projection</td>
+        <td class="py-3 px-4">Dynamic lists, configurable interfaces</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Signal-based Projection</td>
+        <td class="py-3 px-4">Projecting content with signal integration</td>
+        <td class="py-3 px-4">Reactive components, performance-optimized UIs</td>
       </tr>
     </tbody>
   </table>
 </ng-template>
 
+<ng-template #bestPracticesTemplate>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Design Clear Component APIs</strong>
+      <ul class="list-disc pl-4">
+        <li>Define clear projection slots with descriptive selectors</li>
+        <li>Document each projection slot and its purpose</li>
+        <li>Use consistent naming conventions for selectors</li>
+        <li>Consider providing default content for optional slots</li>
+        <li>Maintain backward compatibility when updating projection APIs</li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>Use OnPush change detection for components with content projection</li>
+        <li>Leverage the new <code>&#64;defer</code> block for heavy projected content</li>
+        <li>Minimize DOM manipulation of projected content</li>
+        <li>Consider signal-based approaches for dynamic projections</li>
+        <li>Use <code>ng-container</code> to avoid unnecessary DOM elements</li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Smart Selectors</strong>
+      <ul class="list-disc pl-4">
+        <li>Choose appropriate selector types (element, class, attribute)</li>
+        <li>Prefer attribute selectors for clearer intent (e.g., <code>[header]</code>)</li>
+        <li>Avoid overly generic selectors that might match unintended content</li>
+        <li>Consider selector specificity for complex projection scenarios</li>
+        <li>Document the expected structure for multi-slot projections</li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Handle Content Queries Properly</strong>
+      <ul class="list-disc pl-4">
+        <li>Initialize content queries in <code>ngAfterContentInit</code></li>
+        <li>Subscribe to <code>QueryList.changes</code> to react to dynamic changes</li>
+        <li>Unsubscribe from change observables in <code>ngOnDestroy</code></li>
+        <li>Use <code>static: true</code> for content needed in <code>ngOnInit</code></li>
+        <li>Consider using signal-based content queries for better reactivity</li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Structure Component Hierarchies Thoughtfully</strong>
+      <ul class="list-disc pl-4">
+        <li>Design components with clear responsibilities and boundaries</li>
+        <li>Use content projection for UI composition, not just for reusability</li>
+        <li>Create specialized projection components for complex UI patterns</li>
+        <li>Consider the depth of projection (avoid excessive nesting)</li>
+        <li>Manage context carefully between parent and projected content</li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsTemplate>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Advantages of Content Projection</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Component Reusability</strong>: Create highly reusable components with customizable content</li>
+      <li><strong>UI Composition</strong>: Build complex interfaces through component composition</li>
+      <li><strong>Separation of Concerns</strong>: Cleanly separate component structure from content</li>
+      <li><strong>Contextual Integrity</strong>: Projected content retains access to its parent context</li>
+      <li><strong>Flexible Layout Patterns</strong>: Implement advanced UI patterns like cards, tabs, and panels</li>
+      <li><strong>Efficient DOM Structure</strong>: Create clean DOM hierarchies without excessive nesting</li>
+      <li><strong>Enhanced Developer Experience</strong>: More intuitive component APIs and usage patterns</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Challenges with Content Projection</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Learning Curve</strong>: Understanding projection concepts can be challenging for beginners</li>
+      <li><strong>Debugging Complexity</strong>: Issues in projected content can be harder to debug</li>
+      <li><strong>Style Encapsulation Boundaries</strong>: Managing styles across projection boundaries</li>
+      <li><strong>Change Detection Considerations</strong>: Complex change detection interactions with projected content</li>
+      <li><strong>Performance Overhead</strong>: Potential performance costs with deeply nested projections</li>
+      <li><strong>Component API Design Challenges</strong>: Designing intuitive projection patterns requires care</li>
+      <li><strong>Template Constraints</strong>: Some limitations when combining with other Angular features</li>
+    </ul>
+
+    <p class="font-semibold text-sky-400 mb-2">Angular 19 Content Projection Improvements</p>
+    <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+      <thead>
+        <tr class="bg-gray-800 text-gray-100">
+          <th class="py-3 px-4 text-left">Feature</th>
+          <th class="py-3 px-4 text-left">Before Angular 19</th>
+          <th class="py-3 px-4 text-left">Angular 19 Improvements</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-700 bg-gray-900">
+          <td class="py-3 px-4">Performance</td>
+          <td class="py-3 px-4">Zone-based change detection</td>
+          <td class="py-3 px-4">Signal-based change detection for better performance</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950">
+          <td class="py-3 px-4">Lazy Loading</td>
+          <td class="py-3 px-4">Requires manual implementation</td>
+          <td class="py-3 px-4">Native support through &#64;defer blocks</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-900">
+          <td class="py-3 px-4">SSR Integration</td>
+          <td class="py-3 px-4">Basic hydration</td>
+          <td class="py-3 px-4">Enhanced with partial hydration support</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950">
+          <td class="py-3 px-4">Type Safety</td>
+          <td class="py-3 px-4">Limited component API type safety</td>
+          <td class="py-3 px-4">Improved type checking for projected content</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-900">
+          <td class="py-3 px-4">Content Queries</td>
+          <td class="py-3 px-4">Observable-based content changes</td>
+          <td class="py-3 px-4">Signal-based content queries for reactivity</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="font-semibold text-sky-400 mb-2">Content Projection vs. Alternative Patterns</p>
+    <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mb-4">
+      <thead>
+        <tr class="bg-gray-800 text-gray-100">
+          <th class="py-3 px-4 text-left">Consideration</th>
+          <th class="py-3 px-4 text-left">Content Projection</th>
+          <th class="py-3 px-4 text-left">Property Binding</th>
+          <th class="py-3 px-4 text-left">Dynamic Components</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-700 bg-gray-900">
+          <td class="py-3 px-4">Flexibility</td>
+          <td class="py-3 px-4">High</td>
+          <td class="py-3 px-4">Medium</td>
+          <td class="py-3 px-4">High</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950">
+          <td class="py-3 px-4">Complexity</td>
+          <td class="py-3 px-4">Medium</td>
+          <td class="py-3 px-4">Low</td>
+          <td class="py-3 px-4">High</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-900">
+          <td class="py-3 px-4">Performance</td>
+          <td class="py-3 px-4">Good</td>
+          <td class="py-3 px-4">Excellent</td>
+          <td class="py-3 px-4">Variable</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-950">
+          <td class="py-3 px-4">Type Safety</td>
+          <td class="py-3 px-4">Medium</td>
+          <td class="py-3 px-4">High</td>
+          <td class="py-3 px-4">Low to Medium</td>
+        </tr>
+        <tr class="border-b border-gray-700 bg-gray-900">
+          <td class="py-3 px-4">Use Case</td>
+          <td class="py-3 px-4">Layout components</td>
+          <td class="py-3 px-4">Data-driven components</td>
+          <td class="py-3 px-4">Highly dynamic UIs</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
 <ng-template #relatedTopicsTemplate>
-  <h2>Related Topics</h2>
+  <div class="text-sm">
+    <p class="font-semibold text-sky-400 mb-2">Related Angular Concepts</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li><strong>Component Architecture</strong>: Understanding component hierarchies and composition patterns</li>
+      <li><strong>Template Syntax</strong>: Angular's template language and directives</li>
+      <li><strong>Content Queries</strong>: Using <code>&#64;ContentChild</code> and <code>&#64;ContentChildren</code> to access projected content</li>
+      <li><strong>Change Detection</strong>: How changes in projections affect detection strategy</li>
+      <li><strong>Lifecycle Hooks</strong>: Particularly <code>ngAfterContentInit</code> and <code>ngAfterContentChecked</code></li>
+      <li><strong>View Encapsulation</strong>: Styling considerations for projected content</li>
+      <li><strong>Defer Block</strong>: Integration with deferred loading for projected content</li>
+    </ul>
 
-  <ul>
-    <li>
-      <strong>Component Composition:</strong> How components work together to build complex UIs.
-    </li>
-    <li>
-      <strong>Template Reference Variables:</strong> Using references to interact with projected content.
-    </li>
-    <li>
-      <strong>ContentChild/ContentChildren:</strong> APIs to query and interact with projected content.
-    </li>
-    <li>
-      <strong>NgTemplateOutlet:</strong> For conditional template rendering within components.
-    </li>
-    <li>
-      <strong>View Encapsulation:</strong> How styles are scoped within components and projected content.
-    </li>
-    <li>
-      <strong>Component Lifecycle:</strong> Understanding when content projection is available in the component lifecycle.
-    </li>
-    <li>
-      <strong>Dependency Injection:</strong> How services can be shared between parent and projected content.
-    </li>
-    <li>
-      <strong>Dynamic Component Loading:</strong> Alternative approach for dynamic UI composition.
-    </li>
-  </ul>
+    <p class="font-semibold text-sky-400 mb-2">Content Projection FAQs</p>
+    <ul class="list-disc pl-4 mb-6">
+      <li>
+        <strong>Q: How does content projection work with Angular 19's signal-based components?</strong><br>
+        A: Angular 19 introduces tight integration between signals and content projection. Signal-based components can project content more efficiently due to fine-grained reactivity. When using content projection with signals, change detection becomes more precise, as only the affected parts of the projected content update when signal values change. Additionally, content queries can now be signal-based, providing reactive access to projected content with better performance characteristics.
+      </li>
+      <li>
+        <strong>Q: Can I use the new &#64;defer block with content projection?</strong><br>
+        A: Yes, Angular 19 fully supports using &#64;defer blocks within projected content. This powerful combination allows for lazy-loading portions of projected content based on conditions like visibility, user interaction, or custom triggers. This is particularly useful for performance optimization when projecting heavy content into lightweight container components. The defer block respects the context of the parent component while still being rendered within the child component's structure.
+      </li>
+      <li>
+        <strong>Q: What's the best approach for styling projected content in Angular 19?</strong><br>
+        A: Angular 19 maintains the same view encapsulation principles for projected content. The most effective approach is using the ::ng-deep combinator with :host selectors in the child component to target projected content while limiting the scope. Additionally, consider using CSS custom properties (variables) to allow child components to influence projected content styles without breaking encapsulation. For shared styling, consider utility classes that can be applied to both parent and child contexts.
+      </li>
+      <li>
+        <strong>Q: How do content projection and SSR work together in Angular 19?</strong><br>
+        A: Angular 19 significantly improves the integration between content projection and server-side rendering. The new partial hydration features work seamlessly with projected content, allowing for more efficient client-side rehydration of server-rendered components. Components can now specify which parts of their projected content should be eagerly or lazily hydrated, leading to better performance metrics like First Contentful Paint and Time to Interactive for applications using extensive content projection.
+      </li>
+      <li>
+        <strong>Q: What are the performance considerations for content projection in Angular 19?</strong><br>
+        A: Angular 19 addresses many previous performance concerns with content projection. The signal-based architecture provides more efficient change detection for projected content. Use OnPush change detection strategy for components with projection to minimize unnecessary checks. For complex projections, consider using the &#64;defer block to lazy-load content. Be mindful of projection depth, as deeply nested projections can still impact performance. Finally, use the new DevTools profiling capabilities to identify potential bottlenecks in your projection architecture.
+      </li>
+    </ul>
 
-  <h3>Changes in Angular 19</h3>
-  <p>
-    Angular 19 enhances content projection with:
-  </p>
-  <ul>
-    <li>Improved performance for content projection with better change detection</li>
-    <li>Enhanced compatibility with standalone components</li>
-    <li>Better integration with signal-based components</li>
-    <li>Optimized rendering pipeline for projected content</li>
-    <li>More efficient hydration support for SSR applications</li>
-  </ul>
+    <p class="font-semibold text-sky-400 mb-2">Useful Resources</p>
+    <ul class="list-disc pl-4">
+      <li><a href="https://angular.dev/guide/components/content-projection" class="text-sky-400 hover:underline">Angular Content Projection Guide</a></li>
+      <li><a href="https://angular.dev/guide/defer" class="text-sky-400 hover:underline">Angular Defer Block Documentation</a></li>
+      <li><a href="https://angular.dev/guide/signals" class="text-sky-400 hover:underline">Angular Signals Documentation</a></li>
+      <li><a href="https://angular.dev/guide/components/lifecycle" class="text-sky-400 hover:underline">Component Lifecycle Hooks Guide</a></li>
+      <li><a href="https://angular.dev/guide/ssr" class="text-sky-400 hover:underline">Server-side Rendering in Angular</a></li>
+    </ul>
+  </div>
 </ng-template>
