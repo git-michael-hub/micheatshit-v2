@@ -1,2 +1,0 @@
-this.changeDetectorRef.markForCheck(); // Mark component for future checks
-this.changeDetectorRef.detectChanges(); // Immediately trigger change detection

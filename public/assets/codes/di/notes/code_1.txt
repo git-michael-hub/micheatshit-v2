@@ -1,6 +1,0 @@
-@Component({
-  selector: 'app-example',
-  templateUrl: './example.component.html',
-  providers: [ExampleService]
-})
-export class ExampleComponent {}

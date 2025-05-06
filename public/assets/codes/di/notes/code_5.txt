@@ -1,1 +1,0 @@
-export const EXAMPLE_TOKEN = new InjectionToken<string>('Example Token');

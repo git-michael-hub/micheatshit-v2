@@ -1,5 +1,0 @@
-<ng-container *ngTemplateOutlet="myTemplate"></ng-container>
-
-<ng-template #myTemplate>
-  <div>Content of my template</div>
-</ng-template>

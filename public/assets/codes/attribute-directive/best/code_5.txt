@@ -1,7 +1,0 @@
-ngOnInit() {
-  this.changeColor(this.highlightColor);
-}
-
-ngOnDestroy() {
-  this.renderer.removeStyle(this.el.nativeElement, 'color');
-}

@@ -1,3 +1,0 @@
-export const EXAMPLE_TOKEN = new InjectionToken<string>('Example Token');
-
-constructor(@Inject(EXAMPLE_TOKEN) private exampleValue: string) {}

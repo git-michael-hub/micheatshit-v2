@@ -58,6 +58,9 @@ import { CollectionComponent } from './feature/angular/concepts/collection/colle
 import { CliComponent } from './feature/angular/concepts/cli/cli.component';
 import { ComponentComponent } from './feature/angular/concepts/component/component.component';
 import { ConfigurationComponent } from './feature/angular/concepts/configuration/configuration.component';
+import { DataBindingComponent } from './feature/angular/concepts/data-binding/data-binding.component';
+import { DeclarableComponent } from './feature/angular/concepts/declarable/declarable.component';
+import { DecoratorComponent } from './feature/angular/concepts/decorator/decorator.component';
 
 const routes: Routes = [
   {
@@ -120,6 +123,18 @@ const routes: Routes = [
       {
         path: 'change-detection',
         component: ChangeDetectionComponent
+      },
+      {
+        path: 'data-binding',
+        component: DataBindingComponent
+      },
+      {
+        path: 'declarable',
+        component: DeclarableComponent
+      },
+      {
+        path: 'decorator',
+        component: DecoratorComponent
       },
       {
         path: 'di',

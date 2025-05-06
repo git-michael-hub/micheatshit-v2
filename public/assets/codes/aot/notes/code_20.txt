@@ -1,6 +1,0 @@
-@Component({
-  selector: 'app-optimized',
-  templateUrl: './optimized.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class OptimizedComponent {}

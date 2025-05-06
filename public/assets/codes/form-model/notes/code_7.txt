@@ -1,5 +1,0 @@
-// Access single control value
-const firstNameValue = this.myForm.get('firstName').value;
-
-// Access all control values
-const formValues = this.myForm.value;

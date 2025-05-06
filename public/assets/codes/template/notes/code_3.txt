@@ -1,1 +1,0 @@
-<button (click)="doSomething()">Click me!</button>

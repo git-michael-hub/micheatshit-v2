@@ -1,2 +1,0 @@
-ng add @angular/elements
-npm install @webcomponents/custom-elements --save

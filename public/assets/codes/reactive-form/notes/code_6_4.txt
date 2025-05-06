@@ -1,1 +1,0 @@
-const items = this.myForm.get('items').value;

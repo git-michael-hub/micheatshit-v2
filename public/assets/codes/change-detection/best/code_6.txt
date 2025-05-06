@@ -1,9 +1,0 @@
-@Pipe({
-  name: 'examplePipe',
-  pure: true
-})
-export class ExamplePipe {
-  transform(value: any): any {
-    return value * 2;
-  }
-}

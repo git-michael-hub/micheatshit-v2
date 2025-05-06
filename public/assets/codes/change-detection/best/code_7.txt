@@ -1,5 +1,0 @@
-ngOnChanges(changes: SimpleChanges) {
-  if (changes.data) {
-    this.updateData();
-  }
-}

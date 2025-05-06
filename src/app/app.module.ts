@@ -49,6 +49,9 @@ import { TemplateFormComponent } from './feature/angular/concepts/template-form/
 import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
 import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-render/after-next-render.component';
 import { CustomElementModule } from './feature/angular/concepts/custom-element/custom-element.module';
+import { DataBindingModule } from './feature/angular/concepts/data-binding/data-binding.module';
+import { DeclarableModule } from './feature/angular/concepts/declarable/declarable.module';
+import { DecoratorModule } from './feature/angular/concepts/decorator/decorator.module';
 
 @NgModule({
   declarations: [
@@ -102,7 +105,10 @@ import { CustomElementModule } from './feature/angular/concepts/custom-element/c
     AppRoutingModule,
     HighlightModule,
     HighlightPlusModule,
-    CustomElementModule
+    CustomElementModule,
+    DataBindingModule,
+    DeclarableModule,
+    DecoratorModule
   ],
   providers: [
     {

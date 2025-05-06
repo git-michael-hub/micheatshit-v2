@@ -1,1 +1,0 @@
-<button type="submit" [disabled]="myForm.invalid">Submit</button>

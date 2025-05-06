@@ -1,0 +1,544 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Declarable
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Declarables</span>
+      in Angular 19 are a fundamental concept referring to components, directives, and pipes that must be declared in an NgModule before they can be used in templates. With the stabilization of standalone components in Angular 19, declarables can now also be self-contained without requiring NgModule declarations.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<ng-template #notesRef>
+  <p>What are Declarables in Angular?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      Declarables are Angular artifacts that can be used in templates. There are three types of declarables:
+      <ul class="list-disc pl-4">
+        <li><strong>Components</strong>: Define views with their own templates, styles, and logic</li>
+        <li><strong>Directives</strong>: Add behavior to existing DOM elements or components</li>
+        <li><strong>Pipes</strong>: Transform data for display in templates</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Declaration Requirement</strong>:
+      In traditional Angular applications, all declarables must be declared in exactly one NgModule's <code>declarations</code> array before they can be used.
+    </li>
+    <li>
+      <strong>Scope</strong>:
+      Declarables are only visible within the module they're declared in, unless explicitly exported and imported by another module.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Declarables in NgModules</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Component Declaration</strong>:
+      Components must be declared in an NgModule before they can be referenced in templates.
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Directive Declaration</strong>:
+      Directives must also be declared in an NgModule's declarations array.
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Pipe Declaration</strong>:
+      Pipes, like components and directives, must be declared in an NgModule.
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 and Standalone Components</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Standalone Declarables</strong>:
+      Angular 19 fully stabilizes standalone components, directives, and pipes, which do not require NgModule declarations.
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Import-based Architecture</strong>:
+      Standalone components manage their dependencies through imports rather than module declarations, simplifying the architecture.
+    </li>
+    <li>
+      <strong>Coexistence</strong>:
+      Angular 19 supports both NgModule-based declarables and standalone declarables in the same application, allowing for gradual migration.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Using Declarables in Templates</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Template Usage</strong>:
+      Once declared (or marked as standalone), components, directives, and pipes can be used in templates.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Declarable Types Comparison</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Type</th>
+        <th class="py-3 px-4 text-left">Purpose</th>
+        <th class="py-3 px-4 text-left">Template Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Component</td>
+        <td class="py-3 px-4">Defines a view with template, styles, and logic</td>
+        <td class="py-3 px-4"><code ngNonBindable>&lt;app-my-component&gt;&lt;/app-my-component&gt;</code></td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Directive</td>
+        <td class="py-3 px-4">Adds behavior to elements or components</td>
+        <td class="py-3 px-4"><code ngNonBindable>&lt;div appHighlight&gt;Text&lt;/div&gt;</code></td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Pipe</td>
+        <td class="py-3 px-4">Transforms data for display</td>
+        <td class="py-3 px-4"><code ngNonBindable>{{ value | myPipe }}</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Organize Declarables Logically</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Feature Modules</strong>:
+          Group related declarables into feature modules to improve organization and maintain separation of concerns.
+        </li>
+        <li>
+          <strong>Shared Modules</strong>:
+          Place common declarables in shared modules and export them for use across the application.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Prevent Duplicate Declarations</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Single Declaration Rule</strong>:
+          Ensure each declarable is declared in exactly one NgModule to prevent runtime errors. Angular will throw an error if a component, directive, or pipe is declared in multiple modules.
+        </li>
+        <li>
+          <strong>Use Module Imports</strong>:
+          Instead of re-declaring components across modules, import the module that declares and exports them.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Consider Standalone Components</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>For New Development</strong>:
+          In Angular 19, prefer standalone components, directives, and pipes for new development, as they simplify the architecture and reduce boilerplate.
+        </li>
+        <li>
+          <strong>Gradual Migration</strong>:
+          For existing applications, gradually migrate to standalone components starting with leaf components and moving toward the root.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Export Public Declarables</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Explicit Exports</strong>:
+          Only export declarables that are intended to be used outside their declaring module. Keep internal components private.
+        </li>
+        <li>
+          <strong>Export Re-exports</strong>:
+          When creating aggregator modules, re-export declarables from imported modules to simplify the public API.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Test Declarables in Isolation</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Component Test Harnesses</strong>:
+          Use Angular's Component Test Harnesses to test components in isolation, without their parent module dependencies.
+        </li>
+        <li>
+          <strong>Shallow Component Tests</strong>:
+          For unit tests, prefer shallow component tests that don't require child components to be declared or mocked.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros of NgModule Declarables:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Explicit Component Boundaries</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          NgModule declarations clearly define which components, directives, and pipes are available within a module scope, making the boundaries explicit.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Encapsulation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          NgModules provide strong encapsulation, ensuring that declarables are only available where explicitly exported and imported.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Lazy Loading</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          NgModules facilitate feature-based lazy loading, where entire feature sets of declarables can be loaded on demand.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Established Pattern</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The NgModule architecture is well-established with clear patterns and extensive documentation for organizing declarables.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons of NgModule Declarables:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Boilerplate Code</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          NgModules add boilerplate through declarations, imports, and exports arrays that must be maintained as the application grows.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Cognitive Overhead</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Understanding which module declares a component and tracking the module dependency tree can increase cognitive load.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Duplication Risk</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The single-declaration rule can lead to errors when a declarable is accidentally included in multiple modules.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Indirection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The layer of indirection between components and their dependencies can make code navigation and understanding more difficult.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Pros of Standalone Declarables (Angular 19):
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Simplified Architecture</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Standalone components eliminate the need for NgModule declarations, reducing boilerplate and simplifying the application structure.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Direct Dependencies</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Dependencies are declared directly at the component level, making it clearer what each component needs.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Tree-Shakable</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Standalone components are more efficiently tree-shakable, potentially reducing bundle sizes.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Easier Testing</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Testing standalone components is simpler as they explicitly declare their dependencies, requiring less test setup.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons of Standalone Declarables:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Dependency Management</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Without NgModules, developers must be careful to import all necessary dependencies in each standalone component.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Migration Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Migrating existing applications from NgModule-based declarables to standalone components requires careful planning.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Duplication</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Without the centralized declarations of NgModules, there's a risk of duplicating import statements across components.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Aspect</th>
+        <th class="py-3 px-4 text-left">NgModule Declarables</th>
+        <th class="py-3 px-4 text-left">Standalone Declarables</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Boilerplate</td>
+        <td class="py-3 px-4">More (module declarations)</td>
+        <td class="py-3 px-4">Less (direct imports)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Organization</td>
+        <td class="py-3 px-4">Module-based grouping</td>
+        <td class="py-3 px-4">Component-level organization</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Dependency Management</td>
+        <td class="py-3 px-4">Centralized in modules</td>
+        <td class="py-3 px-4">Distributed across components</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Testing</td>
+        <td class="py-3 px-4">Often requires TestBed configuration</td>
+        <td class="py-3 px-4">Simpler setup with explicit dependencies</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Bundle Size</td>
+        <td class="py-3 px-4">Potentially larger</td>
+        <td class="py-3 px-4">More efficiently tree-shakable</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Topics:</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Standalone Components</strong>:
+
+      <p>
+        Angular 19 fully stabilizes standalone components, which eliminate the need for NgModule declarations. Standalone components can import their dependencies directly, including other standalone components, directives, and pipes.
+      </p>
+    </li>
+    <li>
+      <strong>NgModules</strong>:
+
+      <p>
+        While Angular 19 emphasizes standalone components, NgModules remain a fundamental part of Angular for organizing and encapsulating application features. Understanding the relationship between modules and declarables is still important.
+      </p>
+    </li>
+    <li>
+      <strong>Components, Directives, and Pipes</strong>:
+
+      <p>
+        These three types of declarables form the building blocks of Angular UIs. Components define views, directives modify DOM elements, and pipes transform data. All can now be either NgModule-declared or standalone.
+      </p>
+    </li>
+    <li>
+      <strong>Lazy Loading</strong>:
+
+      <p>
+        Angular 19 supports lazy loading for both NgModule-based features and standalone components. With standalone components, Angular introduces new, simpler patterns for lazy loading that don't require modules.
+      </p>
+    </li>
+    <li>
+      <strong>Dependency Injection</strong>:
+
+      <p>
+        Angular's dependency injection system works closely with declarables, especially for providing services to components. In standalone components, dependencies can be injected directly without module providers.
+      </p>
+    </li>
+  </ol>
+</ng-template>
