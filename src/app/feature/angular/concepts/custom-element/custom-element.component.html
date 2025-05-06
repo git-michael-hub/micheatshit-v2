@@ -1,0 +1,404 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Custom Element
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Custom Elements</span>
+      in Angular 19 are a way to package Angular components as standard web components (custom elements) that can be used in any HTML page. This feature allows you to create reusable components that work across different frameworks or in applications that don't use a framework at all.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<ng-template #notesRef>
+  <p>What are Custom Elements?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Web Components Standard</strong>:
+      Custom Elements are part of the Web Components standard, allowing developers to create new HTML elements.
+    </li>
+    <li>
+      <strong>Framework Agnostic</strong>:
+      Once created, custom elements can be used in any HTML page, regardless of the framework used.
+    </li>
+    <li>
+      <strong>Encapsulated Functionality</strong>:
+      They encapsulate functionality, making it reusable across different applications.
+    </li>
+    <li>
+      <strong>Browser Support</strong>:
+      Modern browsers support custom elements natively, with polyfills available for older browsers.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Creating Custom Elements in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Step 1: Create an Angular Component</strong>:
+      First, create the Angular component you want to convert into a custom element.
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Step 2: Register as Custom Element</strong>:
+      Convert the Angular component to a custom element using Angular's built-in APIs.
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Angular 19 Standalone Components</strong>:
+      In Angular 19, you can use standalone components for a simpler approach.
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Using the Custom Element</strong>:
+      After registration, use your custom element like any other HTML element.
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ul>
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Keep Components Simple and Focused</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Single Responsibility</strong>:
+          Design custom elements to have a single, well-defined responsibility. This makes them more reusable and easier to maintain.
+        </li>
+        <li>
+          <strong>Minimize Dependencies</strong>:
+          Reduce dependencies on external services or components. If dependencies are necessary, inject them through the custom element's API.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Design a Clean API</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Clear Inputs and Outputs</strong>:
+          Define clear inputs (properties) and outputs (events) for your custom element. Use semantic naming that follows HTML conventions.
+        </li>
+        <li>
+          <strong>Document the API</strong>:
+          Provide documentation for all properties, methods, and events exposed by your custom element.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Handle Lifecycle Properly</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Clean Up Resources</strong>:
+          Ensure proper cleanup in the ngOnDestroy lifecycle hook to prevent memory leaks, especially for components that use observables or event listeners.
+        </li>
+        <li>
+          <strong>Initialize Appropriately</strong>:
+          Use the appropriate lifecycle hooks for initialization (ngOnInit, afterNextRender, etc.) to ensure your component initializes correctly.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize for Performance</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Lazy Loading</strong>:
+          Consider lazy loading custom elements to reduce initial bundle size, especially for elements that aren't immediately needed.
+        </li>
+        <li>
+          <strong>OnPush Change Detection</strong>:
+          Use OnPush change detection strategy to improve performance by reducing unnecessary change detection cycles.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Consider Browser Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Polyfills</strong>:
+          Include appropriate polyfills for browsers that don't fully support custom elements. Angular provides built-in support for this.
+        </li>
+        <li>
+          <strong>Test Across Browsers</strong>:
+          Test your custom elements across different browsers to ensure consistent behavior.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Framework Agnostic</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Custom elements can be used in any HTML page, regardless of whether it uses Angular, React, Vue, or no framework at all, making them truly reusable across different projects.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Encapsulated Functionality</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Custom elements encapsulate their functionality, including HTML, CSS, and JavaScript, which helps maintain clean separation of concerns and prevents style conflicts.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Simplified Integration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          They provide a simple way to integrate Angular components into existing applications without requiring a full migration to Angular.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Modern Web Standards</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Custom elements are part of the web standards, ensuring long-term support and compatibility with future web technologies.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Reduced Bundle Size</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          In Angular 19, custom elements can be built as standalone components, reducing the need to include the entire Angular framework in your bundle.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Additional Build Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Creating and packaging custom elements requires additional build steps and configuration, which can increase project complexity.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Browser Support Limitations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          While most modern browsers support custom elements, older browsers may require polyfills, which can add to the bundle size and complexity.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Overhead</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Custom elements built with Angular still include parts of the Angular runtime, which can add performance overhead compared to native web components built from scratch.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Limited Angular Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Some Angular features may not work as expected when used in custom elements, particularly those that rely on the Angular dependency injection system or routing.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Debugging Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Debugging issues in custom elements can be more challenging, especially when they're used outside of an Angular application.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Framework agnostic</td>
+        <td class="py-3 px-4">Additional build complexity</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Encapsulated functionality</td>
+        <td class="py-3 px-4">Browser support limitations</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Simplified integration</td>
+        <td class="py-3 px-4">Performance overhead</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Modern web standards</td>
+        <td class="py-3 px-4">Limited Angular features</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Reduced bundle size</td>
+        <td class="py-3 px-4">Debugging complexity</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Topics:</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Standalone Components</strong>:
+
+      <p>
+        Standalone components in Angular 19 provide a simplified way to create and use components without requiring NgModules, making them ideal for use with custom elements.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Elements Package</strong>:
+
+      <p>
+        The @angular/elements package provides the createCustomElement() function, which transforms Angular components into custom elements. In Angular 19, this functionality has been enhanced for better performance and compatibility.
+      </p>
+    </li>
+    <li>
+      <strong>Web Components</strong>:
+
+      <p>
+        Custom elements are part of the broader Web Components standard, which also includes Shadow DOM, HTML templates, and HTML imports. Understanding these related technologies can help you build more powerful custom elements.
+      </p>
+    </li>
+    <li>
+      <strong>Dependency Injection</strong>:
+
+      <p>
+        Custom elements in Angular 19 can leverage Angular's dependency injection system, allowing you to inject services and other dependencies into your custom elements.
+      </p>
+    </li>
+    <li>
+      <strong>Zone.js and Change Detection</strong>:
+
+      <p>
+        Angular 19 offers improved zoneless applications, which can be particularly beneficial for custom elements by reducing the overhead of zone.js and optimizing change detection.
+      </p>
+    </li>
+  </ol>
+</ng-template>

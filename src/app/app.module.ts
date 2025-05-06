@@ -48,6 +48,7 @@ import { TemplateComponent } from './feature/angular/concepts/template/template.
 import { TemplateFormComponent } from './feature/angular/concepts/template-form/template-form.component';
 import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
 import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-render/after-next-render.component';
+import { CustomElementModule } from './feature/angular/concepts/custom-element/custom-element.module';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-
     BrowserModule,
     AppRoutingModule,
     HighlightModule,
-    HighlightPlusModule
+    HighlightPlusModule,
+    CustomElementModule
   ],
   providers: [
     {

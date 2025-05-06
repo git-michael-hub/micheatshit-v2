@@ -37,6 +37,27 @@ import { BindingComponent } from './feature/angular/concepts/binding/binding.com
 import { BootstrapComponent } from './feature/angular/concepts/bootstrap/bootstrap.component';
 import { ControlFlowComponent } from './feature/angular/concepts/control-flow/control-flow.component';
 import { BuilderComponent } from './feature/angular/concepts/builder/builder.component';
+import { CustomElementComponent } from './feature/angular/concepts/custom-element/custom-element.component';
+import { DeferrableViewsComponent } from './feature/angular/concepts/deferrable-views/deferrable-views.component';
+import { HydrationComponent } from './feature/angular/concepts/hydration/hydration.component';
+import { InputTransformComponent } from './feature/angular/concepts/input-transform/input-transform.component';
+import { PartialHydrationComponent } from './feature/angular/concepts/partial-hydration/partial-hydration.component';
+import { SignalComponentsComponent } from './feature/angular/concepts/signal-components/signal-components.component';
+import { SsrComponent } from './feature/angular/concepts/ssr/ssr.component';
+import { StyleUrlComponent } from './feature/angular/concepts/style-url/style-url.component';
+import { ZonelessApplicationsComponent } from './feature/angular/concepts/zoneless-applications/zoneless-applications.component';
+import { ClassDecoratorComponent } from './feature/angular/concepts/class-decorator/class-decorator.component';
+import { SignalsComponent } from './feature/angular/concepts/signals/signals.component';
+import { ViewTransitionsComponent } from './feature/angular/concepts/view-transitions/view-transitions.component';
+import { UniversalComponent } from './feature/angular/concepts/universal/universal.component';
+import { ViewHierarchyComponent } from './feature/angular/concepts/view-hierarchy/view-hierarchy.component';
+import { StandaloneComponent } from './feature/angular/concepts/standalone/standalone.component';
+import { ContentProjectionComponent } from './feature/angular/concepts/content-projection/content-projection.component';
+import { ClassFieldDecoratorComponent } from './feature/angular/concepts/class-field-decorator/class-field-decorator.component';
+import { CollectionComponent } from './feature/angular/concepts/collection/collection.component';
+import { CliComponent } from './feature/angular/concepts/cli/cli.component';
+import { ComponentComponent } from './feature/angular/concepts/component/component.component';
+import { ConfigurationComponent } from './feature/angular/concepts/configuration/configuration.component';
 
 const routes: Routes = [
   {
@@ -114,7 +135,7 @@ const routes: Routes = [
       },
       {
         path: 'deferrable-views',
-        loadComponent: () => import('./feature/angular/concepts/deferrable-views/deferrable-views.component').then(c => c.DeferrableViewsComponent),
+        component: DeferrableViewsComponent
       },
       {
         path: 'form-control',
@@ -130,11 +151,11 @@ const routes: Routes = [
       },
       {
         path: 'hydration',
-        loadComponent: () => import('./feature/angular/concepts/hydration/hydration.component').then(c => c.HydrationComponent),
+        component: HydrationComponent
       },
       {
         path: 'input-transform',
-        loadComponent: () => import('./feature/angular/concepts/input-transform').then(c => c.InputTransformComponent),
+        component: InputTransformComponent
       },
       {
         path: 'lazy-loading',
@@ -150,11 +171,11 @@ const routes: Routes = [
       },
       {
         path: 'partial-hydration',
-        loadComponent: () => import('./feature/angular/concepts/partial-hydration/partial-hydration.component').then(c => c.PartialHydrationComponent),
+        component: PartialHydrationComponent
       },
       {
         path: 'signal-components',
-        loadComponent: () => import('./feature/angular/concepts/signal-components/signal-components.component').then(c => c.SignalComponentsComponent),
+        component: SignalComponentsComponent
       },
       {
         path: 'pipe',
@@ -186,11 +207,11 @@ const routes: Routes = [
       },
       {
         path: 'ssr',
-        loadComponent: () => import('./feature/angular/concepts/ssr/ssr.component').then(c => c.SsrComponent),
+        component: SsrComponent
       },
       {
         path: 'style-url',
-        loadComponent: () => import('./feature/angular/concepts/style-url').then(c => c.StyleUrlComponent),
+        component: StyleUrlComponent
       },
       {
         path: 'structural-directive',
@@ -218,59 +239,59 @@ const routes: Routes = [
       },
       {
         path: 'zoneless-applications',
-        loadComponent: () => import('./feature/angular/concepts/zoneless-applications/zoneless-applications.component').then(c => c.ZonelessApplicationsComponent),
+        component: ZonelessApplicationsComponent
       },
       {
         path: 'class-decorator',
-        loadComponent: () => import('./feature/angular/concepts/class-decorator/class-decorator.component').then(c => c.ClassDecoratorComponent),
+        component: ClassDecoratorComponent
       },
       {
         path: 'signals',
-        loadComponent: () => import('./feature/angular/concepts/signals/signals.component').then(c => c.SignalsComponent),
+        component: SignalsComponent
       },
       {
         path: 'view-transitions',
-        loadComponent: () => import('./feature/angular/concepts/view-transitions/view-transitions.component').then(c => c.ViewTransitionsComponent),
+        component: ViewTransitionsComponent
       },
       {
         path: 'universal',
-        loadComponent: () => import('./feature/angular/concepts/universal/universal.component').then(c => c.UniversalComponent),
+        component: UniversalComponent,
       },
       {
         path: 'view-hierarchy',
-        loadComponent: () => import('./feature/angular/concepts/view-hierarchy/view-hierarchy.component').then(c => c.ViewHierarchyComponent),
+        component: ViewHierarchyComponent,
       },
       {
         path: 'standalone',
-        loadComponent: () => import('./feature/angular/concepts/standalone/standalone.component').then(c => c.StandaloneComponent),
+        component: StandaloneComponent,
       },
       {
         path: 'content-projection',
-        loadComponent: () => import('./feature/angular/concepts/content-projection/content-projection.component').then(c => c.ContentProjectionComponent),
+        component: ContentProjectionComponent,
       },
       {
-        path: 'di',
-        loadComponent: () => import('./feature/angular/concepts/di/di.component').then(c => c.DiComponent),
+        path: 'custom-element',
+        component: CustomElementComponent,
       },
       {
         path: 'class-field-decorator',
-        loadComponent: () => import('./feature/angular/concepts/class-field-decorator/class-field-decorator.component').then(m => m.ClassFieldDecoratorComponent)
+        component: ClassFieldDecoratorComponent
       },
       {
         path: 'collection',
-        loadComponent: () => import('./feature/angular/concepts/collection/collection.component').then(m => m.CollectionComponent)
+        component: CollectionComponent
       },
       {
         path: 'cli',
-        loadComponent: () => import('./feature/angular/concepts/cli/cli.component').then(m => m.CliComponent)
+        component: CliComponent
       },
       {
         path: 'component',
-        loadComponent: () => import('./feature/angular/concepts/component/component.component').then(m => m.ComponentComponent)
+        component: ComponentComponent
       },
       {
         path: 'configuration',
-        loadComponent: () => import('./feature/angular/concepts/configuration/configuration.component').then(m => m.ConfigurationComponent)
+        component: ConfigurationComponent
       },
     ]
   },
