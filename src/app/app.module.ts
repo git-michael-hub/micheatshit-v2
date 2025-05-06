@@ -53,6 +53,8 @@ import { DataBindingModule } from './feature/angular/concepts/data-binding/data-
 import { DeclarableModule } from './feature/angular/concepts/declarable/declarable.module';
 import { DecoratorModule } from './feature/angular/concepts/decorator/decorator.module';
 import { DiTokenComponent } from './feature/angular/concepts/di-token/di-token.component';
+import { DslComponent } from './feature/angular/concepts/dsl/dsl.component';
+import { EagerLoadingComponent } from './feature/angular/concepts/eager-loading/eager-loading.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +102,8 @@ import { DiTokenComponent } from './feature/angular/concepts/di-token/di-token.c
     TemplateFormComponent,
     AfterNextRenderComponent,
     DiTokenComponent,
+    DslComponent,
+    EagerLoadingComponent,
   ],
   imports: [
     CommonModule,

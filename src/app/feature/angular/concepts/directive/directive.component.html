@@ -1,74 +1,109 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    directive
+    Directive
   </p>
 
   <div class="text-content">
     <p>
-      Angular directive is a powerful feature of Angular that allows developers to manipulate the DOM, add behavior to existing elements, and create reusable components. Directives can be divided into three main types: component directives, attribute directives, and structural directives.
-    </p>
-
-    <br>
-
-    <p>
-      <strong>Component directives</strong> are used to create reusable components. They have their own view, data, and behavior. They are created using the @Component decorator and can be used in other components or in the root module.
-    </p>
-
-    <br>
-
-    <p>
-      <strong>Attribute directives</strong> are used to add behavior to existing elements. They are created using the @Directive decorator and are typically used to modify the behavior or appearance of elements in the DOM. Examples of attribute directives include ngModel, ngClass, and ngStyle.
-    </p>
-
-    <br>
-
-    <p>
-      <strong>Structural directives</strong> are used to modify the layout of the DOM by adding or removing elements. They are created using the @Directive decorator and are used to add or remove elements based on conditions. Examples of structural directives include ngIf, ngFor, and ngSwitch.
+      <span class="text-zinc-50 tw-font-medium">Directives</span>
+      in Angular 19 are powerful features that manipulate the DOM, add behaviors to existing elements, and create reusable components. Angular 19 enhances directives with signal-based reactivity, improved performance, and better integration with the new control flow syntax, allowing developers to build more responsive and efficient applications.
     </p>
 
     <br>
 
     <div class="flex flex-col">
       <div class="flex border-b border-gray-200">
-        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Notes
         </button>
-        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Pros and Cons
         </button>
-        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
-            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
           </div>
           <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
           </div>
           <div *ngSwitchDefault>
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
-
   </div>
 </section>
 
-
-
-
 <ng-template #notesRef>
-  <p>
-    Angular directives:
-  </p>
+  <p>Types of Directives in Angular 19:</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Component Directives</strong>:
+      Components with their own templates, styles, and behavior, created using the @Component decorator.
+    </li>
+    <li>
+      <strong>Attribute Directives</strong>:
+      Directives that change the appearance or behavior of existing elements, created using the @Directive decorator.
+    </li>
+    <li>
+      <strong>Structural Directives</strong>:
+      Directives that add or remove DOM elements based on conditions, now with built-in alternatives in Angular 19.
+    </li>
+  </ul>
 
   <br>
+  <br>
 
+  <p>New Directive Features in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Signal-Based Directives</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces signal-based inputs for directives, enabling reactive behavior with improved performance and reduced memory usage compared to traditional input bindings.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Host Directive Composition</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 enhances host directives to enable better directive composition, allowing multiple directives to be combined in a more efficient and maintainable way.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Built-in Control Flow Reducing Structural Directives</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 stabilizes the built-in control flow syntax (@if, @for, @switch) that provides an alternative to traditional structural directives like *ngIf, *ngFor, and *ngSwitch with better performance and type safety.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Standalone Directive Improvements</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 fully optimizes standalone directives, eliminating NgModule dependencies and improving tree-shaking for smaller bundle sizes.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Deferred Loading for Directives</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 provides improved deferred loading capabilities for directives, allowing better control over when directives are loaded and initialized.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Types of Angular Directives with Examples</p>
   <ol class="list-decimal px-10 text-sm">
     <li>
       Component Directive
@@ -88,7 +123,6 @@
           </code>
         </pre>
       </span>
-
     </li>
     <li>
       Attribute Directive
@@ -108,7 +142,6 @@
           </code>
         </pre>
       </span>
-
     </li>
     <li>
       Structural Directive
@@ -155,9 +188,7 @@
             </code>
           </pre>
         </span>
-
       </span>
-
     </li>
     <li>
       Input Binding
@@ -177,7 +208,6 @@
           </code>
         </pre>
       </span>
-
     </li>
     <li>
       Output Binding
@@ -197,7 +227,6 @@
           </code>
         </pre>
       </span>
-
     </li>
     <li>
       Host Binding
@@ -217,7 +246,6 @@
           </code>
         </pre>
       </span>
-
     </li>
     <li>
       Host Listener
@@ -237,7 +265,6 @@
           </code>
         </pre>
       </span>
-
     </li>
     <li>
       ElementRef
@@ -257,147 +284,245 @@
           </code>
         </pre>
       </span>
-
-    </li>
-    <li>
-      Renderer2
-
-      <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code9 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_9"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      NgZone
-
-      <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code10 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_10"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
     </li>
   </ol>
 
   <br>
+  <br>
 
-  <p>
-    These code examples demonstrate the different types of Angular directives and their implementation in code. Understanding these concepts is essential for building scalable and maintainable Angular applications that leverage the full power of directives.
-  </p>
+  <p>Directive Usage Patterns in Angular 19</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Directive Type</th>
+        <th class="py-3 px-4 text-left">Use Case</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>Component</code></td>
+        <td class="py-3 px-4">Building UI components with encapsulated logic and styling</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>Attribute</code></td>
+        <td class="py-3 px-4">Modifying behavior or appearance of existing elements</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>Structural</code></td>
+        <td class="py-3 px-4">Adding/removing elements based on conditions (legacy approach)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>Host Directive</code></td>
+        <td class="py-3 px-4">Composing multiple directives together on a component</td>
+      </tr>
+    </tbody>
+  </table>
 </ng-template>
 
-
-
-
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Prefer Built-in Control Flow Over Structural Directives</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use @if Over *ngIf</strong>:
+          In Angular 19, prefer the new @if control flow syntax over *ngIf directive for better performance and type checking.
+        </li>
+        <li>
+          <strong>Use @for Over *ngFor</strong>:
+          Take advantage of the @for syntax which provides improved change detection and better memory management compared to *ngFor.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Signal-Based Inputs</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use input() Function</strong>:
+          Replace traditional @Input() decorators with signal-based input() functions for better reactivity and performance.
+        </li>
+        <li>
+          <strong>Implement Input Transforms</strong>:
+          Use input transforms to process and validate input values as they arrive, avoiding unnecessary change detection cycles.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Create Standalone Directives</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use standalone: true</strong>:
+          Create standalone directives to avoid NgModule dependencies and improve tree-shaking for smaller bundles.
+        </li>
+        <li>
+          <strong>Self-Contained Dependencies</strong>:
+          Ensure directives import their own dependencies rather than relying on shared module imports.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Apply Host Directive Composition</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Compose Multiple Directives</strong>:
+          Use the hostDirectives property to compose multiple directives together, promoting code reuse.
+        </li>
+        <li>
+          <strong>Expose API Selectively</strong>:
+          Control which inputs and outputs from host directives are exposed using the inputs and outputs properties.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Apply the OnPush Change Detection Strategy</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Performance Optimization</strong>:
+          Use OnPush change detection strategy with directives to significantly improve performance, especially in large applications.
+        </li>
+        <li>
+          <strong>Immutable Input Data</strong>:
+          Design directives to work with immutable data structures for better performance with OnPush change detection.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
 <ng-template #prosConsRef>
   <strong class="text-sky-400">
-    Pros:
+    Pros of Angular 19 Directives:
   </strong>
 
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
+  <ol class="list-decimal px-4 text-sm">
     <li>
-      <strong>Reusability</strong>: Directives are reusable components that can be used across an application, allowing developers to write less code and make the application more modular.
+      <strong>Improved Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19 directives provide better performance through signal-based reactivity and optimized change detection.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Customization</strong>: Directives can be used to customize the behavior and appearance of HTML elements, providing a powerful tool for creating rich and dynamic user interfaces.
+      <strong>Better Type Safety</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Enhanced TypeScript integration offers improved type checking for directives, reducing runtime errors.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Separation of concerns</strong>: Directives allow developers to separate the concerns of an application into smaller, more manageable components, making it easier to maintain and update the codebase.
+      <strong>Modular Design</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Standalone directives enable more modular code organization without NgModule dependencies.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Testability</strong>: Directives can be easily tested, allowing developers to write unit tests and ensure that their code is working as expected.
+      <strong>Code Reusability</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Host directive composition allows for better code reuse across components.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Declarative Syntax</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Directives provide a clean, declarative way to modify DOM behavior without complex imperative code.
+        </li>
+      </ul>
     </li>
   </ol>
 
   <br>
 
   <strong class="text-sky-400">
-    Cons:
+    Cons and Challenges:
   </strong>
 
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
+  <ol class="list-decimal px-4 text-sm">
     <li>
-      <strong>Complexity</strong>: Directives can be complex and difficult to understand, especially for developers who are new to Angular. This can make it harder to write, debug, and maintain code.
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The new signal-based approach and control flow syntax requires learning new patterns for those familiar with older directive models.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Performance</strong>: Directives can have an impact on the performance of an application, especially if they are not written efficiently. This can lead to slower page load times and reduced user experience.
+      <strong>Migration Effort</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Converting existing directives to use new Angular 19 features can require significant refactoring in larger applications.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Dependency Injection</strong>: Directives rely on Angular's dependency injection system, which can be complex and difficult to understand for developers who are new to the framework.
+      <strong>Debugging Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Complex directive compositions can be difficult to debug when issues arise.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Learning Curve</strong>: Angular Directives require some level of knowledge of Angular's architecture and features, making it challenging for new developers to learn and become productive.
+      <strong>Potential Overuse</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Directives can be overused, leading to "directive soup" and harder-to-maintain code.
+        </li>
+      </ul>
     </li>
   </ol>
+</ng-template>
 
-  <br>
-
-  <p>
-    Overall, Angular Directives provide a powerful tool for building rich and dynamic user interfaces. While there are some potential drawbacks to using them, the benefits of reusability, customization, and separation of concerns make them a valuable tool for building scalable and maintainable Angular applications.
-  </p>
-
-  </ng-template>
-
-
-
-
-
-  <ng-template #topicsRef>
-    <p>
-      Other features that are related to directives:
-    </p>
-
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>TemplateRef</strong>: A class that represents an Angular template. It can be used to create dynamic templates that can be inserted into the DOM.
-      </li>
-      <li>
-        <strong>ViewContainerRef</strong>: A class that represents a container for views. It can be used to create and manage views in the DOM.
-      </li>
-      <li>
-        <strong>ElementRef</strong>: A class that represents an element in the DOM. It can be used to manipulate the element directly.
-      </li>
-      <li>
-        <strong>Renderer2</strong>: A class that provides a way to manipulate the DOM that is compatible with Angular's change detection system.
-      </li>
-      <li>
-        <strong>Dependency Injection</strong>: A system that allows Angular to manage dependencies between components and services.
-      </li>
-    </ol>
-
-    <br>
-
-    <p>
-      Understanding how to use these features effectively is essential for building scalable and maintainable Angular applications. By mastering Angular directives and related topics, developers can create powerful and responsive applications that provide a great user experience.
-    </p>
-
-  </ng-template>
+<ng-template #topicsRef>
+  <p>Related Angular 19 Topics:</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Built-in Control Flow</strong>:
+      <p>
+        Angular 19's new control flow syntax (@if, @for, @switch) provides an alternative to structural directives with improved performance and type safety.
+      </p>
+    </li>
+    <li>
+      <strong>Signal-Based Inputs</strong>:
+      <p>
+        The input() function in Angular 19 enables reactive, signal-based properties in directives for better performance and change detection.
+      </p>
+    </li>
+    <li>
+      <strong>Host Directive Composition</strong>:
+      <p>
+        Angular 19 enhances the ability to compose multiple directives together using the hostDirectives feature.
+      </p>
+    </li>
+    <li>
+      <strong>Standalone Components and Directives</strong>:
+      <p>
+        Angular 19 fully stabilizes the standalone API, allowing directives to be used without NgModule dependencies.
+      </p>
+    </li>
+    <li>
+      <strong>Deferred Loading</strong>:
+      <p>
+        Angular 19 improves support for lazy-loading directives using the @defer syntax, optimizing initial load times.
+      </p>
+    </li>
+    <li>
+      <strong>Zoneless Applications</strong>:
+      <p>
+        Directives in Angular 19 integrate with the zoneless reactivity model for improved performance without zone.js.
+      </p>
+    </li>
+    <li>
+      <strong>Server-Side Rendering (SSR)</strong>:
+      <p>
+        Angular 19 optimizes directive hydration in SSR scenarios for better performance and user experience.
+      </p>
+    </li>
+  </ol>
+</ng-template>

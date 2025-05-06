@@ -1,0 +1,487 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Eager Loading
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Eager Loading</span>
+      in Angular 19 is the default module and component loading strategy where resources are loaded and initialized during application bootstrap rather than on-demand. Angular 19 enhances eager loading with improved bundle optimization, standalone component support, and signal-based architecture for better startup performance while maintaining the immediacy and reliability of upfront resource loading.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<ng-template #notesRef>
+  <p>What is Eager Loading?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      Eager loading is Angular's default loading strategy where components, modules, and other resources are loaded and initialized during application bootstrap rather than on-demand.
+    </li>
+    <li>
+      <strong>Immediate Availability</strong>:
+      All eagerly loaded components are available immediately after the application starts, without additional network requests or loading delays.
+    </li>
+    <li>
+      <strong>Bundle Impact</strong>:
+      Eagerly loaded resources are included in the main application bundle, affecting initial load time but providing reliable post-load performance.
+    </li>
+    <li>
+      <strong>Implementation</strong>:
+      Resources are eagerly loaded by including them in imports, declarations, or by directly referencing them in the application's main module or bootstrap configuration.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Eager Loading Enhancements in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Standalone Component Optimization</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces improved tree-shaking and bundle optimization for eagerly loaded standalone components, reducing bundle sizes even with eager loading.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal-Based Architecture</strong>:
+      <ul class="list-disc pl-4">
+        <li>The new signal-based reactivity model in Angular 19 optimizes eager loading by reducing the overhead of change detection for eagerly loaded components.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Dependency Injection</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 optimizes the dependency injection system for eagerly loaded components and services, improving initialization times during application bootstrap.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Partial Hydration Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>New support for eager loading with partial hydration allows applications to prioritize which eagerly loaded components get hydrated first, improving perceived performance.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Advanced Preloading Strategies</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces refined preloading strategies that bridge the gap between eager and lazy loading by eagerly loading critical components and preloading others after initialization.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Eager Loading Implementation in Angular 19</p>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>NgModule-Based Eager Loading</strong>:
+      Traditional approach using Angular modules.
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Standalone Component Eager Loading</strong>:
+      Modern approach using Angular 19's standalone components.
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Route Configuration</strong>:
+      Eager loading through route configuration.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Signal-Based Eager Components</strong>:
+      Optimized eager loading with Angular 19 signals.
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Eager vs. Lazy Loading in Angular 19</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Aspect</th>
+        <th class="py-3 px-4 text-left">Eager Loading</th>
+        <th class="py-3 px-4 text-left">Lazy Loading</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Initial Load Time</td>
+        <td class="py-3 px-4">Longer initial load</td>
+        <td class="py-3 px-4">Faster initial load</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Runtime Performance</td>
+        <td class="py-3 px-4">Immediate access to all features</td>
+        <td class="py-3 px-4">Loading delays when accessing features</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Bundle Size</td>
+        <td class="py-3 px-4">Larger initial bundle</td>
+        <td class="py-3 px-4">Smaller initial bundle, multiple chunks</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Implementation</td>
+        <td class="py-3 px-4">Simpler implementation</td>
+        <td class="py-3 px-4">More complex setup</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Use Case</td>
+        <td class="py-3 px-4">Critical features, smaller apps</td>
+        <td class="py-3 px-4">Secondary features, larger apps</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Choose the Right Loading Strategy</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Eagerly Load Core Components</strong>:
+          Use eager loading for components that are immediately visible on application launch or critical to the user experience, such as navigation bars, authentication components, and core layout elements.
+        </li>
+        <li>
+          <strong>Combined Approach</strong>:
+          Implement a hybrid approach where essential features are eagerly loaded and secondary features are lazy loaded to balance immediate availability with optimization.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Eagerly Loaded Components</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Standalone Components</strong>:
+          Angular 19's standalone components provide better tree-shaking for eagerly loaded components, reducing unnecessary code in the bundle.
+        </li>
+        <li>
+          <strong>Implement Signal-Based Reactivity</strong>:
+          Leverage Angular 19's signal-based architecture for eagerly loaded components to reduce change detection overhead during application startup.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Consider Advanced Preloading Strategies</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Configure Preloading</strong>:
+          Use Angular 19's enhanced preloading strategies to eagerly load critical components while preloading secondary ones to improve overall application performance.
+
+          <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+          <span #code6 hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>typescript</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
+
+            <pre>
+              <code
+                [highlight]="code_6"
+                [languages]="['typescript']">
+              </code>
+            </pre>
+          </span>
+        </li>
+        <li>
+          <strong>Custom Preloading Strategy</strong>:
+          Implement a custom preloading strategy that prioritizes modules based on user behavior analytics or application-specific requirements.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Initial Route Rendering</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Component Input Binding</strong>:
+          Use Angular 19's enhanced component input binding for route parameters in eagerly loaded route components for faster initialization.
+
+          <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+          <span #code3 hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>typescript</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
+
+            <pre>
+              <code
+                [highlight]="code_3"
+                [languages]="['typescript']">
+              </code>
+            </pre>
+          </span>
+        </li>
+        <li>
+          <strong>Prioritize Critical Routes</strong>:
+          Eagerly load routes that are part of the initial user flow while lazily loading routes for secondary or less frequently used features.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Bundle Optimization</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Audit Dependencies</strong>:
+          Regularly audit eagerly loaded components and their dependencies to ensure only necessary code is included in the main bundle.
+        </li>
+        <li>
+          <strong>Code Splitting Even with Eager Loading</strong>:
+          Use Angular 19's improved build tools to implement code splitting strategies even for eagerly loaded modules, keeping critical features eagerly loaded while optimizing bundle size.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros of Eager Loading in Angular 19:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Immediate Feature Availability</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          All eagerly loaded components and features are available immediately after the application loads, providing a smoother user experience without loading delays.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Simpler Implementation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Eager loading is Angular's default loading strategy and requires less complex code than lazy loading, making it easier to implement and maintain.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Error Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Loading all components at startup means dependency issues or errors are discovered immediately rather than when a user tries to access a specific feature.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Better Integration with Signals</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19's signal-based architecture provides more efficient change detection for eagerly loaded components, reducing the traditional performance penalty.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Simplified Testing</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Testing eagerly loaded components is more straightforward as they're always available and initialized, simplifying integration and end-to-end testing.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons and Challenges:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Larger Initial Bundle Size</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Eagerly loading all components increases the initial bundle size, which can lead to longer load times and reduced performance on first visit.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Slower Startup Time</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The application has to parse, compile, and initialize all eagerly loaded components during startup, which can delay the time to interactive state.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Wasted Resources</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Resources are loaded for features that the user might never access, potentially wasting bandwidth and processing power.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Mobile Performance Impact</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          On mobile devices with limited bandwidth and processing power, eager loading can significantly impact the initial application load experience.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Scaling Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          As applications grow in size and complexity, eager loading becomes less practical and may require a transition to a more hybrid loading approach.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Topics:</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Lazy Loading</strong>:
+      <p>
+        The counterpart to eager loading that loads modules and components on-demand, reducing initial bundle size and improving startup performance.
+      </p>
+    </li>
+    <li>
+      <strong>Standalone Components</strong>:
+      <p>
+        Angular 19's standalone component architecture improves eager loading performance through better tree-shaking and dependency optimization.
+      </p>
+    </li>
+    <li>
+      <strong>Signal-Based Architecture</strong>:
+      <p>
+        The new reactive programming model in Angular 19 enhances performance of eagerly loaded components through more efficient change detection.
+      </p>
+    </li>
+    <li>
+      <strong>Preloading Strategies</strong>:
+      <p>
+        Techniques that bridge eager and lazy loading by loading critical components eagerly and then proactively loading others based on various strategies.
+      </p>
+    </li>
+    <li>
+      <strong>Bundle Optimization</strong>:
+      <p>
+        Build optimizations in Angular 19 that reduce the performance impact of eager loading through improved tree-shaking and code splitting.
+      </p>
+    </li>
+    <li>
+      <strong>Partial Hydration</strong>:
+      <p>
+        New approach in Angular 19 that allows prioritizing which eagerly loaded components get hydrated first, improving perceived performance.
+      </p>
+    </li>
+    <li>
+      <strong>Build Configuration</strong>:
+      <p>
+        Angular 19's enhanced build tools provide better control over how eagerly loaded components are bundled and optimized for production.
+      </p>
+    </li>
+  </ol>
+</ng-template>

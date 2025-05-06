@@ -8,6 +8,7 @@ import { ChangeDetectionComponent } from './feature/angular/concepts/change-dete
 import { DependencyInjectionComponent } from './feature/angular/concepts/dependency-injection/dependency-injection.component';
 import { DirectiveComponent } from './feature/angular/concepts/directive/directive.component';
 import { DynamicComponentLoadingComponent } from './feature/angular/concepts/dynamic-component-loading/dynamic-component-loading.component';
+import { EagerLoadingComponent } from './feature/angular/concepts/eager-loading/eager-loading.component';
 import { FormControlComponent } from './feature/angular/concepts/form-control/form-control.component';
 import { FormModelComponent } from './feature/angular/concepts/form-model/form-model.component';
 import { FormValidationComponent } from './feature/angular/concepts/form-validation/form-validation.component';
@@ -62,6 +63,7 @@ import { DataBindingComponent } from './feature/angular/concepts/data-binding/da
 import { DeclarableComponent } from './feature/angular/concepts/declarable/declarable.component';
 import { DecoratorComponent } from './feature/angular/concepts/decorator/decorator.component';
 import { DiTokenComponent } from './feature/angular/concepts/di-token/di-token.component';
+import { DslComponent } from './feature/angular/concepts/dsl/dsl.component';
 
 const routes: Routes = [
   {
@@ -152,6 +154,10 @@ const routes: Routes = [
       {
         path: 'dynamic-component-loading',
         component: DynamicComponentLoadingComponent
+      },
+      {
+        path: 'eager-loading',
+        component: EagerLoadingComponent
       },
       {
         path: 'deferrable-views',
@@ -312,6 +318,10 @@ const routes: Routes = [
       {
         path: 'configuration',
         component: ConfigurationComponent
+      },
+      {
+        path: 'dsl',
+        component: DslComponent
       },
     ]
   },
