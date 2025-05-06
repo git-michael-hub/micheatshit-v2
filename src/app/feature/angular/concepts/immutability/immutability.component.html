@@ -1,0 +1,467 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Immutability
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Immutability</span>
+      in Angular 19 refers to the practice of not modifying data directly but instead creating new copies with changes applied. This approach is central to Angular's change detection, state management patterns, and the new signals API, enabling more predictable application behavior, improved performance, and better debugging capabilities.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Core Concepts of Immutability in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      Immutability is the practice of not modifying data once it's created, instead generating new data structures when changes are needed.
+    </li>
+    <li>
+      <strong>Signal-based State Management</strong>:
+      Angular 19 signals provide built-in support for immutable state updates using the update() method with a pure function that takes current state and returns new state.
+    </li>
+    <li>
+      <strong>Change Detection</strong>:
+      Immutability simplifies change detection by allowing reference equality checks instead of deep comparisons, improving performance especially in OnPush components.
+    </li>
+    <li>
+      <strong>TypeScript Integration</strong>:
+      Modern TypeScript features like readonly modifiers and immutable types help enforce immutability at compile time.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Immutable Operations with Arrays</p>
+
+  <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_1_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Immutable Operations with Objects</p>
+
+  <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_2_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>TypeScript and Immutability</p>
+
+  <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_3_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Signals and Immutability</p>
+
+  <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_4_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Redux-inspired Patterns with Angular 19</p>
+
+  <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_5_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Control Flow and Immutability in Angular 19</p>
+
+  <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_6_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Immutable Update Patterns</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Array Operations</strong>:
+          Use spread syntax or array methods that return new arrays (map, filter, concat) instead of modifying existing arrays with push, pop, splice.
+        </li>
+        <li>
+          <strong>Object Operations</strong>:
+          Use the spread operator or Object.assign() to create new objects rather than directly modifying properties.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Angular 19 Signal APIs</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use update() Method</strong>:
+          The update() method on signals enforces immutability by providing the current value and expecting a new value to be returned.
+        </li>
+        <li>
+          <strong>Computed Signals</strong>:
+          Derive state using computed signals for read-only values that automatically update when dependencies change.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">TypeScript Immutability</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use readonly Types</strong>:
+          Leverage TypeScript's readonly modifiers, Readonly&lt;T&gt; utility type, and ReadonlyArray&lt;T&gt; to enforce immutability at compile time.
+        </li>
+        <li>
+          <strong>Enable strictImmutableTypes</strong>:
+          Consider enabling strict immutable typing in your TypeScript configuration for more rigorous compile-time checks.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Immutable Libraries</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Consider Immutable.js or Immer</strong>:
+          For complex state structures, consider using libraries like Immutable.js or Immer to simplify immutable updates.
+        </li>
+        <li>
+          <strong>Angular-Compatible Solutions</strong>:
+          Choose immutability libraries that integrate well with Angular's change detection and signals.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">State Management</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Component State</strong>:
+          Use signals for local component state and enforce immutability in all updates.
+        </li>
+        <li>
+          <strong>Application State</strong>:
+          For larger applications, implement a Redux-inspired pattern with action creators and reducers to manage immutable state updates.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Predictable State</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Immutability creates a clear, one-way data flow that makes application state more predictable and easier to reason about.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Simplified Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Immutability allows for reference equality checks instead of deep object comparisons, which can significantly improve performance with OnPush change detection.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Debugging</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Immutable patterns create a history of state changes that makes debugging easier, especially when combined with tools like Redux DevTools.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19's signal-based reactivity system is optimized for immutable updates, providing better performance and more predictable rendering.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Thread Safety</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Immutable data structures are inherently thread-safe, eliminating an entire class of concurrency bugs in applications that use Web Workers.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Switching to immutable update patterns requires developers to learn new approaches and can be challenging for teams used to mutable programming models.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Verbose Code</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Immutable updates can require more code, especially for deep nested updates, potentially making code more verbose (though libraries can help).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Overhead</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Creating new objects for every update has a memory cost and can impact performance for very large data structures or high-frequency updates.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Integration Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Some third-party libraries and APIs expect mutable objects, which can lead to integration challenges when implementing immutability throughout your app.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Predictable state management</td>
+        <td class="py-3 px-4">Learning curve for teams</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Optimized for OnPush change detection</td>
+        <td class="py-3 px-4">More verbose update code</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Better debugging and state tracking</td>
+        <td class="py-3 px-4">Memory overhead for large structures</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Seamless integration with Angular signals</td>
+        <td class="py-3 px-4">Integration challenges with some APIs</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Thread safety for concurrent operations</td>
+        <td class="py-3 px-4">Performance cost for high-frequency updates</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Features and Concepts</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Signals API</strong>:
+
+      <p>
+        Angular 19's signals provide a reactive state management solution built with immutability in mind. The update() method facilitates immutable state changes, while computed() creates derived immutable state.
+      </p>
+    </li>
+    <li>
+      <strong>OnPush Change Detection</strong>:
+
+      <p>
+        Immutability works hand-in-hand with OnPush change detection, allowing Angular to efficiently detect changes through reference equality checks rather than deep object comparison.
+      </p>
+    </li>
+    <li>
+      <strong>Control Flow</strong>:
+
+      <p>
+        Angular 19's built-in control flow (@if, @for, @switch) is optimized to work with immutable data and signals, providing efficient rendering when state changes.
+      </p>
+    </li>
+    <li>
+      <strong>Zoneless Applications</strong>:
+
+      <p>
+        Immutable update patterns are essential in zoneless Angular applications, where change detection isn't triggered automatically but relies on explicit signal updates.
+      </p>
+    </li>
+    <li>
+      <strong>Redux State Management</strong>:
+
+      <p>
+        Redux-inspired state management patterns in Angular rely heavily on immutability, using pure reducer functions that produce new state rather than modifying existing state.
+      </p>
+    </li>
+    <li>
+      <strong>RxJS Operators</strong>:
+
+      <p>
+        Many RxJS operators used in Angular applications follow immutable principles, creating new streams rather than modifying existing ones.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>External Resources</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <a href="https://angular.io/guide/signals" class="text-sky-400 hover:text-rose-400">
+        Angular Signals Guide
+      </a> - Official Angular documentation on signals and immutable state updates
+    </li>
+    <li>
+      <a href="https://angular.io/guide/change-detection" class="text-sky-400 hover:text-rose-400">
+        Change Detection Guide
+      </a> - How immutability impacts Angular's change detection
+    </li>
+    <li>
+      <a href="https://immutable-js.com/" class="text-sky-400 hover:text-rose-400">
+        Immutable.js
+      </a> - Library for immutable data structures
+    </li>
+    <li>
+      <a href="https://immerjs.github.io/immer/" class="text-sky-400 hover:text-rose-400">
+        Immer
+      </a> - Library for working with immutable state with a mutable API
+    </li>
+    <li>
+      <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype" class="text-sky-400 hover:text-rose-400">
+        TypeScript Readonly Types
+      </a> - TypeScript documentation on readonly utility types
+    </li>
+  </ul>
+</ng-template>

@@ -1,0 +1,1 @@
+ngc -p tsconfig.json

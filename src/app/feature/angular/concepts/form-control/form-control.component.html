@@ -1,17 +1,122 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    form control
+    Form Control
   </p>
 
   <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">FormControl</span>
+      in Angular 19 represents a single input field within a form, managing its value, validation state, and user interactions. Angular 19 enhances FormControl with signals integration, improved type safety, and better performance in zone-less applications. The reactive form control system allows for programmatic creation, validation, and synchronization with the UI.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
 
 
+<ng-template #notesRef>
+  <p>What is a FormControl?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      A FormControl tracks the value and validation state of an individual form input element, supporting both synchronous and asynchronous validators.
+    </li>
+    <li>
+      <strong>Core Building Block</strong>:
+      FormControl is the most basic unit in Angular's reactive forms, which can be used alone or as part of FormGroup and FormArray collections.
+    </li>
+    <li>
+      <strong>Two-Way Binding</strong>:
+      FormControl maintains synchronization between the model in your component class and the input element in your template.
+    </li>
+    <li>
+      <strong>Validation Integration</strong>:
+      FormControl supports built-in and custom validators for ensuring data quality and consistency.
+    </li>
+  </ul>
 
-    <div>
+  <br>
+  <br>
 
-      <button (click)="code22.hidden = !code22.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <p>FormControl Improvements in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Signal Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces seamless integration between FormControl and signals, allowing form state to be consumed directly by the signals system.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Strict Typing</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enhanced TypeScript support with improved generics, nonNullable controls, and better type inference for form values and errors.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Optimizations</strong>:
+      <ul class="list-disc pl-4">
+        <li>Zone-less operation for forms, reducing change detection cycles and improving performance in large applications.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Standalone Usage</strong>:
+      <ul class="list-disc pl-4">
+        <li>Better support for standalone components, eliminating the need for ReactiveFormsModule imports at the NgModule level.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Automatic Cleanup</strong>:
+      <ul class="list-disc pl-4">
+        <li>Integration with takeUntilDestroyed from &#64;angular/core/rxjs-interop for automatic subscription management without manual unsubscribing.</li>
+      </ul>
+    </li>
+  </ol>
 
-      <span #code22 copyToClipboard>
+  <br>
+  <br>
+
+  <p>Working with FormControls in Angular 19</p>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Basic FormControl with Signals</strong>:
+      Creating and using a basic FormControl with Angular 19 features.
+
+      <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code_1_ref hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
           <span>typescript</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
@@ -19,444 +124,370 @@
 
         <pre>
           <code
-            [highlight]="code_22"
+            [highlight]="code_1"
             [languages]="['typescript']">
           </code>
         </pre>
       </span>
-    </div>
-
-
-    <br>
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-
-
-      <li>
-        <span>Importing FormControl</span>
-
-        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code1 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_1"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Creating a FormControl</span>
-
-        <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code2 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_2"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Setting an initial value for a FormControl</span>
-
-        <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code3 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_3"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Updating the value of a FormControl</span>
-
-        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code4 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_4"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Updating the value of a FormControl without emitting a value change event</span>
-
-        <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code5 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_5"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Subscribing to value changes of a FormControl</span>
-
-        <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code6 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_6"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Subscribing to status changes of a FormControl</span>
-
-        <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code7 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_7"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Setting validators for a FormControl</span>
-
-        <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code8 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_8"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Setting multiple validators for a FormControl</span>
-
-        <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code9 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_9"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Adding a validator to a FormControl dynamically</span>
-
-        <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code10 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_10"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Disabling a FormControl</span>
-
-        <button (click)="code11.hidden = !code11.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code11 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_11"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Enabling a FormControl</span>
-
-        <button (click)="code12.hidden = !code12.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code12 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_12"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Checking if a FormControl is disabled</span>
-
-        <button (click)="code13.hidden = !code13.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code13 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_13"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Marking a FormControl as touched</span>
-
-        <button (click)="code14.hidden = !code14.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code14 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_14"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Marking a FormControl as untouched</span>
-
-        <button (click)="code15.hidden = !code15.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code15 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_15"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Checking if a FormControl is touched</span>
-
-        <button (click)="code16.hidden = !code16.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code16 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_16"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Marking a FormControl as dirty</span>
-
-        <button (click)="code17.hidden = !code17.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code17 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_17"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Marking a FormControl as pristine</span>
-
-        <button (click)="code18.hidden = !code18.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code18 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_18"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Checking if a FormControl is dirty</span>
-
-        <button (click)="code19.hidden = !code19.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code19 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_19"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Resetting a FormControl</span>
-
-        <button (click)="code20.hidden = !code20.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code20 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_20"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-      <li>
-        <span>Resetting a FormControl with a new value</span>
-
-        <button (click)="code21.hidden = !code21.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code21 copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_21"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-      </li>
-
-    </ol>
-
-
-
-
-  </div>
-</section>
+    </li>
+    <li>
+      <strong>FormControl with Validators</strong>:
+      Using validators with FormControl in Angular 19.
+
+      <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code_2_ref hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>FormControl with Signal Integration</strong>:
+      Connecting FormControls with Angular 19's signals system.
+
+      <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code_3_ref hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Advanced FormControl with Custom Validators</strong>:
+      Creating custom validators and async validation.
+
+      <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code_4_ref hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>FormControl Configuration Options Comparison</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Option</th>
+        <th class="py-3 px-4 text-left">Description</th>
+        <th class="py-3 px-4 text-left">Angular 19 Improvements</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">nonNullable</td>
+        <td class="py-3 px-4">Ensures the form value is never null</td>
+        <td class="py-3 px-4">Enhanced type safety with TypeScript</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">validators</td>
+        <td class="py-3 px-4">Synchronous validation functions</td>
+        <td class="py-3 px-4">Better error type inference</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">asyncValidators</td>
+        <td class="py-3 px-4">Asynchronous validation functions</td>
+        <td class="py-3 px-4">Improved performance with signals</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">updateOn</td>
+        <td class="py-3 px-4">Value update strategy (change, blur, submit)</td>
+        <td class="py-3 px-4">Zone-less optimizations</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Signal Integration for Better Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Connect Forms to Signals</strong>:
+          Bridge FormControl values to Angular 19 signals for fine-grained reactivity without relying on Zone.js change detection.
+
+          <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+          <span #code_5_ref hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>typescript</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
+
+            <pre>
+              <code
+                [highlight]="code_5"
+                [languages]="['typescript']">
+              </code>
+            </pre>
+          </span>
+        </li>
+        <li>
+          <strong>Leverage computed() for Derived State</strong>:
+          Use computed signals to derive new values from form state, such as formatted display values or validation summaries.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Apply Strict Typing</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use nonNullable Option</strong>:
+          Enable the nonNullable option in FormControl to ensure the value is never null, improving type checking and preventing runtime errors.
+        </li>
+        <li>
+          <strong>Specify Generic Types</strong>:
+          Always specify the generic type for FormControl to ensure type safety throughout your application.
+          <pre><code class="text-xs">// Explicit typing of form control
+const nameControl = new FormControl&lt;string&gt;('', {{ '{' }} nonNullable: true {{ '}' }});</code></pre>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize for Zone-less Performance</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Manage Subscriptions Properly</strong>:
+          Use takeUntilDestroyed() from &#64;angular/core/rxjs-interop for automatic cleanup of form subscriptions.
+        </li>
+        <li>
+          <strong>Use Explicit Change Detection</strong>:
+          In zone-less applications, trigger change detection explicitly after form updates for optimal performance.
+
+          <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+          <span #code_6_ref hidden copyToClipboard>
+            <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+              <span>typescript</span>
+              <span class="copy-button-wrapper bg-gray-700"></span>
+            </div>
+
+            <pre>
+              <code
+                [highlight]="code_6"
+                [languages]="['typescript']">
+              </code>
+            </pre>
+          </span>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Structure Validation Logic Effectively</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Separate Validator Functions</strong>:
+          Create reusable validator functions rather than embedding validation logic directly in component classes.
+        </li>
+        <li>
+          <strong>Use Validator Composition</strong>:
+          Compose multiple validators using Validators.compose() for better organization and reusability.
+          <pre><code class="text-xs">// Composing validators
+const passwordValidators = Validators.compose([
+  Validators.required,
+  Validators.minLength(8),
+  customPasswordValidator
+]);</code></pre>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Consider UX in Form Interactions</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use updateOn Strategically</strong>:
+          Configure updateOn: 'blur' for fields where validation during typing would be distracting, and updateOn: 'change' for immediate feedback.
+        </li>
+        <li>
+          <strong>Apply Visual Feedback</strong>:
+          Show validation messages only after the user has interacted with the control (touched) to avoid premature error displays.
+          <pre><code class="text-xs">// Show errors only when touched
+&lt;div *ngIf="emailControl.errors && emailControl.touched"&gt;
+  &lt;p *ngIf="emailControl.errors['email']"&gt;Please enter a valid email&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros of Angular 19's FormControl:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Signal Integration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          FormControl now works seamlessly with Angular's signals system, enabling more efficient data flow between forms and components with less boilerplate code.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Type Safety</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Enhanced TypeScript integration with better generic support, nonNullable controls, and type inference provides stronger compile-time guarantees and better developer experience.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Optimizations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Zone-less operation reduces unnecessary change detection cycles, especially beneficial for forms with frequent updates or in large-scale applications.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Automatic Subscription Management</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Integration with takeUntilDestroyed simplifies memory management by automatically cleaning up form-related subscriptions when components are destroyed.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Standalone Component Support</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Better integration with standalone components eliminates the need for module-level imports, making forms easier to implement in modern Angular applications.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons and Challenges:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The new signal integration patterns require additional learning, especially for developers familiar with the traditional reactive forms approach.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Migration Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Upgrading existing forms to leverage the new Angular 19 features can require significant refactoring, especially for complex form implementations.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Debugging Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Asynchronous validators and signal integration can sometimes create more complex debugging scenarios that are harder to trace through traditional methods.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Increased Boilerplate for Advanced Cases</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          While simple forms benefit from cleaner code, complex validation scenarios with multiple interdependent fields may still require significant boilerplate.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Library Compatibility Issues</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Some third-party form libraries may not yet be fully compatible with Angular 19's signals and zone-less approaches, requiring custom integration work.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Topics:</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>FormGroup and FormArray</strong>:
+      <p>
+        Collections that work alongside FormControl to manage groups of related form controls or dynamic lists of controls, now enhanced with signal integration.
+      </p>
+    </li>
+    <li>
+      <strong>FormBuilder</strong>:
+      <p>
+        A helper service that simplifies the creation of complex form structures, now with improved typing and signal support in Angular 19.
+      </p>
+    </li>
+    <li>
+      <strong>Validators</strong>:
+      <p>
+        Built-in and custom validation functions that work with FormControl to enforce data quality rules, with better type safety in Angular 19.
+      </p>
+    </li>
+    <li>
+      <strong>Signals</strong>:
+      <p>
+        Angular 19's reactive primitive that can be integrated with FormControl to create more efficient reactive forms with less reliance on Zone.js.
+      </p>
+    </li>
+    <li>
+      <strong>takeUntilDestroyed</strong>:
+      <p>
+        A utility from &#64;angular/core/rxjs-interop that helps manage form subscriptions by automatically unsubscribing when components are destroyed.
+      </p>
+    </li>
+    <li>
+      <strong>Zone-less Applications</strong>:
+      <p>
+        Angular applications that operate without Zone.js, requiring explicit change detection but offering better performance, especially for form-heavy applications.
+      </p>
+    </li>
+    <li>
+      <strong>Reactive Forms vs. Template-driven Forms</strong>:
+      <p>
+        The two approaches to form handling in Angular, with reactive forms (using FormControl) now being more strongly favored in Angular 19 due to better signal integration.
+      </p>
+    </li>
+  </ol>
+</ng-template>

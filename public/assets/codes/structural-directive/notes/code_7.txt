@@ -1,0 +1,3 @@
+<ul>
+  <li *ngFor="let item of items; index as i; last as isLast">{{ item }} at index {{ i }}{{ isLast ? ' (last)' : '' }}</li>
+</ul>

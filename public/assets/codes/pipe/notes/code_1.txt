@@ -1,0 +1,2 @@
+<p>{{ 'hello world' | uppercase }}</p>
+<p>{{ 'HELLO WORLD' | lowercase }}</p>

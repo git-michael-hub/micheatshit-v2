@@ -1,0 +1,3 @@
+ngOnChanges(changes: SimpleChanges) {
+  console.log('Input properties have changed:', changes);
+}

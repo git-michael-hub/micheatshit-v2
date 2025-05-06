@@ -1,0 +1,10 @@
+formGroup: FormGroup;
+
+constructor(private formBuilder: FormBuilder) {
+  this.formGroup = this.formBuilder.group({
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+    confirmPassword: [''],
+  }, { validators: passwordMatchValidator });
+}

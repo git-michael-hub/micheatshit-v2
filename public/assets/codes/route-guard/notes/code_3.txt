@@ -1,0 +1,15 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-my-component',
+  templateUrl: './my.component.html',
+  styleUrls: ['./my.component.css']
+})
+export class MyComponent {
+  constructor(private router: Router) {}
+
+  navigateToProtected() {
+    this.router.navigate(['/my-protected-path']);
+  }
+}

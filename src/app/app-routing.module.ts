@@ -9,9 +9,13 @@ import { DependencyInjectionComponent } from './feature/angular/concepts/depende
 import { DirectiveComponent } from './feature/angular/concepts/directive/directive.component';
 import { DynamicComponentLoadingComponent } from './feature/angular/concepts/dynamic-component-loading/dynamic-component-loading.component';
 import { EagerLoadingComponent } from './feature/angular/concepts/eager-loading/eager-loading.component';
+import { EcmascriptComponent } from './feature/angular/concepts/ecmascript/ecmascript.component';
+import { ElementComponent } from './feature/angular/concepts/element/element.component';
 import { FormControlComponent } from './feature/angular/concepts/form-control/form-control.component';
 import { FormModelComponent } from './feature/angular/concepts/form-model/form-model.component';
 import { FormValidationComponent } from './feature/angular/concepts/form-validation/form-validation.component';
+import { ImmutabilityComponent } from './feature/angular/concepts/immutability/immutability.component';
+import { InjectableComponent } from './feature/angular/concepts/injectable/injectable.component';
 import { LazyLoadingComponent } from './feature/angular/concepts/lazy-loading/lazy-loading.component';
 import { LifecycleHookComponent } from './feature/angular/concepts/lifecycle-hook/lifecycle-hook.component';
 import { ObservableComponent } from './feature/angular/concepts/observable/observable.component';
@@ -64,6 +68,7 @@ import { DeclarableComponent } from './feature/angular/concepts/declarable/decla
 import { DecoratorComponent } from './feature/angular/concepts/decorator/decorator.component';
 import { DiTokenComponent } from './feature/angular/concepts/di-token/di-token.component';
 import { DslComponent } from './feature/angular/concepts/dsl/dsl.component';
+import { EntryPointComponent } from './feature/angular/concepts/entry-point/entry-point.component';
 
 const routes: Routes = [
   {
@@ -160,6 +165,18 @@ const routes: Routes = [
         component: EagerLoadingComponent
       },
       {
+        path: 'ecmascript',
+        component: EcmascriptComponent
+      },
+      {
+        path: 'element',
+        component: ElementComponent
+      },
+      {
+        path: 'entry-point',
+        component: EntryPointComponent
+      },
+      {
         path: 'deferrable-views',
         component: DeferrableViewsComponent
       },
@@ -178,6 +195,14 @@ const routes: Routes = [
       {
         path: 'hydration',
         component: HydrationComponent
+      },
+      {
+        path: 'immutability',
+        component: ImmutabilityComponent
+      },
+      {
+        path: 'injectable',
+        component: InjectableComponent
       },
       {
         path: 'input-transform',

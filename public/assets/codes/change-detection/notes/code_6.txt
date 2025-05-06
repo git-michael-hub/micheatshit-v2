@@ -1,0 +1,13 @@
+constructor(private cd: ChangeDetectorRef) {}
+
+ngAfterViewInit() {
+  this.cd.detach();
+}
+
+ngOnChanges(changes: SimpleChanges) {
+  console.log('Input properties have changed:', changes);
+
+  // Reattach component to change detection tree.
+  this.cd.reattach();
+  this.cd.detectChanges();
+}

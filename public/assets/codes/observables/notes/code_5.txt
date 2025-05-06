@@ -1,0 +1,13 @@
+import { of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+const myObservable = of('Hello', 'World', 'Error');
+
+myObservable.pipe(
+  map(str => str.toUpperCase()),
+  catchError(error => throwError(`An error occurred: ${error}`))
+).subscribe(
+  next => console.log(next),
+  error => console.error(error),
+  () => console.log('Complete')
+);

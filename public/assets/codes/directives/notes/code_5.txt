@@ -1,0 +1,1 @@
+@Output() exampleOutput = new EventEmitter<string>();

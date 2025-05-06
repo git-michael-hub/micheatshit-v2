@@ -1,0 +1,19 @@
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+@Component({
+  selector: 'app-my-form',
+  template: `
+    <form [formGroup]="myForm">
+      <label>
+        Name:
+        <input type="text" formControlName="name">
+      </label>
+    </form>
+  `,
+})
+export class MyFormComponent {
+  myForm = new FormGroup({
+    name: new FormControl(),
+  });
+}

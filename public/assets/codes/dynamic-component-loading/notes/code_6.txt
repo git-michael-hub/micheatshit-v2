@@ -1,0 +1,22 @@
+import { Component, NgModuleFactoryLoader, ViewChild, ViewContainerRef } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <ng-template #myModuleContainer></ng-template>
+    <button (click)="loadModule()">Load Module</button>
+  `
+})
+export class AppComponent {
+  @ViewChild('myModuleContainer', { read: ViewContainerRef }) container: ViewContainerRef;
+
+  constructor(private loader: NgModuleFactoryLoader) { }
+
+  loadModule() {
+    this.loader.load('my-module#MyModule').then(moduleFactory => {
+      const moduleRef = moduleFactory.create(this.container.injector);
+      const componentFactory = moduleRef.componentFactoryResolver.resolveComponentFactory(MyComponent);
+      const componentRef = this.container.createComponent(componentFactory);
+    });
+  }
+}

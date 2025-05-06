@@ -1,0 +1,3 @@
+<div *ngIf="showElement">
+  This element will be shown if showElement is true.
+</div>

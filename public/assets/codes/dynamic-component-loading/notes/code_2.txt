@@ -1,0 +1,27 @@
+import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
+import { MyComponent } from './my.component';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>Dynamic Component Loading</h1>
+    <div #container></div>
+    <button (click)="loadComponent()">Load Component</button>
+    <button (click)="destroyComponent()">Destroy Component</button>
+  `
+})
+export class AppComponent {
+  @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
+
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+
+  loadComponent() {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(MyComponent);
+    const componentRef = this.container.createComponent(componentFactory);
+    componentRef.instance.myProperty = 'hello';
+  }
+
+  destroyComponent() {
+    this.container.clear();
+  }
+}

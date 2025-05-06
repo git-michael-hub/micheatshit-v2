@@ -1,0 +1,14 @@
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+  @Input('appHighlight') highlightColor: string;
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.changeColor(this.highlightColor || 'yellow');
+  }
+
+  private changeColor(color: string) {
+    this.renderer.setStyle(this.el.nativeElement, 'color', color);
+  }
+}

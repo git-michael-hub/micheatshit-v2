@@ -1,0 +1,467 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Injectable
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Injectable</span>
+      in Angular 19 is a decorator that marks a class as available for dependency injection. It provides essential metadata that allows the Angular dependency injection system to create and deliver dependencies to components, directives, pipes, and other services. Angular 19 enhances @Injectable with improved tree-shaking, optimized factory functions, and seamless integration with the signals API.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Core Concepts of @Injectable in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      The @Injectable decorator marks a class as a provider of dependencies that can be injected using Angular's DI system.
+    </li>
+    <li>
+      <strong>providedIn Options</strong>:
+      Angular 19 provides several options for scoping injectable services: 'root', 'platform', 'any', or a specific NgModule.
+    </li>
+    <li>
+      <strong>Tree-shakable Providers</strong>:
+      Modern @Injectable services are tree-shakable, meaning unused services are removed during production builds.
+    </li>
+    <li>
+      <strong>Functional Injection Pattern</strong>:
+      Angular 19 optimizes the inject() function for field injection, providing a more concise alternative to constructor injection.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic Injectable Service</p>
+
+  <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_1_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>providedIn Configuration Options</p>
+
+  <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_2_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Signal-based Services in Angular 19</p>
+
+  <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_3_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Injectable Factory Functions</p>
+
+  <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_4_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Modern Dependency Injection with inject()</p>
+
+  <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_5_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Tree-shakable Providers Example</p>
+
+  <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_6_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use providedIn for Tree-shakable Services</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Root-level Services</strong>:
+          Use <code>providedIn: 'root'</code> for application-wide singleton services to enable tree-shaking and avoid redundant provider registrations.
+        </li>
+        <li>
+          <strong>Module-scoped Services</strong>:
+          Use <code>providedIn: SomeModule</code> to limit a service's availability to a specific module and its children.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Choose the Right Injection Scope</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Platform-wide Services</strong>:
+          Use <code>providedIn: 'platform'</code> for services that should be shared across multiple Angular applications running in the same page.
+        </li>
+        <li>
+          <strong>Multi-instance Services</strong>:
+          Use <code>providedIn: 'any'</code> when each lazy-loaded module should receive its own instance of the service.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Modern Injection Patterns</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use inject() Function</strong>:
+          For Angular 19 applications, prefer the <code>inject()</code> function for field injection instead of traditional constructor injection for cleaner, more readable code.
+        </li>
+        <li>
+          <strong>Injection Tokens</strong>:
+          Use <code>InjectionToken</code> for non-class dependencies like configuration objects, API URLs, or feature flags.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Signal-based State Management</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Reactive Data</strong>:
+          Leverage signals in services to create reactive, self-contained state management solutions that integrate seamlessly with Angular's change detection.
+        </li>
+        <li>
+          <strong>Computed Properties</strong>:
+          Use computed signals for derived state to reduce redundant calculations and maintain a clean data architecture.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Follow Proper Testing Practices</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Design for Testability</strong>:
+          Structure injectable services to be easily testable by accepting dependencies through constructor injection or the inject() function.
+        </li>
+        <li>
+          <strong>Mock Dependencies</strong>:
+          Use Angular's testing utilities to provide mock implementations of dependencies when testing services in isolation.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Tree-shakable by Default</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19's @Injectable with providedIn enables effective tree-shaking, ensuring that unused services are eliminated from production bundles, reducing application size.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Injectable services are optimized in Angular 19 with better factory function implementation and reduced runtime overhead, improving overall application performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Simplified DI Configuration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The providedIn property eliminates the need for complex provider configurations in NgModules, making the code more maintainable and less error-prone.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Seamless Integration with Signals</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19 services with @Injectable work seamlessly with the signals API, enabling reactive state management solutions that are both efficient and developer-friendly.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Tooling Support</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Modern IDEs provide better type checking, auto-completion, and refactoring support for @Injectable services, improving developer productivity.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Understanding the different providedIn options and their implications requires a solid grasp of Angular's dependency injection system, which can be challenging for beginners.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Debugging Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Dependency injection issues can sometimes be difficult to debug, especially in large applications with complex provider hierarchies.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Migration Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Migrating legacy code to use modern Injectable patterns may require significant refactoring, particularly when moving from module-based providers to tree-shakable ones.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Singletons Issues</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The default 'root' provider scope creates singletons, which might not be desired in all cases and can lead to unexpected state sharing if not carefully managed.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Tree-shakable by default</td>
+        <td class="py-3 px-4">Learning curve for DI system</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Optimized factory functions</td>
+        <td class="py-3 px-4">Debugging complexity</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Simplified provider configuration</td>
+        <td class="py-3 px-4">Migration challenges from older patterns</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Seamless signals integration</td>
+        <td class="py-3 px-4">Default singleton behavior may not be desired</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced tooling and IDE support</td>
+        <td class="py-3 px-4">Boilerplate code for complex injections</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Features and Concepts</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Dependency Injection System</strong>:
+
+      <p>
+        Angular's DI system is the foundational framework that uses @Injectable services to manage dependencies throughout the application. It handles the creation and delivery of service instances to consuming components.
+      </p>
+    </li>
+    <li>
+      <strong>Injection Tokens</strong>:
+
+      <p>
+        InjectionToken is used alongside @Injectable to provide non-class dependencies, like configuration objects, to services and components, enabling a more flexible DI system.
+      </p>
+    </li>
+    <li>
+      <strong>Signals API</strong>:
+
+      <p>
+        Angular 19's signals provide an efficient way to manage reactive state in @Injectable services, replacing traditional RxJS-based state management in many cases with more optimized, fine-grained reactivity.
+      </p>
+    </li>
+    <li>
+      <strong>Zone-less Applications</strong>:
+
+      <p>
+        Injectable services play a crucial role in zone-less applications by managing change detection through explicit signal updates rather than relying on zone.js to detect changes automatically.
+      </p>
+    </li>
+    <li>
+      <strong>Standalone Components</strong>:
+
+      <p>
+        Tree-shakable @Injectable services with providedIn: 'root' integrate seamlessly with standalone components without requiring NgModule registration, simplifying the component architecture.
+      </p>
+    </li>
+    <li>
+      <strong>Functional Providers</strong>:
+
+      <p>
+        Angular 19 enhances the functional programming capabilities with @Injectable's useFactory option, allowing for dynamic service configuration based on injected dependencies or environment settings.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>External Resources</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <a href="https://angular.io/guide/dependency-injection" class="text-sky-400 hover:text-rose-400">
+        Angular Dependency Injection Guide
+      </a> - Official Angular documentation on DI and injectable services
+    </li>
+    <li>
+      <a href="https://angular.io/guide/dependency-injection-providers" class="text-sky-400 hover:text-rose-400">
+        DI Provider Configuration
+      </a> - Understanding providedIn and other provider options
+    </li>
+    <li>
+      <a href="https://angular.io/api/core/inject" class="text-sky-400 hover:text-rose-400">
+        Inject Function API
+      </a> - Documentation on the modern inject() function
+    </li>
+    <li>
+      <a href="https://angular.io/guide/hierarchical-dependency-injection" class="text-sky-400 hover:text-rose-400">
+        Hierarchical Dependency Injection
+      </a> - Advanced concepts in Angular's DI system
+    </li>
+    <li>
+      <a href="https://angular.io/guide/singleton-services" class="text-sky-400 hover:text-rose-400">
+        Singleton Services
+      </a> - Best practices for managing service instances
+    </li>
+  </ul>
+</ng-template>

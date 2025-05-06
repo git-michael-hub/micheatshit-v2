@@ -1,0 +1,460 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Entry Point
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Entry Point</span>
+      in Angular 19 refers to a specific structure that defines what parts of your code are exported and made available for import by other applications or libraries. Entry points are essential for organizing Angular libraries and determining how code is bundled, tree-shaken, and consumed. In Angular 19, entry points have been enhanced with improved support for standalone components, signals, and modern ECMAScript modules.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<ng-template #notesRef>
+  <p>What is an Entry Point?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      An entry point is a distinct, independently importable piece of an Angular library that specifies what code is exposed to the outside world.
+    </li>
+    <li>
+      <strong>Primary Entry Point</strong>:
+      The main entry point of a library, typically specified in the package.json file, defining the exports available when importing the library directly.
+    </li>
+    <li>
+      <strong>Secondary Entry Points</strong>:
+      Subpackages within a library that can be imported separately, enabling more granular imports and better tree-shaking.
+    </li>
+    <li>
+      <strong>Public API Surface</strong>:
+      The collection of exported symbols (components, services, directives, etc.) that consumers of your library can access and use.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Entry Point Improvements in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Enhanced Standalone Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 provides first-class support for libraries composed entirely of standalone components without requiring NgModules, making entry points cleaner and more intuitive.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Package Format</strong>:
+      <ul class="list-disc pl-4">
+        <li>The Angular Package Format now includes optimized ES2022 outputs with better tree-shaking and more efficient code loading, particularly important for entry point organization.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Entry points can now include and expose signal-based APIs, ensuring backward compatibility while taking advantage of Angular's reactive programming model.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Multiple Compilation Modes</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 supports partial compilation of libraries, allowing library authors to ship partially compiled code that can be further optimized at the application level.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Automatic Providers</strong>:
+      <ul class="list-disc pl-4">
+        <li>Entry points now support automatic discovery and registration of providers, simplifying how services are shared and making dependency injection more intuitive.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Entry Point Implementation</p>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Basic Entry Point Structure</strong>:
+      Package.json format for a primary entry point.
+
+      <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code_1_ref hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Public API Definition</strong>:
+      Creating the public API surface with public-api.ts.
+
+      <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code_2_ref hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Secondary Entry Points</strong>:
+      Creating multiple entry points in a single library.
+
+      <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code_3_ref hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Module-Based Entry Point</strong>:
+      Traditional NgModule-based approach for library components.
+
+      <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code_4_ref hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Entry Point Types Comparison</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Type</th>
+        <th class="py-3 px-4 text-left">Use Case</th>
+        <th class="py-3 px-4 text-left">Angular 19 Support</th>
+        <th class="py-3 px-4 text-left">Tree-Shaking</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Primary Entry Point</td>
+        <td class="py-3 px-4">Main library import</td>
+        <td class="py-3 px-4">Full support with ES2022</td>
+        <td class="py-3 px-4">Good (entire library)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Secondary Entry Points</td>
+        <td class="py-3 px-4">Feature-specific imports</td>
+        <td class="py-3 px-4">Enhanced with better path mapping</td>
+        <td class="py-3 px-4">Excellent (per feature)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Standalone Entry Point</td>
+        <td class="py-3 px-4">NgModule-free libraries</td>
+        <td class="py-3 px-4">New in Angular 19</td>
+        <td class="py-3 px-4">Excellent</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Signal Entry Point</td>
+        <td class="py-3 px-4">Reactive state management</td>
+        <td class="py-3 px-4">New in Angular 19</td>
+        <td class="py-3 px-4">Excellent</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Design a Clean Public API</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Minimize Exposed Surface</strong>:
+          Carefully curate what you export in your entry points. Only expose what consumers need, keeping implementation details private. This creates a more maintainable API and enables better tree-shaking.
+        </li>
+        <li>
+          <strong>Use Barrel Files</strong>:
+          Create index.ts files (barrel files) for organizing exports. This simplifies import statements for consumers while giving you flexibility to reorganize internals without breaking APIs.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Secondary Entry Points</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Feature-Based Organization</strong>:
+          Create secondary entry points based on distinct features. This allows consumers to import only what they need, leading to smaller bundle sizes.
+
+          <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+        </li>
+        <li>
+          <strong>Avoid Circular Dependencies</strong>:
+          Ensure each entry point is self-contained with no circular dependencies between entry points. This keeps the import structure clean and prevents hard-to-debug issues.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Standalone Components</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Module-Free Libraries</strong>:
+          In Angular 19, prefer creating libraries with standalone components. This simplifies the entry point structure and improves tree-shaking.
+
+          <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+        </li>
+        <li>
+          <strong>Compatibility Layer</strong>:
+          If your library needs to support both standalone and NgModule-based applications, consider providing both options through different entry points or conditional exports.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Integrate with the Angular Package Format</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Follow APF Guidelines</strong>:
+          Structure your package.json to conform to the Angular Package Format. This ensures compatibility with the Angular CLI and optimizes how your library is consumed.
+        </li>
+        <li>
+          <strong>Multiple Output Formats</strong>:
+          Provide multiple bundle formats (UMD, ES2022, etc.) to support different consumption patterns. Angular 19's ng-packagr handles this automatically.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Embrace Signal-Based APIs</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Reactive Public APIs</strong>:
+          For state management exposed through your entry points, use Angular 19's signals to create reactive APIs that integrate well with modern Angular applications.
+
+          <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+        </li>
+        <li>
+          <strong>Backwards Compatibility</strong>:
+          Consider providing both signal-based and RxJS Observable-based APIs for backward compatibility during the transition to signals.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros of Angular 19's Entry Point System:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Improved Tree-Shaking</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19's entry point system enables more effective tree-shaking, allowing unused code to be eliminated from the final bundle. This is particularly important for libraries with many features where users typically only use a subset.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Granular Imports</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Secondary entry points allow users to import only the specific features they need, reducing the amount of code loaded and parsed by the browser, which improves initial load time and runtime performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Standalone Component Integration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The entry point system now fully supports libraries built with standalone components, eliminating the need for NgModules and simplifying both library creation and consumption.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal Compatibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Entry points can now expose signal-based APIs, making it easier to create reactive libraries that integrate naturally with Angular 19's signals architecture.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Modern JavaScript Support</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The updated Angular Package Format in Angular 19 supports ES2022 features directly, allowing library authors to use modern JavaScript features without worrying about backward compatibility issues.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons and Challenges:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Increased Configuration Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Setting up multiple entry points requires additional configuration in package.json, ng-package.json, and project structure, which can be complex for developers new to library creation.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Versioning Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          When using multiple entry points, maintaining consistent versioning across all entry points can be challenging, especially when different parts of the library evolve at different rates.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Understanding the nuances of entry points, especially with the new standalone component support and signals integration, requires additional learning for library authors.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Build Time Overhead</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Libraries with many secondary entry points can experience longer build times, as each entry point requires separate compilation and packaging steps.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Transition Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Converting existing libraries to take advantage of Angular 19's new entry point features (standalone components, signals) can be time-consuming and may require breaking changes to the library's API.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Topics:</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Angular Package Format (APF)</strong>:
+      <p>
+        The specification that defines how Angular libraries should be structured and built, which directly impacts how entry points are configured and consumed.
+      </p>
+    </li>
+    <li>
+      <strong>NgModules</strong>:
+      <p>
+        The traditional way to organize Angular code into cohesive blocks, which can be used alongside entry points to define what a library exposes.
+      </p>
+    </li>
+    <li>
+      <strong>Standalone Components</strong>:
+      <p>
+        Angular 19's preferred approach for creating components that don't require NgModules, which simplifies entry point design and improves tree-shaking.
+      </p>
+    </li>
+    <li>
+      <strong>Tree-Shaking</strong>:
+      <p>
+        The process of eliminating unused code during build time, which is significantly enhanced by properly structured entry points.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Libraries</strong>:
+      <p>
+        Collections of reusable code packaged according to the Angular Package Format, typically organized around entry points for optimal consumption.
+      </p>
+    </li>
+    <li>
+      <strong>Lazy Loading</strong>:
+      <p>
+        A technique to load parts of an application on demand, which can be enhanced by strategic use of entry points to minimize initial bundle sizes.
+      </p>
+    </li>
+    <li>
+      <strong>Signals</strong>:
+      <p>
+        Angular 19's reactivity primitive that can be exposed through entry points to create reactive library APIs that integrate naturally with signal-based applications.
+      </p>
+    </li>
+  </ol>
+</ng-template>

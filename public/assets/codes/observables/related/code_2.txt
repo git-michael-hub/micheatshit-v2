@@ -1,0 +1,10 @@
+import { Observable, Subject } from 'rxjs';
+
+// Cold observable
+const myObservable = new Observable(observer => {
+  observer.next(new Date().toISOString());
+});
+
+// Hot observable
+const mySubject = new Subject<string>();
+setInterval(() => mySubject.next(new Date().toISOString()), 1000);

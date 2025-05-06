@@ -1,0 +1,1 @@
+myControl.valueChanges.subscribe(value => console.log(value));

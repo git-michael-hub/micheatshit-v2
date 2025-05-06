@@ -1,0 +1,18 @@
+<div *ngIf="myForm.get('firstName').invalid && (myForm.get('firstName').dirty || myForm.get('firstName').touched)">
+  <div *ngIf="myForm.get('firstName').errors.required">
+    First name is required.
+  </div>
+</div>
+<div *ngIf="myForm.get('lastName').invalid && (myForm.get('lastName').dirty || myForm.get('lastName').touched)">
+  <div *ngIf="myForm.get('lastName').errors.required">
+    Last name is required.
+  </div>
+</div>
+<div *ngIf="myForm.get('email').invalid && (myForm.get('email').dirty || myForm.get('email').touched)">
+  <div *ngIf="myForm.get('email').errors.required">
+    Email is required.
+  </div>
+  <div *ngIf="myForm.get('email').errors.email">
+    Invalid email format.
+  </div>
+</div>

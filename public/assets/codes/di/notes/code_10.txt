@@ -1,0 +1,9 @@
+@Injectable({
+  providedIn: 'root'
+})
+export class ExampleService {}
+
+@NgModule({
+  providers: [ExampleService]
+})
+export class ExampleModule {}

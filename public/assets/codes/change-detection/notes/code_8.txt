@@ -1,0 +1,7 @@
+constructor(private ngZone: NgZone) {}
+
+ngAfterViewInit() {
+  this.ngZone.runOutsideAngular(() => {
+    // Code that runs outside of Angular's zone.
+  });
+}

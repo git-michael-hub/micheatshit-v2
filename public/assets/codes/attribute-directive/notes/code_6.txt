@@ -1,0 +1,3 @@
+ngAfterViewInit() {
+  this.renderer.appendChild(this.el.nativeElement, this.createChildElement());
+}

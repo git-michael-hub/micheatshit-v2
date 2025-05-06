@@ -55,6 +55,9 @@ import { DecoratorModule } from './feature/angular/concepts/decorator/decorator.
 import { DiTokenComponent } from './feature/angular/concepts/di-token/di-token.component';
 import { DslComponent } from './feature/angular/concepts/dsl/dsl.component';
 import { EagerLoadingComponent } from './feature/angular/concepts/eager-loading/eager-loading.component';
+import { EcmascriptComponent } from './feature/angular/concepts/ecmascript/ecmascript.component';
+import { ElementComponent } from './feature/angular/concepts/element/element.component';
+import { EntryPointComponent } from './feature/angular/concepts/entry-point/entry-point.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +107,9 @@ import { EagerLoadingComponent } from './feature/angular/concepts/eager-loading/
     DiTokenComponent,
     DslComponent,
     EagerLoadingComponent,
+    EcmascriptComponent,
+    ElementComponent,
+    EntryPointComponent,
   ],
   imports: [
     CommonModule,
