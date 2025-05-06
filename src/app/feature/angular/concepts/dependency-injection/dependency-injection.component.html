@@ -1,13 +1,13 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
     Dependency Injection (DI)
   </p>
 
   <div class="text-content">
     <p>
-      A design pattern and mechanism for creating and delivering some parts of an application (dependencies) to other parts of an application that require them.
+      <span class="text-zinc-50 tw-font-medium">Dependency Injection (DI)</span>
+      in Angular 19 is a design pattern and core mechanism for creating and delivering parts of an application (dependencies) to other parts that require them. Angular 19 enhances DI with improved performance, simplified providers, and better integration with the signals architecture.
     </p>
-
 
     <br>
 
@@ -17,28 +17,32 @@
           Notes
         </button>
         <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
-          Pros and Cons
+          Best Practices
         </button>
         <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
-            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
           </div>
           <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
           </div>
           <div *ngSwitchDefault>
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
-
   </div>
 </section>
 
@@ -46,14 +50,14 @@
 
 <ng-template #notesRef>
   <p>
-    Dependency Injection (DI) in Angular:
+    Core Dependency Injection Concepts in Angular 19:
   </p>
 
   <br>
 
   <ol class="list-decimal px-10 text-sm">
     <li>
-      <strong>Providers</strong> - Define the dependencies that are injected into components, directives, and services. Providers can be declared at the component, module, or application level.
+      <strong>Providers</strong> - Define the dependencies that are injected into components, directives, and services. In Angular 19, providers can be declared at the component, standalone component, or application level.
 
       <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -73,7 +77,7 @@
 
     </li>
     <li>
-      <strong>Injectors</strong> - Responsible for providing dependencies to components and services. Injectors are created at the component or module level and can inherit providers from their parent injector.
+      <strong>Injectors</strong> - Responsible for providing dependencies to components and services. Angular 19 optimizes injector hierarchies for better performance with standalone components.
 
       <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -93,7 +97,7 @@
 
     </li>
     <li>
-      <strong>Services</strong> - Provide reusable functionality to components and other services. Services can be injected into components and other services using dependency injection.
+      <strong>Services</strong> - Provide reusable functionality to components and other services. In Angular 19, services integrate seamlessly with signals for reactive state management.
 
       <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -133,7 +137,7 @@
 
     </li>
     <li>
-      <strong>Tokens</strong> - Unique identifiers used by the injector to resolve dependencies. Tokens can be strings, classes, or objects.
+      <strong>Tokens</strong> - Unique identifiers used by the injector to resolve dependencies. Angular 19 expands token types with better type safety.
 
       <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -153,7 +157,7 @@
 
     </li>
     <li>
-      <strong>Factory providers</strong> - Allow for custom logic to be used when creating dependencies. Factory providers are declared using a factory function that returns an instance of the dependency.
+      <strong>Factory providers</strong> - Allow for custom logic to be used when creating dependencies. Angular 19 simplifies factory providers with improved type inference.
 
       <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -174,7 +178,7 @@
 
     </li>
     <li>
-      <strong>Value providers</strong> - Allow for simple, static values to be injected as dependencies. Value providers are declared using a plain JavaScript object or a factory function that returns the value.
+      <strong>Value providers</strong> - Allow for simple, static values to be injected as dependencies. Angular 19 adds better type checking for value providers.
 
       <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -195,7 +199,7 @@
 
     </li>
     <li>
-      <strong>Optional dependencies</strong> - Dependencies that are not required by a component or service can be marked as optional using the @Optional decorator.
+      <strong>Optional dependencies</strong> - Dependencies that are not required by a component or service can be marked as optional using the &#64;Optional decorator.
 
       <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -215,7 +219,7 @@
 
     </li>
     <li>
-      <strong>Injection tokens</strong> - Unique identifiers that can be used to resolve dependencies. Injection tokens are used when the dependency is not a class or a string.
+      <strong>Injection tokens</strong> - Unique identifiers that can be used to resolve dependencies. Angular 19 improves injection token type inference.
 
       <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -235,7 +239,7 @@
 
     </li>
     <li>
-      <strong>Hierarchical injection</strong> - Allows for dependencies to be inherited by child components and services.
+      <strong>Hierarchical injection</strong> - Allows for dependencies to be inherited by child components and services. Angular 19 optimizes this for standalone components.
 
       <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -257,120 +261,273 @@
   </ol>
 
   <br>
+  <br>
 
-  <p>
-    Understanding these concepts is essential for building scalable and maintainable Angular applications that use dependency injection to manage dependencies and improve code reuse.
-  </p>
+  <p>New Dependency Injection Features in Angular 19</p>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Signal-based Injection</strong> - Angular 19 introduces a new way to inject dependencies that integrates with the signals architecture for better reactivity and performance.
+
+      <button (click)="code11.hidden = !code11.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code11 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="'// Using the new inject function in a component\n&#64;Component({\n  selector: \'app-user-profile\',\n  template: \'<div>Welcome, {{userName()}}</div>\',\n  standalone: true\n})\nexport class UserProfileComponent {\n  private userService = inject(UserService);\n  userName = computed(() => this.userService.getCurrentUser().name);\n}'"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Improved providedIn options</strong> - Angular 19 expands the providedIn options for better tree-shaking and scope control.
+
+      <button (click)="code12.hidden = !code12.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code12 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="'&#64;Injectable({\n  providedIn: \'platform\' // Available across multiple Angular applications\n})\nexport class SharedService {\n  // Service implementation\n}'"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Standalone-friendly providers</strong> - Angular 19 fully stabilizes the standalone API for DI, making it easier to use without NgModules.
+
+      <button (click)="code13.hidden = !code13.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code13 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="'// Providing services to standalone components\n&#64;Component({\n  selector: \'app-feature\',\n  template: \'...\',\n  standalone: true,\n  providers: [FeatureService]\n})\nexport class FeatureComponent {\n  constructor(private featureService: FeatureService) {}\n}'"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Dependency Injection Usage in Angular 19</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Approach</th>
+        <th class="py-3 px-4 text-left">Use Case</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>constructor injection</code></td>
+        <td class="py-3 px-4">Traditional approach, works with all services and components</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>inject() function</code></td>
+        <td class="py-3 px-4">Modern approach, better with signals and standalone components</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>providedIn: 'root'</code></td>
+        <td class="py-3 px-4">Application-wide singleton services</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>Component providers</code></td>
+        <td class="py-3 px-4">Component-scoped services that follow component lifecycle</td>
+      </tr>
+    </tbody>
+  </table>
 </ng-template>
 
-
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use the inject() Function in Angular 19</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Prefer inject() over Constructor Injection</strong>:
+          In Angular 19, use the inject() function instead of constructor injection for better code organization and compatibility with the signals architecture.
+        </li>
+        <li>
+          <strong>Combine with Signal Features</strong>:
+          Leverage inject() with computed() to create reactive dependencies that automatically update when underlying data changes.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Provider Scope</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use providedIn Strategically</strong>:
+          In Angular 19, carefully select the appropriate providedIn option ('root', 'platform', 'any') to optimize tree-shaking and performance.
+        </li>
+        <li>
+          <strong>Leverage Standalone Components</strong>:
+          Use component-level providers with standalone components to create isolated dependency trees that are more maintainable and testable.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Design Services for Testability</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Interfaces for Dependencies</strong>:
+          Define interfaces for your services and use injection tokens to provide more flexibility when testing.
+        </li>
+        <li>
+          <strong>Create Mock Services</strong>:
+          Develop mock implementations for your services to make testing easier and more reliable.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Embrace Hierarchical Injection</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Component Providers</strong>:
+          Leverage component providers to create service instances tied to component lifecycles, which helps prevent memory leaks.
+        </li>
+        <li>
+          <strong>Understand Injector Hierarchies</strong>:
+          Learn how Angular's injector hierarchy works to avoid unexpected behavior with shared services.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
 <ng-template #prosConsRef>
   <strong class="text-sky-400">
-    Pros:
+    Pros of Angular 19's Dependency Injection:
   </strong>
 
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
+  <ol class="list-decimal px-4 text-sm">
     <li>
-      <strong>Better code maintainability</strong> - DI helps keep the code modular and makes it easier to test and modify individual components and services.
+      <strong>Improved Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19 optimizes the dependency injection system for better startup time and runtime performance.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Improved code reusability</strong> - Components and services can be reused across the application and even in different applications.
+      <strong>Better Integration with Signals</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The DI system in Angular 19 works seamlessly with signals for reactive state management.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Easier testing</strong> - DI allows for easy mocking of dependencies, making it easier to test components and services in isolation.
+      <strong>Enhanced Type Safety</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19 improves type inference for injected dependencies, reducing runtime errors.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Better code organization</strong> - DI allows developers to easily manage dependencies between components and services, making the code more organized and easier to understand.
-    </li>
-    <li>
-      <strong>Reduced coupling</strong> - DI allows for looser coupling between components and services, making it easier to swap out dependencies or replace them with different implementations.
+      <strong>Simplified Module-less Development</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          With full support for standalone components, Angular 19's DI system works without requiring NgModules.
+        </li>
+      </ul>
     </li>
   </ol>
 
   <br>
 
   <strong class="text-sky-400">
-    Cons:
+    Cons and Challenges:
   </strong>
 
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
+  <ol class="list-decimal px-4 text-sm">
     <li>
-      <strong>Learning curve</strong> - DI can be challenging for developers who are new to the Angular framework, as it requires a solid understanding of the framework's architecture and design patterns.
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Understanding Angular's DI system, particularly with the new signal-based approach, can be challenging for newcomers.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Overhead</strong> - DI can add some overhead to the application, as it requires additional code to be written and executed by the Angular framework.
+      <strong>Multiple Injection Methods</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Having both constructor injection and the inject() function can lead to inconsistent code patterns in large teams.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Complexity</strong> - As the application grows in size and complexity, it can become more challenging to manage the dependencies between components and services.
+      <strong>Migration Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Migrating from older Angular versions to Angular 19's dependency injection patterns can require significant refactoring.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Performance impact</strong> - DI can impact the performance of the application if not used properly, particularly if there are many dependencies that need to be resolved and injected.
-    </li>
-    <li>
-      <strong>Debugging challenges</strong> - DI can make it more challenging to debug code, as it can be difficult to trace the dependencies between components and services.
+      <strong>Debugging Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Hierarchical injection can sometimes make it difficult to track where a service instance is coming from, especially in complex applications.
+        </li>
+      </ul>
     </li>
   </ol>
-
-  <br>
-
-  <p>
-    Despite these challenges, DI is a powerful and essential tool for building scalable and maintainable Angular applications. By carefully weighing the pros and cons and using DI effectively, developers can create applications that are easy to maintain, test, and modify over time.
-  </p>
-
 </ng-template>
 
-
-
 <ng-template #topicsRef>
-  <p>
-    Here are some related topics:
-  </p>
-
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
+  <p>Related Angular 19 Topics:</p>
+  <ol class="list-decimal px-4 text-sm">
     <li>
-      <strong>Inversion of Control (IoC)</strong> - DI is a form of IoC, which is a design pattern that decouples components by allowing a framework or container to handle the creation and management of objects.
+      <strong>Signals Framework</strong>:
+      <p>
+        Angular 19's signals architecture integrates deeply with the dependency injection system, enabling reactive programming patterns without RxJS.
+      </p>
     </li>
     <li>
-      <strong>Constructor injection</strong> - The most common form of DI in Angular, where dependencies are injected into a component or service through its constructor.
+      <strong>Standalone Components</strong>:
+      <p>
+        Angular 19 fully stabilizes standalone components with their own provider system, reducing the need for NgModules.
+      </p>
     </li>
     <li>
-      <strong>Property injection</strong> - An alternative form of DI in Angular, where dependencies are injected into a component or service through its properties.
+      <strong>Zoneless Applications</strong>:
+      <p>
+        Angular 19's zoneless applications rely on signal-based dependency injection for change detection without zone.js.
+      </p>
     </li>
     <li>
-      <strong>Providers</strong> - The mechanism by which Angular provides and manages dependencies.
+      <strong>Server-Side Rendering (SSR)</strong>:
+      <p>
+        Angular 19 enhances the dependency injection system for better server-side rendering performance and hydration.
+      </p>
     </li>
     <li>
-      <strong>Injectors</strong> - The Angular service responsible for resolving dependencies and injecting them into components and services.
-    </li>
-    <li>
-      <strong>Tree-shakable providers</strong> - Providers that can be safely removed by the Angular compiler if they are not used in the application.
-    </li>
-    <li>
-      <strong>Multi-provider</strong> - A mechanism for providing multiple instances of a dependency.
-    </li>
-    <li>
-      <strong>Lazy loading</strong> - A technique used to defer the loading of components and services until they are needed.
-    </li>
-    <li>
-      <strong>Singleton services</strong> - Services that are shared across the entire application and are only instantiated once.
-    </li>
-    <li>
-      <strong>Testing</strong> - DI makes it easy to test components and services in isolation by providing mock dependencies.
+      <strong>Environment Injection</strong>:
+      <p>
+        Angular 19 improves environment-specific configuration injection for better development, testing, and production management.
+      </p>
     </li>
   </ol>
-
-  <br>
-
-  <p>
-    Understanding these related topics to DI is essential for building scalable and maintainable Angular applications that leverage the full power of Dependency Injection.
-  </p>
-
 </ng-template>
 
