@@ -61,6 +61,7 @@ import { ConfigurationComponent } from './feature/angular/concepts/configuration
 import { DataBindingComponent } from './feature/angular/concepts/data-binding/data-binding.component';
 import { DeclarableComponent } from './feature/angular/concepts/declarable/declarable.component';
 import { DecoratorComponent } from './feature/angular/concepts/decorator/decorator.component';
+import { DiTokenComponent } from './feature/angular/concepts/di-token/di-token.component';
 
 const routes: Routes = [
   {
@@ -139,6 +140,10 @@ const routes: Routes = [
       {
         path: 'di',
         component: DependencyInjectionComponent
+      },
+      {
+        path: 'di-token',
+        component: DiTokenComponent
       },
       {
         path: 'directive',

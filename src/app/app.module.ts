@@ -52,6 +52,7 @@ import { CustomElementModule } from './feature/angular/concepts/custom-element/c
 import { DataBindingModule } from './feature/angular/concepts/data-binding/data-binding.module';
 import { DeclarableModule } from './feature/angular/concepts/declarable/declarable.module';
 import { DecoratorModule } from './feature/angular/concepts/decorator/decorator.module';
+import { DiTokenComponent } from './feature/angular/concepts/di-token/di-token.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { DecoratorModule } from './feature/angular/concepts/decorator/decorator.
     TemplateComponent,
     TemplateFormComponent,
     AfterNextRenderComponent,
+    DiTokenComponent,
   ],
   imports: [
     CommonModule,
