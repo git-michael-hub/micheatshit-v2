@@ -58,6 +58,12 @@ import { EagerLoadingComponent } from './feature/angular/concepts/eager-loading/
 import { EcmascriptComponent } from './feature/angular/concepts/ecmascript/ecmascript.component';
 import { ElementComponent } from './feature/angular/concepts/element/element.component';
 import { EntryPointComponent } from './feature/angular/concepts/entry-point/entry-point.component';
+import { InterpolationModule } from './feature/angular/concepts/interpolation/interpolation.module';
+import { IvyModule } from './feature/angular/concepts/ivy/ivy.module';
+import { JavascriptModule } from './feature/angular/concepts/javascript/javascript.module';
+import { JitModule } from './feature/angular/concepts/jit/jit.module';
+import { LibraryModule } from './feature/angular/concepts/library/library.module';
+import { ModuleComponentModule } from './feature/angular/concepts/module/module.module';
 
 @NgModule({
   declarations: [
@@ -120,7 +126,13 @@ import { EntryPointComponent } from './feature/angular/concepts/entry-point/entr
     CustomElementModule,
     DataBindingModule,
     DeclarableModule,
-    DecoratorModule
+    DecoratorModule,
+    InterpolationModule,
+    IvyModule,
+    JavascriptModule,
+    JitModule,
+    LibraryModule,
+    ModuleComponentModule
   ],
   providers: [
     {

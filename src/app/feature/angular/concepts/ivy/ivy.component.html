@@ -1,0 +1,491 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Ivy
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Ivy</span>
+      is Angular's rendering and compilation pipeline introduced in Angular 9 and fully mature in Angular 19. It offers improved performance, smaller bundle sizes, better debugging, and enhanced template type checking. Ivy works by using incremental DOM, locality, and fine-grained lazy loading to optimize Angular applications.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Core Concepts of Ivy in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Incremental DOM</strong>:
+      Unlike Virtual DOM, Ivy uses Incremental DOM that creates and updates templates directly in the DOM rather than creating a virtual representation first. This results in smaller bundle sizes and more efficient memory usage.
+    </li>
+    <li>
+      <strong>Tree Shakable</strong>:
+      Ivy's architecture allows for better tree-shaking, meaning unused code is removed from the final bundle, resulting in significantly smaller application sizes.
+    </li>
+    <li>
+      <strong>Locality</strong>:
+      Components can be compiled in isolation, without knowledge of other components in the application, leading to faster compilation and better build times.
+    </li>
+    <li>
+      <strong>Improved AOT Compilation</strong>:
+      Ivy enhances Ahead-of-Time compilation with better error messages, faster compilation, and reduced bundle sizes.
+    </li>
+    <li>
+      <strong>Enhanced Type Checking</strong>:
+      Ivy provides more thorough template type checking, catching potential errors earlier in the development process.
+    </li>
+    <li>
+      <strong>Directive Composition</strong>:
+      Angular 19's Ivy includes enhanced directive composition capabilities, allowing for more reusable and composable UI patterns.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Tree-Shaking in Ivy</p>
+
+  <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_1_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Locality Feature</p>
+
+  <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_2_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Incremental DOM Approach</p>
+
+  <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_3_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>AOT Compilation with Ivy</p>
+
+  <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_4_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Dynamic Component Creation</p>
+
+  <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_5_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Directive Composition API</p>
+
+  <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_6_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Leverage Tree-Shaking</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Remove Unused Code</strong>:
+          Design your components and services to be tree-shakable by avoiding side effects in module imports.
+        </li>
+        <li>
+          <strong>Use Pure Functions</strong>:
+          Prefer pure functions that Ivy can optimize and tree-shake effectively.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Bundle Size</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Lazy Load Routes</strong>:
+          Take advantage of Ivy's improved lazy loading capabilities by splitting your application into feature modules.
+        </li>
+        <li>
+          <strong>Code-Split Components</strong>:
+          Use dynamic imports for components that aren't immediately needed.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Utilize Type Checking</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Enable strictTemplates</strong>:
+          Use Ivy's enhanced template type checking by enabling strict mode in your TypeScript and Angular compiler options.
+        </li>
+        <li>
+          <strong>Fix Template Errors</strong>:
+          Address all template type errors to ensure your application is type-safe.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Modern Component Patterns</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Component Composition</strong>:
+          Use Ivy's improved component composition features to build reusable UI elements.
+        </li>
+        <li>
+          <strong>Host Directives</strong>:
+          In Angular 19, take advantage of host directives for better code reuse and composition.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Debugging</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use DevTools</strong>:
+          Take advantage of Ivy's improved debugging capabilities with Angular DevTools.
+        </li>
+        <li>
+          <strong>Component Source Maps</strong>:
+          Enable better source maps for improved debugging experience.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Improved Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Faster rendering and change detection through optimized code generation.
+        </li>
+        <li>
+          Incremental DOM approach creates and updates templates directly without virtual DOM overhead.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Smaller Bundle Sizes</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Better tree-shaking capabilities result in smaller production bundles.
+        </li>
+        <li>
+          Generated code is more efficient and takes up less space.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Developer Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Better error messages during compilation make debugging easier.
+        </li>
+        <li>
+          Improved template type checking helps catch errors earlier.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Backward Compatibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Ivy maintains compatibility with existing Angular applications.
+        </li>
+        <li>
+          Transition to Ivy is largely seamless for most applications.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Future-Proof Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Directive composition API enables better code reuse.
+        </li>
+        <li>
+          Angular 19 builds upon Ivy's foundation with new features like improved hydration.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Initial Migration Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Some legacy applications required adjustments when first migrating to Ivy.
+        </li>
+        <li>
+          Certain third-party libraries needed updates to be compatible.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Understanding Ivy's architecture and best practices requires additional learning.
+        </li>
+        <li>
+          Some debugging techniques are different from the previous ViewEngine.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Build Configuration Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Optimizing Ivy builds may require more advanced configuration knowledge.
+        </li>
+        <li>
+          Fine-tuning AOT compilation settings can be complex.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Improved performance</td>
+        <td class="py-3 px-4">Initial migration challenges</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Smaller bundle sizes</td>
+        <td class="py-3 px-4">Learning curve for developers</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced developer experience</td>
+        <td class="py-3 px-4">Build configuration complexity</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Backward compatibility</td>
+        <td class="py-3 px-4">Initial setup time</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Future-proof features</td>
+        <td class="py-3 px-4">Advanced debugging skills needed</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Features and Concepts</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>AOT Compilation</strong>:
+
+      <p>
+        Ivy is tightly integrated with Angular's Ahead-of-Time compilation, providing faster compilation times and improved error messages.
+      </p>
+    </li>
+    <li>
+      <strong>Tree Shaking</strong>:
+
+      <p>
+        Ivy's architecture enables better tree shaking, removing unused code from the final bundle for smaller application sizes.
+      </p>
+    </li>
+    <li>
+      <strong>Hydration</strong>:
+
+      <p>
+        Angular 19 builds on Ivy to provide improved hydration capabilities, enhancing server-side rendering performance.
+      </p>
+    </li>
+    <li>
+      <strong>Dynamic Component Loading</strong>:
+
+      <p>
+        Ivy simplifies dynamic component creation and loading without requiring ComponentFactoryResolver.
+      </p>
+    </li>
+    <li>
+      <strong>Directive Composition</strong>:
+
+      <p>
+        Angular 19's directive composition API leverages Ivy to enable better component composition patterns.
+      </p>
+    </li>
+    <li>
+      <strong>Change Detection</strong>:
+
+      <p>
+        Ivy's incremental DOM approach optimizes change detection for better performance.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>External Resources</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <a href="https://angular.io/guide/ivy" class="text-sky-400 hover:text-rose-400">
+        Angular Ivy Guide
+      </a> - Official Angular documentation on Ivy
+    </li>
+    <li>
+      <a href="https://blog.angular.io/the-state-of-ivy-50cdd2a6e164" class="text-sky-400 hover:text-rose-400">
+        The State of Ivy
+      </a> - Angular blog post on Ivy's evolution
+    </li>
+    <li>
+      <a href="https://angular.io/guide/aot-compiler" class="text-sky-400 hover:text-rose-400">
+        AOT Compilation
+      </a> - Guide to AOT compilation with Ivy
+    </li>
+    <li>
+      <a href="https://angular.io/guide/template-typecheck" class="text-sky-400 hover:text-rose-400">
+        Template Type Checking
+      </a> - Understanding Ivy's template type checking
+    </li>
+    <li>
+      <a href="https://angular.io/guide/host-directives" class="text-sky-400 hover:text-rose-400">
+        Host Directives
+      </a> - Angular's directive composition API
+    </li>
+  </ul>
+</ng-template>

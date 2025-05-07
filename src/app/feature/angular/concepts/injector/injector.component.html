@@ -1,0 +1,467 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Injector
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Injector</span>
+      in Angular 19 is a core part of the dependency injection system that manages the creation and retrieval of service instances and other dependencies. Injectors maintain a container of previously created instances and create new instances as needed using registered providers. Angular 19 enhances injectors with optimized retrieval mechanisms, improved support for signals, and enhanced tree-shaking.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Core Concepts of Injectors in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      An injector is an object responsible for retrieving or creating dependency instances from a registry of providers.
+    </li>
+    <li>
+      <strong>Hierarchical Structure</strong>:
+      Angular creates a tree of injectors that parallels the component tree, enabling dependencies to be scoped to specific components.
+    </li>
+    <li>
+      <strong>Modern Injection Functions</strong>:
+      Angular 19 optimizes the inject() function for retrieving dependencies, providing a more direct alternative to constructor injection.
+    </li>
+    <li>
+      <strong>Environment Injectors</strong>:
+      Beyond component-level injectors, Angular 19 provides powerful environment injectors for application-wide service configuration.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Getting Injector Instances</p>
+
+  <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_1_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Hierarchical Injectors</p>
+
+  <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_2_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Standalone Component Injection</p>
+
+  <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_3_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Advanced Injector Techniques</p>
+
+  <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_4_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Dependency Resolution and Testing</p>
+
+  <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_5_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Signal-based Injector Features</p>
+
+  <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_6_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Modern Injection Patterns</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Prefer inject() Function</strong>:
+          For Angular 19 applications, use the inject() function for field injection rather than constructor-based dependency injection when possible, especially in standalone components.
+        </li>
+        <li>
+          <strong>Minimize Injector Usage</strong>:
+          Avoid directly using the Injector class unless needed for advanced scenarios. The inject() function is more efficient and promotes better code organization.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Injector Hierarchies</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Consider Provider Scope</strong>:
+          Place providers at the appropriate level in the injector hierarchy. Application-wide services should be provided at the root, while component-specific services should be provided in component decorators.
+        </li>
+        <li>
+          <strong>Leverage Standalone Components</strong>:
+          Use standalone components with explicit provider configurations to make dependency hierarchies more predictable and maintainable.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Lazy Loading Strategies</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Feature-specific Providers</strong>:
+          When using lazy-loaded routes or modules, provide feature-specific services at the feature level to improve performance and memory usage.
+        </li>
+        <li>
+          <strong>Environment Injectors</strong>:
+          Use createEnvironmentInjector for dynamically created components to ensure they have access to required dependencies without polluting the global scope.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Resolution Modifiers Appropriately</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>@Optional() for Non-critical Dependencies</strong>:
+          Use @Optional() for dependencies that aren't required for the component or service to function properly.
+        </li>
+        <li>
+          <strong>@Self() and @SkipSelf() for Controlled Resolution</strong>:
+          Use these decorators to precisely control where dependencies are resolved from, preventing unintended shadowing or resolution from parent injectors.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Design for Testability</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Provider Overrides</strong>:
+          Design services with testing in mind, making it easy to provide mock implementations during testing.
+        </li>
+        <li>
+          <strong>TestBed Configuration</strong>:
+          Use TestBed to create isolated testing environments with controlled injector configurations for predictable unit tests.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Hierarchical Dependency Resolution</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular's injector hierarchy allows for precise control over the scope and lifetime of dependencies, enabling both application-wide singletons and component-specific instances.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Performance in Angular 19</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19 optimizes injector lookups and caching mechanisms, resulting in faster dependency resolution and reduced memory overhead compared to previous versions.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Simplified Testing</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Injectors make it easy to substitute real services with mocks during testing, enabling isolated unit tests without complex setup code.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Seamless Integration with Signals</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19's injector system works seamlessly with the signals API, allowing for reactive state management that integrates naturally with dependency injection.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Runtime Flexibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Injectors enable dynamic creation of services at runtime and support advanced patterns like multi-providers and factory functions for complex dependency scenarios.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Understanding the full injector hierarchy and resolution rules requires time and experience, which can be challenging for developers new to Angular.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Debugging Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Dependency resolution issues can be difficult to debug, especially in large applications with complex provider configurations across multiple injector levels.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential for Hidden Dependencies</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The ease of injecting dependencies can lead to services with too many dependencies or hidden dependency chains, making code harder to understand and maintain.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Configuration Overhead</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Setting up and maintaining proper provider configurations across various modules and components can add complexity to the codebase, especially in large applications.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Hierarchical dependency resolution</td>
+        <td class="py-3 px-4">Steep learning curve</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Optimized performance in Angular 19</td>
+        <td class="py-3 px-4">Debugging complexity</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Simplified testing with mocks</td>
+        <td class="py-3 px-4">Potential for hidden dependencies</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Seamless signals integration</td>
+        <td class="py-3 px-4">Configuration overhead</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Runtime flexibility with dynamic providers</td>
+        <td class="py-3 px-4">Potential memory leaks if not managed properly</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Features and Concepts</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Dependency Injection System</strong>:
+
+      <p>
+        The injector is a core part of Angular's dependency injection system, working alongside injectable services and providers to deliver dependencies throughout the application.
+      </p>
+    </li>
+    <li>
+      <strong>Injectable Decorator</strong>:
+
+      <p>
+        The &#64;Injectable decorator marks classes that can be created and managed by Angular's injector, making them available for injection into components, directives, and other services.
+      </p>
+    </li>
+    <li>
+      <strong>Providers</strong>:
+
+      <p>
+        Providers tell the injector how to create instances of dependencies. They can specify classes, values, factories, or existing instances to be used when a dependency is requested.
+      </p>
+    </li>
+    <li>
+      <strong>inject() Function</strong>:
+
+      <p>
+        Angular 19's inject() function provides a modern way to retrieve dependencies from the injector without using constructor injection, optimized for use with signals and standalone components.
+      </p>
+    </li>
+    <li>
+      <strong>Environment Injectors</strong>:
+
+      <p>
+        Environment injectors provide dependency injection outside the component tree, enabling application-wide services and lazy-loaded feature modules in Angular 19.
+      </p>
+    </li>
+    <li>
+      <strong>Injection Tokens</strong>:
+
+      <p>
+        InjectionTokens allow non-class values like strings, objects, and functions to be provided and injected, extending the DI system beyond class-based services.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>External Resources</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <a href="https://angular.io/guide/dependency-injection" class="text-sky-400 hover:text-rose-400">
+        Angular Dependency Injection Guide
+      </a> - Official Angular documentation on DI and injectors
+    </li>
+    <li>
+      <a href="https://angular.io/api/core/Injector" class="text-sky-400 hover:text-rose-400">
+        Injector API Documentation
+      </a> - Complete API reference for the Injector class
+    </li>
+    <li>
+      <a href="https://angular.io/api/core/inject" class="text-sky-400 hover:text-rose-400">
+        inject() Function API
+      </a> - Documentation for the modern inject() function
+    </li>
+    <li>
+      <a href="https://angular.io/guide/hierarchical-dependency-injection" class="text-sky-400 hover:text-rose-400">
+        Hierarchical Injectors
+      </a> - Understanding the injector hierarchy in Angular
+    </li>
+    <li>
+      <a href="https://angular.io/guide/standalone-components" class="text-sky-400 hover:text-rose-400">
+        Standalone Components
+      </a> - How dependency injection works with standalone components
+    </li>
+  </ul>
+</ng-template>

@@ -16,6 +16,7 @@ import { FormModelComponent } from './feature/angular/concepts/form-model/form-m
 import { FormValidationComponent } from './feature/angular/concepts/form-validation/form-validation.component';
 import { ImmutabilityComponent } from './feature/angular/concepts/immutability/immutability.component';
 import { InjectableComponent } from './feature/angular/concepts/injectable/injectable.component';
+import { InjectorComponent } from './feature/angular/concepts/injector/injector.component';
 import { LazyLoadingComponent } from './feature/angular/concepts/lazy-loading/lazy-loading.component';
 import { LifecycleHookComponent } from './feature/angular/concepts/lifecycle-hook/lifecycle-hook.component';
 import { ObservableComponent } from './feature/angular/concepts/observable/observable.component';
@@ -69,6 +70,12 @@ import { DecoratorComponent } from './feature/angular/concepts/decorator/decorat
 import { DiTokenComponent } from './feature/angular/concepts/di-token/di-token.component';
 import { DslComponent } from './feature/angular/concepts/dsl/dsl.component';
 import { EntryPointComponent } from './feature/angular/concepts/entry-point/entry-point.component';
+import { InterpolationComponent } from './feature/angular/concepts/interpolation/interpolation.component';
+import { IvyComponent } from './feature/angular/concepts/ivy/ivy.component';
+import { JavascriptComponent } from './feature/angular/concepts/javascript/javascript.component';
+import { JitComponent } from './feature/angular/concepts/jit/jit.component';
+import { LibraryComponent } from './feature/angular/concepts/library/library.component';
+import { ModuleComponent } from './feature/angular/concepts/module/module.component';
 
 const routes: Routes = [
   {
@@ -205,6 +212,10 @@ const routes: Routes = [
         component: InjectableComponent
       },
       {
+        path: 'injector',
+        component: InjectorComponent
+      },
+      {
         path: 'input-transform',
         component: InputTransformComponent
       },
@@ -213,20 +224,20 @@ const routes: Routes = [
         component: LazyLoadingComponent
       },
       {
-        path: 'hooks',
+        path: 'library',
+        component: LibraryComponent
+      },
+      {
+        path: 'lifecycle-hook',
         component: LifecycleHookComponent
+      },
+      {
+        path: 'module',
+        component: ModuleComponent
       },
       {
         path: 'observable',
         component: ObservableComponent
-      },
-      {
-        path: 'partial-hydration',
-        component: PartialHydrationComponent
-      },
-      {
-        path: 'signal-components',
-        component: SignalComponentsComponent
       },
       {
         path: 'pipe',
@@ -257,16 +268,28 @@ const routes: Routes = [
         component: RoutingComponentComponent
       },
       {
+        path: 'signals',
+        component: SignalsComponent
+      },
+      {
+        path: 'signal-components',
+        component: SignalComponentsComponent
+      },
+      {
         path: 'ssr',
         component: SsrComponent
       },
       {
-        path: 'style-url',
-        component: StyleUrlComponent
+        path: 'standalone',
+        component: StandaloneComponent
       },
       {
         path: 'structural-directive',
         component: StructuralDirectiveComponent
+      },
+      {
+        path: 'style-url',
+        component: StyleUrlComponent
       },
       {
         path: 'subscriber',
@@ -281,72 +304,20 @@ const routes: Routes = [
         component: TemplateFormComponent
       },
       {
-        path: 'angular-devtools',
-        component: AngularDevToolsComponent
+        path: 'universal',
+        component: UniversalComponent
       },
       {
-        path: 'control-flow',
-        component: ControlFlowComponent,
-      },
-      {
-        path: 'zoneless-applications',
-        component: ZonelessApplicationsComponent
-      },
-      {
-        path: 'class-decorator',
-        component: ClassDecoratorComponent
-      },
-      {
-        path: 'signals',
-        component: SignalsComponent
+        path: 'view-hierarchy',
+        component: ViewHierarchyComponent
       },
       {
         path: 'view-transitions',
         component: ViewTransitionsComponent
       },
       {
-        path: 'universal',
-        component: UniversalComponent,
-      },
-      {
-        path: 'view-hierarchy',
-        component: ViewHierarchyComponent,
-      },
-      {
-        path: 'standalone',
-        component: StandaloneComponent,
-      },
-      {
-        path: 'content-projection',
-        component: ContentProjectionComponent,
-      },
-      {
-        path: 'custom-element',
-        component: CustomElementComponent,
-      },
-      {
-        path: 'class-field-decorator',
-        component: ClassFieldDecoratorComponent
-      },
-      {
-        path: 'collection',
-        component: CollectionComponent
-      },
-      {
-        path: 'cli',
-        component: CliComponent
-      },
-      {
-        path: 'component',
-        component: ComponentComponent
-      },
-      {
-        path: 'configuration',
-        component: ConfigurationComponent
-      },
-      {
-        path: 'dsl',
-        component: DslComponent
+        path: 'zoneless-applications',
+        component: ZonelessApplicationsComponent
       },
     ]
   },

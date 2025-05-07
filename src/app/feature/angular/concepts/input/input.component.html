@@ -1,0 +1,467 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Input
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Input</span>
+      in Angular 19 is a powerful feature that enables parent components to pass data to child components. With the introduction of the new input() function and model() function, Angular 19 provides a more type-safe and efficient way to handle component inputs, including support for required inputs, transforms, and two-way binding.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Core Concepts of Input in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Modern Input API</strong>:
+      Angular 19 introduces the new input() function as a more type-safe and efficient way to declare component inputs, replacing the traditional @Input decorator in many cases.
+    </li>
+    <li>
+      <strong>Required Inputs</strong>:
+      The input.required() function allows declaring inputs that must be provided by the parent component, with compile-time type checking.
+    </li>
+    <li>
+      <strong>Input Transforms</strong>:
+      The transform option enables automatic conversion and validation of input values before they are used in the component.
+    </li>
+    <li>
+      <strong>Two-way Binding</strong>:
+      The model() function provides a modern way to implement two-way binding between parent and child components.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic Input Property</p>
+
+  <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_1_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Input with Transform</p>
+
+  <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_2_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Required Input Properties</p>
+
+  <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_3_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Input with Model</p>
+
+  <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_4_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Input with Complex Types</p>
+
+  <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_5_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Input with Validation</p>
+
+  <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_6_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Modern Input API</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Prefer input() Function</strong>:
+          Use the new input() function instead of @Input decorator for better type safety and performance in Angular 19.
+        </li>
+        <li>
+          <strong>Type Safety</strong>:
+          Always specify the type of input properties to catch type-related errors at compile time.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Required Inputs</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use input.required()</strong>:
+          For inputs that must be provided by the parent component, use input.required() to enforce this at compile time.
+        </li>
+        <li>
+          <strong>Document Requirements</strong>:
+          Clearly document which inputs are required and their expected types in component documentation.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Utilize Input Transforms</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Data Validation</strong>:
+          Use transforms to validate and sanitize input data before it's used in the component.
+        </li>
+        <li>
+          <strong>Type Conversion</strong>:
+          Implement transforms for automatic type conversion when needed.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Two-way Binding</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use model() Function</strong>:
+          For two-way binding scenarios, use the model() function instead of the traditional [(ngModel)] syntax.
+        </li>
+        <li>
+          <strong>State Management</strong>:
+          Consider the impact on state management when implementing two-way binding.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Handle Complex Types</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Interface Definitions</strong>:
+          Define clear interfaces for complex input types.
+        </li>
+        <li>
+          <strong>Null Safety</strong>:
+          Handle nullable inputs appropriately with proper type guards and null checks.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Type Safety</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The new input() function provides better type safety and compile-time checking compared to the traditional @Input decorator.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Required Inputs</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The input.required() function enforces required inputs at compile time, preventing runtime errors.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Input Transforms</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Built-in support for transforming and validating input values before they're used in the component.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Two-way Binding</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The model() function provides a more intuitive way to implement two-way binding between components.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The new input API is optimized for performance and better tree-shaking in Angular 19.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Developers need to learn the new input() and model() functions, which differ from the traditional @Input decorator.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Migration Effort</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Existing codebases need to be migrated from @Input to the new input() function for optimal performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The new API adds more complexity with features like transforms and required inputs.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Debugging</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Debugging can be more challenging with the new input API, especially when using transforms and complex types.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced type safety</td>
+        <td class="py-3 px-4">Learning curve for new API</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Required input validation</td>
+        <td class="py-3 px-4">Migration effort required</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Built-in transforms</td>
+        <td class="py-3 px-4">Increased complexity</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Improved two-way binding</td>
+        <td class="py-3 px-4">More complex debugging</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Better performance</td>
+        <td class="py-3 px-4">Potential overuse of features</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Features and Concepts</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Component Communication</strong>:
+
+      <p>
+        Input properties are a key part of Angular's component communication system, working alongside outputs and services to enable data flow between components.
+      </p>
+    </li>
+    <li>
+      <strong>Signals</strong>:
+
+      <p>
+        The new input() function integrates with Angular's signals system, providing reactive updates when input values change.
+      </p>
+    </li>
+    <li>
+      <strong>Two-way Binding</strong>:
+
+      <p>
+        The model() function provides a modern way to implement two-way binding between parent and child components in Angular 19.
+      </p>
+    </li>
+    <li>
+      <strong>Type Safety</strong>:
+
+      <p>
+        Angular 19's input system emphasizes type safety through the input() function and required inputs, helping catch errors at compile time.
+      </p>
+    </li>
+    <li>
+      <strong>Component Lifecycle</strong>:
+
+      <p>
+        Understanding how input changes affect the component lifecycle is crucial for proper component implementation and performance optimization.
+      </p>
+    </li>
+    <li>
+      <strong>Change Detection</strong>:
+
+      <p>
+        Input properties play a key role in Angular's change detection system, with the new input() function optimized for better performance.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>External Resources</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <a href="https://angular.io/guide/inputs-outputs" class="text-sky-400 hover:text-rose-400">
+        Angular Inputs and Outputs Guide
+      </a> - Official Angular documentation on component inputs
+    </li>
+    <li>
+      <a href="https://angular.io/api/core/input" class="text-sky-400 hover:text-rose-400">
+        Input API Documentation
+      </a> - Complete API reference for the input() function
+    </li>
+    <li>
+      <a href="https://angular.io/guide/signals" class="text-sky-400 hover:text-rose-400">
+        Signals Guide
+      </a> - Understanding how signals work with inputs
+    </li>
+    <li>
+      <a href="https://angular.io/guide/two-way-binding" class="text-sky-400 hover:text-rose-400">
+        Two-way Binding
+      </a> - Guide to implementing two-way binding with model()
+    </li>
+    <li>
+      <a href="https://angular.io/guide/component-interaction" class="text-sky-400 hover:text-rose-400">
+        Component Interaction
+      </a> - Best practices for component communication
+    </li>
+  </ul>
+</ng-template>

@@ -1,0 +1,526 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Just-in-time (JIT) compilation
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Just-in-Time (JIT) Compilation</span>
+      in Angular 19 compiles application code in the browser at runtime. While no longer the default compilation method, JIT remains valuable for development workflows, enabling faster builds, dynamic template evaluation, and enhanced debugging capabilities compared to AOT compilation.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Why Use JIT Compilation?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Development Workflow</strong>:
+      Enables faster builds during development, as Angular doesn't need to compile templates at build time.
+    </li>
+    <li>
+      <strong>Dynamic Evaluation</strong>:
+      Allows for dynamic template creation and evaluation at runtime, which is not fully supported with AOT.
+    </li>
+    <li>
+      <strong>Enhanced Debugging</strong>:
+      Provides better debugging experience with clearer error messages and source maps during development.
+    </li>
+    <li>
+      <strong>Experimental Features</strong>:
+      Supports trying newer Angular features or unsupported dynamic patterns during prototyping.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>JIT in Angular 19</p>
+
+  <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_1_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Configuring JIT Mode</p>
+
+  <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_2_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>json</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['json']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Dynamic Template Compilation</p>
+
+  <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_3_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Eval-based Template Compilation</p>
+
+  <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_4_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Debugging with JIT</p>
+
+  <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_5_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>JIT vs AOT Comparison</p>
+
+  <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_6_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Common Commands for JIT Compilation</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Command</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng serve</code></td>
+        <td class="py-3 px-4">Development server with JIT enabled by default.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng serve --aot=false</code></td>
+        <td class="py-3 px-4">Explicitly disables AOT, forcing JIT compilation.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng build --configuration=development</code></td>
+        <td class="py-3 px-4">Development build with JIT compilation.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng test</code></td>
+        <td class="py-3 px-4">Tests normally run with JIT for faster execution.</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Optimize Development Workflow</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use JIT During Development</strong>:
+          Keep JIT compilation enabled during development for faster build times and improved debugging capabilities.
+        </li>
+        <li>
+          <strong>Switch to AOT for Production</strong>:
+          Always use AOT compilation for production builds to ensure optimal performance and security.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Manage Dynamic Content Carefully</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Plan for AOT Compatibility</strong>:
+          Even when using JIT during development, design your code to be AOT-compatible to avoid production issues.
+        </li>
+        <li>
+          <strong>Use Factory Patterns</strong>:
+          When dynamic template compilation is needed, use factory patterns that work with both JIT and AOT.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Debugging Benefits</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Enable Source Maps</strong>:
+          Ensure source maps are enabled during development to take full advantage of JIT's debugging capabilities.
+        </li>
+        <li>
+          <strong>Use Angular DevTools</strong>:
+          Combine JIT compilation with Angular DevTools for an enhanced debugging experience.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Performance Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Profile Runtime Behavior</strong>:
+          Be aware that JIT compilation can consume more memory and processing power at runtime.
+        </li>
+        <li>
+          <strong>Incremental Compilation</strong>:
+          Take advantage of incremental compilation features during development to minimize rebuild times.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Testing Strategy</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use JIT for Unit Tests</strong>:
+          Leverage JIT compilation for faster test execution during development.
+        </li>
+        <li>
+          <strong>Include AOT Testing</strong>:
+          Periodically test with AOT enabled to catch AOT-specific issues early.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Development Speed</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Faster build times during development since templates are compiled at runtime rather than build time.
+        </li>
+        <li>
+          Changes can be applied more quickly, enhancing the development experience.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Dynamic Flexibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Supports runtime template compilation and evaluation of dynamic templates.
+        </li>
+        <li>
+          Enables more flexible patterns that might not be possible with AOT compilation.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Debugging</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Provides clearer error messages and better stack traces during development.
+        </li>
+        <li>
+          Original TypeScript code is more readily accessible in the debugger.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Compatibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Can handle certain third-party libraries or patterns that might cause issues with AOT.
+        </li>
+        <li>
+          Useful for legacy code that has not been fully updated to be AOT-compatible.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Prototyping</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Ideal for rapid prototyping and experimentation during early development phases.
+        </li>
+        <li>
+          Allows developers to try new patterns without being constrained by AOT limitations.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Performance Overhead</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Slower initial loading times as templates must be compiled in the browser.
+        </li>
+        <li>
+          Requires the Angular compiler to be included in the application bundle, increasing size.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Runtime Errors</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Template errors are only discovered at runtime rather than during the build process.
+        </li>
+        <li>
+          May lead to issues being discovered by users rather than developers.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Security Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Less secure than AOT as template compilation occurs at runtime.
+        </li>
+        <li>
+          Potential for injection attacks if dynamic templates are used incorrectly.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Bundle Size</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Larger application bundles as they must include the Angular compiler.
+        </li>
+        <li>
+          Can lead to increased download times and memory usage.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Faster development builds</td>
+        <td class="py-3 px-4">Slower initial load times</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Dynamic template compilation</td>
+        <td class="py-3 px-4">Larger bundle sizes</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Better debugging experience</td>
+        <td class="py-3 px-4">Runtime template errors</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">More compatibility with libraries</td>
+        <td class="py-3 px-4">Security considerations</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Better for prototyping</td>
+        <td class="py-3 px-4">Less optimization</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Features and Concepts</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>AOT Compilation</strong>:
+
+      <p>
+        Ahead-of-Time (AOT) compilation is the counterpart to JIT compilation in Angular. While JIT compiles templates at runtime, AOT pre-compiles them during the build process, resulting in smaller bundles and better performance for production applications.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Compiler</strong>:
+
+      <p>
+        The Angular compiler is responsible for transforming Angular templates and components into executable JavaScript code. In JIT mode, this compiler is included in the application bundle to perform compilation at runtime.
+      </p>
+    </li>
+    <li>
+      <strong>Development Workflow</strong>:
+
+      <p>
+        Angular 19 development workflow often involves using JIT during development for faster iteration and AOT for production builds. The Angular CLI manages this workflow automatically based on build configuration.
+      </p>
+    </li>
+    <li>
+      <strong>Dynamic Component Loading</strong>:
+
+      <p>
+        JIT compilation enables more flexible dynamic component loading scenarios in Angular 19, allowing components to be compiled and instantiated at runtime based on user input or application state.
+      </p>
+    </li>
+    <li>
+      <strong>Ivy Rendering Engine</strong>:
+
+      <p>
+        Angular's Ivy rendering engine supports both JIT and AOT compilation modes, with optimizations for each. In JIT mode, Ivy provides better debugging capabilities while still leveraging its incremental DOM approach.
+      </p>
+    </li>
+    <li>
+      <strong>Testing</strong>:
+
+      <p>
+        Angular tests often use JIT compilation by default for faster test execution. The TestBed configuration can be adjusted to use either JIT or AOT compilation depending on testing needs.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>External Resources</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <a href="https://angular.io/guide/aot-compiler" class="text-sky-400 hover:text-rose-400">
+        Angular Compiler Options
+      </a> - Official Angular documentation on AOT and JIT compilation
+    </li>
+    <li>
+      <a href="https://angular.io/guide/deployment" class="text-sky-400 hover:text-rose-400">
+        Deployment Guide
+      </a> - Information on deploying Angular applications with different compilation strategies
+    </li>
+    <li>
+      <a href="https://angular.io/guide/build" class="text-sky-400 hover:text-rose-400">
+        Building and Serving
+      </a> - How to configure builds with JIT or AOT compilation
+    </li>
+    <li>
+      <a href="https://angular.io/guide/ivy" class="text-sky-400 hover:text-rose-400">
+        Angular Ivy
+      </a> - How Ivy works with different compilation modes
+    </li>
+    <li>
+      <a href="https://angular.io/api/core/Compiler" class="text-sky-400 hover:text-rose-400">
+        Compiler API
+      </a> - Documentation for Angular's Compiler API used in JIT compilation
+    </li>
+  </ul>
+</ng-template>

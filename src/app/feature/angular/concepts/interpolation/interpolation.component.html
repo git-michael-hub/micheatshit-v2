@@ -1,0 +1,467 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Interpolation
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Interpolation</span>
+      in Angular 19 is a powerful feature that allows you to embed expressions within your templates using the double curly braces syntax {{ "{{" }} {{ "}}" }}. It enables dynamic content rendering by evaluating expressions and displaying their values in the template. Angular 19 enhances interpolation with improved performance and better integration with signals.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Core Concepts of Interpolation in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Basic Syntax</strong>:
+      Interpolation uses double curly braces {{ "{{" }} {{ "}}" }} to embed expressions in templates, which are evaluated and their values are displayed.
+    </li>
+    <li>
+      <strong>Expression Evaluation</strong>:
+      Angular evaluates expressions within interpolation and converts them to strings for display in the template.
+    </li>
+    <li>
+      <strong>Signal Integration</strong>:
+      Angular 19 optimizes interpolation with signals, providing reactive updates when signal values change.
+    </li>
+    <li>
+      <strong>Template Expressions</strong>:
+      Interpolation supports various expressions including method calls, arithmetic operations, and conditional expressions.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic Interpolation</p>
+
+  <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_1_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Interpolation with Expressions</p>
+
+  <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_2_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Interpolation with Methods</p>
+
+  <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_3_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Interpolation with Signals</p>
+
+  <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_4_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Interpolation with Pipes</p>
+
+  <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_5_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Interpolation with Template Expressions</p>
+
+  <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_6_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Keep Expressions Simple</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Avoid Complex Logic</strong>:
+          Keep interpolation expressions simple and avoid complex calculations or method calls that could impact performance.
+        </li>
+        <li>
+          <strong>Use Computed Properties</strong>:
+          For complex calculations, use computed properties or methods in the component class instead of inline expressions.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Signals</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Signal-based Interpolation</strong>:
+          Take advantage of Angular 19's signal integration for reactive updates in interpolated values.
+        </li>
+        <li>
+          <strong>Optimize Performance</strong>:
+          Use signals for frequently changing values to benefit from Angular's optimized change detection.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Handle Null Values</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Nullish Coalescing</strong>:
+          Implement the nullish coalescing operator (??) to provide fallback values for null or undefined.
+        </li>
+        <li>
+          <strong>Type Safety</strong>:
+          Ensure proper type checking for interpolated values to prevent runtime errors.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Pipes Effectively</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Format Data</strong>:
+          Use pipes to format and transform data within interpolation expressions.
+        </li>
+        <li>
+          <strong>Chain Pipes</strong>:
+          Combine multiple pipes when needed for complex transformations.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Consider Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Minimize Recalculations</strong>:
+          Avoid expressions that trigger frequent recalculations during change detection.
+        </li>
+        <li>
+          <strong>Use Pure Pipes</strong>:
+          Prefer pure pipes over methods in interpolation for better performance.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Simple Syntax</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The double curly braces syntax is intuitive and easy to understand for developers.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Flexible Expressions</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Supports a wide range of expressions including arithmetic operations, method calls, and conditional logic.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal Integration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Seamless integration with Angular 19's signals for reactive updates.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Pipe Support</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Easy integration with pipes for data transformation and formatting.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Optimized performance in Angular 19 with improved change detection.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Expression Limitations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Some JavaScript expressions and operators are not supported in interpolation.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Impact</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Complex expressions can impact performance during change detection.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Debugging Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Debugging interpolation expressions can be more difficult than debugging component logic.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Security Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Need to be careful with user input in interpolation to prevent XSS attacks.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Simple and intuitive syntax</td>
+        <td class="py-3 px-4">Expression limitations</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Flexible expression support</td>
+        <td class="py-3 px-4">Performance impact with complex expressions</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Signal integration</td>
+        <td class="py-3 px-4">Debugging challenges</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Built-in pipe support</td>
+        <td class="py-3 px-4">Security considerations</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Optimized performance</td>
+        <td class="py-3 px-4">Potential for misuse</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Features and Concepts</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Template Syntax</strong>:
+
+      <p>
+        Interpolation is a fundamental part of Angular's template syntax, working alongside other binding types to create dynamic templates.
+      </p>
+    </li>
+    <li>
+      <strong>Signals</strong>:
+
+      <p>
+        Angular 19's signals system integrates with interpolation to provide reactive updates when signal values change.
+      </p>
+    </li>
+    <li>
+      <strong>Pipes</strong>:
+
+      <p>
+        Pipes can be used within interpolation expressions to transform and format data before display.
+      </p>
+    </li>
+    <li>
+      <strong>Change Detection</strong>:
+
+      <p>
+        Understanding how interpolation affects Angular's change detection system is crucial for performance optimization.
+      </p>
+    </li>
+    <li>
+      <strong>Template Expressions</strong>:
+
+      <p>
+        Interpolation supports various template expressions, including arithmetic operations, method calls, and conditional logic.
+      </p>
+    </li>
+    <li>
+      <strong>Security</strong>:
+
+      <p>
+        Proper handling of user input in interpolation is essential for preventing security vulnerabilities like XSS attacks.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>External Resources</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <a href="https://angular.io/guide/interpolation" class="text-sky-400 hover:text-rose-400">
+        Angular Interpolation Guide
+      </a> - Official Angular documentation on interpolation
+    </li>
+    <li>
+      <a href="https://angular.io/guide/template-syntax" class="text-sky-400 hover:text-rose-400">
+        Template Syntax
+      </a> - Comprehensive guide to Angular's template syntax
+    </li>
+    <li>
+      <a href="https://angular.io/guide/pipes" class="text-sky-400 hover:text-rose-400">
+        Pipes
+      </a> - Guide to using pipes with interpolation
+    </li>
+    <li>
+      <a href="https://angular.io/guide/signals" class="text-sky-400 hover:text-rose-400">
+        Signals
+      </a> - Understanding signals in Angular 19
+    </li>
+    <li>
+      <a href="https://angular.io/guide/security" class="text-sky-400 hover:text-rose-400">
+        Security
+      </a> - Best practices for secure interpolation
+    </li>
+  </ul>
+</ng-template>

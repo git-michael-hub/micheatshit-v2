@@ -1,0 +1,372 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    NgModules
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">NgModules</span>
+      in Angular 19 organize applications into cohesive blocks of functionality. They serve as containers for components, directives, pipes, and services, helping to manage dependencies and providing the compilation context for templates. While Angular 19 supports standalone components, NgModules remain important for organizing larger applications, managing providers, and enabling lazy loading.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>NgModule Metadata Properties</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>declarations</strong>:
+      The components, directives, and pipes that belong to this module.
+    </li>
+    <li>
+      <strong>imports</strong>:
+      Other modules whose exported classes are needed by components in this module.
+    </li>
+    <li>
+      <strong>exports</strong>:
+      The subset of declarations that should be visible and usable in templates of other modules.
+    </li>
+    <li>
+      <strong>providers</strong>:
+      Creators of services that this module contributes to the global collection of services.
+    </li>
+    <li>
+      <strong>bootstrap</strong>:
+      The main application view, called the root component, which hosts all other views. Only the root module should set this property.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic NgModule Structure in Angular 19</p>
+
+  <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_1_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>App Root Module in Angular 19</p>
+
+  <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_2_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Feature Module with Routing in Angular 19</p>
+
+  <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_3_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Lazy-loaded Modules in Angular 19</p>
+
+  <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_4_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>NgModules with Standalone Components in Angular 19</p>
+
+  <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_5_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Application Dependency Providers Through NgModules</p>
+
+  <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_6_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <p>Best Practices for NgModules in Angular 19</p>
+
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Organize by Feature</strong>:
+      Group related components, directives, and pipes into feature modules to keep code organized and maintainable.
+    </li>
+    <li>
+      <strong>Keep Core Module Slim</strong>:
+      Reserve the CoreModule for singleton services that are used throughout the application.
+    </li>
+    <li>
+      <strong>Shared Module for Common Functionality</strong>:
+      Create a SharedModule for components, directives, and pipes that are used across multiple feature modules.
+    </li>
+    <li>
+      <strong>Lazy Load Feature Modules</strong>:
+      Implement lazy loading for feature modules to improve initial load time.
+    </li>
+    <li>
+      <strong>Avoid Re-providing Services</strong>:
+      Be careful not to re-provide services in multiple modules to prevent multiple instances.
+    </li>
+    <li>
+      <strong>Use forRoot() and forChild() Pattern</strong>:
+      Implement these patterns for modules that need to provide services and be imported in multiple modules.
+    </li>
+    <li>
+      <strong>Consider Standalone Components</strong>:
+      For simpler features, use standalone components to avoid unnecessary module complexity.
+    </li>
+    <li>
+      <strong>Proper Export Management</strong>:
+      Only export declarations that other modules need to use in their templates.
+    </li>
+    <li>
+      <strong>Guard Singleton Services</strong>:
+      Use constructor guards to prevent core modules from being imported multiple times.
+    </li>
+    <li>
+      <strong>Provider Resolution Modifiers</strong>:
+      Use resolution modifiers (@Optional, @SkipSelf) for better dependency injection control.
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <p class="font-bold mb-2">Pros</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>
+          <strong>Organization</strong>: Helps organize code into cohesive, reusable blocks of functionality.
+        </li>
+        <li>
+          <strong>Encapsulation</strong>: Clearly defines what a module consists of and what it exports.
+        </li>
+        <li>
+          <strong>Lazy Loading</strong>: Enables code-splitting and lazy loading for better performance.
+        </li>
+        <li>
+          <strong>DI Management</strong>: Provides a mechanism for service scoping and dependency management.
+        </li>
+        <li>
+          <strong>Reusability</strong>: Makes it easy to reuse code across different parts of an application.
+        </li>
+        <li>
+          <strong>Testing</strong>: Facilitates isolated testing of features and components.
+        </li>
+        <li>
+          <strong>Enterprise Scale</strong>: Supports large-scale applications with many features.
+        </li>
+        <li>
+          <strong>Library Creation</strong>: Essential for creating reusable Angular libraries.
+        </li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-bold mb-2">Cons</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>
+          <strong>Complexity</strong>: Adds overhead for smaller applications and simpler use cases.
+        </li>
+        <li>
+          <strong>Learning Curve</strong>: Module system can be confusing for beginners.
+        </li>
+        <li>
+          <strong>Boilerplate</strong>: Requires additional code compared to standalone components.
+        </li>
+        <li>
+          <strong>Provider Confusion</strong>: Service providers can be confusing when provided in multiple places.
+        </li>
+        <li>
+          <strong>Migration Effort</strong>: Moving to standalone components requires refactoring.
+        </li>
+        <li>
+          <strong>Configuration Overhead</strong>: Import/export management can become cumbersome.
+        </li>
+        <li>
+          <strong>Circular Dependencies</strong>: Can lead to circular dependency issues if not careful.
+        </li>
+        <li>
+          <strong>Future Direction</strong>: The framework is moving toward standalone components.
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <p class="font-bold mb-2">Related Angular Concepts</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>
+          <a routerLink="/angular/concepts/standalone" class="text-sky-400 hover:text-rose-400">Standalone Components</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/component" class="text-sky-400 hover:text-rose-400">Components</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/dependency-injection" class="text-sky-400 hover:text-rose-400">Dependency Injection</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/lazy-loading" class="text-sky-400 hover:text-rose-400">Lazy Loading</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/providers" class="text-sky-400 hover:text-rose-400">Providers</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/injectable" class="text-sky-400 hover:text-rose-400">Injectable</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/library" class="text-sky-400 hover:text-rose-400">Libraries</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/aot" class="text-sky-400 hover:text-rose-400">AOT Compilation</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-bold mb-2">Types of NgModules</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>
+          <strong>Root Module</strong>: The main module that bootstraps the application (AppModule)
+        </li>
+        <li>
+          <strong>Feature Modules</strong>: Organize code dedicated to a specific application feature
+        </li>
+        <li>
+          <strong>Shared Module</strong>: Contains common components, directives, and pipes used across modules
+        </li>
+        <li>
+          <strong>Core Module</strong>: Provides application-wide singleton services
+        </li>
+        <li>
+          <strong>Routing Module</strong>: Contains route configurations for navigation
+        </li>
+        <li>
+          <strong>Widget Modules</strong>: Packages of components for specific UI elements
+        </li>
+        <li>
+          <strong>Service Modules</strong>: Provide application-wide services without components
+        </li>
+        <li>
+          <strong>Library Modules</strong>: Published as npm packages for reuse across applications
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>

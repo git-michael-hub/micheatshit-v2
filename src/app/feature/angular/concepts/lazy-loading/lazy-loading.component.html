@@ -1,271 +1,479 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    lazy loading
+    Lazy Loading
   </p>
 
   <div class="text-content">
     <p>
-
+      <span class="text-zinc-50 tw-font-medium">Lazy Loading</span>
+      in Angular 19 is an optimization technique that loads modules and components on demand, rather than loading everything at startup. With enhanced standalone APIs, functional route definitions, and improved deferrable views, Angular 19 takes lazy loading to new heights, significantly improving application load times, resource utilization, and overall user experience.
     </p>
-
 
     <br>
 
     <div class="flex flex-col">
       <div class="flex border-b border-gray-200">
-        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Notes
         </button>
-        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Pros and Cons
         </button>
-        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
-            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
           </div>
           <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
           </div>
           <div *ngSwitchDefault>
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
-
   </div>
 </section>
 
-
-
 <ng-template #notesRef>
-  <p>
-    Lazy Loading in Angular:
-  </p>
+  <p>Core Lazy Loading Approaches in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Lazy-Loaded Routes</strong>:
+      Load feature modules only when users navigate to specific routes, keeping the initial bundle lean.
+    </li>
+    <li>
+      <strong>Standalone Components</strong>:
+      Lazy load individual components without requiring modules, simplifying code organization.
+    </li>
+    <li>
+      <strong>Deferrable Views</strong>:
+      Define parts of templates to be loaded on-demand using the new &#64;defer syntax introduced in Angular 17+.
+    </li>
+    <li>
+      <strong>Dynamic Imports</strong>:
+      Programmatically load components or modules at runtime in response to user actions.
+    </li>
+  </ul>
 
   <br>
+  <br>
 
-  <ol class="list-decimal px-10 text-sm">
+  <p>Lazy Loading Modules</p>
+
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Lazy Loading Standalone Components</p>
+
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Preloading Strategies</p>
+
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Common Lazy Loading Patterns in Angular 19</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Pattern</th>
+        <th class="py-3 px-4 text-left">Use Case</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>loadComponent</code></td>
+        <td class="py-3 px-4">Standalone components in routes</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>loadChildren</code></td>
+        <td class="py-3 px-4">Feature modules with their own routing</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>&#64;defer</code> blocks</td>
+        <td class="py-3 px-4">Template sections loaded conditionally</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>import()</code> statements</td>
+        <td class="py-3 px-4">Dynamic loading based on user interaction</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
     <li>
-      Lazy Loading Modules
-
-      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code1  copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_1"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-
+      <strong class="text-sky-400">Optimize Route-Level Lazy Loading</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Functional Route Definitions</strong>:
+          Angular 19 optimizes functional route definitions, making them more performant and typesafe. Use them for cleaner, more maintainable lazy loading.
+        </li>
+        <li>
+          <strong>Group Related Features</strong>:
+          Bundle closely related features in the same lazy-loaded module to balance load times and logical organization.
+        </li>
+      </ul>
     </li>
     <li>
-      Lazy Loading Components
-
-      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code2  copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_2"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-
+      <strong class="text-sky-400">Leverage Standalone Components</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Fine-Grained Lazy Loading</strong>:
+          Use standalone components for more granular lazy loading without the overhead of modules.
+        </li>
+        <li>
+          <strong>Prefer loadComponent Over loadChildren</strong>:
+          When possible, lazy load individual components instead of entire modules for better tree-shaking.
+        </li>
+      </ul>
     </li>
     <li>
-      Preloading Lazy-Loaded Modules
+      <strong class="text-sky-400">Implement Strategic Preloading</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Custom Preloading Strategies</strong>:
+          Develop custom preloading strategies based on user behavior, network conditions, or application analytics.
+        </li>
+        <li>
+          <strong>Prioritize Critical Paths</strong>:
+          Preload modules on the most common user journeys to improve perceived performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Utilize Modern Deferrable Views</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Template-Level Lazy Loading</strong>:
+          Use &#64;defer blocks for non-critical UI elements that aren't needed immediately.
+        </li>
+        <li>
+          <strong>Combine with Loading Indicators</strong>:
+          Implement appropriate loading states (&#64;loading) and placeholder content (&#64;placeholder) for deferred content.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Monitor Performance Impact</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Measure Bundle Sizes</strong>:
+          Regularly analyze bundle sizes to ensure lazy loading is effective and identify opportunities for improvement.
+        </li>
+        <li>
+          <strong>Track Loading Metrics</strong>:
+          Monitor real-world performance metrics like Time to Interactive (TTI) and First Contentful Paint (FCP) to validate lazy loading strategies.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
-      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
 
-      <span #code3  copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_3"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Improved Initial Load Time</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Reduces the initial bundle size by loading only essential components and modules at startup.
+        </li>
+        <li>
+          Gets the application running faster, especially on mobile or low-bandwidth connections.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced User Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Creates a more responsive application by prioritizing the loading of visually critical components.
+        </li>
+        <li>
+          Enables progressive loading patterns, showing content as it becomes available.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Better Resource Utilization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Conserves memory by loading features only when needed, benefiting resource-constrained devices.
+        </li>
+        <li>
+          Reduces wasted bandwidth for features users may never access.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Modularity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Enforces better separation of concerns and code organization.
+        </li>
+        <li>
+          Makes applications more maintainable by isolating features into discrete units.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Scalability</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Allows applications to grow without proportionally increasing initial load times.
+        </li>
+        <li>
+          Enables teams to work independently on different parts of the application.
+        </li>
+      </ul>
     </li>
   </ol>
 
   <br>
 
-    <p>
-      By understanding how to lazy load modules and components in Angular, you can improve the performance and scalability of your applications. Remember to refer to the official Angular documentation for more information and examples.
-    </p>
-  </ng-template>
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
 
-
-
-  <ng-template #prosConsRef>
-    <strong class="text-sky-400">
-      Pros:
-    </strong>
-
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>Faster Initial Loading Times</strong>:
-        Lazy loading can significantly reduce the initial loading time of your application by only loading the modules that are needed for the current page or feature. This can improve the user experience, particularly on slower or unreliable network connections.
-      </li>
-      <li>
-        <strong>Improved Performance</strong>:
-        By reducing the amount of code that needs to be downloaded and compiled by the browser, lazy loading can improve the performance of your application, particularly on slower devices or network connections.
-      </li>
-      <li>
-        <strong>Scalability</strong>:
-        Lazy loading can improve the scalability of your application by allowing you to break it up into smaller, more manageable chunks. This can make it easier to maintain and update your application over time.
-      </li>
-      <li>
-        <strong>Better Resource Utilization</strong>:
-        Lazy loading can reduce the amount of memory and processing power needed by your application by only loading the modules that are needed for the current page or feature. This can improve the overall efficiency of your application and reduce its environmental impact.
-      </li>
-    </ol>
-
-    <br>
-
-    <strong class="text-sky-400">
-      Cons:
-    </strong>
-
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>Increased Complexity </strong>:
-        Lazy loading can add complexity to your application, particularly if you have a large number of modules and routes. This can make it harder to maintain and debug your application over time.
-      </li>
-      <li>
-        <strong>Potential for Bugs</strong>:
-        Lazy loading can introduce potential bugs into your application, particularly if you have circular dependencies or dependencies that are loaded asynchronously. This can make it harder to debug and test your application over time.
-      </li>
-      <li>
-        <strong>Additional Development Time</strong>:
-        Lazy loading can require additional development time and effort, particularly if you have a large number of modules and routes. This can make it harder to deliver your application on time and within budget.
-      </li>
-      <li>
-        <strong>Compatibility Issues</strong>:
-        Lazy loading may not be compatible with all browsers and devices, particularly older ones. This can limit the reach of your application and reduce its overall effectiveness.
-      </li>
-    </ol>
-
-    <br>
-
-    <p>
-    </p>
-
-  </ng-template>
-
-
-
-
-  <ng-template #topicsRef>
-    <p>
-      Related topics to lazy loading in Angular:
-    </p>
-
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>Dynamic Imports</strong>:
-        <p>
-          Dynamic imports is a feature introduced in ECMAScript 6 that allows you to import modules asynchronously at runtime. This is useful when you need to load a module on demand, such as in lazy loading scenarios.
-        </p>
-
-        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code4  copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_4"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-
-      </li>
-      <li>
-        <strong>Code Splitting</strong>:
-
-        <p>
-          Code splitting is a technique used to break up your code into smaller, more manageable chunks that can be loaded on demand. This is similar to lazy loading, but is more general and can be used outside of Angular.
-        </p>
-
-        <br>
-
-        <p>
-          There are several tools and libraries available for code splitting, including Webpack and Rollup. These tools allow you to define entry points in your application, and will automatically create separate bundles for each entry point.
-        </p>
-      </li>
-      <li>
-        <strong>Ahead-of-Time (AOT) Compilation</strong>:
-
-        <p>
-          Ahead-of-time (AOT) compilation is a technique used in Angular to precompile your application's templates and code into efficient JavaScript code that can be loaded and executed quickly by the browser.
-        </p>
-
-        <br>
-
-        <p>
-          AOT compilation can improve the performance of your application, particularly on slow or unreliable network connections. It is also required for certain features in Angular, such as server-side rendering.
-        </p>
-      </li>
-      <li>
-        <strong>Server-Side Rendering (SSR)</strong>:
-
-        <p>
-          Server-side rendering (SSR) is a technique used to render your application on the server before sending it to the client. This can improve the initial loading time of your application, particularly on slower devices or network connections.
-        </p>
-
-        <br>
-
-        <p>
-          To implement SSR in Angular, you need to use a compatible server-side rendering framework, such as Angular Universal. This framework allows you to render your Angular application on the server and send the resulting HTML to the client.
-        </p>
-      </li>
-      </ol>
-
-
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Added Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Increases application complexity with additional configuration and routing setup.
+        </li>
+        <li>
+          Requires more careful planning of module boundaries and dependencies.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Navigation Delays</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Can introduce noticeable delays when users first access lazy-loaded features.
+        </li>
+        <li>
+          May create jarring user experience if not combined with appropriate loading indicators.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Debugging Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Can make debugging more complicated due to asynchronous loading of code.
+        </li>
+        <li>
+          May create issues with error boundaries and tracking runtime errors.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Testing Complications</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Requires additional testing patterns to verify lazy-loaded functionality works correctly.
+        </li>
+        <li>
+          Increases the testing surface area with different load sequences and configurations.
+        </li>
+      </ul>
+    </li>
+  </ol>
 
   <br>
 
-  <p>
-  </p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Reduced initial bundle size</td>
+        <td class="py-3 px-4">Increased application complexity</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Faster startup time</td>
+        <td class="py-3 px-4">Navigation delays to new features</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Better resource utilization</td>
+        <td class="py-3 px-4">More complex debugging</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Improved modularity</td>
+        <td class="py-3 px-4">Additional testing requirements</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced scalability</td>
+        <td class="py-3 px-4">Potential for circular dependencies</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
 
+<ng-template #topicsRef>
+  <p>Related Angular 19 Features and Concepts</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Deferrable Views</strong>:
+
+      <p>
+        Angular's &#64;defer block provides template-level lazy loading, letting you defer loading parts of a component's template until they're needed. This feature complements route-level lazy loading and offers fine-grained control over loading behavior.
+      </p>
+    </li>
+    <li>
+      <strong>Standalone Components</strong>:
+
+      <p>
+        Standalone components eliminate the need for NgModules, making lazy loading simpler and more efficient. They're self-contained, can manage their own dependencies, and integrate seamlessly with lazy loading strategies.
+      </p>
+    </li>
+    <li>
+      <strong>Functional Route Definitions</strong>:
+
+      <p>
+        Angular 19 optimizes functional route definitions, making it easier to define type-safe lazy-loaded routes without the verbosity of traditional route configurations. They provide better tree-shaking and bundle optimization.
+      </p>
+    </li>
+    <li>
+      <strong>Preloading Strategies</strong>:
+
+      <p>
+        Angular provides built-in and custom preloading strategies that determine how and when to load lazy-loaded modules. Strategies like PreloadAllModules or custom implementations optimize the balance between initial load time and subsequent navigation.
+      </p>
+    </li>
+    <li>
+      <strong>Dynamic Imports</strong>:
+
+      <p>
+        The JavaScript dynamic import() syntax is the foundation of lazy loading in Angular. It enables on-demand code loading, allowing developers to split their application into loadable chunks.
+      </p>
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Bundle Analysis and Optimization</strong>:
+
+      <p>
+        Tools like Webpack Bundle Analyzer help visualize bundle content, enabling developers to identify opportunities for lazy loading and optimize application performance.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>External Resources</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <a href="https://angular.io/guide/lazy-loading-ngmodules" class="text-sky-400 hover:text-rose-400">
+        Lazy Loading Feature Modules
+      </a> - Official Angular guide on lazy loading feature modules
+    </li>
+    <li>
+      <a href="https://angular.io/guide/standalone-components" class="text-sky-400 hover:text-rose-400">
+        Standalone Components
+      </a> - Angular's guide to standalone components and their role in lazy loading
+    </li>
+    <li>
+      <a href="https://angular.io/guide/defer" class="text-sky-400 hover:text-rose-400">
+        Deferrable Views
+      </a> - Documentation for Angular's &#64;defer functionality
+    </li>
+    <li>
+      <a href="https://angular.io/api/router/PreloadAllModules" class="text-sky-400 hover:text-rose-400">
+        Preloading Strategies
+      </a> - Angular's router preloading capabilities
+    </li>
+    <li>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import" class="text-sky-400 hover:text-rose-400">
+        Dynamic Import Syntax
+      </a> - MDN documentation on JavaScript dynamic imports
+    </li>
+  </ul>
 </ng-template>

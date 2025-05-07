@@ -1,127 +1,399 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    lifecycle hooks
+    Lifecycle Hooks
   </p>
 
   <div class="text-content">
     <p>
-      An interface that allows you to tap into the lifecycle of directives and components as they are created, updated, and destroyed:
+      <span class="text-zinc-50 tw-font-medium">Lifecycle Hooks</span>
+      in Angular 19 allow you to tap into key moments in a component's lifecycle to execute custom code. From initialization to destruction, these hooks provide predictable timing for operations like data fetching, DOM manipulation, and cleanup. Angular 19 enhances these hooks with signal integration and zoneless rendering capabilities for more efficient state management.
     </p>
 
     <br>
 
-    <div class="">
-      <table class="w-fit divide-gray-200">
-        <thead class="bg-gray-800">
-          <tr>
-            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-800 sm:pl-6"></th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">HOOK METHOD</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">DETAILS</th>
-
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200 bg-gray-800">
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-              1
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              ngOnChanges
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              When an input or output binding value changes.
-            </td>
-          </tr>
-
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-             2
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              ngOnInit
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              After the first ngOnChanges.
-            </td>
-          </tr>
-
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-              3
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              ngDoCheck
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              Developer's custom change detection.
-            </td>
-          </tr>
-
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-              4
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              ngAfterContentInit
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              After component content initialized.
-            </td>
-          </tr>
-
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-             5
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              ngAfterContentChecked
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              After every check of component content.
-            </td>
-          </tr>
-
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-             6
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              ngAfterViewInit
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              After the views of a component are initialized.
-            </td>
-          </tr>
-
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-             7
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              ngAfterViewChecked
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              After every check of the views of a component.
-            </td>
-          </tr>
-
-          <tr>
-            <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">
-             8
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-400">
-              ngOnDestroy
-            </td>
-            <td class=" px-3 py-4 text-sm text-gray-200">
-              Just before the directive is destroyed.
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
     </div>
-
   </div>
 </section>
+
+<ng-template #notesRef>
+  <p>Lifecycle Hook Sequence</p>
+  <div class="mb-6">
+    <table class="w-full divide-gray-200">
+      <thead class="bg-gray-800">
+        <tr>
+          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-800 sm:pl-6"></th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">HOOK METHOD</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">DETAILS</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 bg-gray-800">
+        <tr>
+          <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">1</td>
+          <td class=" px-3 py-4 text-sm text-gray-400">ngOnChanges</td>
+          <td class=" px-3 py-4 text-sm text-gray-200">Called when an input or output binding value changes.</td>
+        </tr>
+        <tr>
+          <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">2</td>
+          <td class=" px-3 py-4 text-sm text-gray-400">ngOnInit</td>
+          <td class=" px-3 py-4 text-sm text-gray-200">Called once after the first ngOnChanges.</td>
+        </tr>
+        <tr>
+          <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">3</td>
+          <td class=" px-3 py-4 text-sm text-gray-400">ngDoCheck</td>
+          <td class=" px-3 py-4 text-sm text-gray-200">Developer's custom change detection.</td>
+        </tr>
+        <tr>
+          <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">4</td>
+          <td class=" px-3 py-4 text-sm text-gray-400">ngAfterContentInit</td>
+          <td class=" px-3 py-4 text-sm text-gray-200">After component content initialized.</td>
+        </tr>
+        <tr>
+          <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">5</td>
+          <td class=" px-3 py-4 text-sm text-gray-400">ngAfterContentChecked</td>
+          <td class=" px-3 py-4 text-sm text-gray-200">After every check of component content.</td>
+        </tr>
+        <tr>
+          <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">6</td>
+          <td class=" px-3 py-4 text-sm text-gray-400">ngAfterViewInit</td>
+          <td class=" px-3 py-4 text-sm text-gray-200">After the views of a component are initialized.</td>
+        </tr>
+        <tr>
+          <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">7</td>
+          <td class=" px-3 py-4 text-sm text-gray-400">ngAfterViewChecked</td>
+          <td class=" px-3 py-4 text-sm text-gray-200">After every check of the views of a component.</td>
+        </tr>
+        <tr>
+          <td class="py-4 pl-4 pr-3 text-sm font-medium text-rose-400 sm:pl-6">8</td>
+          <td class=" px-3 py-4 text-sm text-gray-400">ngOnDestroy</td>
+          <td class=" px-3 py-4 text-sm text-gray-200">Just before the directive is destroyed.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Basic Lifecycle Hooks</p>
+  <ul class="list-disc pl-4 text-sm mb-6">
+    <li>
+      <strong>ngOnInit & ngOnDestroy</strong>:
+      Core hooks for initialization and cleanup operations.
+    </li>
+    <li>
+      <strong>Change Detection Hooks</strong>:
+      React to input changes with ngOnChanges and ngDoCheck.
+    </li>
+    <li>
+      <strong>Content Hooks</strong>:
+      Manage projected content with ngAfterContentInit and ngAfterContentChecked.
+    </li>
+    <li>
+      <strong>View Hooks</strong>:
+      Access component views with ngAfterViewInit and ngAfterViewChecked.
+    </li>
+  </ul>
+
+  <p>Basic Lifecycle Implementation</p>
+  <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code_1_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br><br>
+
+  <p>Change Detection Lifecycle Hooks</p>
+  <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code_2_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br><br>
+
+  <p>Content Lifecycle Hooks</p>
+  <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code_3_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br><br>
+
+  <p>View Lifecycle Hooks</p>
+  <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code_4_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br><br>
+
+  <p>Angular 19 Signals with Lifecycle Hooks</p>
+  <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code_5_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br><br>
+
+  <p>Zoneless Applications and Render Hooks</p>
+  <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <span #code_6_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <p>Best Practices for Angular 19 Lifecycle Hooks</p>
+
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Use ngOnInit for Initialization</strong>:
+      Keep constructors simple and use ngOnInit for complex initializations like fetching data or setting up subscriptions.
+    </li>
+    <li>
+      <strong>Clean Up in ngOnDestroy</strong>:
+      Prevent memory leaks by unsubscribing from Observables and clearing intervals/timeouts in ngOnDestroy.
+    </li>
+    <li>
+      <strong>Minimize ngDoCheck Usage</strong>:
+      Use ngDoCheck sparingly as it runs very frequently and can impact performance.
+    </li>
+    <li>
+      <strong>Avoid Complex Logic in Content/View Checked Hooks</strong>:
+      Keep ngAfterContentChecked and ngAfterViewChecked lightweight to prevent performance degradation.
+    </li>
+    <li>
+      <strong>Leverage Signal Effects</strong>:
+      In Angular 19, use signal effects for reactive state management as they automatically cleanup on component destruction.
+    </li>
+    <li>
+      <strong>Use afterRender and afterNextRender</strong>:
+      For DOM measurements and third-party library initialization, use the modern render hooks instead of ngAfterViewInit.
+    </li>
+    <li>
+      <strong>Implement OnPush Change Detection Strategy</strong>:
+      When using lifecycle hooks, consider combining them with OnPush change detection for better performance.
+    </li>
+    <li>
+      <strong>Avoid Property Updates in AfterView Hooks</strong>:
+      Don't update properties that would trigger another change detection cycle in afterViewInit or afterViewChecked hooks.
+    </li>
+    <li>
+      <strong>Prefer Declarative Patterns</strong>:
+      Where possible, use declarative template patterns instead of imperative code in lifecycle hooks.
+    </li>
+    <li>
+      <strong>Testing Hooks</strong>:
+      Create dedicated tests for logic in lifecycle hooks, especially complex initialization or cleanup logic.
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <p class="font-bold mb-2">Pros</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>
+          <strong>Predictable Timing</strong>: Provides predictable points in component lifecycle for executing code.
+        </li>
+        <li>
+          <strong>Separation of Concerns</strong>: Helps organize initialization, change detection, and cleanup logic.
+        </li>
+        <li>
+          <strong>Resource Management</strong>: Offers systematic ways to manage resources and prevent memory leaks.
+        </li>
+        <li>
+          <strong>DOM Interaction</strong>: Safe access to DOM elements after they are rendered.
+        </li>
+        <li>
+          <strong>Content Projection</strong>: Enables interaction with projected content at appropriate times.
+        </li>
+        <li>
+          <strong>Signal Integration</strong>: In Angular 19, seamless integration with signals and effects.
+        </li>
+        <li>
+          <strong>Zoneless Support</strong>: Modernized lifecycle management with afterRender APIs.
+        </li>
+        <li>
+          <strong>Framework Consistency</strong>: Standardized approach to component lifecycle management.
+        </li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-bold mb-2">Cons</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>
+          <strong>Learning Curve</strong>: Requires understanding of the correct hook for each use case.
+        </li>
+        <li>
+          <strong>Performance Concerns</strong>: Some hooks like ngDoCheck and the afterChecked hooks run frequently.
+        </li>
+        <li>
+          <strong>Potential Memory Leaks</strong>: Improper cleanup in ngOnDestroy can lead to memory leaks.
+        </li>
+        <li>
+          <strong>Complexity</strong>: Can lead to complex component implementation when overusing hooks.
+        </li>
+        <li>
+          <strong>Order Dependency</strong>: Some operations depend on understanding the exact sequence of hooks.
+        </li>
+        <li>
+          <strong>Change Detection Pitfalls</strong>: Easy to create infinite change detection loops in certain hooks.
+        </li>
+        <li>
+          <strong>Debugging Challenges</strong>: Hook-related issues can be difficult to debug.
+        </li>
+        <li>
+          <strong>Transition Complexity</strong>: Moving between traditional hooks and modern render hooks requires careful planning.
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <p class="font-bold mb-2">Related Angular Concepts</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>
+          <a routerLink="/angular/concepts/component" class="text-sky-400 hover:text-rose-400">Components</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/directive" class="text-sky-400 hover:text-rose-400">Directives</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/change-detection" class="text-sky-400 hover:text-rose-400">Change Detection</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/content-projection" class="text-sky-400 hover:text-rose-400">Content Projection</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/dependency-injection" class="text-sky-400 hover:text-rose-400">Dependency Injection</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/view-hierarchy" class="text-sky-400 hover:text-rose-400">View Hierarchy</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/signals" class="text-sky-400 hover:text-rose-400">Signals</a>
+        </li>
+        <li>
+          <a routerLink="/angular/concepts/zoneless-applications" class="text-sky-400 hover:text-rose-400">Zoneless Applications</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-bold mb-2">Modern Angular 19 Features</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>
+          <strong>Signal Effects</strong>: Reactive state management with automatic cleanup
+        </li>
+        <li>
+          <strong>afterRender</strong>: Callback executed after every render
+        </li>
+        <li>
+          <strong>afterNextRender</strong>: Callback executed after next render
+        </li>
+        <li>
+          <strong>Input Signals</strong>: Reactive inputs using signal-based architecture
+        </li>
+        <li>
+          <strong>Model Inputs</strong>: Two-way binding with signals
+        </li>
+        <li>
+          <strong>Hydration Lifecycle</strong>: Special lifecycle for SSR hydrated applications
+        </li>
+        <li>
+          <strong>DestroyRef</strong>: Registering teardown logic
+        </li>
+        <li>
+          <strong>Computed Signals</strong>: Derived state with automatic dependency tracking
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
 
 

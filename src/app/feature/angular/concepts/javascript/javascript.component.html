@@ -1,0 +1,506 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    JavaScript
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">JavaScript</span>
+      is the core language used by Angular 19 to create dynamic web applications. As a typed superset of JavaScript, TypeScript enhances JavaScript with static types and modern features. Angular 19 leverages the latest ECMAScript standards, including ES2022 features, along with Zone.js for change detection. Modern Angular applications take advantage of JavaScript's asynchronous capabilities, module system, and DOM manipulation APIs.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Core JavaScript Concepts in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Modern JavaScript (ES6+)</strong>:
+      Angular 19 leverages modern JavaScript features like arrow functions, template literals, destructuring, spread/rest operators, optional chaining, and nullish coalescing. These features enhance code readability and reduce boilerplate.
+    </li>
+    <li>
+      <strong>TypeScript Integration</strong>:
+      Angular 19 uses TypeScript, a superset of JavaScript that adds static typing, interfaces, and advanced type features to help catch errors during development rather than at runtime.
+    </li>
+    <li>
+      <strong>Zone.js</strong>:
+      Angular's change detection relies on Zone.js, a library that intercepts asynchronous operations in JavaScript to know when to check for changes. Angular 19 includes performance improvements and optional zoneless applications.
+    </li>
+    <li>
+      <strong>Interoperability</strong>:
+      Angular 19 seamlessly works with existing JavaScript libraries and frameworks, allowing you to integrate third-party code easily.
+    </li>
+    <li>
+      <strong>Modern Patterns</strong>:
+      Angular 19 encourages functional programming concepts, immutability, and reactive programming approaches in JavaScript.
+    </li>
+    <li>
+      <strong>Performance Optimization</strong>:
+      Angular 19 helps you write high-performance JavaScript by leveraging signals, memoization, and lazy evaluation techniques.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Modern JavaScript Features</p>
+
+  <button (click)="code_1_ref.hidden = !code_1_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_1_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>TypeScript in Angular</p>
+
+  <button (click)="code_2_ref.hidden = !code_2_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_2_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Working with Zone.js</p>
+
+  <button (click)="code_3_ref.hidden = !code_3_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_3_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>JavaScript Interoperability</p>
+
+  <button (click)="code_4_ref.hidden = !code_4_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_4_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Modern JavaScript Patterns</p>
+
+  <button (click)="code_5_ref.hidden = !code_5_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_5_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>JavaScript Performance Optimization</p>
+
+  <button (click)="code_6_ref.hidden = !code_6_ref.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code_6_ref hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Modern JavaScript Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Leverage ES6+ Features</strong>:
+          Make use of arrow functions, template literals, destructuring, and other modern JavaScript features for cleaner, more concise code.
+        </li>
+        <li>
+          <strong>Async/Await</strong>:
+          Prefer async/await over promise chains for better readability and error handling in asynchronous code.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Embrace TypeScript</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Type Everything</strong>:
+          Define interfaces and types for your data models, API responses, and function parameters to catch errors at compile time.
+        </li>
+        <li>
+          <strong>Use Strict Mode</strong>:
+          Enable strict TypeScript checks in your tsconfig.json to enforce type safety across your application.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Understand Zone.js</strong>:
+          Learn how Zone.js affects your application's change detection and when to run code outside Angular's zone for performance.
+        </li>
+        <li>
+          <strong>Consider Zoneless</strong>:
+          For performance-critical applications, explore Angular 19's zoneless application mode using signals.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Follow Functional Programming Principles</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Pure Functions</strong>:
+          Write pure functions that have no side effects and return the same output for the same input.
+        </li>
+        <li>
+          <strong>Immutability</strong>:
+          Treat data as immutable, creating new objects rather than modifying existing ones, especially when working with state.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Performance Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Lazy Loading</strong>:
+          Use JavaScript dynamic imports for code splitting and lazy loading features.
+        </li>
+        <li>
+          <strong>Debounce Events</strong>:
+          Debounce or throttle event handlers for high-frequency events like scrolling, resizing, or input.
+        </li>
+        <li>
+          <strong>Use Signals</strong>:
+          Leverage Angular 19's signals for fine-grained reactive state management with automatic dependency tracking.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Versatility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          JavaScript's flexibility allows for multiple programming paradigms (object-oriented, functional, reactive) within Angular.
+        </li>
+        <li>
+          TypeScript adds strong typing while preserving JavaScript's dynamic nature where needed.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Ecosystem</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Huge ecosystem of JavaScript libraries and tools available for Angular projects.
+        </li>
+        <li>
+          NPM provides easy dependency management for any JavaScript functionality you need.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Modern Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Latest ECMAScript features like async/await, optional chaining, and nullish coalescing make code cleaner and more maintainable.
+        </li>
+        <li>
+          Angular 19 leverages these features for improved developer experience.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Browser Support</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          JavaScript runs natively in all browsers, and Angular's build tooling handles compatibility.
+        </li>
+        <li>
+          Polyfills can add support for newer features in older browsers when needed.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Modern JavaScript engines are highly optimized for performance.
+        </li>
+        <li>
+          Angular 19's signals provide fine-grained reactivity with better performance than traditional change detection.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>Type Safety Limitations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Even with TypeScript, runtime type errors can occur with external APIs or incorrect type definitions.
+        </li>
+        <li>
+          Type assertions (casting) can bypass type checking and lead to subtle bugs.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Traps</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          JavaScript's dynamic nature can lead to performance issues if not used carefully.
+        </li>
+        <li>
+          Memory leaks from closure-related issues or event listeners can be hard to debug.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Tooling Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Modern JavaScript development requires build tools, transpilers, and bundlers, adding complexity.
+        </li>
+        <li>
+          Configuration of TypeScript, linting, and other tools can be time-consuming.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Async Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Managing complex asynchronous flows can be challenging despite modern features.
+        </li>
+        <li>
+          Zone.js and Angular's change detection can sometimes have unexpected behaviors with async code.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Versatile programming paradigms</td>
+        <td class="py-3 px-4">Type safety limitations at runtime</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Huge ecosystem and libraries</td>
+        <td class="py-3 px-4">Performance traps for unwary developers</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Modern language features</td>
+        <td class="py-3 px-4">Complex tooling requirements</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Native browser support</td>
+        <td class="py-3 px-4">Asynchronous code complexity</td>
+      </tr>
+      <tr class="bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Optimized performance with signals</td>
+        <td class="py-3 px-4">Memory management challenges</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>Related Angular 19 Features and Concepts</p>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong>TypeScript</strong>:
+
+      <p>
+        TypeScript is a superset of JavaScript that adds static typing and other features to enhance the developer experience and code quality in Angular applications.
+      </p>
+    </li>
+    <li>
+      <strong>Zone.js</strong>:
+
+      <p>
+        Zone.js is a library that helps Angular know when to update the UI by intercepting and tracking asynchronous operations in JavaScript. Angular 19 offers zoneless mode for performance-critical applications.
+      </p>
+    </li>
+    <li>
+      <strong>Signals</strong>:
+
+      <p>
+        Angular 19's signals provide a fine-grained reactive programming model that leverages modern JavaScript capabilities for better performance and developer experience.
+      </p>
+    </li>
+    <li>
+      <strong>RxJS</strong>:
+
+      <p>
+        RxJS extends JavaScript with reactive programming capabilities, allowing Angular applications to handle asynchronous data streams and events in a declarative way.
+      </p>
+    </li>
+    <li>
+      <strong>ES Modules</strong>:
+
+      <p>
+        Angular 19 leverages JavaScript's native ES modules system for better code organization, tree-shaking, and bundling optimization.
+      </p>
+    </li>
+    <li>
+      <strong>Web APIs</strong>:
+
+      <p>
+        Angular applications can interact with modern browser APIs (Fetch, WebSockets, IndexedDB, etc.) using JavaScript to build rich, interactive web experiences.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>External Resources</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <a href="https://angular.io/guide/typescript-configuration" class="text-sky-400 hover:text-rose-400">
+        TypeScript Configuration in Angular
+      </a> - Official Angular documentation on TypeScript configuration
+    </li>
+    <li>
+      <a href="https://angular.io/guide/zone" class="text-sky-400 hover:text-rose-400">
+        Understanding Zones
+      </a> - Guide to Angular's Zone.js integration
+    </li>
+    <li>
+      <a href="https://angular.io/guide/signals" class="text-sky-400 hover:text-rose-400">
+        Angular Signals
+      </a> - Modern reactive programming in Angular 19
+    </li>
+    <li>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="text-sky-400 hover:text-rose-400">
+        MDN Web Docs: JavaScript
+      </a> - Comprehensive JavaScript reference
+    </li>
+    <li>
+      <a href="https://www.typescriptlang.org/docs/" class="text-sky-400 hover:text-rose-400">
+        TypeScript Documentation
+      </a> - Official TypeScript language documentation
+    </li>
+  </ul>
+</ng-template>
