@@ -1,8 +1,0 @@
-<ng-container [ngSwitch]="value">
-  <div *ngSwitchCase="'case1'">Content for case1</div>
-  <ng-container *ngSwitchCase="'case2'">
-    <div>Content for case2</div>
-    <div>More content for case2</div>
-  </ng-container>
-  <div *ngSwitchDefault>Default content</div>
-</ng-container>

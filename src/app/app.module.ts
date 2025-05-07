@@ -64,6 +64,8 @@ import { JavascriptModule } from './feature/angular/concepts/javascript/javascri
 import { JitModule } from './feature/angular/concepts/jit/jit.module';
 import { LibraryModule } from './feature/angular/concepts/library/library.module';
 import { ModuleComponentModule } from './feature/angular/concepts/module/module.module';
+import { AngularDevToolsModule } from './feature/angular/concepts/angular-devtools/angular-devtools.module';
+import { ControlFlowModule } from './feature/angular/concepts/control-flow/control-flow.module';
 
 @NgModule({
   declarations: [
@@ -132,7 +134,9 @@ import { ModuleComponentModule } from './feature/angular/concepts/module/module.
     JavascriptModule,
     JitModule,
     LibraryModule,
-    ModuleComponentModule
+    ModuleComponentModule,
+    AngularDevToolsModule,
+    ControlFlowModule,
   ],
   providers: [
     {

@@ -1,7 +1,0 @@
-removeItem(index: number) {
-  this.items.removeAt(index);
-}
-
-clearItems() {
-  this.items.clear();
-}

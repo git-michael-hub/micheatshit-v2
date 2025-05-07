@@ -1,3 +1,0 @@
-onSubmit() {
-  console.log(this.myForm.value);
-}

@@ -1,2 +1,0 @@
-this.changeDetectorRef.detach();
-this.changeDetectorRef.reattach();

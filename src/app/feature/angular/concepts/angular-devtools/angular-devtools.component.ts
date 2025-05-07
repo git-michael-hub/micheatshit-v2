@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HighlightModule } from 'ngx-highlightjs';
 
 @Component({
   selector: 'app-angular-devtools',
-  templateUrl: './angular-devtools.component.html',
-  standalone: true,
-  imports: [CommonModule, HighlightModule]
+  templateUrl: './angular-devtools.component.html'
 })
 export class AngularDevToolsComponent {
   selectedTab = 1;

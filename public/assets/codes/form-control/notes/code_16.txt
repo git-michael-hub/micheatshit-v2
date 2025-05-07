@@ -1,1 +1,0 @@
-const isTouched = myControl.touched;

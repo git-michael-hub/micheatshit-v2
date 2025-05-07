@@ -1,14 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { HighlightModule } from 'ngx-highlightjs';
 import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
 import { catchError, of, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-control-flow',
-  standalone: true,
-  imports: [CommonModule, HighlightModule],
   templateUrl: './control-flow.component.html',
   styleUrls: ['./control-flow.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

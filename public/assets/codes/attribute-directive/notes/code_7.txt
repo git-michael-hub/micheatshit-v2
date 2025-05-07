@@ -1,4 +1,0 @@
-@Directive({
-  selector: '[myDirective]'
-})
-export class MyDirective {}

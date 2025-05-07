@@ -1,1 +1,0 @@
-<p>{{ price | currency:'USD':'symbol' }}</p>

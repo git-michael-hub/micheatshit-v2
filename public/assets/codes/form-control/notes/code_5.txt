@@ -1,1 +1,0 @@
-myControl.setValue('new value', { emitEvent: false });

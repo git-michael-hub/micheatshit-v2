@@ -1,5 +1,0 @@
-this.ngZone.runOutsideAngular(() => {
-  setInterval(() => {
-    // Long-running or frequent tasks go here
-  }, 1000);
-});

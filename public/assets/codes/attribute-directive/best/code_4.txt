@@ -1,8 +1,0 @@
-it('should highlight the element on mouse enter', () => {
-  const fixture = TestBed.createComponent(TestComponent);
-  const compiled = fixture.nativeElement;
-  const p: HTMLElement = compiled.querySelector('p');
-  p.dispatchEvent(new Event('mouseenter'));
-  fixture.detectChanges();
-  expect(p.style.backgroundColor).toBe('yellow');
-});

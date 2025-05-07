@@ -427,14 +427,14 @@ export class GlossaryComponent implements OnInit {
         ''
       ]
     },
-    {
-      "name": "module",
-      "file_location": "components/module",
-      "url": "module",
-      "hashtags": [
-        ''
-      ]
-    },
+    // {
+    //   "name": "module",
+    //   "file_location": "components/module",
+    //   "url": "module",
+    //   "hashtags": [
+    //     ''
+    //   ]
+    // },
     {
       "name": "ngcc",
       "file_location": "components/ngcc",
@@ -445,7 +445,7 @@ export class GlossaryComponent implements OnInit {
     },
     {
       "name": "NgModule",
-      "file_location": "components/ngmodule",
+      "file_location": "components/module",
       "url": "ngmodule",
       "hashtags": [
         ''

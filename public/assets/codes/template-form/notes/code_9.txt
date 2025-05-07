@@ -1,4 +1,0 @@
-<label>Colors:</label>
-<label><input type="checkbox" name="color" value="red" [(ngModel)]="colors"> Red</label>
-<label><input type="checkbox" name="color" value="green" [(ngModel)]="colors"> Green</label>
-<label><input type="checkbox" name="color" value="blue" [(ngModel)]="colors"> Blue</label>

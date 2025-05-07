@@ -1,3 +1,0 @@
-<div *ngIf="myObservable$ | async as myData">
-  {{ myData }}
-</div>

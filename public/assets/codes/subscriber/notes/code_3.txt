@@ -1,3 +1,0 @@
-if (this.mySubscription && !this.mySubscription.closed) {
-  // do something
-}

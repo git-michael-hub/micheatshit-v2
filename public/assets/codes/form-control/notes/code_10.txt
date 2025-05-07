@@ -1,2 +1,0 @@
-myControl.setValidators(Validators.required);
-myControl.updateValueAndValidity();

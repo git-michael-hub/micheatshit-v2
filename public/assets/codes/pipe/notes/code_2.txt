@@ -1,2 +1,0 @@
-<p>{{ myDate | date }}</p>
-<p>{{ myDate | date:'short' }}</p>

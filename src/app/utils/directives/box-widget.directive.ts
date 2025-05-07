@@ -51,40 +51,57 @@ export class BoxWidgetDirective {
   // }
 
   ngAfterViewInit(): void {
-    const html = (id: number) =>  `
-      <div
-        style="left: ${this.el.nativeElement.getBoundingClientRect().left}px"
-        class="box-pop-${id} flex flex-row justify-between bg-white text-rose-400 absolute z-50 w-[312px] h-64 mb-8 bottom-0  border-2 border-indigo-500/100">
-
-        <span>${this.appBoxWidgetData.name}</span>
-        <span id="close">close</span>
-
-      </div>
-    `;
-    // this.renderer.setProperty(this.el.nativeElement.querySelector(`.box-pop-${this.el.nativeElement.id}`), 'innerHTML', html);
-    // const hostElement = this.el.nativeElement.querySelector('[appBoxWidget]');
-
-    // console.log('hostElement:', hostElement)
+    const id = this.el.nativeElement.id;
     const parentElement = this.renderer.parentNode(this.el.nativeElement);
 
     console.log('parentElement:', parentElement);
 
-    const id = this.el.nativeElement.id;
-
     if (parentElement) {
-      const box = parentElement.querySelector(`.box-pop-${id}`);
+      const existingBox = parentElement.querySelector(`.box-pop-${id}`);
+      if (existingBox) return;
 
-      if (box) return;
+      // Create main container div
+      const containerDiv = this.renderer.createElement('div');
+      this.renderer.addClass(containerDiv, `box-pop-${id}`);
+      this.renderer.addClass(containerDiv, 'flex');
+      this.renderer.addClass(containerDiv, 'flex-row');
+      this.renderer.addClass(containerDiv, 'justify-between');
+      this.renderer.addClass(containerDiv, 'bg-white');
+      this.renderer.addClass(containerDiv, 'text-rose-400');
+      this.renderer.addClass(containerDiv, 'absolute');
+      this.renderer.addClass(containerDiv, 'z-50');
+      this.renderer.addClass(containerDiv, 'w-[312px]');
+      this.renderer.addClass(containerDiv, 'h-64');
+      this.renderer.addClass(containerDiv, 'mb-8');
+      this.renderer.addClass(containerDiv, 'bottom-0');
+      this.renderer.addClass(containerDiv, 'border-2');
+      this.renderer.addClass(containerDiv, 'border-indigo-500/100');
 
-      const childEl = this.renderer.createElement('div');
+      // Set the left position
+      this.renderer.setStyle(
+        containerDiv,
+        'left',
+        `${this.el.nativeElement.getBoundingClientRect().left}px`
+      );
 
-      // this.renderer.addClass(parentElement.querySelector(`.box-pop`), `box-pop-${this.el.nativeElement.id}`);
-      if (childEl) this.renderer.appendChild(childEl, html(id));
-      if (this.el.nativeElement) this.renderer.appendChild(this.el.nativeElement, childEl);
+      // Create name span
+      const nameSpan = this.renderer.createElement('span');
+      const nameText = this.renderer.createText(this.appBoxWidgetData.name);
+      this.renderer.appendChild(nameSpan, nameText);
+
+      // Create close span
+      const closeSpan = this.renderer.createElement('span');
+      this.renderer.setAttribute(closeSpan, 'id', 'close');
+      const closeText = this.renderer.createText('close');
+      this.renderer.appendChild(closeSpan, closeText);
+
+      // Append spans to container
+      this.renderer.appendChild(containerDiv, nameSpan);
+      this.renderer.appendChild(containerDiv, closeSpan);
+
+      // Append container to host element
+      this.renderer.appendChild(this.el.nativeElement, containerDiv);
     }
-
-    // console.log("sssss----",this.el.nativeElement.getBoundingClientRect().left);
-
 
     // this.renderer.listen(this.el.nativeElement.querySelector('#close'), 'click', () => {
     //   console.log('Clicked');

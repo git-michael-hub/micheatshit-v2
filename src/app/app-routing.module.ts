@@ -76,6 +76,7 @@ import { JavascriptComponent } from './feature/angular/concepts/javascript/javas
 import { JitComponent } from './feature/angular/concepts/jit/jit.component';
 import { LibraryComponent } from './feature/angular/concepts/library/library.component';
 import { ModuleComponent } from './feature/angular/concepts/module/module.component';
+import { InputComponent } from './feature/angular/concepts/input/input.component';
 
 const routes: Routes = [
   {
@@ -182,6 +183,10 @@ const routes: Routes = [
       {
         path: 'entry-point',
         component: EntryPointComponent
+      },
+      {
+        path: 'angular-devtools',
+        component: AngularDevToolsComponent
       },
       {
         path: 'deferrable-views',
@@ -318,6 +323,26 @@ const routes: Routes = [
       {
         path: 'zoneless-applications',
         component: ZonelessApplicationsComponent
+      },
+      {
+        path: 'component',
+        component: ComponentComponent
+      },
+      {
+        path: 'configuration',
+        component: ConfigurationComponent
+      },
+      {
+        path: 'content-projection',
+        component: ContentProjectionComponent
+      },
+      {
+        path: 'control-flow',
+        component: ControlFlowComponent
+      },
+      {
+        path: 'class-decorator',
+        component: ClassDecoratorComponent
       },
     ]
   },

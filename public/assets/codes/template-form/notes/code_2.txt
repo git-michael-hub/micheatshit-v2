@@ -1,5 +1,0 @@
-<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)">
-  <label>Name: <input type="text" name="name" [(ngModel)]="name" required></label>
-  <label>Email: <input type="email" name="email" [(ngModel)]="email" required></label>
-  <button type="submit">Submit</button>
-</form>

@@ -1,5 +1,0 @@
-onSubmit() {
-  if (this.myForm.valid) {
-    // Submit form data
-  }
-}
