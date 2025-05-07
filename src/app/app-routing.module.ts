@@ -364,6 +364,22 @@ const routes: Routes = [
         path: 'dsl',
         component: DslComponent
       },
+      {
+        path: 'input',
+        component: InputComponent
+      },
+      {
+        path: 'interpolation',
+        component: InterpolationComponent
+      },
+      {
+        path: 'ivy',
+        component: IvyComponent
+      },
+      {
+        path: 'javascript',
+        component: JavascriptComponent
+      },
     ]
   },
 
