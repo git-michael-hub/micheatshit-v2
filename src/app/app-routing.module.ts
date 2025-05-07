@@ -344,6 +344,26 @@ const routes: Routes = [
         path: 'class-decorator',
         component: ClassDecoratorComponent
       },
+      {
+        path: 'class-field-decorator',
+        component: ClassFieldDecoratorComponent
+      },
+      {
+        path: 'collection',
+        component: CollectionComponent
+      },
+      {
+        path: 'cli',
+        component: CliComponent
+      },
+      {
+        path: 'custom-element',
+        component: CustomElementComponent
+      },
+      {
+        path: 'dsl',
+        component: DslComponent
+      },
     ]
   },
 
