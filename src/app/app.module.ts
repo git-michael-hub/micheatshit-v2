@@ -66,6 +66,8 @@ import { LibraryModule } from './feature/angular/concepts/library/library.module
 import { ModuleComponentModule } from './feature/angular/concepts/module/module.module';
 import { AngularDevToolsModule } from './feature/angular/concepts/angular-devtools/angular-devtools.module';
 import { ControlFlowModule } from './feature/angular/concepts/control-flow/control-flow.module';
+import { NgccModule } from './feature/angular/concepts/ngcc/ngcc.module';
+import { NpmPackageModule } from './feature/angular/concepts/npm-package/npm-package.module';
 
 @NgModule({
   declarations: [
@@ -137,6 +139,8 @@ import { ControlFlowModule } from './feature/angular/concepts/control-flow/contr
     ModuleComponentModule,
     AngularDevToolsModule,
     ControlFlowModule,
+    NgccModule,
+    NpmPackageModule,
   ],
   providers: [
     {

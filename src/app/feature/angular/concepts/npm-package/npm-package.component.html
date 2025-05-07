@@ -1,0 +1,317 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    npm Package
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">npm Package</span>
+      in Angular 19 refers to reusable JavaScript modules distributed through the npm (Node Package Manager) registry. Angular itself is composed of multiple npm packages, and developers use npm to manage dependencies in Angular applications. Package management is essential for maintaining modern Angular applications, ensuring compatibility, and leveraging the extensive ecosystem of third-party libraries.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<ng-template #notesRef>
+  <p>What is an npm Package?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Node Package Manager (npm)</strong>:
+      The default package manager for JavaScript runtime Node.js.
+    </li>
+    <li>
+      <strong>Reusable Modules</strong>:
+      npm packages are modular pieces of code that can be reused across projects.
+    </li>
+    <li>
+      <strong>Registry</strong>:
+      npm packages are distributed through the npm registry, a public database of JavaScript packages.
+    </li>
+    <li>
+      <strong>Dependency Management</strong>:
+      npm manages dependencies between packages, ensuring compatibility.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 and npm Packages</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Core Angular Packages</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 is distributed as a collection of npm packages with the <code>@angular</code> prefix.</li>
+        <li>Examples include <code>@angular/core</code>, <code>@angular/common</code>, <code>@angular/router</code>, etc.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Node Module Resolution Enhancements</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 improves Node module resolution with enhanced static analysis and tree-shaking.</li>
+        <li>Better package processing with optimized lazy loading support.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>ESM Support Improvements</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 fully embraces ECMAScript modules (ESM) for better tree-shaking.</li>
+        <li>All packages are optimized for ESM imports with reduced CommonJS fallbacks.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Package Version Management</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 uses semantic versioning (semver) to specify compatibility between packages.</li>
+        <li>Angular packages are linked by version, ensuring all @angular/* packages used in a project are of the same version.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Peer Dependencies</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 libraries define peer dependencies to ensure compatibility with the core framework.</li>
+        <li>Improved peer dependency checking in Angular 19 helps avoid version conflicts.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Common npm Commands for Angular 19</p>
+
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>bash</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['bash']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Typical package.json Dependencies for Angular 19</p>
+
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>json</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['json']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Listing Installed Packages</p>
+
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>bash</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['bash']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Common npm Commands for Angular 19</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Command</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>npm install</code></td>
+        <td class="py-3 px-4">Installs all dependencies listed in package.json</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>npm install package-name --save</code></td>
+        <td class="py-3 px-4">Installs a package and adds it to dependencies in package.json</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>npm install package-name --save-dev</code></td>
+        <td class="py-3 px-4">Installs a package and adds it to devDependencies in package.json</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>npm update</code></td>
+        <td class="py-3 px-4">Updates all packages to the latest version according to semver rules</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>npm uninstall package-name</code></td>
+        <td class="py-3 px-4">Removes a package from node_modules and package.json</td>
+      </tr>
+    </tbody>
+  </table>
+
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Lock Dependencies for Reproducible Builds</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use package-lock.json</strong>:
+          Always commit package-lock.json to version control to ensure all team members and CI/CD pipelines use identical dependency versions.
+        </li>
+        <li>
+          <strong>Specify Version Ranges Carefully</strong>:
+          Use caret (^) for minor version updates or tilde (~) for patch updates only, depending on your tolerance for automatic updates.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Keep Angular Packages in Sync</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Same Version for All @angular Packages</strong>:
+          Always use the same version for all Angular packages to avoid compatibility issues.
+        </li>
+        <li>
+          <strong>Use ng update for Upgrades</strong>:
+          Use the Angular CLI's ng update command to update Angular packages together with their dependencies.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize for Production</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Audit Dependencies</strong>:
+          Regularly run npm audit to check for security vulnerabilities in dependencies.
+        </li>
+        <li>
+          <strong>Minimize Bundle Size</strong>:
+          Use Angular's built-in features like tree shaking and lazy loading to minimize the impact of dependencies on your bundle size.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Organize Custom Packages</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Create Workspace Libraries</strong>:
+          For reusable code within a project, use Angular workspace libraries instead of external npm packages.
+        </li>
+        <li>
+          <strong>Use Proper Angular Package Format</strong>:
+          When creating packages for distribution, follow the Angular Package Format (APF) to ensure compatibility with the Angular ecosystem.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Extensive ecosystem with thousands of packages available for Angular development</li>
+        <li>Streamlined dependency management with automatic resolution of package dependencies</li>
+        <li>Version control for predictable and reproducible builds</li>
+        <li>Security auditing capabilities to identify and fix vulnerabilities</li>
+        <li>Integration with Angular CLI for simplified package management</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Node_modules can grow large and consume significant disk space</li>
+        <li>Dependency conflicts can be challenging to resolve, especially with complex dependency trees</li>
+        <li>Security vulnerabilities in third-party packages may affect application security</li>
+        <li>Package versioning can lead to "dependency hell" if not carefully managed</li>
+        <li>Increased bundle size if packages are not optimized for tree-shaking</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Angular Package Format (APF)</p>
+      <p class="text-sm">Specification for creating Angular-compatible npm packages</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Library Development</p>
+      <p class="text-sm">Creating reusable Angular libraries as npm packages</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Semantic Versioning</p>
+      <p class="text-sm">Versioning standard used by npm packages</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Workspace Dependencies</p>
+      <p class="text-sm">Managing dependencies in Angular workspaces</p>
+    </div>
+  </div>
+</ng-template>

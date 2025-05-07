@@ -77,6 +77,8 @@ import { JitComponent } from './feature/angular/concepts/jit/jit.component';
 import { LibraryComponent } from './feature/angular/concepts/library/library.component';
 import { ModuleComponent } from './feature/angular/concepts/module/module.component';
 import { InputComponent } from './feature/angular/concepts/input/input.component';
+import { NgccComponent } from './feature/angular/concepts/ngcc/ngcc.component';
+import { NpmPackageComponent } from './feature/angular/concepts/npm-package/npm-package.component';
 
 const routes: Routes = [
   {
@@ -379,6 +381,26 @@ const routes: Routes = [
       {
         path: 'javascript',
         component: JavascriptComponent
+      },
+      {
+        path: 'jit',
+        component: JitComponent
+      },
+      {
+        path: 'hooks',
+        component: LifecycleHookComponent
+      },
+      {
+        path: 'ngcc',
+        component: NgccComponent
+      },
+      {
+        path: 'ngmodule',
+        component: ModuleComponent
+      },
+      {
+        path: 'npm-package',
+        component: NpmPackageComponent
       },
     ]
   },
