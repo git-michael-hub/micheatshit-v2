@@ -1,72 +1,223 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    pipe
+    Pipe
   </p>
 
   <div class="text-content">
     <p>
-      Pipes are a way to transform data in templates. You can use built-in pipes or create your own custom pipes to transform data streams.
+      <span class="text-zinc-50 tw-font-medium">Pipes</span>
+      in Angular 19 provide powerful data transformation capabilities in templates with enhanced performance and signal integration. Pipes transform displayed values within template expressions, allowing for cleaner component code and improved reactivity with signals and zoneless applications.
     </p>
 
     <br>
 
     <div class="flex flex-col">
       <div class="flex border-b border-gray-200">
-        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Notes
         </button>
-        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Pros and Cons
         </button>
-        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
-            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
           </div>
           <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
           </div>
           <div *ngSwitchDefault>
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
-
   </div>
 </section>
 
 
 
-
 <ng-template #notesRef>
-  <p>
-  </p>
+  <p>What Are Pipes?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Template Transformers</strong>:
+      Pipes transform data right in template expressions, keeping component code cleaner.
+    </li>
+    <li>
+      <strong>Chainable Operations</strong>:
+      Multiple pipes can be chained together to perform complex transformations.
+    </li>
+    <li>
+      <strong>Built-in and Custom</strong>:
+      Angular includes many built-in pipes, and developers can create custom pipes.
+    </li>
+    <li>
+      <strong>Performance Optimized</strong>:
+      Pure pipes in Angular 19 are highly optimized with more efficient change detection.
+    </li>
+  </ul>
 
   <br>
+  <br>
 
+  <p>Angular 19 Pipe Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Standalone Pipes</strong>:
+      <ul class="list-disc pl-4">
+        <li>Pipes can be created as standalone without needing to be declared in a module</li>
+        <li>Simplifies sharing pipes across an application and reduces boilerplate</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal-Based Pipes</strong>:
+      <ul class="list-disc pl-4">
+        <li>New API for creating pipes that integrate with Angular signals</li>
+        <li>More efficient change detection when used with signal-based components</li>
+        <li>The new <code>pipe()</code> function enables seamless signal-to-signal transformations</li>
+        <li>Supports fine-grained reactivity that only re-evaluates when dependencies change</li>
+        <li>Integrates natively with Angular's reactive primitives for better performance</li>
+        <li>Automatically tracks signal dependencies and updates only when needed</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Operation</strong>:
+      <ul class="list-disc pl-4">
+        <li>Pipes now work efficiently in zoneless applications with better performance</li>
+        <li>Redesigned to integrate with Angular's new reactive system</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Extended Built-in Pipes</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enhanced internationalization support in date and number pipes</li>
+        <li>Better type-safety and error reporting with TypeScript 5.4 integration</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Developer Experience</strong>:
+      <ul class="list-disc pl-4">
+        <li>Better debugging capabilities through Angular DevTools integration</li>
+        <li>Improved error messages for pipe transformation failures</li>
+      </ul>
+    </li>
+  </ol>
 
-  <ul class="px-10 text-sm">
-   <li>
+  <br>
+  <br>
 
-    <h5>
-      Built-in Pipes
-    </h5>
+  <p>Signal-Based Pipes in Angular 19</p>
+  <br>
+  <p>Creating a Signal-Based Pipe</p>
+  <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>uppercase and lowercase</strong>
+  <span #code9 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
 
-        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+    <pre>
+      <code
+        [highlight]="code_9"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Using Signal-Based Pipes in Components</p>
+  <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code10 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_10"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Traditional vs Signal-Based Pipes Comparison</p>
+  <button (click)="code11.hidden = !code11.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code11 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_11"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Key Benefits of Signal-Based Pipes</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Automatic Dependency Tracking</strong>:
+      Signal-based pipes automatically track their input signals and only re-evaluate when those signals change, providing fine-grained reactivity.
+    </li>
+    <li>
+      <strong>TypeScript Type Safety</strong>:
+      Signal pipes provide improved type safety with generics, ensuring the input and output types are correctly enforced.
+    </li>
+    <li>
+      <strong>Seamless Signal Integration</strong>:
+      Signal pipes work natively with Angular's signal-based components without the need for async pipe or manual subscription management.
+    </li>
+    <li>
+      <strong>Reduced Boilerplate</strong>:
+      The <code>pipe()</code> function simplifies creating reactive transformations with less code than traditional pipes.
+    </li>
+    <li>
+      <strong>Better Performance</strong>:
+      Signal-based pipes enable more efficient change detection by only updating when their specific dependencies change, rather than on every change detection cycle.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Built-in Pipes in Angular 19</p>
+  <br>
+  <br>
+
+  <p>Text Transformation Pipes</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>uppercase and lowercase</strong>:
+      Convert text to upper or lower case.
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
       <span #code1 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
+          <span>html</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
         </div>
 
@@ -77,16 +228,22 @@
           </code>
         </pre>
       </span>
+    </li>
+  </ul>
 
-      </li>
-      <li>
-        <strong>date</strong>
+  <br>
 
-        <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <p>Date and Number Formatting Pipes</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>date</strong>:
+      Format dates according to locale rules.
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
       <span #code2 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
+          <span>html</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
         </div>
 
@@ -97,16 +254,16 @@
           </code>
         </pre>
       </span>
+    </li>
+    <li>
+      <strong>currency</strong>:
+      Format numbers as currency values.
 
-      </li>
-      <li>
-        <strong>currency</strong>
-
-        <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
       <span #code3 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
+          <span>html</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
         </div>
 
@@ -117,16 +274,16 @@
           </code>
         </pre>
       </span>
+    </li>
+    <li>
+      <strong>number</strong>:
+      Format numbers with decimal points and thousands separators.
 
-      </li>
-      <li>
-        <strong>number</strong>
-
-        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
       <span #code4 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
+          <span>html</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
         </div>
 
@@ -137,16 +294,22 @@
           </code>
         </pre>
       </span>
+    </li>
+  </ul>
 
-      </li>
-      <li>
-        <strong>async</strong>
+  <br>
 
-        <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+  <p>Reactive Data Handling</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>async</strong>:
+      Unwraps a value from an Observable or Promise automatically.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
       <span #code5 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
+          <span>html</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
         </div>
 
@@ -157,189 +320,230 @@
           </code>
         </pre>
       </span>
-
-      </li>
-    </ol>
-   </li>
-   <li>
-    <h5>
-      Custom Pipes
-    </h5>
-
-    <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code6 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_6"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-
-        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span  copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_7"
-            [languages]="['html']">
-          </code>
-        </pre>
-      </span>
-
-
-      </span>
-
-   </li>
-   <li>
-    <h5>
-      Chaining Pipes
-    </h5>
-
-    <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code8 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_8"
-            [languages]="['html']">
-          </code>
-        </pre>
-      </span>
-
-   </li>
+    </li>
   </ul>
 
-
-
+  <br>
   <br>
 
-  <p>
-    By using built-in and custom pipes in Angular, you can transform data in templates and create more powerful and flexible applications.
-  </p>
+  <p>Creating Custom Pipes in Angular 19</p>
+  <br>
+  <p>Traditional Custom Pipe</p>
+  <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code6 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Using Custom Pipe</p>
+  <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code7 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_7"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Chaining Multiple Pipes</p>
+  <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code8 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_8"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Pipe Features Comparison</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Feature</th>
+        <th class="py-3 px-4 text-left">Traditional Pipes</th>
+        <th class="py-3 px-4 text-left">Angular 19 Pipes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Declaration</td>
+        <td class="py-3 px-4">Module-based</td>
+        <td class="py-3 px-4">Standalone or module-based</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Change Detection</td>
+        <td class="py-3 px-4">Zone.js based</td>
+        <td class="py-3 px-4">Supports zoneless applications</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Signals Integration</td>
+        <td class="py-3 px-4">Limited</td>
+        <td class="py-3 px-4">Native signals support</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Performance</td>
+        <td class="py-3 px-4">Good</td>
+        <td class="py-3 px-4">Optimized with signal-based changes</td>
+      </tr>
+    </tbody>
+  </table>
 </ng-template>
 
 
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Prefer Pure Pipes</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Pure Pipes When Possible</strong>:
+          Pure pipes (the default) only execute when their input values change, resulting in better performance. Non-pure pipes execute on every change detection cycle, which can be expensive.
+        </li>
+        <li>
+          <strong>Minimize Side Effects</strong>:
+          Avoid side effects in pipe transform methods, as pipes may be executed multiple times during development mode change detection cycles.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Create Standalone Pipes in Angular 19</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Standalone Decorator</strong>:
+          Create pipes with the standalone: true flag in the &#64;Pipe decorator to simplify sharing and reuse without module declarations.
+        </li>
+        <li>
+          <strong>Import Directly</strong>:
+          Import standalone pipes directly in component imports arrays rather than through modules.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize for Signal-Based Components</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Signal-Aware Pipes</strong>:
+          When working with signal-based components, create pipes that efficiently handle signal values and updates.
+        </li>
+        <li>
+          <strong>Fine-Grained Reactivity</strong>:
+          Design pipes to work well with Angular's fine-grained reactivity system for better performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Reuse Built-in Pipes</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Leverage Existing Functionality</strong>:
+          Use Angular's built-in pipes whenever possible instead of creating custom pipes for common transformations.
+        </li>
+        <li>
+          <strong>Inject Built-in Pipes</strong>:
+          When you need to use a pipe's functionality in a component class, inject the pipe and call its transform method directly.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Keep Transformation Logic Simple</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Single Responsibility</strong>:
+          Create pipes that do one thing well rather than complex pipes with multiple responsibilities.
+        </li>
+        <li>
+          <strong>Chain for Complex Transformations</strong>:
+          Chain multiple pipes together for complex transformations instead of building one complex pipe.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
 <ng-template #prosConsRef>
-  <strong class="text-sky-400">
-    Pros:
-  </strong>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Simplifies template code by moving transformation logic out of components</li>
+        <li>Encourages reuse of transformation logic across the application</li>
+        <li>Pure pipes provide excellent performance with built-in memoization</li>
+        <li>Easily chainable for complex transformations</li>
+        <li>Integrates seamlessly with Angular's change detection</li>
+        <li>In Angular 19, works well with signals and zoneless applications</li>
+        <li>Standalone pipes reduce boilerplate and simplify sharing</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Non-pure pipes can cause performance issues if not used carefully</li>
+        <li>Limited to template usage unless explicitly injected into components</li>
+        <li>Complex transformations may be harder to debug in templates</li>
+        <li>Error handling can be challenging as pipe errors occur in templates</li>
+        <li>May lead to tight coupling between components and pipes</li>
+        <li>Testing pipes used exclusively in templates requires specialized test setups</li>
+        <li>Overusing pipes can make templates harder to read and maintain</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
 
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Simplifies template code</strong>: Pipes allow you to transform data in the template, rather than manipulating it in the component. This can help keep your component code clean and concise.
-    </li>
-    <li>
-      <strong>Reusability</strong>: Once created, pipes can be used across the entire application, making them a great way to share code.
-    </li>
-    <li>
-      <strong>Consistency</strong>: Pipes allow you to apply consistent formatting across your application, ensuring that data is always displayed in the same way.
-    </li>
-    <li>
-      <strong>Easy to use</strong>: Angular pipes are easy to use and can be added to a template with a simple syntax.
-    </li>
-    <li>
-      <strong>Flexibility</strong>: You can use built-in pipes or create your own custom pipes, giving you a high degree of flexibility when it comes to transforming data.
-    </li>
-  </ol>
-
-  <br>
-
-  <strong class="text-sky-400">
-    Cons:
-  </strong>
-
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Performance</strong>: Pipes can be expensive in terms of performance, especially if they are impure pipes. Angular will re-run impure pipes every time change detection runs, which can cause performance issues if you have a lot of data or complex transformations.
-    </li>
-    <li>
-      <strong>Debugging</strong>: Debugging pipes can be difficult, especially if you have complex pipe chains. This can make it harder to track down errors in your application.
-    </li>
-    <li>
-      <strong>Maintenance</strong>: Pipes can become difficult to maintain over time, especially if they are heavily used across the application. Changes to a pipe can have unintended consequences in other parts of the application.
-    </li>
-    <li>
-      <strong>Testing</strong>: Testing pipes can be challenging, especially if you have a lot of different inputs and outputs to test. This can make it harder to ensure that your pipes are functioning correctly.
-    </li>
-  </ol>
-
-  <br>
-
-  <p>
-    Overall, pipes can be a powerful tool in Angular for transforming data in templates, but they should be used with caution. To avoid performance issues and maintenance problems, it's important to limit the number of pipes you use and to test them thoroughly.
-  </p>
-
-  </ng-template>
-
-
-
-
-
-  <ng-template #topicsRef>
-    <p>
-      Related topics to Angular pipes:
-    </p>
-
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>PipeTransform Interface</strong>: The PipeTransform interface is a built-in Angular interface that defines the transform() method. Pipes must implement this interface in order to be used in Angular. The transform() method takes a value and returns the transformed value.
-      </li>
-      <li>
-        <strong>Pure and Impure Pipes</strong>: Angular pipes can be either pure or impure. Pure pipes are only executed when the input data changes, whereas impure pipes are executed every time change detection runs, regardless of whether the input data has changed.
-      </li>
-      <li>
-        <strong>Custom Pipes</strong>: You can create your own custom pipes in Angular by creating a new class that implements the PipeTransform interface. Custom pipes can be used in templates just like built-in pipes.
-      </li>
-      <li>
-        <strong>Chaining Pipes</strong>: You can chain pipes together to create more complex transformations. Pipes are applied in the order they are chained, so you can use multiple pipes to transform data in a variety of ways.
-      </li>
-      <li>
-        <strong>Async Pipes</strong>: The async pipe is a special built-in pipe that allows you to handle asynchronous data streams. It automatically subscribes and unsubscribes to the observable, so you don't need to manage subscriptions yourself.
-      </li>
-      <li>
-        <strong>Parameterizing Pipes</strong>: You can pass parameters to pipes by adding them after the pipe name, separated by colons. For example, you can pass a format string to the date pipe to customize the date output.
-      </li>
-      <li>
-        <strong>Pipe Syntax</strong>: Pipes are added to template expressions using the | symbol. The input value is passed to the pipe on the left side of the |, and the pipe operation is performed on the right side of the |.
-      </li>
-      <li>
-        <strong>Built-in Pipes</strong>: Angular comes with a number of built-in pipes that you can use in your application, such as uppercase, lowercase, date, currency, and number.
-      </li>
-      <li>
-        <strong>Localization</strong>: Pipes can be used for localization purposes by using the i18n attribute. This allows you to specify different translations for different languages.
-      </li>
-      <li>
-        <strong>Testing Pipes</strong>: You can write unit tests for your custom pipes in Angular to ensure they are functioning correctly. You can use the TestBed module to create a testing environment for your pipe and test its output.
-      </li>
-    </ol>
-
-
-    <br>
-
-    <p>
-      Overall, pipes are a powerful tool in Angular that allow you to transform data in templates in a variety of ways. By combining built-in and custom pipes, you can create complex transformations and handle asynchronous data streams with ease.
-    </p>
-
-  </ng-template>
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Change Detection</p>
+      <p class="text-sm">How Angular determines when to update the DOM</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Templates</p>
+      <p class="text-sm">Where pipes are typically used to transform displayed data</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Signals</p>
+      <p class="text-sm">Angular 19's reactive primitives that integrate with pipes</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Zoneless Applications</p>
+      <p class="text-sm">Running Angular without Zone.js, affecting pipe behavior</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Internationalization (i18n)</p>
+      <p class="text-sm">Using pipes for locale-specific formatting</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Standalone Components</p>
+      <p class="text-sm">Working with standalone pipes in standalone components</p>
+    </div>
+  </div>
+</ng-template>

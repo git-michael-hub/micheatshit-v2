@@ -1,0 +1,371 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Output
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Output</span>
+      in Angular 19 is a decorator that allows a component to emit events to its parent component. With the introduction of the output() function in Angular 19, developers can now create outputs using a more concise, signal-based approach that integrates seamlessly with other reactive features of the framework.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<ng-template #notesRef>
+  <p>What is &#64;Output?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Event Emitter</strong>:
+      An Output property emits events to notify the parent component of changes.
+    </li>
+    <li>
+      <strong>Component Communication</strong>:
+      Enables child-to-parent component communication in Angular applications.
+    </li>
+    <li>
+      <strong>Data Flow</strong>:
+      Part of Angular's mechanism for maintaining unidirectional data flow.
+    </li>
+    <li>
+      <strong>Event Binding</strong>:
+      Used with event binding syntax in parent component templates.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Output Implementation Approaches</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Traditional &#64;Output Decorator</strong>:
+      <ul class="list-disc pl-4">
+        <li>Uses the &#64;Output() decorator combined with EventEmitter</li>
+        <li>Remains fully supported in Angular 19 for backward compatibility</li>
+      </ul>
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Output with Alias</strong>:
+      <ul class="list-disc pl-4">
+        <li>Providing an alias name for the output allows for more intuitive template binding</li>
+        <li>Useful when the public API naming differs from internal property names</li>
+      </ul>
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Signal-Based Output (Angular 19)</strong>:
+      <ul class="list-disc pl-4">
+        <li>New output() function as part of the signals API</li>
+        <li>Provides a more concise way to define outputs</li>
+        <li>Seamlessly integrates with other signal-based features</li>
+      </ul>
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Using Outputs in Parent Components</strong>:
+      <ul class="list-disc pl-4">
+        <li>Parent components can listen to outputs using event binding syntax</li>
+        <li>Consistent approach for both traditional and signal-based outputs</li>
+      </ul>
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Output Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Signal-Based output() Function</strong>:
+      <ul class="list-disc pl-4">
+        <li>Part of Angular's new signals API that provides a more reactive programming model</li>
+        <li>More concise syntax compared to traditional &#64;Output decorator with EventEmitter</li>
+        <li>Better TypeScript inference and improved development experience</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Performance</strong>:
+      <ul class="list-disc pl-4">
+        <li>Signal-based outputs are optimized for Angular's rendering pipeline</li>
+        <li>Reduced memory footprint compared to traditional EventEmitter-based outputs</li>
+        <li>Better integration with Angular's change detection mechanism</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Better Developer Experience</strong>:
+      <ul class="list-disc pl-4">
+        <li>Consistent API with other signal-based features (input(), model(), etc.)</li>
+        <li>Improved type safety and autocompletion in IDEs</li>
+        <li>More readable and maintainable code with less boilerplate</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Application Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>Designed to work efficiently in zoneless applications</li>
+        <li>Better integration with Angular's new reactivity system</li>
+        <li>Reduced reliance on Zone.js for change detection</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Comparing Traditional vs Signal-Based Outputs</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Traditional Approach</th>
+        <th class="py-3 px-4 text-left">Signal-Based Approach (Angular 19)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>&#64;Output() changed = new EventEmitter&lt;string&gt;();</code></td>
+        <td class="py-3 px-4"><code>changed = output&lt;string&gt;();</code></td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>&#64;Output('valueChange') changed = new EventEmitter&lt;number&gt;();</code></td>
+        <td class="py-3 px-4"><code>changed = output&lt;number&gt;('valueChange');</code></td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>this.changed.emit(value);</code></td>
+        <td class="py-3 px-4"><code>this.changed.emit(value);</code></td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Requires explicit EventEmitter initialization</td>
+        <td class="py-3 px-4">Automatically initializes the output</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Descriptive Event Names</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Meaningful Names</strong>:
+          Choose output names that clearly describe the event being emitted, such as 'itemAdded', 'statusChanged', or 'formSubmitted'.
+        </li>
+        <li>
+          <strong>Event-Like Naming</strong>:
+          Use past-tense verb phrases for events that have already occurred, e.g., 'saved', 'deleted', 'uploaded'.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Include Relevant Data</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Emit Meaningful Data</strong>:
+          Include all relevant data that the parent component needs to handle the event properly.
+        </li>
+        <li>
+          <strong>Use TypeScript Types</strong>:
+          Define clear interface types for complex event data to ensure type safety and improve developer experience.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Manage Subscription Lifecycle</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Clean Up Subscriptions</strong>:
+          When subscribing to outputs in code (rather than template bindings), ensure proper cleanup to prevent memory leaks.
+        </li>
+        <li>
+          <strong>Use takeUntilDestroyed</strong>:
+          In Angular 19, leverage the takeUntilDestroyed operator for automatic subscription management.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Prefer Signal-Based Approach</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use output() Function</strong>:
+          For new Angular 19 applications, prefer the signal-based output() function over the traditional &#64;Output decorator.
+        </li>
+        <li>
+          <strong>Consider model() Function</strong>:
+          For two-way binding scenarios, use the model() function that combines input and output functionality.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Avoid Overusing Outputs</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Consider Service-Based Communication</strong>:
+          For communication between distant components, consider using services or state management instead of chaining outputs.
+        </li>
+        <li>
+          <strong>Limit Output Count</strong>:
+          If a component has too many outputs, it may be a sign that it should be refactored into smaller, more focused components.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Enables child-to-parent component communication following Angular's unidirectional data flow</li>
+        <li>Promotes component encapsulation and loose coupling between components</li>
+        <li>Provides declarative event binding in templates for clear parent-child relationships</li>
+        <li>New signal-based output() function offers more concise syntax with less boilerplate</li>
+        <li>Signal-based outputs integrate seamlessly with other reactive features</li>
+        <li>Improved performance in Angular 19 with better change detection integration</li>
+        <li>Better TypeScript type safety and developer tooling support</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Can lead to "output chains" when events need to pass through multiple component levels</li>
+        <li>Not ideal for communication between unrelated components or distant parts of the component tree</li>
+        <li>Maintaining two syntaxes (&#64;Output and output()) may increase learning curve for developers</li>
+        <li>Transitioning existing codebases to signal-based outputs requires refactoring effort</li>
+        <li>Overuse of outputs can make component interfaces overly complex</li>
+        <li>Limited to parent-child communication patterns; doesn't solve all communication needs</li>
+        <li>May require additional state management solutions for complex applications</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Input</p>
+      <p class="text-sm">Pass data from parent to child components</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">EventEmitter</p>
+      <p class="text-sm">The class used by traditional outputs to emit events</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Signal Functions</p>
+      <p class="text-sm">New API including input(), output(), and model() functions</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Component Communication</p>
+      <p class="text-sm">Various patterns for components to interact with each other</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Two-way Binding</p>
+      <p class="text-sm">Combining inputs and outputs for bidirectional data flow</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Unidirectional Data Flow</p>
+      <p class="text-sm">Angular's pattern of data flowing down and events flowing up</p>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,347 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Observer
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Observer</span>
+      in Angular 19 is a key interface in the ReactiveX (RxJS) library that defines how to receive and react to notifications from Observables. Observers are consumers of data streams that implement callback methods for handling the three types of Observable notifications: next (data), error, and completion. In Angular 19, Observers integrate seamlessly with Signals and provide enhanced type safety with RxJS 8.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<ng-template #notesRef>
+  <p>What is an Observer?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Core Interface</strong>:
+      An Observer is an interface with three callback methods: next(), error(), and complete().
+    </li>
+    <li>
+      <strong>Data Consumer</strong>:
+      Observers consume data emitted by Observables and define how to react to various types of notifications.
+    </li>
+    <li>
+      <strong>Reactive Pattern</strong>:
+      Part of the reactive programming pattern, Observers work hand-in-hand with Observables to create a publish-subscribe model.
+    </li>
+    <li>
+      <strong>Type Definition</strong>:
+      In TypeScript, an Observer is defined with a generic type parameter that specifies the type of data it can receive.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Observer Structure and Implementation in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Basic Implementation</strong>:
+      <ul class="list-disc pl-4">
+        <li>Observers can be implemented as objects with next, error, and complete callback methods.</li>
+        <li>Angular 19 improves type inference for Observers with better TypeScript integration.</li>
+      </ul>
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Callback Functions</strong>:
+      <ul class="list-disc pl-4">
+        <li>In Angular 19, you can pass separate callback functions directly to the subscribe() method.</li>
+        <li>This approach offers more concise syntax while maintaining the Observer pattern.</li>
+      </ul>
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Partial Observers</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 with RxJS 8 provides improved handling of partial observers, where you implement only some of the callback methods.</li>
+        <li>Missing callbacks are replaced with no-op functions, ensuring proper error handling.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Context-Aware Observers</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces better context handling for observers, making them more effective in complex component architectures.</li>
+        <li>This is particularly important in zoneless applications where change detection is more explicitly controlled.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Integration with HttpClient</strong>:
+      <ul class="list-disc pl-4">
+        <li>Observers are commonly used with HttpClient to handle API responses, errors, and completion events.</li>
+        <li>Angular 19 enhances this pattern with improved error reporting and typing.</li>
+      </ul>
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Observer Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Typed Observers</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 provides enhanced type safety for Observers with improved TypeScript 5.4 integration.</li>
+        <li>Better error detection at compile time for Observer usage.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Observers can be created from Angular Signals or can update Signals when receiving values.</li>
+        <li>This creates a bridge between the Observable and Signal reactivity systems.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Optimizations</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 optimizes Observer creation and handling, reducing memory overhead.</li>
+        <li>Better memory management through improved subscription lifecycle handling.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>Observers in Angular 19 are designed to work efficiently in zoneless applications.</li>
+        <li>They trigger change detection more efficiently when integrated with Angular's new reactive system.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>RxJS 8 Compatibility</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 Observers are fully compatible with RxJS 8, leveraging its improved performance and smaller footprint.</li>
+        <li>Better error handling and debugging capabilities through enhanced RxJS integration.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Observer Pattern Implementation</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Method</th>
+        <th class="py-3 px-4 text-left">Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>next(value)</code></td>
+        <td class="py-3 px-4">Called when an Observable emits a new value</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>error(err)</code></td>
+        <td class="py-3 px-4">Called when an Observable encounters an error</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>complete()</code></td>
+        <td class="py-3 px-4">Called when an Observable completes and will not emit any more values</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Design Organized Observers</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Keep Observers Simple</strong>:
+          Design observers to have a single responsibility. Avoid complex logic inside observer callbacks that makes them difficult to test and maintain.
+        </li>
+        <li>
+          <strong>Group Related Functionality</strong>:
+          For complex scenarios, group related observer handling into service methods rather than inlining all logic in component callbacks.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Handle Errors Properly</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Always Implement Error Handlers</strong>:
+          Never leave error handling undefined in observers, as unhandled errors can cause application crashes and poor user experience.
+        </li>
+        <li>
+          <strong>Use Error Boundaries</strong>:
+          Implement proper error boundaries and recovery strategies within error callbacks to prevent cascading failures.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Manage Subscription Lifecycle</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Store Subscription References</strong>:
+          When manually creating observers, always store the returned subscription to allow for proper cleanup.
+        </li>
+        <li>
+          <strong>Use takeUntilDestroyed()</strong>:
+          In Angular 19, leverage the takeUntilDestroyed() operator from the rxjs-interop package to automatically handle subscription cleanup.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Angular Integration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use the Async Pipe</strong>:
+          Prefer the async pipe in templates when possible, as it automatically manages observer subscriptions and unsubscriptions.
+        </li>
+        <li>
+          <strong>Integrate with Signals</strong>:
+          In Angular 19, consider using toSignal() to convert observable values to signals when needed for better integration with the reactive system.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Provides a standardized interface for handling asynchronous data streams</li>
+        <li>Enables separation of concerns between data production and consumption</li>
+        <li>Supports comprehensive error handling with dedicated error callback</li>
+        <li>Allows for completion notification to perform cleanup tasks</li>
+        <li>Integrates seamlessly with Angular's HTTP client and forms modules</li>
+        <li>Works well with Angular 19's signal-based reactivity system</li>
+        <li>Enhances code organization by separating data handling logic</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Can lead to memory leaks if subscriptions aren't properly managed</li>
+        <li>Requires understanding of reactive programming concepts</li>
+        <li>Error handling is mandatory but often overlooked by developers</li>
+        <li>Manual subscription management adds complexity to components</li>
+        <li>May result in excessive callback nesting if not properly structured</li>
+        <li>Testing observers often requires more complex setup than imperative code</li>
+        <li>Learning curve for developers new to reactive programming paradigms</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Observable</p>
+      <p class="text-sm">The source of data that Observer consumes</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Subscription</p>
+      <p class="text-sm">The connection between Observable and Observer</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">RxJS</p>
+      <p class="text-sm">Reactive Extensions library that provides Observable and Observer interfaces</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Subject</p>
+      <p class="text-sm">Special type of Observable that is also an Observer</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Signals</p>
+      <p class="text-sm">Angular 19's alternative reactivity primitive that works alongside Observers</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Async Pipe</p>
+      <p class="text-sm">Angular pipe that subscribes to an Observable and manages its Observer</p>
+    </div>
+  </div>
+</ng-template>

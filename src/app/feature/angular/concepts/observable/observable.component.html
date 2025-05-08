@@ -1,61 +1,60 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    observable
+    Observables
   </p>
 
   <div class="text-content">
     <p>
-      Observables are a powerful feature in Angular that allow you to handle asynchronous data streams. Observables can be used to represent HTTP requests, user input, and other asynchronous events in your application.
+      <span class="text-zinc-50 tw-font-medium">Observables</span>
+      in Angular 19 provide a powerful mechanism for handling asynchronous data streams and events. Based on the ReactiveX (RxJS) library, observables enable a reactive programming approach to modern web applications, offering improved performance, concise state management, and elegant handling of complex data flows with support for Angular's signals and zoneless applications.
     </p>
 
     <br>
 
     <div class="flex flex-col">
       <div class="flex border-b border-gray-200">
-        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Notes
         </button>
-        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Pros and Cons
         </button>
-        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
-            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
           </div>
           <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
           </div>
           <div *ngSwitchDefault>
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
-
   </div>
 </section>
 
-
-
-
 <ng-template #notesRef>
-  <p>
-  </p>
-
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
+  <p>Observable Fundamentals in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
     <li>
-      <strong>Creating an Observable</strong>:
-      <p>
-        To create an observable in Angular, you can use the Observable constructor or one of the utility functions such as of or from.
-      </p>
+      <strong>Creating Observables</strong>:
+      <ul class="list-disc pl-4">
+        <li>Observable constructor, of(), from(), and fromEvent() are common methods to create observables.</li>
+        <li>Angular 19 embraces functional reactive programming with improved observable performance.</li>
+      </ul>
 
       <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -72,14 +71,20 @@
           </code>
         </pre>
       </span>
-
-
     </li>
     <li>
-      <strong>Subscribing to an Observable</strong>:
-      <p>
-        To subscribe to an observable in Angular, you can use the subscribe method and pass in callbacks for handling the next, error, and complete events.
-      </p>
+      <strong>Signal Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 provides seamless integration between RxJS observables and Angular signals.</li>
+        <li>The toSignal() and toObservable() utility functions convert between the two reactive paradigms.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Subscribing to Observables</strong>:
+      <ul class="list-disc pl-4">
+        <li>Use the subscribe() method to execute an observable and handle emitted values.</li>
+        <li>In Angular 19, subscription management is streamlined with improved takeUntilDestroyed operator.</li>
+      </ul>
 
       <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -96,14 +101,13 @@
           </code>
         </pre>
       </span>
-
-
     </li>
     <li>
-      <strong>Operators</strong>:
-      <p>
-        Operators are functions that can be used to transform, filter, and manipulate observables in various ways. There are many operators available in Angular, including map, filter, reduce, take, skip, debounceTime, and many more.
-      </p>
+      <strong>RxJS Operators</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 leverages RxJS 8 with improved performance and tree-shaking capabilities.</li>
+        <li>Essential operators: map, filter, switchMap, mergeMap, concatMap, debounceTime, distinctUntilChanged, etc.</li>
+      </ul>
 
       <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -120,13 +124,13 @@
           </code>
         </pre>
       </span>
-
     </li>
     <li>
       <strong>Subjects</strong>:
-      <p>
-        Subjects are a type of observable that can be used to multicast events to multiple subscribers. Subjects have a next method that can be used to push new values to all subscribers.
-      </p>
+      <ul class="list-disc pl-4">
+        <li>Both observables and observers that can multicast values to multiple subscribers.</li>
+        <li>Types: Subject, BehaviorSubject, ReplaySubject, and AsyncSubject with specific use cases.</li>
+      </ul>
 
       <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -143,14 +147,13 @@
           </code>
         </pre>
       </span>
-
-
     </li>
     <li>
       <strong>Error Handling</strong>:
-      <p>
-        You can handle errors in observables using the catchError and throwError operators. catchError is used to catch errors and return a new observable, while throwError is used to throw an error
-      </p>
+      <ul class="list-disc pl-4">
+        <li>Angular 19 enhances error handling with improved catchError and throwError operators.</li>
+        <li>Structured error recovery patterns are better supported with retry strategies.</li>
+      </ul>
 
       <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -167,190 +170,199 @@
           </code>
         </pre>
       </span>
-
     </li>
   </ol>
 
   <br>
+  <br>
 
-  <p>
-    By understanding observables, subscribing to them, using operators, handling errors, and working with subjects in Angular, you can handle asynchronous data streams and improve the responsiveness and interactivity of your application.
-  </p>
+  <p>Angular 19 Observable Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Zoneless Change Detection</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 fully supports zoneless applications with improved observable integration.</li>
+        <li>Observable operations no longer require Zone.js, resulting in improved performance.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal-Observable Interoperability</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 provides first-class support for converting between signals and observables.</li>
+        <li>The toSignal() function now supports advanced configuration for signal creation from observables.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Memory Management</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enhanced subscription management with automatic cleanup when components are destroyed.</li>
+        <li>The new takeUntilDestroyed() operator simplifies subscription handling in components.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Hydration Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>Better integration with Angular's hydration system for server-side rendered applications.</li>
+        <li>Observables are automatically synchronized during the hydration process.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>RxJS 8 Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 is fully compatible with RxJS 8, offering improved performance and smaller bundle sizes.</li>
+        <li>Better static type checking for observable chains and error handling.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Common Observable Patterns in Angular 19</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Pattern</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">HTTP Requests</td>
+        <td class="py-3 px-4">Using HttpClient for RESTful API calls with observable responses</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Form Validation</td>
+        <td class="py-3 px-4">Reactive forms with observable-based validation and submission</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">State Management</td>
+        <td class="py-3 px-4">Using BehaviorSubjects or Signals to manage application state</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Event Handling</td>
+        <td class="py-3 px-4">Converting DOM events to observables with fromEvent()</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Caching</td>
+        <td class="py-3 px-4">Using shareReplay() to cache observable results for multiple subscribers</td>
+      </tr>
+    </tbody>
+  </table>
 </ng-template>
 
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Ensure Proper Subscription Management</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use takeUntilDestroyed()</strong>:
+          In Angular 19, use the takeUntilDestroyed() operator from &#64;angular/core/rxjs-interop to automatically handle subscription cleanup when components are destroyed.
+        </li>
+        <li>
+          <strong>Leverage the Async Pipe</strong>:
+          Use the async pipe in templates whenever possible as it automatically subscribes and unsubscribes when the component is destroyed.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Error Handling</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Implement catchError</strong>:
+          Always handle errors in observable chains using catchError to prevent uncaught exceptions that could break the application.
+        </li>
+        <li>
+          <strong>Consider Retry Logic</strong>:
+          For network requests, implement retry logic with retryWhen or retry operators to handle transient failures gracefully.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Appropriate Flattening Operators</strong>:
+          Choose the right flattening operator (switchMap, mergeMap, concatMap, exhaustMap) based on your specific use case to optimize performance.
+        </li>
+        <li>
+          <strong>Implement Caching Strategies</strong>:
+          Use shareReplay() for caching observable results to prevent duplicate API calls and improve performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Embrace Signal Integration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Convert Observables to Signals</strong>:
+          In Angular 19, use toSignal() to convert observables to signals when integrating with the signal-based reactive system.
+        </li>
+        <li>
+          <strong>Consider Hybrid Approaches</strong>:
+          Create a hybrid reactive system using both signals and observables, leveraging the strengths of each paradigm where appropriate.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
 <ng-template #prosConsRef>
-  <strong class="text-sky-400">
-    Pros:
-  </strong>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Comprehensive solution for handling asynchronous operations and event streams</li>
+        <li>Powerful operators for transforming, filtering, and combining data streams</li>
+        <li>First-class integration with Angular's HTTP client, forms, and routing</li>
+        <li>Excellent error handling capabilities with structured recovery patterns</li>
+        <li>Seamless interoperability with Angular 19's signal-based reactivity system</li>
+        <li>Support for zoneless applications with improved performance characteristics</li>
+        <li>Composable architecture that enables complex data flow management</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Steep learning curve for developers new to reactive programming concepts</li>
+        <li>Potential for memory leaks if subscriptions aren't properly managed</li>
+        <li>Debugging can be challenging due to asynchronous execution nature</li>
+        <li>Larger bundle size when importing the full RxJS library (though tree-shaking helps)</li>
+        <li>Complex chains of operators can reduce code readability if not properly structured</li>
+        <li>Potential performance overhead for simple use cases that don't require reactivity</li>
+        <li>Deciding between signals and observables can add architectural complexity</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
 
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Reactive programming</strong>:
-      <p>
-        Observables are a powerful tool for reactive programming, allowing you to easily handle asynchronous data streams and events in your application.
-      </p>
-    </li>
-    <li>
-      <strong>Consistent API</strong>:
-      <p>
-        Observables provide a consistent API for handling asynchronous data streams, making it easy to work with different data sources and APIs in your application.
-      </p>
-    </li>
-    <li>
-      <strong>Cancellation and Error handling</strong>:
-      <p>
-        Observables provide built-in mechanisms for cancelling requests and handling errors, making it easier to handle errors and improve the robustness of your application.
-      </p>
-    </li>
-    <li>
-      <strong>Composability</strong>:
-      <p>
-        Observables are composable, allowing you to easily combine and transform multiple streams of data in your application. This makes it easier to create complex data flows and handle more advanced scenarios.
-      </p>
-    </li>
-    <li>
-      <strong>Angular integration</strong>:
-      <p>
-        Observables are a core feature of Angular, making it easy to use them with other Angular features such as the HTTP client, forms, and routing.
-      </p>
-    </li>
-  </ol>
-
-  <br>
-
-  <strong class="text-sky-400">
-    Cons:
-  </strong>
-
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Learning curve</strong>:
-      <p>
-        Observables can have a steep learning curve, especially if you are not familiar with reactive programming concepts or the RxJS library.
-      </p>
-    </li>
-    <li>
-      <strong>Overhead</strong>:
-      <p>
-        Observables can add some overhead to your application, both in terms of code complexity and runtime performance. This can be especially true for complex data flows and scenarios.
-      </p>
-    </li>
-    <li>
-      <strong>Callback hell</strong>:
-      <p>
-        If not used carefully, observables can lead to "callback hell", where you end up with a large number of nested subscriptions and callback functions.
-      </p>
-    </li>
-    <li>
-      <strong>Debugging</strong>:
-      <p>
-        Observables can be more difficult to debug than other programming patterns, especially if you are not familiar with the reactive programming concepts and operators used with observables.
-      </p>
-    </li>
-  </ol>
-
-  <br>
-
-  <p>
-    While there are some downsides to using observables in Angular, the benefits they provide for handling asynchronous data streams and events make them a powerful tool for building responsive and robust applications. By understanding the pros and cons of observables, you can make an informed decision about when and how to use them in your applications.
-  </p>
-
-  </ng-template>
-
-
-
-
-
-  <ng-template #topicsRef>
-    <p>
-      Some topics related to Observables in Angular:
-    </p>
-
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>Unicast vs Multicast</strong>:
-        <p>
-          Unicast observables have a single subscriber, while multicast observables have multiple subscribers. Unicast observables are created using the Observable constructor, while multicast observables are created using the Subject or Observable.create methods.
-        </p>
-
-        <button (click)="code1r.hidden = !code1r.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code1r hidden copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_1_r"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-
-      </li>
-      <li>
-        <strong>Cold vs Hot</strong>:
-        <p>
-          Cold observables create a new data stream for each subscriber, while hot observables share a single data stream between subscribers. Cold observables are created using the Observable constructor, while hot observables are created using the Subject or Observable.create methods.
-        </p>
-
-        <button (click)="code2r.hidden = !code2r.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code2r hidden copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_2_r"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-
-
-      </li>
-      <li>
-        <strong>Creation Operators</strong>:
-        <p>
-          Creation operators are functions that create new observables from scratch. Some popular creation operators include of, from, interval, and timer.
-        </p>
-
-        <button (click)="code3r.hidden = !code3r.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-        <span #code3r hidden copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_3_r"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-
-      </li>
-    </ol>
-
-
-    <br>
-
-    <p>
-      By understanding observable patterns, creation operators, and the difference between unicast and multicast, cold and hot observables, you can create more powerful and flexible applications in Angular.
-    </p>
-
-  </ng-template>
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">RxJS Library</p>
+      <p class="text-sm">The reactive extensions library that powers Angular observables</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Angular Signals</p>
+      <p class="text-sm">Angular's new fine-grained reactivity system that works alongside observables</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">HttpClient</p>
+      <p class="text-sm">Angular's HTTP client that returns observables for API requests</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Reactive Forms</p>
+      <p class="text-sm">Form handling in Angular using observable-based approach</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">AsyncPipe</p>
+      <p class="text-sm">Template pipe for subscribing to observables in templates</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Zoneless Applications</p>
+      <p class="text-sm">Using observables in applications without Zone.js</p>
+    </div>
+  </div>
+</ng-template>

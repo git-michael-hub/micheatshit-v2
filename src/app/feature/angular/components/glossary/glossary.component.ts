@@ -480,7 +480,7 @@ export class GlossaryComponent implements OnInit {
       "file_location": "components/observer",
       "url": "observer",
       "hashtags": [
-        ''
+        'v19', 'rxjs', 'reactive'
       ]
     },
     {
@@ -488,7 +488,7 @@ export class GlossaryComponent implements OnInit {
       "file_location": "components/output",
       "url": "output",
       "hashtags": [
-        ''
+        'v19', 'component', 'reactive'
       ]
     },
     {
@@ -504,7 +504,7 @@ export class GlossaryComponent implements OnInit {
       "file_location": "components/pipe",
       "url": "pipe",
       "hashtags": [
-        ''
+        'template', 'v19'
       ]
     },
     {
@@ -512,7 +512,7 @@ export class GlossaryComponent implements OnInit {
       "file_location": "components/platform",
       "url": "platform",
       "hashtags": [
-        ''
+        'architecture', 'v19', 'ssr', 'performance'
       ]
     },
     {

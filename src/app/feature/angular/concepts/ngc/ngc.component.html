@@ -1,0 +1,317 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Angular Compiler (NGC)
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Angular Compiler (NGC)</span>
+      in Angular 19 is the essential build-time tool that transforms Angular templates and components into highly optimized JavaScript code. It serves as the foundation for both Just-in-Time (JIT) and Ahead-of-Time (AOT) compilation strategies, enabling superior performance, smaller bundle sizes, and improved type checking capabilities.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<ng-template #notesRef>
+  <p>What is Angular Compiler (NGC)?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Core Compilation Engine</strong>:
+      The Angular compiler (NGC) is the primary tool that converts Angular templates and components into executable JavaScript.
+    </li>
+    <li>
+      <strong>Type Checking</strong>:
+      NGC provides comprehensive type checking for templates, ensuring template expressions are valid and type-safe.
+    </li>
+    <li>
+      <strong>Metadata Processing</strong>:
+      Processes Angular decorators and metadata to generate the necessary runtime code.
+    </li>
+    <li>
+      <strong>Optimization Framework</strong>:
+      Serves as the foundation for various optimization techniques used in Angular applications.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 NGC Improvements and Features</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Enhanced Ivy Compiler</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19's NGC fully leverages the Ivy compiler architecture, which is now the default and only compilation pipeline.</li>
+        <li>Improved performance and scalability with better incremental compilation support.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>TypeScript 5.4 Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Full support for TypeScript 5.4 features with improved type checking and better error messages.</li>
+        <li>Enhanced template type checking that catches more issues at compile time.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Faster Compilation</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19's NGC features significant performance optimizations, reducing build times by up to 40% compared to earlier versions.</li>
+        <li>Enhanced locality of compilation operations for better parallelization.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Error Reporting</strong>:
+      <ul class="list-disc pl-4">
+        <li>More precise and helpful error messages that identify the exact location of issues in templates and components.</li>
+        <li>Better diagnostic tools for resolving template errors before runtime.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Extended Strictness Options</strong>:
+      <ul class="list-disc pl-4">
+        <li>More granular compiler options for enabling different levels of type checking strictness.</li>
+        <li>New strictness flags that help identify potential issues in components and templates.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Enabling AOT Compilation with NGC</p>
+
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>bash</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['bash']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Configuring the Angular Compiler</p>
+
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>json</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['json']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>AOT-friendly Component Code</p>
+
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Angular Compiler Options in tsconfig.json</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Option</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>enableIvy</code></td>
+        <td class="py-3 px-4">Enables the Ivy compiler and rendering engine (default: true in Angular 19)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>strictTemplates</code></td>
+        <td class="py-3 px-4">Enables strict type checking in templates</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>strictInjectionParameters</code></td>
+        <td class="py-3 px-4">Verifies that dependencies can be resolved for injectable classes</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>fullTemplateTypeCheck</code></td>
+        <td class="py-3 px-4">Performs more thorough type checking of templates</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>disableTypeScriptVersionCheck</code></td>
+        <td class="py-3 px-4">Disables the TypeScript version compatibility check</td>
+      </tr>
+    </tbody>
+  </table>
+
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Enable Strict Type Checking</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Enable strictTemplates</strong>:
+          Always enable strict template type checking to catch template errors during compilation rather than at runtime.
+        </li>
+        <li>
+          <strong>Use strictInjectionParameters</strong>:
+          Enable strict dependency injection parameter checking to ensure all dependencies can be resolved properly.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Write AOT-Compatible Code</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Static Component Metadata</strong>:
+          Avoid using dynamic values in component metadata (like selector, templateUrl, etc.) as AOT requires statically analyzable code.
+        </li>
+        <li>
+          <strong>Avoid Function Calls in Template Expressions</strong>:
+          Minimize function calls in templates as they cannot be easily optimized by the compiler.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Build Configuration</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Enable Build Caching</strong>:
+          Use Angular CLI's build cache to speed up incremental builds by reusing results from previous compilations.
+        </li>
+        <li>
+          <strong>Configure Proper Source Maps</strong>:
+          Use appropriate source map options for development and production to balance debugging capabilities with build performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Monitor Compilation Warnings</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Treat Warnings as Errors</strong>:
+          Consider enabling the option to treat compilation warnings as errors to enforce better code quality.
+        </li>
+        <li>
+          <strong>Regularly Review Build Output</strong>:
+          Pay attention to NGC's warnings and deprecation notices, as they often indicate potential future issues.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Catches template errors at compile time rather than runtime, resulting in more robust applications</li>
+        <li>Produces highly optimized code for better runtime performance</li>
+        <li>Enables ahead-of-time (AOT) compilation, which improves initial load times</li>
+        <li>Reduces bundle sizes through tree-shaking and dead code elimination</li>
+        <li>Provides extensive type checking capabilities for templates</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Increased build times, especially for large applications</li>
+        <li>Strict template type checking may require additional type annotations</li>
+        <li>May produce cryptic error messages that are difficult to diagnose</li>
+        <li>Requires adherence to specific coding patterns for AOT compatibility</li>
+        <li>Complex configuration options that may be challenging for beginners</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Ahead-of-Time (AOT) Compilation</p>
+      <p class="text-sm">Compiling Angular applications at build time rather than runtime</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Ivy Rendering Engine</p>
+      <p class="text-sm">Angular's next-generation rendering and compilation pipeline</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Template Type Checking</p>
+      <p class="text-sm">Ensuring type safety in Angular templates</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Just-in-Time (JIT) Compilation</p>
+      <p class="text-sm">Alternative compilation strategy for development workflows</p>
+    </div>
+  </div>
+</ng-template>

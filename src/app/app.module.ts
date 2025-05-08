@@ -68,6 +68,7 @@ import { AngularDevToolsModule } from './feature/angular/concepts/angular-devtoo
 import { ControlFlowModule } from './feature/angular/concepts/control-flow/control-flow.module';
 import { NgccModule } from './feature/angular/concepts/ngcc/ngcc.module';
 import { NpmPackageModule } from './feature/angular/concepts/npm-package/npm-package.module';
+import { NgcModule } from './feature/angular/concepts/ngc/ngc.module';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { NpmPackageModule } from './feature/angular/concepts/npm-package/npm-pac
     ControlFlowModule,
     NgccModule,
     NpmPackageModule,
+    NgcModule,
   ],
   providers: [
     {

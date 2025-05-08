@@ -79,6 +79,7 @@ import { ModuleComponent } from './feature/angular/concepts/module/module.compon
 import { InputComponent } from './feature/angular/concepts/input/input.component';
 import { NgccComponent } from './feature/angular/concepts/ngcc/ngcc.component';
 import { NpmPackageComponent } from './feature/angular/concepts/npm-package/npm-package.component';
+import { NgcComponent } from './feature/angular/concepts/ngc/ngc.component';
 
 const routes: Routes = [
   {
@@ -247,8 +248,24 @@ const routes: Routes = [
         component: ObservableComponent
       },
       {
+        path: 'observer',
+        loadChildren: () => import('./feature/angular/concepts/observer/observer.module').then(m => m.ObserverModule)
+      },
+      {
+        path: 'output',
+        loadChildren: () => import('./feature/angular/concepts/output/output.module').then(m => m.OutputModule)
+      },
+      {
+        path: 'partial-hydration',
+        loadChildren: () => import('./feature/angular/concepts/partial-hydration/partial-hydration.module').then(m => m.PartialHydrationModule)
+      },
+      {
         path: 'pipe',
         component: PipeComponent
+      },
+      {
+        path: 'platform',
+        loadChildren: () => import('./feature/angular/concepts/platform/platform.module').then(m => m.PlatformModule)
       },
       {
         path: 'reactive-form',
@@ -401,6 +418,10 @@ const routes: Routes = [
       {
         path: 'npm-package',
         component: NpmPackageComponent
+      },
+      {
+        path: 'ngc',
+        component: NgcComponent
       },
     ]
   },
