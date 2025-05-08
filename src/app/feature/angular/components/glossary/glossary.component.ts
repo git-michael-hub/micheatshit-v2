@@ -520,7 +520,7 @@ export class GlossaryComponent implements OnInit {
       "file_location": "components/polyfill",
       "url": "polyfill",
       "hashtags": [
-        ''
+        'v19', 'performance', 'browser-compatibility'
       ]
     },
     {
@@ -528,7 +528,7 @@ export class GlossaryComponent implements OnInit {
       "file_location": "components/project",
       "url": "project",
       "hashtags": [
-        ''
+        'v19', 'architecture', 'performance', 'workspace'
       ]
     },
     {
@@ -536,7 +536,7 @@ export class GlossaryComponent implements OnInit {
       "file_location": "components/provider",
       "url": "provider",
       "hashtags": [
-        ''
+        'v19', 'di', 'services', 'architecture'
       ]
     },
     {

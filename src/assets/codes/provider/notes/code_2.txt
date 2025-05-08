@@ -1,0 +1,47 @@
+// Value Provider Example
+import { InjectionToken } from '@angular/core';
+
+// Create a token for configuration injection
+export const API_CONFIG = new InjectionToken<ApiConfig>('API_CONFIG');
+
+// Configuration interface
+export interface ApiConfig {
+  apiUrl: string;
+  apiKey: string;
+  timeout: number;
+}
+
+// In the main.ts file
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    // Value provider using InjectionToken
+    {
+      provide: API_CONFIG,
+      useValue: {
+        apiUrl: 'https://api.example.com/v1',
+        apiKey: 'your-api-key',
+        timeout: 30000
+      }
+    }
+  ]
+});
+
+// In a service or component
+import { inject } from '@angular/core';
+
+export class ApiService {
+  // Modern inject function (Angular 14+)
+  private config = inject(API_CONFIG);
+
+  fetchData() {
+    return fetch(`${this.config.apiUrl}/data`, {
+      headers: {
+        'Authorization': `Bearer ${this.config.apiKey}`
+      },
+      signal: AbortSignal.timeout(this.config.timeout)
+    }).then(res => res.json());
+  }
+}

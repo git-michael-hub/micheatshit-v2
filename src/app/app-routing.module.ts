@@ -268,6 +268,10 @@ const routes: Routes = [
         loadChildren: () => import('./feature/angular/concepts/platform/platform.module').then(m => m.PlatformModule)
       },
       {
+        path: 'polyfill',
+        loadChildren: () => import('./feature/angular/concepts/polyfill/polyfill.module').then(m => m.PolyfillModule)
+      },
+      {
         path: 'reactive-form',
         component: ReactiveFormComponent
       },
@@ -422,6 +426,14 @@ const routes: Routes = [
       {
         path: 'ngc',
         component: NgcComponent
+      },
+      {
+        path: 'project',
+        loadChildren: () => import('./feature/angular/concepts/project/project.module').then(m => m.ProjectModule)
+      },
+      {
+        path: 'provider',
+        loadChildren: () => import('./feature/angular/concepts/provider/provider.module').then(m => m.ProviderModule)
       },
     ]
   },

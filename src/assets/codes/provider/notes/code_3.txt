@@ -1,0 +1,64 @@
+// Factory Provider Example
+import { Injectable, InjectionToken, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+// Environment config token and interface
+export const ENVIRONMENT = new InjectionToken<Environment>('ENVIRONMENT');
+
+export interface Environment {
+  production: boolean;
+  apiUrl: string;
+}
+
+// Logger service with different implementations
+export interface Logger {
+  log(message: string): void;
+  error(message: string, error?: any): void;
+}
+
+// Production logger implementation
+@Injectable()
+export class ProductionLogger implements Logger {
+  log(message: string): void {
+    // Send to remote logging service
+    console.log(`[PROD] ${message}`);
+  }
+
+  error(message: string, error?: any): void {
+    // Send to error tracking service
+    console.error(`[PROD ERROR] ${message}`, error);
+  }
+}
+
+// Development logger implementation
+@Injectable()
+export class DevelopmentLogger implements Logger {
+  log(message: string): void {
+    console.log(`[DEV] ${message}`);
+  }
+
+  error(message: string, error?: any): void {
+    console.error(`[DEV ERROR] ${message}`, error);
+  }
+}
+
+// LOGGER_TOKEN for injection
+export const LOGGER = new InjectionToken<Logger>('LOGGER');
+
+// In the main.ts file
+bootstrapApplication(AppComponent, {
+  providers: [
+    {
+      provide: ENVIRONMENT,
+      useValue: { production: false, apiUrl: 'http://localhost:3000/api' }
+    },
+    // Factory provider that creates different implementations based on environment
+    {
+      provide: LOGGER,
+      useFactory: () => {
+        const env = inject(ENVIRONMENT);
+        return env.production ? new ProductionLogger() : new DevelopmentLogger();
+      }
+    }
+  ]
+});

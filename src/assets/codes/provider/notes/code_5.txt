@@ -1,0 +1,96 @@
+// Environment-Specific Providers in Angular 19
+import { ApplicationConfig, PLATFORM_ID, isPlatformBrowser, isPlatformServer } from '@angular/core';
+import { provideClientHydration, provideProtractorTestingSupport } from '@angular/platform-browser';
+import { provideServerRendering } from '@angular/platform-server';
+import { routes } from './app-routes';
+import { provideRouter } from '@angular/router';
+
+// Storage service with platform-specific implementations
+import { Injectable, InjectionToken, inject } from '@angular/core';
+
+// Storage Service Interface
+export interface StorageService {
+  getItem(key: string): string | null;
+  setItem(key: string, value: string): void;
+  removeItem(key: string): void;
+}
+
+// Browser-specific implementation
+@Injectable()
+export class BrowserStorageService implements StorageService {
+  getItem(key: string): string | null {
+    return localStorage.getItem(key);
+  }
+
+  setItem(key: string, value: string): void {
+    localStorage.setItem(key, value);
+  }
+
+  removeItem(key: string): void {
+    localStorage.removeItem(key);
+  }
+}
+
+// Server-specific implementation (in-memory only)
+@Injectable()
+export class ServerStorageService implements StorageService {
+  private storage = new Map<string, string>();
+
+  getItem(key: string): string | null {
+    return this.storage.get(key) || null;
+  }
+
+  setItem(key: string, value: string): void {
+    this.storage.set(key, value);
+  }
+
+  removeItem(key: string): void {
+    this.storage.delete(key);
+  }
+}
+
+// Token for the storage service
+export const STORAGE_SERVICE = new InjectionToken<StorageService>('STORAGE_SERVICE');
+
+// Environment-specific provider factory
+export const provideStorage = () => {
+  return {
+    provide: STORAGE_SERVICE,
+    useFactory: () => {
+      const platformId = inject(PLATFORM_ID);
+
+      if (isPlatformBrowser(platformId)) {
+        return new BrowserStorageService();
+      } else if (isPlatformServer(platformId)) {
+        return new ServerStorageService();
+      }
+
+      throw new Error('Unsupported platform');
+    }
+  };
+};
+
+// Environment configurations
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+
+    // Common providers for all environments
+    provideStorage(),
+
+    // Browser-specific providers (will be tree-shaken for server build)
+    isPlatformBrowser(inject(PLATFORM_ID)) ? [
+      // Only use Protractor support in browser environment
+      provideProtractorTestingSupport()
+    ] : [],
+
+    // Server-specific providers (will be tree-shaken for browser build)
+    isPlatformServer(inject(PLATFORM_ID)) ? [
+      // Only include server rendering providers on server
+      provideServerRendering()
+    ] : [],
+
+    // Hydration providers for SSR (works in both environments)
+    provideClientHydration()
+  ]
+};

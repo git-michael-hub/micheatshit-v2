@@ -1,0 +1,29 @@
+// Class Provider (Most Common)
+import { Injectable } from '@angular/core';
+
+// Tree-shakable provider with 'root' scope (application-wide singleton)
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  getUsers() {
+    return fetch('/api/users').then(res => res.json());
+  }
+}
+
+// Using providers array in standalone component
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-user-list',
+  standalone: true,
+  providers: [
+    // Component-scoped provider (new instance created for this component)
+    UserService
+  ],
+  template: `<ul><li *ngFor="let user of users">{{ user.name }}</li></ul>`
+})
+export class UserListComponent {
+  // Service will be injected from the component's injector
+  constructor(private userService: UserService) {}
+}

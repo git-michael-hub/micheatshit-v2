@@ -1,0 +1,408 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Provider
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Providers</span>
+      in Angular 19 are essential components of the dependency injection system, responsible for creating and delivering services throughout the application. Angular 19 introduces significant provider enhancements with standalone-first design, environment-specific providers, lazy loading optimization, and hierarchical injection improvements. These updates enable more modular, testable, and efficient applications.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What are Providers?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Dependency Injection Mechanism</strong>:
+      Providers create and deliver requested dependencies through Angular's dependency injection system.
+    </li>
+    <li>
+      <strong>Service Factories</strong>:
+      Define how services should be created, delivered, and managed across the application.
+    </li>
+    <li>
+      <strong>Hierarchical System</strong>:
+      Follow Angular's injector hierarchy to determine service availability and instance lifetime.
+    </li>
+    <li>
+      <strong>Configuration Interface</strong>:
+      Control service instantiation, substitution, value provision, and dependency management.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Provider Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Standalone-First Provider Model</strong>:
+      <ul class="list-disc pl-4">
+        <li>Simplified provider registration without NgModule dependencies</li>
+        <li>Direct provider registration in bootstrapApplication and route configurations</li>
+        <li>Improved tree-shaking for better production bundle optimization</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Environment-Specific Providers</strong>:
+      <ul class="list-disc pl-4">
+        <li>New platform-specific provider configurations for SSR, browser, and web worker targets</li>
+        <li>Automatic provider switching between server and client environments</li>
+        <li>Environment-optimized dependencies for improved performance</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Lazy Loading Optimization</strong>:
+      <ul class="list-disc pl-4">
+        <li>Deferred provider loading with route-level dependency registration</li>
+        <li>Intelligent provider prefetching with improved route preloading strategies</li>
+        <li>Better code splitting with route-level provider boundaries</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal-Based Provider Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>First-class support for injecting and providing signal-based state</li>
+        <li>Provider composition with computeds and effects for reactive applications</li>
+        <li>Performance optimizations for change detection with signal integration</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Hierarchical Provider Configuration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enhanced control over provider scope and lifetime with explicit hierarchical registration</li>
+        <li>More predictable service instance sharing and isolation</li>
+        <li>Improved debugging and visualization of provider hierarchies</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Provider Types in Angular 19</p>
+  <br>
+  <p>Class Provider (Most Common)</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Value Provider</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Factory Provider</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Provider Scopes and Hierarchies</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Provider Scope</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Root</td>
+        <td class="py-3 px-4">Application-wide singleton available throughout the entire app</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Platform</td>
+        <td class="py-3 px-4">Shared across multiple Angular applications within the same page</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Component</td>
+        <td class="py-3 px-4">Scoped to a component and its child component tree</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Lazy Module</td>
+        <td class="py-3 px-4">Scoped to a lazy-loaded module and its components (for NgModule-based apps)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Route</td>
+        <td class="py-3 px-4">Scoped to a specific route and its child routes (Angular 19 feature)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Standalone Provider Registration (Angular 19)</p>
+  <br>
+  <p>Root Application Providers</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Environment-Specific Providers</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Angular 19 Provider Performance Improvements</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Feature</th>
+        <th class="py-3 px-4 text-left">Performance Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Tree-shakable providers</td>
+        <td class="py-3 px-4">Up to 20% smaller bundle sizes for large applications</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Lazy-loaded providers</td>
+        <td class="py-3 px-4">Improved initial load time by deferring service initialization</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Signal-integrated providers</td>
+        <td class="py-3 px-4">Up to 40% faster change detection with reactive signals</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Environment-optimized providers</td>
+        <td class="py-3 px-4">Server-specific optimizations for improved SSR performance</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Injectable() Decorator with providedIn</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Prefer providedIn Syntax</strong>:
+          Use the providedIn property in the &#64;Injectable() decorator to enable tree-shaking and optimal bundle size.
+        </li>
+        <li>
+          <strong>Choose Appropriate Scope</strong>:
+          Select the right providedIn scope ('root', 'platform', 'any', or a specific module) based on service lifetime requirements.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Standalone Provider Registration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use bootstrapApplication</strong>:
+          Register application-wide services directly in the bootstrapApplication call for standalone applications.
+        </li>
+        <li>
+          <strong>Register Route-Level Providers</strong>:
+          Use the providers array in route configurations to scope services to specific routes and their children.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Environment-Specific Providers</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Create Platform-Specific Implementations</strong>:
+          Develop separate service implementations for browser, server, and other platforms.
+        </li>
+        <li>
+          <strong>Use Platform Detection</strong>:
+          Leverage Angular 19's improved platform detection to automatically switch providers based on environment.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Design Hierarchical Provider Systems</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Plan Service Scope</strong>:
+          Carefully design the hierarchy of services to control data sharing and isolation.
+        </li>
+        <li>
+          <strong>Use Multi Providers</strong>:
+          Leverage multi: true for extensible plugin-like architectures where multiple implementations can be injected as an array.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Integrate with Signals for Reactivity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Signal-Based State</strong>:
+          Use signals in services to create reactive state that automatically notifies components of changes.
+        </li>
+        <li>
+          <strong>Computed Service Properties</strong>:
+          Implement computed properties in services to derive complex state without manual recalculation.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Enables clean separation of concerns and modular application design</li>
+        <li>Facilitates effective testing through dependency substitution</li>
+        <li>Angular 19's standalone provider model reduces boilerplate and improves readability</li>
+        <li>Tree-shakable providers significantly reduce bundle sizes</li>
+        <li>Environment-specific providers optimize application for different platforms</li>
+        <li>Signal integration creates highly reactive service patterns</li>
+        <li>Hierarchical injection provides predictable service instance control</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Complex provider hierarchies can be difficult to understand and debug</li>
+        <li>Improperly scoped services may create unexpected behavior or memory leaks</li>
+        <li>Injector hierarchies can cause multiple instances of services when singleton behavior is expected</li>
+        <li>Providers in route configurations can create duplication if not managed carefully</li>
+        <li>Provider migration from NgModules to standalone requires careful planning</li>
+        <li>Factory providers can become complex with many dependencies</li>
+        <li>Understanding token provider scope requires thorough knowledge of Angular DI system</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Dependency Injection</p>
+      <p class="text-sm">The core architectural pattern that providers enable in Angular applications</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Services</p>
+      <p class="text-sm">Classes that encapsulate business logic and state, typically delivered by providers</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Injection Tokens</p>
+      <p class="text-sm">Unique identifiers used by providers to register and retrieve dependencies</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Injectors</p>
+      <p class="text-sm">Containers that hold provider configurations and resolve dependencies</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Standalone Components</p>
+      <p class="text-sm">Angular 19's component model that simplifies provider registration and use</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Signals</p>
+      <p class="text-sm">Reactive primitives that integrate with providers for reactive state management</p>
+    </div>
+  </div>
+</ng-template>

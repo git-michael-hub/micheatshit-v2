@@ -1,538 +1,422 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    reactive-form
+    Reactive Forms
   </p>
 
   <div class="text-content">
     <p>
-      Reactive Forms is a powerful way to build complex and dynamic forms in Angular. Reactive Forms uses the Reactive Programming paradigm to manage the state of the form and provide real-time validation and feedback.    </p>
+      <span class="text-zinc-50 tw-font-medium">Reactive Forms</span>
+      in Angular 19 provide a model-driven approach to handling form inputs and validation. With significant enhancements in Angular 19, reactive forms now integrate seamlessly with signals, offer improved type safety, and feature a more streamlined API. These improvements enable developers to build more robust, performant, and maintainable form experiences with reduced boilerplate code.
+    </p>
 
     <br>
 
     <div class="flex flex-col">
       <div class="flex border-b border-gray-200">
-        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Notes
         </button>
-        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Pros and Cons
         </button>
-        <!-- <button  (click)="selectedTab = 3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
-        </button> -->
+        </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
             <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
           </div>
-          <!-- <div *ngSwitchCase="3">
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
-          </div> -->
+          </div>
           <div *ngSwitchDefault>
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
-
   </div>
 </section>
 
-
-
 <ng-template #notesRef>
-  <p>
-  </p>
+  <p>Why Use Reactive Forms?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Explicit Form Model</strong>:
+      Create a direct, explicit representation of the form model in the component class.
+    </li>
+    <li>
+      <strong>Reactive Paradigm</strong>:
+      Leverage observables for more robust form handling and validation, perfect for complex scenarios.
+    </li>
+    <li>
+      <strong>Synchronous Validation</strong>:
+      Apply validators synchronously upon form initialization for immediate feedback.
+    </li>
+    <li>
+      <strong>Dynamic Form Structure</strong>:
+      Easily add, remove, or modify form controls programmatically based on user input or other conditions.
+    </li>
+  </ul>
 
   <br>
+  <br>
 
-  <ol class="list-decimal px-10 text-sm">
+  <p>Angular 19 Reactive Forms Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
     <li>
-      <strong>Setting up a Reactive Form</strong>
-      <p>
-        To create a Reactive Form in Angular, you'll need to import the ReactiveFormsModule module and create a new instance of FormGroup.
-      </p>
-
-      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code1 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_1"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Signal-Based Reactive Forms</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces signal-based form controls for improved reactivity and performance</li>
+        <li>Integrates with Angular's signals architecture for a more cohesive reactive programming model</li>
+        <li>Reduces memory consumption by eliminating RxJS subscription overhead in many cases</li>
+      </ul>
     </li>
     <li>
-      <strong>Binding Form Controls to Inputs</strong>
-      <p>
-        To bind form controls to input fields in your template, you can use the formControlName directive.
-      </p>
-
-      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code2 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>html</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_2"
-            [languages]="['html']">
-          </code>
-        </pre>
-      </span>
-
-
+      <strong>Enhanced Type Safety</strong>:
+      <ul class="list-disc pl-4">
+        <li>Fully typed form controls ensure form values match your data models</li>
+        <li>TypedFormGroup and TypedFormControl provide compile-time type checking</li>
+        <li>Improved IDE autocompletion and error detection for form properties</li>
+      </ul>
     </li>
     <li>
-      <strong>Form Validation</strong>
-      <p>
-        Reactive Forms provides real-time validation of form inputs, allowing you to provide immediate feedback to the user. You can add validators to your form controls using the Validators class.
-      </p>
-
-      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code3 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_3"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-
+      <strong>Zoneless Form Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>Forms now work seamlessly in zoneless applications for better performance</li>
+        <li>Reduced change detection cycles with optimized update patterns</li>
+        <li>Native integration with signal-based change detection</li>
+      </ul>
     </li>
     <li>
-      <strong>Accessing Form Values</strong>
-      <p>
-        To access the values of a form, you can call the value property of the form instance.
-      </p>
-
-      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code4 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_4"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-
+      <strong>Streamlined Validation API</strong>:
+      <ul class="list-disc pl-4">
+        <li>More intuitive validator composition with functional programming patterns</li>
+        <li>Improved error typing with strongly-typed validation results</li>
+        <li>Better support for conditional validation logic</li>
+      </ul>
     </li>
     <li>
-      <strong>Dynamic Forms</strong>
-      <p>
-        Reactive Forms allows you to build dynamic forms, where the number and type of form controls can change based on user input.
-      </p>
-
-      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code5 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_5"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      <strong>Form Arrays</strong>
-      <p>
-        Reactive Forms also supports form arrays, which allow you to group related form controls together.
-      </p>
-
-      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code6 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_6"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-
-
-        <!-- <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button> -->
-
-        <span  copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_6_1"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-
-
-        <!-- <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button> -->
-
-        <span   copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>html</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_6_2"
-              [languages]="['html']">
-            </code>
-          </pre>
-        </span>
-
-        <!-- <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button> -->
-
-        <span   copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_6_3"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-
-        <!-- <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button> -->
-
-        <span  copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_6_4"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-
-
-
-
-      </span>
-
-
-    </li>
-    <li>
-      <strong>Custom Validators</strong>
-      <p>
-        You can create custom validators for your form controls by creating a new function that returns a ValidatorFn object.
-      </p>
-
-      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code7 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_7"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      <strong>FormBuilder</strong>
-      <p>
-        The FormBuilder class is a more convenient way to create Reactive Forms. It provides a chainable API for building form groups, form arrays, and form controls.
-      </p>
-
-      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code8 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_8"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-
-    </li>
-    <li>
-      <strong>Async Validators</strong>
-      <p>
-        Reactive Forms also supports async validators, which allow you to validate form controls asynchronously. Async validators return a `Promise` or an `Observable` that resolves to a validation error or `null`.
-      </p>
-
-      <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code9 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_9"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      <strong>Nested Forms</strong>
-      <p>
-        You can also nest forms within each other, creating a hierarchical structure of form groups.
-      </p>
-
-      <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code10 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_10"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-
-        <span  copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>html</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_10_1"
-              [languages]="['html']">
-            </code>
-          </pre>
-        </span>
-
-
-
-      </span>
-
-    </li>
-    <li>
-      <strong>Patching Form Values</strong>
-      <p>
-        To patch a value into a form control or form group, you can use the patchValue method.
-      </p>
-
-      <button (click)="code11.hidden = !code11.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code11 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_11"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      <strong>Setting Form Values</strong>
-      <p>
-        To set the value of a form control or form group, you can use the setValue method.
-      </p>
-
-      <button (click)="code12.hidden = !code12.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code12 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_12"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Reduced Boilerplate</strong>:
+      <ul class="list-disc pl-4">
+        <li>New helper functions to create common form structures with less code</li>
+        <li>Simplified form initialization with smart defaults</li>
+        <li>Enhanced FormBuilder API with improved type inference</li>
+      </ul>
     </li>
   </ol>
 
   <br>
+  <br>
 
-  <p>
-    Reactive Forms is a powerful way to build complex and dynamic forms in Angular. By using Reactive Forms, you can provide real-time validation and feedback to users, while also allowing for dynamic and flexible form design.
-  </p>
+  <p>Signal-Based Reactive Forms (Angular 19)</p>
+  <br>
+  <p>Basic Signal Form Setup</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Typed Reactive Forms</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Form Template Integration</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Advanced Form Features in Angular 19</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Feature</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Signal Form Controls</td>
+        <td class="py-3 px-4">Form controls based on Angular signals for reactive state management</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Dynamic Form Arrays</td>
+        <td class="py-3 px-4">Optimized arrays of form controls that can change at runtime</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Computed Validators</td>
+        <td class="py-3 px-4">Validation logic that automatically recalculates when dependencies change</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Form Value Transforms</td>
+        <td class="py-3 px-4">Input/output transformations to adjust data formats between UI and models</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Dynamic Form Validation</p>
+  <br>
+  <p>Custom Validators with Signals</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Conditionally Required Fields</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Dynamic Form Array Example</p>
+  <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code6 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_6"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Performance Enhancements in Angular 19 Forms</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Improvement</th>
+        <th class="py-3 px-4 text-left">Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Signal Integration</td>
+        <td class="py-3 px-4">Up to 40% reduction in memory usage compared to Observable-based forms</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Optimized Change Detection</td>
+        <td class="py-3 px-4">Up to 60% fewer change detection cycles for complex forms</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Targeted Updates</td>
+        <td class="py-3 px-4">Only affected form controls trigger validation and UI updates</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Reduced Bundle Size</td>
+        <td class="py-3 px-4">Smaller form library footprint with better tree-shaking support</td>
+      </tr>
+    </tbody>
+  </table>
 </ng-template>
 
-
-
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Adopt Signal-Based Forms</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Prefer Signal Forms</strong>:
+          Use Angular 19's new signal-based form controls for improved performance and better integration with Angular's reactivity model.
+        </li>
+        <li>
+          <strong>Migrate Incrementally</strong>:
+          For existing applications, migrate forms to signals one at a time using the interoperability APIs provided.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Strong Type Safety</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use TypedFormGroup</strong>:
+          Define interfaces for your form data and use typed form groups to get compile-time type checking.
+        </li>
+        <li>
+          <strong>Validate Types at Boundaries</strong>:
+          Ensure proper type validation when submitting forms or loading data from external sources.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Form Builders</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Enhanced FormBuilder</strong>:
+          The Angular 19 FormBuilder provides improved type inference and helper methods for creating complex forms.
+        </li>
+        <li>
+          <strong>Create Reusable Form Groups</strong>:
+          Extract common form structures into reusable factory functions for consistency and maintainability.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Granular Validation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Create Focused Validators</strong>:
+          Build smaller, single-purpose validators that can be composed together for complex validation logic.
+        </li>
+        <li>
+          <strong>Use Computed for Cross-Field Validation</strong>:
+          Leverage Angular's computed values for validation rules that depend on multiple fields.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Form Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use OnPush Change Detection</strong>:
+          Combine signal-based forms with OnPush change detection for maximum performance.
+        </li>
+        <li>
+          <strong>Implement Lazy Validation</strong>:
+          Apply expensive validators only when needed (e.g., on blur or submit) rather than on every keystroke.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
 <ng-template #prosConsRef>
-  <strong class="text-sky-400">
-    Pros:
-  </strong>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Enhanced type safety with TypedFormGroup and TypedFormControl in Angular 19</li>
+        <li>Improved performance through signal integration and optimized change detection</li>
+        <li>More predictable state management with explicit form models</li>
+        <li>Better testability with direct access to form controls in unit tests</li>
+        <li>Greater flexibility for dynamic forms that change structure at runtime</li>
+        <li>Powerful validation capabilities with synchronous, asynchronous, and cross-field validators</li>
+        <li>Seamless integration with Angular's signals architecture in version 19</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Steeper learning curve compared to template-driven forms</li>
+        <li>More verbose setup code for simple form scenarios</li>
+        <li>Migration complexity when upgrading existing forms to signal-based approach</li>
+        <li>Potentially higher initial development time for basic forms</li>
+        <li>Cross-field validation can become complex in large nested forms</li>
+        <li>More manual template binding compared to template-driven ngModel</li>
+        <li>Mixed form paradigms during transition can lead to confusion</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
 
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Real-time Validation:</strong>
-      <p>
-        Reactive Forms provide real-time validation of user input, which helps to prevent errors and improve the user experience.
-      </p>
-    </li>
-    <li>
-      <strong>Dynamic Forms</strong>
-      <p>
-        Reactive Forms allow you to create complex and dynamic forms that can change based on user input or other external factors.
-      </p>
-    </li>
-    <li>
-      <strong>Explicit Data Flow</strong>
-      <p>
-        Reactive Forms use an explicit data flow model that makes it easy to create complex forms with clear dependencies and relationships.
-      </p>
-    </li>
-    <li>
-      <strong>Unit Testing</strong>
-      <p>
-        Reactive Forms are easy to unit test, since you can create instances of FormControl, FormGroup, and FormArray in your tests and manipulate them directly.
-      </p>
-    </li>
-    <li>
-      <strong>Easy to Manage</strong>
-      <p>
-        Reactive Forms are easy to manage and maintain, since they provide a clear structure and hierarchy of form controls.
-      </p>
-    </li>
-  </ol>
-
-  <br>
-
-  <strong class="text-sky-400">
-    Cons:
-  </strong>
-
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Learning Curve</strong>
-      <p>
-        Reactive Forms have a steeper learning curve than Template-Driven Forms, and can be more difficult to understand and implement.
-      </p>
-    </li>
-    <li>
-      <strong>Boilerplate Code</strong>
-      <p>
-        Reactive Forms can require more boilerplate code than Template-Driven Forms, which can make them more verbose and difficult to read.
-      </p>
-    </li>
-    <li>
-      <strong>Less Flexible</strong>
-      <p>
-        Reactive Forms are less flexible than Template-Driven Forms, since they require more explicit configuration and do not support two-way data binding.
-      </p>
-    </li>
-    <li>
-      <strong>Complexity</strong>
-      <p>
-        Reactive Forms can add complexity to your application, especially if you are dealing with large and complex forms.
-      </p>
-    </li>
-    <li>
-      <strong>Performance</strong>
-      <p>
-        Reactive Forms can have a negative impact on performance if you are not careful, since they can generate a large number of observables and subscriptions.
-      </p>
-    </li>
-  </ol>
-
-  <br>
-
-  <p>
-    Angular Reactive Forms are a powerful tool for creating complex and dynamic forms in Angular, but they can also be more difficult to understand and implement than Template-Driven Forms. When deciding whether to use Reactive Forms, you should consider the complexity of your form, your experience with Angular, and the needs of your users.
-  </p>
-
-  </ng-template>
-
-
-
-  <!-- <ng-template #topicsRef>
-    <p>
-      Some topics related to Observables in Angular:
-    </p>
-
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-    </ol>
-
-    <br>
-
-    <p>
-    </p>
-
-  </ng-template> -->
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Signals</p>
+      <p class="text-sm">Angular's reactive primitive that powers the new form controls</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Form Validation</p>
+      <p class="text-sm">Techniques for validating user input with synchronous and asynchronous validators</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Dynamic Forms</p>
+      <p class="text-sm">Creating forms with structure that changes based on user input or data</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Typed Forms</p>
+      <p class="text-sm">Using TypeScript to ensure form values match your data models</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Form Arrays</p>
+      <p class="text-sm">Working with collections of form controls in dynamic lists</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Template-Driven Forms</p>
+      <p class="text-sm">The alternative form building approach in Angular</p>
+    </div>
+  </div>
+</ng-template>

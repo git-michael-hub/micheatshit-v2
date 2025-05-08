@@ -1,0 +1,404 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Polyfill
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Polyfills</span>
+      in Angular 19 are JavaScript code that enable modern web application features on browsers that don't natively support them. Angular 19 has significantly optimized its polyfill strategy, reducing bundle sizes by implementing conditional loading, fine-grained imports, and improved browser compatibility detection. These enhancements ensure that only necessary polyfills are delivered to each browser, resulting in better performance and faster loading times.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What are Polyfills?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Browser Feature Enablers</strong>:
+      JavaScript code that implements missing features in older browsers, allowing applications to use modern APIs consistently.
+    </li>
+    <li>
+      <strong>Backwards Compatibility</strong>:
+      Ensures your Angular application works correctly across different browser versions without modifying application code.
+    </li>
+    <li>
+      <strong>Runtime Support</strong>:
+      Provides implementations of standard JavaScript APIs, DOM features, or other web platform capabilities.
+    </li>
+    <li>
+      <strong>Performance Consideration</strong>:
+      Can impact initial load times and bundle sizes if not managed efficiently.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Polyfill Improvements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>On-Demand Polyfill Loading</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 implements intelligent, on-demand loading of polyfills based on browser detection</li>
+        <li>Significantly reduces bundle size by only shipping necessary polyfills to each browser</li>
+        <li>Uses modern ES2020+ features directly in supported browsers without unnecessary code</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Differential Loading Optimization</strong>:
+      <ul class="list-disc pl-4">
+        <li>Creates separate bundles for modern and legacy browsers with appropriate polyfills</li>
+        <li>Modern browsers receive ES2020+ code with minimal polyfills for better performance</li>
+        <li>Legacy browsers receive transpiled ES5 code with comprehensive polyfills as needed</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Modular Polyfill Architecture</strong>:
+      <ul class="list-disc pl-4">
+        <li>Introduces fine-grained polyfill imports for specific features instead of monolithic bundles</li>
+        <li>Reduces unused code by importing only the specific polyfills needed by application features</li>
+        <li>Leverages modern bundler capabilities to tree-shake unused polyfills</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zone.js Optimization</strong>:
+      <ul class="list-disc pl-4">
+        <li>Zone.js has been modularized to import only necessary patching for specific APIs</li>
+        <li>New zoneless applications can eliminate Zone.js polyfills entirely for better performance</li>
+        <li>Provides improved compatibility with modern ES2020+ asynchronous patterns</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Built-in Browser Compatibility Service</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 includes a runtime browser compatibility detection service</li>
+        <li>Applications can programmatically check feature support and load polyfills as needed</li>
+        <li>Enables more sophisticated feature detection beyond User-Agent sniffing</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Core Polyfills in Angular 19</p>
+  <br>
+  <p>polyfills.ts Configuration</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Angular 19 Zone.js Configuration</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Angular 19 Differential Loading</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Common Polyfills and Their Purpose</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Polyfill</th>
+        <th class="py-3 px-4 text-left">Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>zone.js</code></td>
+        <td class="py-3 px-4">Provides change detection for Angular by patching asynchronous operations.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>core-js/features</code></td>
+        <td class="py-3 px-4">Implements modern JavaScript features like Promises, Array methods, and more.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>web-animations-js</code></td>
+        <td class="py-3 px-4">Provides Web Animations API support for browsers that don't implement it.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>whatwg-fetch</code></td>
+        <td class="py-3 px-4">Implements the Fetch API for older browsers that don't support it natively.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Custom Feature Detection</p>
+  <br>
+  <p>Runtime Feature Detection</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Conditional Polyfill Loading</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Angular 19 Polyfill Size Comparison</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Approach</th>
+        <th class="py-3 px-4 text-left">Bundle Size Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Traditional (Angular 12)</td>
+        <td class="py-3 px-4">~120KB for polyfills.js</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Optimized (Angular 17)</td>
+        <td class="py-3 px-4">~45-80KB depending on browser targets</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">On-demand (Angular 19)</td>
+        <td class="py-3 px-4">~15-40KB with dynamic loading capabilities</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Zoneless (Angular 19)</td>
+        <td class="py-3 px-4">~5-20KB without Zone.js</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Angular CLI's Default Polyfill Configuration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Trust the Defaults</strong>:
+          Angular 19's CLI provides optimized polyfill defaults that work for most applications. Use these as a starting point before adding custom polyfills.
+        </li>
+        <li>
+          <strong>Configure Browser Targets</strong>:
+          Specify browser targets in the browserslist file to let Angular CLI generate appropriate polyfills for your audience.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Polyfill Size</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Import Specific Polyfills</strong>:
+          Import only the specific features you need from core-js rather than the entire library to reduce bundle size.
+        </li>
+        <li>
+          <strong>Leverage Differential Loading</strong>:
+          Configure your build to use differential loading, delivering modern code to modern browsers and polyfilled code only to older browsers.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Consider Zoneless Applications</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Eliminate Zone.js</strong>:
+          For new applications, consider using Angular's zoneless approach to eliminate the Zone.js polyfill entirely, reducing bundle size.
+        </li>
+        <li>
+          <strong>Use Signal-Based Components</strong>:
+          Use Angular 19's signal-based components which work well without Zone.js, reducing the need for polyfills.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Runtime Feature Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Feature Detection</strong>:
+          Implement feature detection rather than browser detection to determine if a polyfill is needed.
+        </li>
+        <li>
+          <strong>Load Polyfills Conditionally</strong>:
+          Use dynamic imports to load polyfills only when needed based on runtime feature detection.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Monitor Polyfill Usage</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Audit Bundle Size</strong>:
+          Regularly analyze your bundle to identify polyfill bloat and optimize as browser support for features improves.
+        </li>
+        <li>
+          <strong>Update Browser Targets</strong>:
+          Periodically review and update your browser targets as older browsers become less common and newer features gain broader support.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Enables modern features in older browsers, expanding application compatibility</li>
+        <li>Allows developers to write code using the latest JavaScript features</li>
+        <li>Angular 19's differential loading delivers optimized bundles based on browser capabilities</li>
+        <li>On-demand loading in Angular 19 reduces initial bundle size for modern browsers</li>
+        <li>Fine-grained polyfill imports eliminate unused polyfill code</li>
+        <li>Zoneless applications can entirely remove Zone.js polyfills for better performance</li>
+        <li>Built-in feature detection simplifies determining which polyfills are actually needed</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Polyfills increase bundle size, especially for applications targeting older browsers</li>
+        <li>Some polyfills may not perfectly replicate native browser behavior</li>
+        <li>Performance of polyfilled features is generally slower than native implementations</li>
+        <li>Managing polyfills adds complexity to the build process and configuration</li>
+        <li>Dynamic polyfill loading can introduce potential runtime errors if not tested thoroughly</li>
+        <li>Debugging issues related to polyfills can be challenging</li>
+        <li>Polyfill needs constantly evolve as browser support changes, requiring regular maintenance</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Browser Compatibility</p>
+      <p class="text-sm">How polyfills enable support for different browser versions</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Differential Loading</p>
+      <p class="text-sm">Delivering modern or legacy JavaScript based on browser capabilities</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Zone.js</p>
+      <p class="text-sm">Angular's change detection mechanism that requires extensive polyfills</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Zoneless Applications</p>
+      <p class="text-sm">Running Angular without Zone.js for reduced polyfill requirements</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Build Optimization</p>
+      <p class="text-sm">Techniques for reducing polyfill impact on bundle size</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">ES2020+ Features</p>
+      <p class="text-sm">Modern JavaScript features that may require polyfills in older browsers</p>
+    </div>
+  </div>
+</ng-template>

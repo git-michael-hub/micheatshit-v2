@@ -1,0 +1,404 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Project
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Angular Projects</span>
+      in Angular 19 represent a comprehensive workspace structure for developing applications. Angular 19 enhances the project architecture with improved build performance, simplified configuration, and better support for modularity. Projects now leverage the latest build tools, offer enhanced developer experience, and provide streamlined workflows for both standalone and NgModule-based applications.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What is an Angular Project?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Project Architecture</strong>:
+      A cohesive workspace structure containing application code, configuration files, and build specifications.
+    </li>
+    <li>
+      <strong>Workspace Context</strong>:
+      An organizational unit that may contain multiple applications and libraries managed as a single cohesive entity.
+    </li>
+    <li>
+      <strong>Configuration Framework</strong>:
+      A set of JSON files and TypeScript configurations that define how applications are built, tested, and deployed.
+    </li>
+    <li>
+      <strong>Application Environment</strong>:
+      The runtime context with environment-specific variables and configurations for different deployment targets.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Project Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Simplified Project Configuration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces an improved project.json configuration format</li>
+        <li>Reduced complexity with clearer organization of build options and configurations</li>
+        <li>Enhanced IDE integration for better configuration validation and autocomplete</li>
+      </ul>
+    </li>
+    <li>
+      <strong>ESBuild Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 projects now leverage ESBuild by default for significantly faster builds</li>
+        <li>Build time improvements of up to 10x compared to webpack-based builds</li>
+        <li>Optimized production builds with improved tree-shaking and code splitting</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Standalone-First Architecture</strong>:
+      <ul class="list-disc pl-4">
+        <li>New projects are created with standalone components, directives, and pipes by default</li>
+        <li>Simplified imports without NgModule boilerplate for cleaner code organization</li>
+        <li>Automatic route configuration with improved code splitting</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Library Development</strong>:
+      <ul class="list-disc pl-4">
+        <li>Improved support for creating and publishing Angular libraries</li>
+        <li>Automatic API documentation generation for libraries</li>
+        <li>Granular control over package exports and entry points</li>
+      </ul>
+    </li>
+    <li>
+      <strong>SSR and Hydration Improvements</strong>:
+      <ul class="list-disc pl-4">
+        <li>Streamlined project configuration for Server-Side Rendering</li>
+        <li>Built-in support for partial hydration at the project level</li>
+        <li>Simplified deployment configurations for various hosting platforms</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Project Structure in Angular 19</p>
+  <br>
+  <p>Basic Project Structure</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>bash</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['bash']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Angular 19 project.json</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>json</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['json']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Angular 19 Environment Configuration</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <br>
+
+  <p>Project Types and Templates in Angular 19</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Template</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>@angular/cli</code></td>
+        <td class="py-3 px-4">Default application template with standalone components</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>@angular/ssr</code></td>
+        <td class="py-3 px-4">Server-Side Rendered application with built-in hydration</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>@angular/elements</code></td>
+        <td class="py-3 px-4">Web Components project for creating custom elements</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>@angular/library</code></td>
+        <td class="py-3 px-4">Library project template for creating reusable packages</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Creating and Managing Projects</p>
+  <br>
+  <p>Creating a New Angular 19 Project</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>bash</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['bash']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Configuring Project Targets</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Angular 19 Build Performance Comparison</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Build Configuration</th>
+        <th class="py-3 px-4 text-left">Performance Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Traditional (Webpack)</td>
+        <td class="py-3 px-4">Baseline (typical build time: 20-60 seconds)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">ESBuild (Angular 19)</td>
+        <td class="py-3 px-4">5-10x faster (typical build time: 2-10 seconds)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Development with Watch Mode</td>
+        <td class="py-3 px-4">Near-instant updates (50-300ms)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Production Optimization</td>
+        <td class="py-3 px-4">3-5x faster than previous versions</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Adopt Standalone Components Architecture</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Standalone APIs</strong>:
+          Leverage Angular 19's standalone components, directives, and pipes to reduce boilerplate code and simplify project structure.
+        </li>
+        <li>
+          <strong>Migrate Incrementally</strong>:
+          Use Angular 19's migration tools to gradually convert NgModule-based code to standalone architecture for improved performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Build Configuration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Leverage ESBuild</strong>:
+          Configure your project to use ESBuild for faster development and production builds.
+        </li>
+        <li>
+          <strong>Use Build Cache</strong>:
+          Enable the Angular 19 build cache to significantly reduce subsequent build times during development.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Project Modularization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Library Projects</strong>:
+          Divide large applications into library projects for better code organization and reusability.
+        </li>
+        <li>
+          <strong>Configure Path Mapping</strong>:
+          Set up TypeScript path aliases to simplify imports across your project's modules and libraries.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Adopt Modern Configuration Practices</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use TypeScript Configuration</strong>:
+          Leverage Angular 19's improved TypeScript integration with stricter type checking and newer language features.
+        </li>
+        <li>
+          <strong>Configure Environment Variables</strong>:
+          Use Angular 19's enhanced environment configuration system for different deployment targets.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Comprehensive Testing</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Configure Test Coverage</strong>:
+          Set up code coverage requirements in your project configuration to maintain quality standards.
+        </li>
+        <li>
+          <strong>Use Component Testing Harnesses</strong>:
+          Leverage Angular 19's improved component test harnesses for more reliable and maintainable tests.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>ESBuild integration in Angular 19 projects provides significantly faster build times</li>
+        <li>Improved project configuration with clearer organization and better IDE support</li>
+        <li>Standalone-first architecture reduces boilerplate code and simplifies project structure</li>
+        <li>Enhanced support for creating and publishing Angular libraries</li>
+        <li>Streamlined SSR and hydration setup with simplified project configuration</li>
+        <li>Advanced build optimizations with better tree-shaking and code splitting</li>
+        <li>Simplified migration path from older Angular versions</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Some existing tools and third-party libraries may need updates to work with Angular 19 projects</li>
+        <li>Learning curve for developers used to the previous project configuration format</li>
+        <li>Migration from complex NgModule-based applications can be challenging</li>
+        <li>Custom webpack configurations may need to be refactored for ESBuild compatibility</li>
+        <li>Some advanced build configurations may still require additional setup</li>
+        <li>Initial project creation can be slower than previous versions</li>
+        <li>Some legacy projects may face compatibility challenges with newer tooling</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Workspace</p>
+      <p class="text-sm">The container for Angular projects with shared configuration and libraries</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">ESBuild</p>
+      <p class="text-sm">The new build system used in Angular 19 for faster compilation</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Standalone Components</p>
+      <p class="text-sm">Angular 19's approach to component architecture without NgModules</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Library Projects</p>
+      <p class="text-sm">Creating reusable code packages within an Angular workspace</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Build Configuration</p>
+      <p class="text-sm">Optimizing how Angular applications are compiled and bundled</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Angular CLI</p>
+      <p class="text-sm">Command-line interface for creating and managing Angular projects</p>
+    </div>
+  </div>
+</ng-template>
