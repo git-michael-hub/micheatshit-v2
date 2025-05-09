@@ -1,0 +1,366 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Scoped Packages
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Scoped Packages</span>
+      in Angular 19 are a powerful way to organize and manage related npm packages under a namespace. They enhance project organization, prevent naming conflicts, and provide access control mechanisms for team collaboration. With Angular 19's optimized ESM support and enhanced package management, scoped packages play a crucial role in modern Angular application development.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What are Scoped Packages?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Namespaced npm Packages</strong>:
+      Packages published to npm with a namespace prefix in the format <code>@scope/package-name</code>, allowing related packages to be grouped under a consistent namespace.
+    </li>
+    <li>
+      <strong>Organization Identifiers</strong>:
+      Scopes often represent organizations, teams, or projects, helping to clearly identify the owner or maintainer of a package.
+    </li>
+    <li>
+      <strong>Access Control Mechanism</strong>:
+      Enables fine-grained access control for private packages, facilitating secure team collaboration and package distribution.
+    </li>
+    <li>
+      <strong>Conflict Resolution Solution</strong>:
+      Prevents naming conflicts with public packages by associating packages with unique organization/team namespaces.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Scoped Packages in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Core Angular Packages</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular framework packages are scoped under the <code>@angular</code> namespace</li>
+        <li>Clear identification of official Angular packages vs third-party ones</li>
+        <li>Angular 19 brings full ESM optimization for all @angular/* packages</li>
+        <li>Improved tree-shaking through package exports configuration</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Package Management</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 optimizes loading patterns for scoped packages</li>
+        <li>Better handling of subpath imports</li>
+        <li>Improved Node.js resolution algorithm compatibility</li>
+        <li>Streamlined side-effect free marking for optimal bundling</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Custom Library Development</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 ng-packagr enhancements for scoped library publishing</li>
+        <li>Simplified configuration for publishing component libraries</li>
+        <li>Automatic secondary entry point handling for scoped packages</li>
+        <li>Better support for Angular libraries with multiple entry points</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Workspace Organization</strong>:
+      <ul class="list-disc pl-4">
+        <li>Improved monorepo support with scoped packages</li>
+        <li>Integrated tooling for managing multiple related packages</li>
+        <li>Optimized build pipelines for scoped packages in Angular 19</li>
+        <li>Enhanced testing infrastructure for package interdependencies</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Common Scoped Packages in Angular 19</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Scoped Package</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>@angular/core</code></td>
+        <td class="py-3 px-4">The essential Angular framework package with enhanced signal-based APIs</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>@angular/common</code></td>
+        <td class="py-3 px-4">Common services, pipes, and directives with built-in control flow</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>@angular-devkit/*</code></td>
+        <td class="py-3 px-4">Tools and utilities for building and developing Angular applications</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>@ngrx/*</code></td>
+        <td class="py-3 px-4">State management libraries with signal integration for Angular</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Creating and Publishing a Scoped Package</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>json</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['json']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Installing and Using Scoped Packages</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>bash</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['bash']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Import Patterns for Scoped Packages in Angular 19</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Configuring NPM for Scoped Packages</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>bash</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['bash']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Creating a Library with Angular CLI</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>bash</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['bash']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Clear Naming Conventions</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Meaningful Scope Names</strong>:
+          Choose scope names that clearly identify your organization, team, or project purpose (e.g., <code>@company-name</code> or <code>@project-name</code>).
+        </li>
+        <li>
+          <strong>Descriptive Package Names</strong>:
+          Ensure package names within the scope accurately describe their functionality, following the same naming best practices as regular npm packages.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Package Structure</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Clean Exports</strong>:
+          Define clear public APIs using package.json exports field for optimal tree-shaking in Angular 19 applications.
+        </li>
+        <li>
+          <strong>Proper Subpath Mapping</strong>:
+          Configure secondary entry points and subpath exports to allow granular importing while maintaining bundling efficiency.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Manage Version Compatibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Peer Dependencies</strong>:
+          Clearly define Angular peer dependencies to ensure compatibility with the target Angular version range.
+        </li>
+        <li>
+          <strong>Semantic Versioning</strong>:
+          Strictly follow semantic versioning to communicate breaking changes, new features, and bug fixes effectively.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Ensure Package Security</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Access Control</strong>:
+          Configure appropriate access levels for your packages, especially when dealing with private organizational scopes.
+        </li>
+        <li>
+          <strong>Authentication Management</strong>:
+          Use npm tokens and secure credential management for CI/CD pipelines when publishing or consuming private scoped packages.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Document Package Usage</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Clear Documentation</strong>:
+          Provide comprehensive documentation for your scoped package, including installation instructions and API references.
+        </li>
+        <li>
+          <strong>Usage Examples</strong>:
+          Include examples showing how to integrate the package with Angular 19 features like standalone components and signals.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Prevents package name collisions in the npm ecosystem</li>
+        <li>Organizes related packages under a consistent namespace</li>
+        <li>Enables granular access control for private packages</li>
+        <li>Clearly identifies package ownership and maintenance responsibility</li>
+        <li>Simplifies dependency management in complex projects</li>
+        <li>Works seamlessly with Angular's modular architecture</li>
+        <li>Facilitates secure team collaboration on shared libraries</li>
+        <li>Supports robust versioning and publishing workflows</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Slightly more verbose import statements</li>
+        <li>Additional configuration required for private package access</li>
+        <li>Potential authentication complexity in CI/CD pipelines</li>
+        <li>Increased management overhead for scoped organization accounts</li>
+        <li>May require more complex setup for monorepo publishing</li>
+        <li>Extra considerations for package exports configuration</li>
+        <li>Slightly longer npm install times for private scoped packages</li>
+        <li>Learning curve for teams new to package publishing</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">NPM Registry</p>
+      <p class="text-sm">Central repository for JavaScript packages, including scoped ones</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Package.json</p>
+      <p class="text-sm">Configuration file that defines package metadata and dependencies</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Angular Libraries</p>
+      <p class="text-sm">Reusable code collections published as Angular packages</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Angular CLI</p>
+      <p class="text-sm">Command-line tool with commands for library creation and publishing</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Monorepo</p>
+      <p class="text-sm">Development approach for managing multiple related packages</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Dependency Management</p>
+      <p class="text-sm">Practices for managing package relationships and versions</p>
+    </div>
+  </div>
+</ng-template>

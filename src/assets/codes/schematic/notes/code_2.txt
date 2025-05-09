@@ -1,0 +1,26 @@
+// my-schematics/collection.json
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "Adds my library to the project",
+      "factory": "./ng-add/index#ngAdd",
+      "schema": "./ng-add/schema.json"
+    },
+    "component": {
+      "description": "Creates a custom component with predefined structure",
+      "factory": "./component/index#createComponent",
+      "schema": "./component/schema.json"
+    },
+    "page": {
+      "description": "Creates a page component with routing",
+      "factory": "./page/index#createPage",
+      "schema": "./page/schema.json"
+    },
+    "feature": {
+      "description": "Generates a complete feature module with components",
+      "factory": "./feature/index#createFeature",
+      "schema": "./feature/schema.json"
+    }
+  }
+}

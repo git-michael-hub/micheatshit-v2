@@ -1,0 +1,124 @@
+// user.service.ts - User data service with signal-based API
+import { Injectable, computed, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  preferences: {
+    theme: string;
+    notifications: boolean;
+  };
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  private _user = signal<User | null>(null);
+  private _loading = signal<boolean>(false);
+  private _error = signal<string | null>(null);
+
+  // Public API
+  user = computed(() => this._user());
+  loading = computed(() => this._loading());
+  error = computed(() => this._error());
+
+  constructor(private http: HttpClient) {}
+
+  async loadUser(userId: string): Promise<User> {
+    try {
+      this._loading.set(true);
+      this._error.set(null);
+
+      // Simulated API call
+      const user = await this.http.get<User>(`/api/users/${userId}`).toPromise();
+      this._user.set(user as User);
+      return user as User;
+    } catch (err) {
+      const errorMessage = 'Failed to load user data';
+      this._error.set(errorMessage);
+      throw new Error(errorMessage);
+    } finally {
+      this._loading.set(false);
+    }
+  }
+
+  updateUserPreferences(preferences: Partial<User['preferences']>): void {
+    const currentUser = this._user();
+    if (currentUser) {
+      this._user.set({
+        ...currentUser,
+        preferences: {
+          ...currentUser.preferences,
+          ...preferences
+        }
+      });
+    }
+  }
+}
+
+// user.resolver.ts - Signal-based resolver
+import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
+import { UserService, User } from './user.service';
+
+// Modern functional resolver pattern with signals
+export const userResolver: ResolveFn<User> = (route: ActivatedRouteSnapshot) => {
+  const userService = inject(UserService);
+  const userId = route.paramMap.get('id') || 'current';
+
+  // Return promise directly - Angular handles loading state
+  return userService.loadUser(userId);
+};
+
+// profile.component.ts - Component consuming resolved data
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { User } from './user.service';
+
+@Component({
+  selector: 'app-profile',
+  template: `
+    <div *ngIf="user">
+      <h1>{{ user.name }}'s Profile</h1>
+      <p>Email: {{ user.email }}</p>
+
+      <h2>Preferences</h2>
+      <div>
+        <label>
+          Theme:
+          <select [(ngModel)]="user.preferences.theme" (change)="updatePreferences()">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+      </div>
+
+      <div>
+        <label>
+          Notifications:
+          <input type="checkbox"
+                 [(ngModel)]="user.preferences.notifications"
+                 (change)="updatePreferences()">
+        </label>
+      </div>
+    </div>
+  `
+})
+export class ProfileComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  user!: User;
+
+  ngOnInit() {
+    // Access resolved data from route data
+    this.route.data.subscribe(data => {
+      this.user = data['userData'];
+    });
+  }
+
+  updatePreferences() {
+    // Logic to update user preferences
+  }
+}

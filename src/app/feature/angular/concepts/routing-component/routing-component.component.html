@@ -1,292 +1,368 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    routing component
+    Routing Component
   </p>
 
   <div class="text-content">
     <p>
+      <span class="text-zinc-50 tw-font-medium">Routing Component</span>
+      in Angular 19 enables declarative navigation and component rendering within applications. With significant enhancements in Angular 19, routing components now feature signal-based APIs, functional configuration patterns, improved performance in zoneless applications, and seamless integration with standalone components, providing developers with a more intuitive and type-safe routing experience.
     </p>
 
     <br>
 
     <div class="flex flex-col">
       <div class="flex border-b border-gray-200">
-        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Notes
         </button>
-        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Pros and Cons
         </button>
-        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
-            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
           </div>
           <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
           </div>
           <div *ngSwitchDefault>
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
-
   </div>
 </section>
 
-
 <ng-template #notesRef>
-  <p>
-  </p>
+  <p>Why Use Routing Components?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Client-Side Navigation</strong>:
+      Enable smooth transitions between views without full page reloads.
+    </li>
+    <li>
+      <strong>Component-Based Architecture</strong>:
+      Organize application into modular, reusable components that can be loaded on demand.
+    </li>
+    <li>
+      <strong>URL Management</strong>:
+      Maintain application state in the URL for bookmarkable and shareable views.
+    </li>
+    <li>
+      <strong>Navigation Control</strong>:
+      Implement guards and resolvers to control access and data loading for routes.
+    </li>
+  </ul>
 
   <br>
+  <br>
 
-  <ol class="list-decimal px-10 text-sm">
+  <p>New Features and Enhancements in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
     <li>
-      <strong>Basic Usage</strong>
-
-
-      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code1 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_1"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Signal-Based Routing API</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces signal-based routing APIs for reactive route data access</li>
+        <li>Reactive access to URL parameters, query parameters, and route data</li>
+        <li>Elimination of subscription management for route parameter changes</li>
+      </ul>
     </li>
     <li>
-      <strong>Route Parameters</strong>
-
-
-      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code2 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_2"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Functional Route Definitions</strong>:
+      <ul class="list-disc pl-4">
+        <li>Type-safe functional approach to defining routes</li>
+        <li>Improved developer experience with better IDE integration</li>
+        <li>Simplified configuration with less boilerplate code</li>
+      </ul>
     </li>
     <li>
-      <strong>Query Parameters</strong>
-
-
-      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code3 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_3"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Standalone Component Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>First-class support for routing with standalone components</li>
+        <li>No NgModule required for routing configuration</li>
+        <li>More flexible composition patterns for standalone components</li>
+      </ul>
     </li>
     <li>
-      <strong>Route Configuration</strong>
-
-
-      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code4 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_4"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
+      <strong>Enhanced Performance</strong>:
+      <ul class="list-disc pl-4">
+        <li>Optimized navigation with reduced memory usage</li>
+        <li>Faster route resolution and component loading</li>
+        <li>Improved handling of complex routing scenarios</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Application Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>Efficient routing in zoneless applications with optimized change detection</li>
+        <li>Better performance when navigating between routes</li>
+        <li>Reduced overhead for route transitions</li>
+      </ul>
     </li>
   </ol>
 
   <br>
+  <br>
 
-  <p>
+  <p>Core Routing Component Concepts</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Concept</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">RouterLink</td>
+        <td class="py-3 px-4">Directive to create navigation links within components</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">RouterOutlet</td>
+        <td class="py-3 px-4">Placeholder where routed components are rendered</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Route Configuration</td>
+        <td class="py-3 px-4">Definition of URL paths mapped to components</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Router Service</td>
+        <td class="py-3 px-4">Service for programmatic navigation and route state access</td>
+      </tr>
+    </tbody>
+  </table>
 
-  </p>
+  <br>
+  <br>
+
+  <p>Functional Route Configuration (Angular 19)</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Signal-Based Route Parameters (Angular 19)</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Signal-Based Query Parameters</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Standalone Component Routing</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Zoneless Routing Configuration</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
 </ng-template>
 
-
-
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Adopt Signal-Based Routing APIs</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Reactive Patterns</strong>:
+          Leverage signal-based APIs for reactive access to route data without Observable subscriptions.
+        </li>
+        <li>
+          <strong>Type-Safe Access</strong>:
+          Take advantage of improved type safety with signal-based route parameters.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Functional Route Definitions</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Type-First Approach</strong>:
+          Define routes using functional patterns for improved type safety and editor integration.
+        </li>
+        <li>
+          <strong>Simplified Configuration</strong>:
+          Leverage functional route declarations to reduce boilerplate and improve maintainability.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Organize Routes Logically</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Feature-Based Structure</strong>:
+          Group routes by feature or domain to improve code organization and maintainability.
+        </li>
+        <li>
+          <strong>Hierarchical Layout</strong>:
+          Use parent-child relationships for routes that share common layouts or guards.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Lazy Loading</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>On-Demand Loading</strong>:
+          Use lazy loading for feature modules to improve initial load performance.
+        </li>
+        <li>
+          <strong>Strategic Preloading</strong>:
+          Implement custom preloading strategies for optimal user experience.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Ensure Route Protection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Guard Implementation</strong>:
+          Use route guards to protect sensitive routes and validate navigation.
+        </li>
+        <li>
+          <strong>Resolver Usage</strong>:
+          Pre-fetch necessary data with resolvers to ensure components have required information.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
 <ng-template #prosConsRef>
-  <strong class="text-sky-400">
-    Pros:
-  </strong>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Enables client-side navigation without page reloads for smoother user experience</li>
+        <li>Supports component-based architecture with modular, reusable routing patterns</li>
+        <li>Signal-based APIs in Angular 19 eliminate the need for subscription management</li>
+        <li>Functional configuration patterns improve type safety and developer experience</li>
+        <li>Standalone component support reduces boilerplate and simplifies routing configuration</li>
+        <li>Lazy loading capabilities improve initial load performance</li>
+        <li>Route guards provide powerful access control mechanisms</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Complex routing configurations can be difficult to understand and maintain</li>
+        <li>Route debugging can be challenging in large applications</li>
+        <li>Deep nesting of routes can lead to performance issues if not implemented correctly</li>
+        <li>Learning curve for mastering advanced routing patterns</li>
+        <li>Navigation guards can create complex interdependencies</li>
+        <li>SEO considerations require additional configuration for proper indexing</li>
+        <li>State management across routes requires careful design</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
 
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Flexible Routing</strong>
-      <p>
-        Angular Routing Component provides a powerful and flexible way to define routes and map them to components in your application. This allows you to create complex routing structures with nested routes, named outlets, and more.
-      </p>
-    </li>
-    <li>
-      <strong>Modularity</strong>
-      <p>
-        Angular Routing Component allows you to separate your application into multiple modules, each with its own set of routes. This can help to improve the maintainability of your codebase and make it easier to reason about.
-      </p>
-    </li>
-    <li>
-      <strong>Lazy Loading</strong>
-      <p>
-        Angular Routing Component supports lazy loading, which allows you to load modules and components on demand, improving the performance of your application.
-      </p>
-    </li>
-    <li>
-      <strong>Route Guards</strong>
-      <p>
-        Angular Routing Component provides a way to add security and data validation to your routes using route guards. This can help to prevent unauthorized access to certain parts of your application and ensure that the data being passed to your components is valid.
-      </p>
-    </li>
-    <li>
-      <strong>Route Resolvers</strong>
-      <p>
-        Angular Routing Component allows you to pre-fetch data for a component before it is rendered using route resolvers. This can help to improve the performance of your application by reducing the amount of time it takes to load data.
-      </p>
-    </li>
-  </ol>
-
-  <br>
-
-  <strong class="text-sky-400">
-    Cons:
-  </strong>
-
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Learning Curve</strong>
-      <p>
-        Angular Routing Component can have a steep learning curve, especially for beginners who are new to Angular. The syntax for defining routes and navigating between them can be complex and take some time to master.
-      </p>
-    </li>
-    <li>
-      <strong>Debugging</strong>
-      <p>
-        Debugging routing issues can be difficult and time-consuming, especially when dealing with complex routing structures and route guards.
-      </p>
-    </li>
-    <li>
-      <strong>Performance Overhead</strong>
-      <p>
-        Angular Routing Component has some performance overhead due to its dynamic nature and the fact that it needs to maintain a stateful routing configuration.
-      </p>
-    </li>
-    <li>
-      <strong>Configuration Complexity</strong>
-      <p>
-        As the routing structure of your application becomes more complex, the configuration of Angular Routing Component can become more complex and harder to maintain.
-      </p>
-    </li>
-  </ol>
-
-
-  <br>
-
-  <p>
-    Overall, Angular Routing Component is a powerful tool for creating complex routing structures and dynamic applications, but it can also add complexity and overhead to your application. It's important to carefully consider your routing requirements and design your routing structures accordingly.
-  </p>
-
-  </ng-template>
-
-
-
-
-  <ng-template #topicsRef>
-    <p>
-      Some related topics to Angular Routing Component:
-    </p>
-
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>Angular Router Configuration</strong>
-        <p>
-          Angular Router Component is a part of Angular Router module, and the configuration of the router is done in the app-routing.module.ts file. The configuration defines the available routes in the application and maps them to the appropriate components.
-        </p>
-      </li>
-      <li>
-        <strong>Route Parameters</strong>
-        <p>
-          Route parameters are placeholders that capture the values from the URL and pass them to the component. The parameter values are accessed using the ActivatedRoute service.
-        </p>
-      </li>
-      <li>
-        <strong>Query Parameters</strong>
-        <p>
-          Query parameters are used to pass data to a component through the URL. They are usually appended to the URL as key-value pairs.
-        </p>
-      </li>
-      <li>
-        <strong>Route Guards</strong>
-        <p>
-          Route guards are used to protect routes in Angular applications. They can be used to prevent unauthorized access, redirect the user to a login page, or perform any other custom logic.
-        </p>
-      </li>
-      <li>
-        <strong>Route Resolvers</strong>
-        <p>
-          Route resolvers are used to prefetch data before the route is activated. They are used to avoid the "flicker" effect that can occur when data is loaded after the component is rendered.
-        </p>
-      </li>
-      <li>
-        <strong>Lazy Loading</strong>
-        <p>
-          Lazy loading is a technique that is used to load modules and components on demand, only when they are needed. This can improve the performance of the application and reduce the initial load time.
-        </p>
-      </li>
-      <li>
-        <strong>Angular Router Events</strong>
-        <p>
-          Angular Router Component emits several events that can be used to perform custom logic. For example, the NavigationStart event is emitted when a navigation starts, and the NavigationEnd event is emitted when the navigation ends.
-        </p>
-      </li>
-    </ol>
-
-
-    <br>
-
-    <p>
-      These are some related topics that are often used in conjunction with Angular Router Component. By understanding these topics, you can create more complex and dynamic applications using Angular.
-    </p>
-
-  </ng-template>
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Router Outlet</p>
+      <p class="text-sm">Placeholder directive that displays the component for the active route</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Route Guards</p>
+      <p class="text-sm">Services that control access to routes based on conditions</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Route Resolvers</p>
+      <p class="text-sm">Services that pre-fetch data before activating a route</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Lazy Loading</p>
+      <p class="text-sm">Technique to load modules on demand as they're needed</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Router Navigation</p>
+      <p class="text-sm">API for programmatic navigation between routes</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Signals</p>
+      <p class="text-sm">Angular's reactivity primitive used in modern routing implementations</p>
+    </div>
+  </div>
+</ng-template>

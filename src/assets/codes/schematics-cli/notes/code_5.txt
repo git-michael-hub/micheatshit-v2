@@ -1,0 +1,29 @@
+# Install Nx schematics (popular third-party collection)
+npm install --save-dev @nrwl/schematics
+
+# Install Angular Material schematics
+ng add @angular/material
+
+# Install NgRx schematics
+npm install @ngrx/schematics --save-dev
+
+# Set NgRx as the default collection for the project
+ng config cli.defaultCollection @ngrx/schematics
+
+# Generate NgRx feature state
+ng generate feature products/ProductState --model product --creators --api --reducers=../reducers/index.ts
+
+# Install Ionic schematics
+npm install @ionic/angular-toolkit --save-dev
+
+# Generate Ionic page
+ng generate @ionic/angular-toolkit:page profile
+
+# Install custom company schematic package
+npm install @company/angular-schematics --save-dev
+
+# Run a schematic from the custom collection
+ng generate @company/angular-schematics:feature-module admin
+
+# Reset the default collection back to Angular
+ng config cli.defaultCollection @schematics/angular

@@ -4,11 +4,11 @@ import { takeUntil } from 'rxjs';
 import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
 
 @Component({
-  selector: 'app-routing-component',
-  templateUrl: './routing-component.component.html',
-  styleUrls: ['./routing-component.component.scss']
+  selector: 'app-service',
+  templateUrl: './service.component.html',
+  styleUrls: ['./service.component.scss']
 })
-export class RoutingComponentComponent extends UnsubscribeService {
+export class ServiceComponent extends UnsubscribeService {
   selectedTab = 1;
 
   code_1 = '';
@@ -24,27 +24,24 @@ export class RoutingComponentComponent extends UnsubscribeService {
   }
 
   ngOnInit() {
-    this.http.get('assets/codes/routing-component/notes/code_1.txt', { responseType: 'text' })
+    this.http.get('assets/codes/service/notes/code_1.txt', { responseType: 'text' })
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_1 = data);
 
-    this.http.get('assets/codes/routing-component/notes/code_2.txt', { responseType: 'text' })
+    this.http.get('assets/codes/service/notes/code_2.txt', { responseType: 'text' })
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_2 = data);
 
-    this.http.get('assets/codes/routing-component/notes/code_3.txt', { responseType: 'text' })
+    this.http.get('assets/codes/service/notes/code_3.txt', { responseType: 'text' })
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_3 = data);
 
-    this.http.get('assets/codes/routing-component/notes/code_4.txt', { responseType: 'text' })
+    this.http.get('assets/codes/service/notes/code_4.txt', { responseType: 'text' })
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_4 = data);
 
-    this.http.get('assets/codes/routing-component/notes/code_5.txt', { responseType: 'text' })
+    this.http.get('assets/codes/service/notes/code_5.txt', { responseType: 'text' })
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_5 = data);
   }
 }
-
-
-

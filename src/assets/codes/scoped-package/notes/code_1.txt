@@ -1,0 +1,48 @@
+{
+  "name": "@my-org/my-library",
+  "version": "1.0.0",
+  "description": "Angular 19 UI component library",
+  "type": "module",
+  "author": "Your Name",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/my-org/my-library"
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/index.js",
+      "esm": "./esm2022/index.js",
+      "default": "./index.js"
+    },
+    "./button": {
+      "types": "./button/index.d.ts",
+      "esm2022": "./esm2022/button/index.js",
+      "esm": "./esm2022/button/index.js",
+      "default": "./button/index.js"
+    }
+  },
+  "sideEffects": false,
+  "peerDependencies": {
+    "@angular/core": "^19.0.0",
+    "@angular/common": "^19.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
+  },
+  "keywords": [
+    "angular",
+    "angular19",
+    "ui",
+    "components",
+    "library"
+  ],
+  "scripts": {
+    "build": "ng build my-library",
+    "publish": "npm publish ./dist/my-library"
+  }
+}

@@ -1,0 +1,115 @@
+// files/__name@dasherize__.component.ts.template
+import { Component<% if (isSignalBased) { %>, signal, computed, Signal<% } %> } from '@angular/core';
+<% if (!standalone) { %>import { OnInit } from '@angular/core';<% } %>
+
+@Component({
+  selector: '<%= selector %>',
+  <% if (inlineTemplate) { %>
+  template: `
+    <div class="<%= dasherize(name) %>-container">
+      <% if (useControlFlow) { %>
+      @if (isLoading<% if (isSignalBased) { %>()<% } %>) {
+        <div class="loading">Loading...</div>
+      } @else {
+        <div class="content">
+          <h2>{{ title<% if (isSignalBased) { %>()<% } %> }}</h2>
+          <div class="body">
+            @for (item of items<% if (isSignalBased) { %>()<% } %>; track item.id) {
+              <div class="item">{{ item.name }}</div>
+            }
+          </div>
+        </div>
+      }
+      <% } else { %>
+      <div *ngIf="isLoading<% if (isSignalBased) { %>()<% } %>" class="loading">Loading...</div>
+      <div *ngIf="!isLoading<% if (isSignalBased) { %>()<% } %>" class="content">
+        <h2>{{ title<% if (isSignalBased) { %>()<% } %> }}</h2>
+        <div class="body">
+          <div *ngFor="let item of items<% if (isSignalBased) { %>()<% } %>" class="item">
+            {{ item.name }}
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  `,
+  <% } else { %>
+  templateUrl: './<%= dasherize(name) %>.component.html',
+  <% } %>
+  <% if (inlineStyle) { %>
+  styles: [`
+    .<%= dasherize(name) %>-container {
+      padding: 20px;
+      border-radius: 4px;
+      background-color: #f5f5f5;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .item {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  `],
+  <% } else { %>
+  styleUrls: ['./<%= dasherize(name) %>.component.<%= style %>'],
+  <% } %>
+  <% if (standalone) { %>
+  standalone: true,
+  imports: [<% if (!useControlFlow) { %>CommonModule<% } %>],
+  <% } %>
+})
+export class <%= classify(name) %>Component<% if (!standalone) { %> implements OnInit<% } %> {
+  <% if (isSignalBased) { %>
+  // Signal-based state
+  protected isLoading = signal(true);
+  protected title = signal('<%= classify(name) %> Component');
+  protected items = signal<Array<{id: number, name: string}>>([]);
+
+  // Computed values
+  protected itemCount = computed(() => this.items().length);
+  <% } else { %>
+  // Property-based state
+  protected isLoading = true;
+  protected title = '<%= classify(name) %> Component';
+  protected items: Array<{id: number, name: string}> = [];
+  <% } %>
+
+  constructor() { <% if (isSignalBased) { %>
+    // Initialize data after a short delay
+    setTimeout(() => {
+      this.isLoading.set(false);
+      this.items.set([
+        { id: 1, name: 'Item 1' },
+        { id: 2, name: 'Item 2' },
+        { id: 3, name: 'Item 3' }
+      ]);
+    }, 1000);
+  <% } else { %>
+    // Initialize data after a short delay
+    setTimeout(() => {
+      this.isLoading = false;
+      this.items = [
+        { id: 1, name: 'Item 1' },
+        { id: 2, name: 'Item 2' },
+        { id: 3, name: 'Item 3' }
+      ];
+    }, 1000);
+  <% } %>}
+
+  <% if (!standalone) { %>
+  ngOnInit(): void {
+    // Lifecycle hook initialization
+  }
+  <% } %>
+}

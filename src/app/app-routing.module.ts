@@ -80,6 +80,11 @@ import { InputComponent } from './feature/angular/concepts/input/input.component
 import { NgccComponent } from './feature/angular/concepts/ngcc/ngcc.component';
 import { NpmPackageComponent } from './feature/angular/concepts/npm-package/npm-package.component';
 import { NgcComponent } from './feature/angular/concepts/ngc/ngc.component';
+import { RuleComponent } from './feature/angular/concepts/rule/rule.component';
+import { SchematicComponent } from './feature/angular/concepts/schematic/schematic.component';
+import { SchematicsCliComponent } from './feature/angular/concepts/schematics-cli/schematics-cli.component';
+import { ScopedPackageComponent } from './feature/angular/concepts/scoped-package/scoped-package.component';
+import { ServiceComponent } from './feature/angular/concepts/service/service.component';
 
 const routes: Routes = [
   {
@@ -296,6 +301,22 @@ const routes: Routes = [
         component: RoutingComponentComponent
       },
       {
+        path: 'rule',
+        component: RuleComponent
+      },
+      {
+        path: 'schematic',
+        component: SchematicComponent
+      },
+      {
+        path: 'schematics-cli',
+        component: SchematicsCliComponent
+      },
+      {
+        path: 'scoped-package',
+        component: ScopedPackageComponent
+      },
+      {
         path: 'signals',
         component: SignalsComponent
       },
@@ -434,6 +455,10 @@ const routes: Routes = [
       {
         path: 'provider',
         loadChildren: () => import('./feature/angular/concepts/provider/provider.module').then(m => m.ProviderModule)
+      },
+      {
+        path: 'service',
+        loadChildren: () => import('./feature/angular/concepts/service/service.module').then(m => m.ServiceModule)
       },
     ]
   },

@@ -1,0 +1,132 @@
+// confirm-leave.guard.ts - Signal-based form deactivation guard
+import { inject } from '@angular/core';
+import { CanDeactivateFn } from '@angular/router';
+
+// Generic interface for components with pending changes
+export interface ComponentWithUnsavedChanges {
+  hasUnsavedChanges: () => boolean;
+  confirmDiscard: () => Promise<boolean>;
+}
+
+// Modern functional deactivation guard
+export const confirmLeaveGuard: CanDeactivateFn<ComponentWithUnsavedChanges> = (
+  component
+) => {
+  // If no unsaved changes, allow navigation
+  if (!component.hasUnsavedChanges()) {
+    return true;
+  }
+
+  // Otherwise, ask for confirmation
+  return component.confirmDiscard();
+};
+
+// edit-form.component.ts - Component with unsaved changes tracking
+import { Component, computed, signal } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ComponentWithUnsavedChanges } from './confirm-leave.guard';
+
+@Component({
+  selector: 'app-edit-form',
+  template: `
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Form fields -->
+      <input type="text" formControlName="name">
+      <input type="email" formControlName="email">
+
+      <div class="actions">
+        <button type="submit" [disabled]="!form.valid">Save</button>
+        <button type="button" (click)="resetForm()">Reset</button>
+      </div>
+
+      <div *ngIf="hasUnsavedChangesSignal()" class="warning">
+        You have unsaved changes
+      </div>
+    </form>
+  `
+})
+export class EditFormComponent implements ComponentWithUnsavedChanges {
+  form: FormGroup;
+  private initialFormValue: any;
+  private _formSubmitted = signal(false);
+
+  hasUnsavedChangesSignal = computed(() => {
+    // Check if form is dirty and not submitted
+    return this.form.dirty && !this._formSubmitted();
+  });
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      name: [''],
+      email: ['']
+    });
+
+    this.initialFormValue = this.form.value;
+  }
+
+  // Method required by the guard interface
+  hasUnsavedChanges(): boolean {
+    return this.hasUnsavedChangesSignal();
+  }
+
+  // Implementation of required confirmation method
+  async confirmDiscard(): Promise<boolean> {
+    return window.confirm('You have unsaved changes. Are you sure you want to leave?');
+  }
+
+  onSubmit() {
+    // Process form submission
+    this._formSubmitted.set(true);
+    // Save data, then reset the form state
+    this.initialFormValue = this.form.value;
+    this.form.markAsPristine();
+  }
+
+  resetForm() {
+    this.form.reset(this.initialFormValue);
+  }
+}
+
+// confirmation-dialog.service.ts - Modern dialog service for confirmation
+import { Injectable, signal } from '@angular/core';
+
+interface ConfirmationDialogOptions {
+  title: string;
+  message: string;
+  confirmText?: string;
+  cancelText?: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ConfirmationDialogService {
+  private _isOpen = signal(false);
+  private _options = signal<ConfirmationDialogOptions>({
+    title: 'Confirm',
+    message: 'Are you sure?',
+    confirmText: 'Yes',
+    cancelText: 'No'
+  });
+
+  isOpen = this._isOpen.asReadonly();
+  options = this._options.asReadonly();
+
+  // Returns a promise that resolves when user confirms/cancels
+  confirm(options: Partial<ConfirmationDialogOptions>): Promise<boolean> {
+    this._options.set({
+      ...this._options(),
+      ...options
+    });
+
+    this._isOpen.set(true);
+
+    return new Promise<boolean>(resolve => {
+      // In a real implementation, this would be handled by the dialog component
+      // Here for simplicity, we use window.confirm
+      const confirmed = window.confirm(options.message || this._options().message);
+      this._isOpen.set(false);
+      resolve(confirmed);
+    });
+  }
+}

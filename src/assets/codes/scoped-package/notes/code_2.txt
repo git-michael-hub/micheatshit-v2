@@ -1,0 +1,25 @@
+# Install public scoped package
+npm install @angular/core
+
+# Install private scoped package (requires authentication)
+npm install @my-org/my-library --registry=https://npm.pkg.github.com
+
+# Install specific version
+npm install @my-org/my-library@1.2.3
+
+# Install multiple scoped packages
+npm install @angular/core @angular/common @angular/router
+
+# Add as development dependency
+npm install @angular/cli --save-dev
+
+# Install globally
+npm install -g @angular/cli
+
+# Install with yarn
+yarn add @my-org/my-library
+
+# Using .npmrc for authentication with scoped registry
+echo "@my-org:registry=https://npm.pkg.github.com" >> .npmrc
+echo "//npm.pkg.github.com/:_authToken=YOUR_TOKEN" >> .npmrc
+npm install @my-org/my-library

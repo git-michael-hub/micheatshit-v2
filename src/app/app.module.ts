@@ -69,6 +69,11 @@ import { ControlFlowModule } from './feature/angular/concepts/control-flow/contr
 import { NgccModule } from './feature/angular/concepts/ngcc/ngcc.module';
 import { NpmPackageModule } from './feature/angular/concepts/npm-package/npm-package.module';
 import { NgcModule } from './feature/angular/concepts/ngc/ngc.module';
+import { RuleModule } from './feature/angular/concepts/rule/rule.module';
+import { SchematicModule } from './feature/angular/concepts/schematic/schematic.module';
+import { SchematicsCliModule } from './feature/angular/concepts/schematics-cli/schematics-cli.module';
+import { ScopedPackageModule } from './feature/angular/concepts/scoped-package/scoped-package.module';
+import { ServiceModule } from './feature/angular/concepts/service/service.module';
 
 @NgModule({
   declarations: [
@@ -143,6 +148,10 @@ import { NgcModule } from './feature/angular/concepts/ngc/ngc.module';
     NgccModule,
     NpmPackageModule,
     NgcModule,
+    RuleModule,
+    SchematicModule,
+    SchematicsCliModule,
+    ServiceModule
   ],
   providers: [
     {

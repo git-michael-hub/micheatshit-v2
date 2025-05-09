@@ -1,265 +1,371 @@
-<div class="container">
-  <h1>Standalone Components in Angular</h1>
-  <p>
-    Standalone components are a feature in Angular that allows components, directives, and pipes to be used without declaring them in an NgModule. This simplifies the component architecture and makes Angular development more intuitive.
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Standalone Components
   </p>
 
-  <div class="tab-navigation">
-    <button
-      type="button"
-      [class.active]="selectedTab === 'notes'"
-      (click)="selectedTab = 'notes'">
-      Notes
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'bestPractices'"
-      (click)="selectedTab = 'bestPractices'">
-      Best Practices
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'prosCons'"
-      (click)="selectedTab = 'prosCons'">
-      Pros and Cons
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'relatedTopics'"
-      (click)="selectedTab = 'relatedTopics'">
-      Related Topics
-    </button>
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Standalone Components</span>
+      in Angular 19 are specialized components that don't require NgModule declarations, enabling simplified architecture with direct dependency imports. Angular 19's standalone components now provide enhanced integration with signals, functional APIs, fine-grained reactivity, and optimized zoneless performance.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
   </div>
+</section>
 
-  <ng-container [ngSwitch]="selectedTab">
-    <ng-container *ngSwitchCase="'notes'">
-      <ng-container *ngTemplateOutlet="notesTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'bestPractices'">
-      <ng-container *ngTemplateOutlet="bestPracticesTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'prosCons'">
-      <ng-container *ngTemplateOutlet="prosConsTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'relatedTopics'">
-      <ng-container *ngTemplateOutlet="relatedTopicsTemplate"></ng-container>
-    </ng-container>
-  </ng-container>
-</div>
-
-<ng-template #notesTemplate>
-  <h2>Overview</h2>
-  <p>
-    Standalone components are a simplified way of building Angular applications without explicitly creating and managing NgModules for each component. They were introduced to reduce boilerplate code and make the framework more intuitive.
-  </p>
-
-  <h3>Creating a Standalone Component</h3>
-  <div class="code-example">
-    <pre><code [highlight]="standaloneComponentCode" [languages]="['typescript']"></code></pre>
-  </div>
-
-  <h3>Key Features of Standalone Components</h3>
-  <ul class="feature-list">
+<ng-template #notesRef>
+  <p>Understanding Standalone Components</p>
+  <ul class="list-disc pl-4 text-sm">
     <li>
-      <strong>Self-contained:</strong> A standalone component declares its own dependencies.
+      <strong>Definition</strong>:
+      Components that can be used without being declared in an NgModule, directly importing their dependencies.
     </li>
     <li>
-      <strong>No NgModule required:</strong> Components can be used without being declared in an NgModule.
+      <strong>Purpose</strong>:
+      Simplify Angular application architecture by removing the NgModule boilerplate and making component boundaries clearer.
     </li>
     <li>
-      <strong>Direct imports:</strong> Components can directly import other components, directives, and pipes.
+      <strong>Self-contained Approach</strong>:
+      Standalone components declare their own dependencies and can be imported directly by other components.
     </li>
     <li>
-      <strong>Simplified lazy loading:</strong> Makes it easier to lazy load components in routes.
-    </li>
-    <li>
-      <strong>Better tree-shaking:</strong> Allows the build system to more efficiently eliminate unused code.
+      <strong>Simplified Bootstrapping</strong>:
+      Applications can be bootstrapped directly with a standalone component instead of using an NgModule.
     </li>
   </ul>
 
-  <h3>Bootstrapping a Standalone Application</h3>
-  <div class="code-example">
-    <pre><code [highlight]="bootstrapCode" [languages]="['typescript']"></code></pre>
-  </div>
+  <br>
+  <br>
 
-  <h3>Routing with Standalone Components</h3>
-  <div class="code-example">
-    <pre><code [highlight]="standaloneRoutesCode" [languages]="['typescript']"></code></pre>
-  </div>
-
-  <h3>Configuring Providers</h3>
-  <div class="code-example">
-    <pre><code [highlight]="providersCode" [languages]="['typescript']"></code></pre>
-  </div>
-
-  <h3>Dependency Injection</h3>
-  <div class="code-example">
-    <pre><code [highlight]="dependencyInjectionCode" [languages]="['typescript']"></code></pre>
-  </div>
-</ng-template>
-
-<ng-template #bestPracticesTemplate>
-  <h2>Best Practices</h2>
-
-  <h3>Organization</h3>
-  <ul>
+  <p>New Standalone Features in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
     <li>
-      <strong>Feature-based organization:</strong> Group related standalone components, directives, and pipes by feature.
+      <strong>Signal-based Architecture</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces enhanced signal integration in standalone components, providing more efficient reactive updates.</li>
+        <li>Standalone components can fully leverage the signal-based reactivity model without Zone.js dependencies.</li>
+        <li>Fine-grained rendering updates are now possible with standalone component signals.</li>
+      </ul>
     </li>
     <li>
-      <strong>Public API pattern:</strong> Use barrel files (index.ts) to export multiple related standalone components.
+      <strong>Functional APIs</strong>:
+      <ul class="list-disc pl-4">
+        <li>New functional configuration APIs replace module-based providers (e.g., provideRouter, provideHttpClient).</li>
+        <li>Simplified application bootstrapping with functional configuration in standalone-first architecture.</li>
+        <li>Improved type-safety and code completion with function-based configurations.</li>
+      </ul>
     </li>
     <li>
-      <strong>Keep imports lean:</strong> Only import what you need to minimize bundle size.
+      <strong>Deferrable Loading</strong>:
+      <ul class="list-disc pl-4">
+        <li>@defer block now fully integrated with standalone components for optimized loading strategies.</li>
+        <li>Improved developer experience for lazy-loading standalone components.</li>
+        <li>More granular loading control over standalone component dependencies.</li>
+      </ul>
     </li>
     <li>
-      <strong>Be mindful of circular dependencies:</strong> They can be more common with standalone components, so structure your code carefully.
+      <strong>Improved Framework Tree-shaking</strong>:
+      <ul class="list-disc pl-4">
+        <li>Standalone-first applications benefit from enhanced tree-shaking capabilities in Angular 19.</li>
+        <li>Smaller bundle sizes with more efficient elimination of unused code.</li>
+        <li>Automatic removal of unused dependencies from the final bundle.</li>
+      </ul>
     </li>
-  </ul>
+    <li>
+      <strong>Enhanced Developer Tools</strong>:
+      <ul class="list-disc pl-4">
+        <li>Improved debugging tools specifically for standalone component architecture.</li>
+        <li>Better visualization of component dependency trees and imports.</li>
+        <li>Streamlined migration tools for converting NgModule-based code to standalone.</li>
+      </ul>
+    </li>
+  </ol>
 
-  <h3>Migration Strategy</h3>
-  <ul>
-    <li>
-      <strong>Incremental adoption:</strong> Migrate to standalone components gradually, starting with leaf components.
-    </li>
-    <li>
-      <strong>Use the standalone migration schematic:</strong> Angular provides schematics to help migrate NgModule-based components to standalone.
-    </li>
-    <li>
-      <strong>Test thoroughly:</strong> Ensure components still work correctly after migration.
-    </li>
-  </ul>
+  <br>
+  <br>
 
-  <h3>Performance</h3>
-  <ul>
-    <li>
-      <strong>Lazy load when possible:</strong> Standalone components make it easier to implement lazy loading.
-    </li>
-    <li>
-      <strong>Share common dependencies:</strong> Use shared imports for common modules to avoid duplication.
-    </li>
-    <li>
-      <strong>Use library-level providers:</strong> For services shared across many components.
-    </li>
-  </ul>
-
-  <div class="workflow-diagram">
-    <h4>Recommended Development Workflow:</h4>
-    <ol>
-      <li>Identify a feature to implement</li>
-      <li>Create standalone components, directives, and pipes for the feature</li>
-      <li>Use an index.ts file to export all public API elements</li>
-      <li>Import only what's needed in each component</li>
-      <li>Add route configurations if needed</li>
-      <li>Configure providers at the appropriate level</li>
-    </ol>
-  </div>
-</ng-template>
-
-<ng-template #prosConsTemplate>
-  <h2>Pros and Cons</h2>
-
-  <h3>Advantages</h3>
-  <ul>
-    <li><strong>Reduced Boilerplate:</strong> Eliminates the need for NgModules in many cases</li>
-    <li><strong>Simplified Mental Model:</strong> More intuitive component architecture</li>
-    <li><strong>Improved Developer Experience:</strong> Easier to understand what dependencies a component has</li>
-    <li><strong>Better Tree Shaking:</strong> More efficient build optimization</li>
-    <li><strong>Easier Lazy Loading:</strong> Simplified route configuration</li>
-    <li><strong>Smoother Migration Path:</strong> Can coexist with NgModule-based components</li>
-  </ul>
-
-  <h3>Challenges</h3>
-  <ul>
-    <li><strong>Potential for Duplication:</strong> Services might be provided multiple times if not careful</li>
-    <li><strong>Transition Period:</strong> Applications may mix NgModule-based and standalone components</li>
-    <li><strong>Learning Curve:</strong> For developers familiar with NgModule patterns</li>
-    <li><strong>Configuration Management:</strong> Need to manage providers carefully</li>
-  </ul>
-
-  <h3>Standalone vs. NgModule Comparison</h3>
-  <table class="comparison-table">
+  <p>Creating Standalone Components</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
     <thead>
-      <tr>
-        <th>Feature</th>
-        <th>Standalone Components</th>
-        <th>NgModule-based Components</th>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Feature</th>
+        <th class="py-3 px-4 text-left">Implementation</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Declaration</td>
-        <td>Self-declared with standalone: true</td>
-        <td>Must be declared in an NgModule</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Creating a Standalone Component</td>
+        <td class="py-3 px-4">Set standalone: true in @Component decorator</td>
       </tr>
-      <tr>
-        <td>Dependency Management</td>
-        <td>Direct imports in @Component</td>
-        <td>Via NgModule imports</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Importing Dependencies</td>
+        <td class="py-3 px-4">Use imports array in @Component decorator</td>
       </tr>
-      <tr>
-        <td>Lazy Loading</td>
-        <td>Direct component loading</td>
-        <td>Module-based loading</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Bootstrapping</td>
+        <td class="py-3 px-4">bootstrapApplication with application config</td>
       </tr>
-      <tr>
-        <td>Provider Scope</td>
-        <td>Component, route, or application</td>
-        <td>NgModule (root, feature, or component)</td>
-      </tr>
-      <tr>
-        <td>Testing</td>
-        <td>Simpler test setup</td>
-        <td>Requires TestBed with modules</td>
-      </tr>
-      <tr>
-        <td>Library Creation</td>
-        <td>More flexible export options</td>
-        <td>Public API through modules</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Routing</td>
+        <td class="py-3 px-4">Direct component references in route definitions</td>
       </tr>
     </tbody>
   </table>
+
+  <br>
+  <br>
+
+  <p>Basic Standalone Component</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="standaloneComponentCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Bootstrapping a Standalone Application</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="bootstrapCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Routing with Standalone Components</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="standaloneRoutesCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Signal Integration in Standalone Components</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="signalIntegrationCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Dependency Injection in Standalone Components</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="dependencyInjectionCode"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
 </ng-template>
 
-<ng-template #relatedTopicsTemplate>
-  <h2>Related Topics</h2>
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Organize by Feature</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Feature-based Organization</strong>:
+          Group related standalone components, directives, and pipes by feature rather than by type.
+        </li>
+        <li>
+          <strong>Public API Pattern</strong>:
+          Use barrel files (index.ts) to export multiple related standalone components, creating a clear feature API.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Imports</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Keep Imports Lean</strong>:
+          Only import what your component actually needs to minimize bundle size and improve performance.
+        </li>
+        <li>
+          <strong>Avoid Circular Dependencies</strong>:
+          Be mindful of potential circular imports that can occur more easily with standalone components.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Signal Architecture</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Signal-based State</strong>:
+          Replace RxJS observables with signals for local component state when appropriate.
+        </li>
+        <li>
+          <strong>Signal-based Inputs</strong>:
+          Use the new signal-based inputs pattern for more efficient change detection.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Loading Strategies</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Leverage @defer</strong>:
+          Use the @defer block for conditionally loading standalone components when needed.
+        </li>
+        <li>
+          <strong>Route-based Lazy Loading</strong>:
+          Use direct standalone component references in route configurations for better lazy loading.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Migration Strategy</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Incremental Migration</strong>:
+          Migrate to standalone components gradually, starting with leaf components with few dependencies.
+        </li>
+        <li>
+          <strong>Use Migration Schematics</strong>:
+          Leverage Angular CLI schematics for reliable conversion from NgModule-based to standalone architecture.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
-  <ul>
-    <li>
-      <strong>Angular Modules:</strong> The previous way of organizing components, still used for some cases.
-    </li>
-    <li>
-      <strong>Dependency Injection:</strong> The system for providing services to components.
-    </li>
-    <li>
-      <strong>Routing in Angular:</strong> How to set up navigation with standalone components.
-    </li>
-    <li>
-      <strong>Lazy Loading:</strong> Loading components or features only when needed.
-    </li>
-    <li>
-      <strong>Tree Shaking:</strong> Build optimization technique to remove unused code.
-    </li>
-    <li>
-      <strong>Angular Libraries:</strong> Building and sharing reusable standalone components.
-    </li>
-    <li>
-      <strong>Signal-based Components:</strong> New reactive programming model that works well with standalone components.
-    </li>
-    <li>
-      <strong>Testing:</strong> How to test standalone components effectively.
-    </li>
-  </ul>
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Reduced boilerplate compared to NgModule-based components</li>
+        <li>More intuitive component architecture with direct dependencies</li>
+        <li>Improved tree-shaking capabilities for smaller bundles</li>
+        <li>Simplified lazy loading with direct component references</li>
+        <li>Better developer experience with clearer component boundaries</li>
+        <li>Enhanced integration with signals for more efficient reactivity</li>
+        <li>Functional configuration APIs for more type-safe setup</li>
+        <li>Improved performance in zoneless applications</li>
+        <li>Easier testing with simplified dependency setup</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Potential dependency duplication if not managed carefully</li>
+        <li>Possible increase in import statements in component files</li>
+        <li>Learning curve for developers familiar with NgModule patterns</li>
+        <li>Migration complexity for large existing applications</li>
+        <li>Challenging to mix with older NgModule-based libraries</li>
+        <li>Need for careful provider scope management</li>
+        <li>Risk of circular dependencies without careful architecture</li>
+        <li>Potentially more complex shared dependency management</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
 
-  <h3>Changes in Angular 19</h3>
-  <p>
-    Angular 19 enhances standalone components with:
-  </p>
-  <ul>
-    <li>Improved tooling and schematics for migration</li>
-    <li>Better integration with signals</li>
-    <li>Enhanced performance through more efficient change detection</li>
-    <li>Simplified bootstrapping process</li>
-    <li>Better support for Server-Side Rendering (SSR) and hydration</li>
-  </ul>
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Angular Modules</p>
+      <p class="text-sm">The traditional way of organizing Angular applications</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Dependency Injection</p>
+      <p class="text-sm">Angular's system for providing services to components</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Signal-based Components</p>
+      <p class="text-sm">New reactive programming model for Angular components</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Bootstrapping</p>
+      <p class="text-sm">The process of starting an Angular application</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Lazy Loading</p>
+      <p class="text-sm">Loading components or features only when needed</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Defer Blocks</p>
+      <p class="text-sm">Conditionally loading components when needed</p>
+    </div>
+  </div>
 </ng-template>

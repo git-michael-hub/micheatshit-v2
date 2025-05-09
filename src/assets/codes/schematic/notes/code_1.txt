@@ -1,0 +1,11 @@
+# Generate a standalone component with Angular 19 features
+ng generate component feature/dashboard --standalone --style=scss --inline-template=false --skip-tests
+
+# Generate a component with signals-based change detection
+ng generate component feature/user-profile --standalone --signal --style=scss
+
+# Generate a component with control flow syntax
+ng generate component feature/product-list --standalone --inline-template --control-flow
+
+# Generate a component with custom options
+ng generate component shared/button --standalone --prefix=app --export

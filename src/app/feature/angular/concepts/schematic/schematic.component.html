@@ -1,0 +1,370 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Schematics
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Schematics</span>
+      in Angular 19 are code generators that automate the creation and modification of project files using template-based workflows. They enable consistent scaffolding, code refactoring, and custom code generation while enforcing architectural patterns and best practices across Angular applications.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What Are Angular Schematics?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Code Generation Tools</strong>:
+      Template-based code generators that automate the creation, modification, and management of Angular application files.
+    </li>
+    <li>
+      <strong>Transformation Pipeline</strong>:
+      Workflow system that uses a tree structure to represent file changes and applies them predictably.
+    </li>
+    <li>
+      <strong>CLI Extension System</strong>:
+      Extends Angular CLI with custom commands for scaffolding components, services, and other artifacts.
+    </li>
+    <li>
+      <strong>Automation Framework</strong>:
+      Framework for building tools that enforce architectural patterns and best practices.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Schematic Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Standalone Component Generation</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 schematics now generate standalone components by default</li>
+        <li>Improved code organization with automatic imports</li>
+        <li>Reduced boilerplate and NgModule complexity</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal-Based Component Templates</strong>:
+      <ul class="list-disc pl-4">
+        <li>Generates components with signal-based APIs</li>
+        <li>Includes reactive state management patterns</li>
+        <li>Optimized for better change detection performance</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Functional Route Generation</strong>:
+      <ul class="list-disc pl-4">
+        <li>Creates type-safe functional routes rather than class-based ones</li>
+        <li>Better tree-shaking and bundle optimization</li>
+        <li>Improved integration with lazy loading patterns</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Modern Control Flow Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>Templates utilize Angular 19's @if, @for, and @switch syntax</li>
+        <li>More efficient rendering and better type checking</li>
+        <li>Built-in IDE support for template validation</li>
+      </ul>
+    </li>
+    <li>
+      <strong>ESM and TypeScript 5.4 Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Full ESM module support for better tree-shaking</li>
+        <li>TypeScript 5.4 features including improved type inference</li>
+        <li>Enhanced support for modern JavaScript patterns</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Common Schematics Commands</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Command</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng generate component</code></td>
+        <td class="py-3 px-4">Creates a new standalone component with Angular 19 features</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng generate service</code></td>
+        <td class="py-3 px-4">Generates an injectable service with proper providers configuration</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng generate directive</code></td>
+        <td class="py-3 px-4">Creates a standalone directive with the latest Angular features</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>ng generate schematic</code></td>
+        <td class="py-3 px-4">Scaffolds a custom schematic project structure</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Creating a Component with Schematics in Angular 19</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>bash</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['bash']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Custom Schematic Collection Structure</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Schematic Rule Implementation</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Schematic Template File</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Customizing Angular CLI Generation</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>json</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['json']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Atomic, Composable Rules</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Single Responsibility</strong>:
+          Create small, focused schematic rules that each do one thing well, making them easier to test and maintain.
+        </li>
+        <li>
+          <strong>Rule Composition</strong>:
+          Combine multiple atomic rules to create complex transformations using the chain() function, promoting code reuse.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Templates and External Files</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Template Files</strong>:
+          Use external template files rather than embedding templates in your schematic code, improving maintainability.
+        </li>
+        <li>
+          <strong>Parameterized Templates</strong>:
+          Utilize the template engine's variable substitution to create flexible, reusable templates with dynamic content.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Strong Validation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Schema Validation</strong>:
+          Define comprehensive JSON schemas for your schematic options to validate user input and provide clear error messages.
+        </li>
+        <li>
+          <strong>Default Values</strong>:
+          Provide sensible defaults for optional parameters to improve user experience while maintaining flexibility.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Maintain Idempotency</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Safe Operations</strong>:
+          Design schematics to be safely rerunnable without causing damage, even if executed multiple times.
+        </li>
+        <li>
+          <strong>Existence Checks</strong>:
+          Check for the existence of files or content before creating or modifying them to avoid duplicate operations.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Ensure Forward Compatibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Framework Version Awareness</strong>:
+          Make schematics adaptable to different Angular versions by checking the project's dependencies.
+        </li>
+        <li>
+          <strong>Feature Detection</strong>:
+          Implement feature detection instead of version checking to ensure compatibility with future Angular releases.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Automates repetitive code creation and modification tasks</li>
+        <li>Enforces consistent project structure and architectural patterns</li>
+        <li>Reduces potential for human error in routine code generation</li>
+        <li>Facilitates adoption of new Angular features and best practices</li>
+        <li>Enables custom code generation tailored to specific project needs</li>
+        <li>Simplifies complex migration and refactoring operations</li>
+        <li>Integrates seamlessly with Angular CLI workflow</li>
+        <li>Supports testing and dry runs for safe execution</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Learning curve for creating custom schematics</li>
+        <li>Maintenance overhead when Angular updates introduce breaking changes</li>
+        <li>Testing complex schematics can be challenging</li>
+        <li>Limited debugging tools for schematic execution</li>
+        <li>May generate unnecessary boilerplate if not carefully designed</li>
+        <li>Risk of over-automation reducing developer understanding</li>
+        <li>Can create dependency on specific tooling patterns</li>
+        <li>Performance impact on large-scale refactorings</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Angular CLI</p>
+      <p class="text-sm">Command-line interface that uses schematics for code generation</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">DevKit</p>
+      <p class="text-sm">Library of tools and utilities for creating schematics</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Workspace</p>
+      <p class="text-sm">Angular project structure that schematics can modify</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Collection</p>
+      <p class="text-sm">Group of related schematics published as a package</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Rule</p>
+      <p class="text-sm">Function that applies transformations to a virtual file system</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Migrations</p>
+      <p class="text-sm">Schematics that update code to work with newer versions</p>
+    </div>
+  </div>
+</ng-template>

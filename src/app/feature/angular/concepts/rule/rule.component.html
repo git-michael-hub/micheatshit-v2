@@ -1,0 +1,351 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Route Rules
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Route Rules</span>
+      in Angular 19 provide powerful mechanisms for controlling navigation flow, UI state management, and user experience in modern web applications. With Angular 19's enhancements, route rules now support signal-based configuration, functional patterns for improved type safety, and declarative control flow that integrates seamlessly with standalone components.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>What Are Route Rules?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Navigation Control Mechanisms</strong>:
+      Rules that determine how and when users can navigate between different routes in an Angular application.
+    </li>
+    <li>
+      <strong>Authorization Enforcement</strong>:
+      Mechanisms to protect routes based on user permissions, authentication status, or other conditions.
+    </li>
+    <li>
+      <strong>Data Prefetching Solutions</strong>:
+      Rules for ensuring necessary data is loaded before displaying a component.
+    </li>
+    <li>
+      <strong>Navigation Flow Management</strong>:
+      Strategies for controlling the sequence and conditions of navigation.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Types of Route Rules in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Route Guards</strong>:
+      <ul class="list-disc pl-4">
+        <li><strong>CanActivate</strong>: Controls if a route can be activated</li>
+        <li><strong>CanActivateChild</strong>: Controls if children routes can be activated</li>
+        <li><strong>CanDeactivate</strong>: Controls if a user can leave a route</li>
+        <li><strong>Signal-Based Guards</strong>: New in Angular 19, using signals for reactive guard implementation</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Route Resolvers</strong>:
+      <ul class="list-disc pl-4">
+        <li>Pre-fetch data before activating a route</li>
+        <li>Signal-based resolvers in Angular 19 for improved performance</li>
+        <li>Reactive data resolution with less boilerplate</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Functional Route Rules</strong>:
+      <ul class="list-disc pl-4">
+        <li>Type-safe functional approach introduced in Angular 19</li>
+        <li>Better tree-shaking and bundle optimization</li>
+        <li>Improved developer experience with IDE integration</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Advanced URL Matching</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enhanced pattern matching and wildcard support</li>
+        <li>Parameterized route segments with validation</li>
+        <li>Optional and conditional route segments</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Lazy Loading Control</strong>:
+      <ul class="list-disc pl-4">
+        <li>Customizable preloading strategies</li>
+        <li>On-demand module loading</li>
+        <li>Optimized bundle loading for improved performance</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Key Concepts in Angular 19 Route Rules</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Concept</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Signal-Based Guards</td>
+        <td class="py-3 px-4">Route guards implemented using Angular signals for reactive state management</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Functional Route Guards</td>
+        <td class="py-3 px-4">Guards defined as functions returning boolean or Promise/Observable values</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Route Data</td>
+        <td class="py-3 px-4">Static data associated with routes accessible through signals</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Resolvers</td>
+        <td class="py-3 px-4">Pre-fetch data before activating a route using signal-based approach</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Signal-Based Route Guard Example (Angular 19)</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Functional Route Definition with Guards</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Signal-Based Route Resolver</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Form Deactivation Guard</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Signal-Based Guards for Reactivity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Reactive State Management</strong>:
+          Implement guards using Angular signals to automatically react to state changes without manual subscription management.
+        </li>
+        <li>
+          <strong>Reduced Boilerplate</strong>:
+          Signal-based guards eliminate the need for Observable management and cleanup, resulting in cleaner, more maintainable code.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Adopt Functional Route Definitions</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Type-Safety First</strong>:
+          Use functional approach for defining routes and guards to leverage TypeScript's type system and catch errors at compile time.
+        </li>
+        <li>
+          <strong>Better Tree-Shaking</strong>:
+          Functional definitions lead to better tree-shaking and smaller bundle sizes compared to class-based implementations.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Granular Route Protection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Separation of Concerns</strong>:
+          Create specialized guards for different protection needs rather than one complex guard handling multiple scenarios.
+        </li>
+        <li>
+          <strong>Composition Pattern</strong>:
+          Compose multiple specialized guards for complex route protection scenarios.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Resolvers Strategically</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Critical Data Only</strong>:
+          Use resolvers only for data that is essential before route activation to avoid degrading user experience.
+        </li>
+        <li>
+          <strong>Error Handling</strong>:
+          Implement proper error handling strategies in resolvers to gracefully handle data loading failures.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement User-Friendly Navigation Control</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Unsaved Changes Protection</strong>:
+          Use CanDeactivate guards to prevent accidental navigation away from forms with unsaved changes.
+        </li>
+        <li>
+          <strong>Clear Feedback</strong>:
+          Provide clear feedback when navigation is prevented, explaining why and offering options to proceed.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Enforces secure access control to application routes and features</li>
+        <li>Signal-based implementation in Angular 19 reduces boilerplate and subscription management</li>
+        <li>Functional pattern enables better tree-shaking and bundle optimization</li>
+        <li>Creates predictable navigation flows and user experiences</li>
+        <li>Enables data prefetching for smoother user experience</li>
+        <li>Integrates seamlessly with standalone components</li>
+        <li>Prevents accidental data loss through navigation guards</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Complex route rules can increase codebase complexity</li>
+        <li>Poorly implemented resolvers can delay route navigation and degrade user experience</li>
+        <li>Over-protecting routes can create frustrating user experiences</li>
+        <li>Debugging complex guard interactions can be challenging</li>
+        <li>Testing guard combinations requires comprehensive test coverage</li>
+        <li>Potential for circular dependencies if guards depend on services that depend on router</li>
+        <li>Learning curve for understanding signal-based reactive patterns in routing</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Route Guards</p>
+      <p class="text-sm">Mechanisms to control navigation to and from routes based on conditions</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Route Resolvers</p>
+      <p class="text-sm">Services that pre-fetch data before activating a route</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Signals</p>
+      <p class="text-sm">Angular's reactivity primitive used in modern routing patterns</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Router Configuration</p>
+      <p class="text-sm">Definition of routes, guards, resolvers, and navigation patterns</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Lazy Loading</p>
+      <p class="text-sm">Loading route modules on demand based on navigation</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Authentication</p>
+      <p class="text-sm">Verifying user identity before allowing access to protected routes</p>
+    </div>
+  </div>
+</ng-template>

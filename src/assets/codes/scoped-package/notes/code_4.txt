@@ -1,0 +1,36 @@
+# Create a new NPM organization (scope)
+npm org create my-org
+
+# Add user to organization
+npm org set my-org username developer
+
+# Create a PAT (Personal Access Token) for npm
+npm token create
+
+# Login to npm
+npm login
+
+# Configure registry for a scope
+npm config set @my-org:registry https://registry.npmjs.org/
+
+# Configure registry for a private scope
+npm config set @my-org:registry https://npm.pkg.github.com/
+
+# Set auth token for GitHub Packages
+npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_TOKEN
+
+# Set auth token for npm registry
+npm config set //registry.npmjs.org/:_authToken YOUR_NPM_TOKEN
+
+# Create .npmrc file for CI environment
+cat > .npmrc << EOL
+@my-org:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
+always-auth=true
+EOL
+
+# Publish a scoped package publicly
+npm publish --access=public
+
+# Publish a scoped package privately (requires paid organization)
+npm publish --access=restricted

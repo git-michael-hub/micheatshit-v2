@@ -1,0 +1,27 @@
+# Install the required dependencies
+npm install -g @angular-devkit/schematics-cli
+
+# Create a new blank schematic project
+schematics blank --name=my-schematics
+
+# Navigate to the project
+cd my-schematics
+
+# Generate a new schematic in the collection
+schematics blank --name=feature-module
+
+# Build the schematics collection
+npm run build
+
+# Test the schematic locally (dry run)
+schematics .:feature-module --dry-run
+
+# Link the schematic collection for development
+npm link
+
+# In your Angular project, link to the schematic
+cd ~/my-angular-project
+npm link my-schematics
+
+# Use your custom schematic in your Angular project
+ng generate my-schematics:feature-module --name=admin

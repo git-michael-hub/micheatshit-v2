@@ -1,0 +1,60 @@
+// Run schematics programmatically from Node.js
+import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
+import * as path from 'path';
+import { Observable } from 'rxjs';
+
+// Load and execute a schematic programmatically
+async function runSchematic() {
+  // Path to the collection.json file
+  const collectionPath = path.join(__dirname, '../collection.json');
+
+  // Create a SchematicTestRunner
+  const runner = new SchematicTestRunner('my-schematics', collectionPath);
+
+  // Define the options for the schematic
+  const options = {
+    name: 'my-feature',
+    path: 'src/app/features',
+    module: 'app',
+    flat: false,
+    standalone: true,
+    signal: true,
+    controlFlow: true
+  };
+
+  // Run the schematic
+  const tree = await runner.runSchematicAsync('feature', options).toPromise();
+
+  // Inspect the changes
+  console.log('Generated files:');
+  tree.files.forEach(file => {
+    console.log(` - ${file}`);
+  });
+
+  // Apply changes to the file system (optional)
+  // const source = new Observable(observer => {
+  //   runner.transformOptions(null, host, options).subscribe(transformedOptions => {
+  //     runner.executeSchematic('feature', transformedOptions, host).subscribe(tree => {
+  //       observer.next(tree);
+  //       observer.complete();
+  //     });
+  //   });
+  // });
+  //
+  // source.subscribe(tree => {
+  //   const outputPath = '/path/to/output';
+  //   const host = createFileSystemHost(outputPath);
+  //   host.commit(tree).subscribe(() => {
+  //     console.log('Changes applied to file system at:', outputPath);
+  //   });
+  // });
+
+  return tree;
+}
+
+// Execute the schematic function
+runSchematic().then(tree => {
+  console.log('Schematic execution completed');
+}).catch(error => {
+  console.error('Schematic execution failed:', error);
+});

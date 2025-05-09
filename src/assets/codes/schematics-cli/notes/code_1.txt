@@ -1,0 +1,20 @@
+# Basic component generation (standalone by default in Angular 19)
+ng generate component my-component
+
+# Generate a component with signals
+ng generate component feature/data-dashboard --signal --style=scss
+
+# Create a feature module with routing
+ng generate module feature/admin --routing
+
+# Create a standalone pipe with export
+ng generate pipe shared/data-formatter --standalone --export
+
+# Generate a component with modern control flow
+ng generate component products/product-list --inline-template --control-flow
+
+# Generate with dry run to preview changes
+ng generate component shared/user-profile --dry-run
+
+# Use a custom schematic collection
+ng generate @my-org/my-schematics:feature dashboard --interactive

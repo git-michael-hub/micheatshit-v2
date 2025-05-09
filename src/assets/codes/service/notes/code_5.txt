@@ -1,0 +1,72 @@
+// Command to migrate to standalone components in Angular 19
+// ng generate @angular/core:standalone
+
+// Before: Traditional NgModule-based Component
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-feature',
+  templateUrl: './feature.component.html',
+  styleUrls: ['./feature.component.scss']
+})
+export class FeatureComponent implements OnInit {
+  // Component logic
+  ngOnInit() {
+    // Initialization
+  }
+}
+
+// src/app/feature/feature.module.ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { FeatureComponent } from './feature.component';
+import { SharedModule } from '../shared/shared.module';
+
+@NgModule({
+  declarations: [
+    FeatureComponent,
+    // Other components in this feature...
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    SharedModule
+  ],
+  exports: [
+    FeatureComponent
+  ]
+})
+export class FeatureModule { }
+
+// After: Migrated to Standalone Component
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+// Import what you need from SharedModule directly
+import { ButtonComponent } from '../shared/button/button.component';
+import { CardComponent } from '../shared/card/card.component';
+
+@Component({
+  selector: 'app-feature',
+  templateUrl: './feature.component.html',
+  styleUrls: ['./feature.component.scss'],
+  standalone: true,
+  // Import dependencies directly in the component
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    ButtonComponent,
+    CardComponent
+  ]
+})
+export class FeatureComponent implements OnInit {
+  // Component logic unchanged
+  ngOnInit() {
+    // Initialization
+  }
+}

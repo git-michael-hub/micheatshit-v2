@@ -1,0 +1,43 @@
+// app.routes.ts - Routes configuration with standalone components
+import { Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { AuthGuard } from './auth/auth.guard';
+import { AdminGuard } from './admin/admin.guard';
+
+export const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./dashboard/dashboard.component')
+      .then(c => c.DashboardComponent),
+    canActivate: [() => inject(AuthGuard).canActivate()]
+  },
+  {
+    // Lazy loaded feature with multiple standalone components
+    path: 'products',
+    loadChildren: () => import('./products/routes').then(m => m.PRODUCT_ROUTES)
+  },
+  {
+    // Standalone component with route parameters
+    path: 'profile/:id',
+    loadComponent: () => import('./profile/profile.component')
+      .then(c => c.ProfileComponent),
+    title: (route) => `User Profile: ${route.paramMap.get('id')}`
+  },
+  {
+    // Admin module - uses a guard and preloading strategy
+    path: 'admin',
+    loadChildren: () => import('./admin/routes').then(m => m.ADMIN_ROUTES),
+    canMatch: [() => inject(AdminGuard).canMatch()]
+  },
+  {
+    // Wildcard route - 404 standalone component
+    path: '**',
+    loadComponent: () => import('./not-found/not-found.component')
+      .then(c => c.NotFoundComponent)
+  }
+];

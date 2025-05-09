@@ -1,0 +1,54 @@
+// main.ts - Configuring zoneless routing in Angular 19
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
+import { routes } from './app/app.routes';
+import { provideZonelessChangeDetection } from '@angular/core';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(
+      routes,
+      withComponentInputBinding(), // Enable route params as component inputs
+      withViewTransitions() // Enable smooth animations between routes
+    ),
+    provideZonelessChangeDetection() // Enable zoneless change detection
+  ]
+}).catch(err => console.error(err));
+
+// app.component.ts - Example component with zoneless routing
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  template: `
+    <router-outlet />
+
+    <!-- Navigation triggers with optimized change detection -->
+    <nav>
+      <button (click)="navigate('/')">Home</button>
+      <button (click)="navigate('/dashboard')">Dashboard</button>
+    </nav>
+  `,
+})
+export class AppComponent {
+  private router = inject(Router);
+
+  // Using signals to track navigation state without zones
+  private navigationInProgress = signal(false);
+
+  navigate(path: string): void {
+    // Set signal to indicate navigation is in progress
+    this.navigationInProgress.set(true);
+
+    // Navigate programmatically
+    this.router.navigate([path]).then(() => {
+      // Update signal when navigation completes
+      this.navigationInProgress.set(false);
+    });
+  }
+}

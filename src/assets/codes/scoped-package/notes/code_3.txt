@@ -1,0 +1,48 @@
+// Basic import from scoped package
+import { Component } from '@angular/core';
+
+// Import from scoped package with subpath
+import { ButtonComponent } from '@my-org/ui-components/button';
+import { CardModule } from '@my-org/ui-components/card';
+
+// Import multiple items
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+// Import with alias
+import * as Forms from '@angular/forms';
+
+// Import non-default export
+import { environment } from '@my-org/config/environments';
+
+// Import in standalone component
+@Component({
+  selector: 'app-feature',
+  standalone: true,
+  imports: [
+    CommonModule,
+    // Import from scoped package
+    ButtonComponent,
+    CardModule
+  ],
+  template: `
+    <div>
+      <my-button>Click me</my-button>
+      <my-card title="Card Title">
+        Card content
+      </my-card>
+    </div>
+  `
+})
+export class FeatureComponent {}
+
+// Import in NgModule-based structure
+@NgModule({
+  declarations: [FeatureComponent],
+  imports: [
+    CommonModule,
+    // Import from scoped package
+    ButtonModule,
+    CardModule
+  ]
+})
+export class FeatureModule {}

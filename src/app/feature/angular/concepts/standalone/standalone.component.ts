@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
 import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
 
@@ -11,12 +11,7 @@ import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
   styleUrls: ['./standalone.component.scss']
 })
 export class StandaloneComponent extends UnsubscribeService {
-  selectedTab = 'notes';
-
-  @ViewChild('notesTemplate', { static: true }) notesTemplate!: TemplateRef<any>;
-  @ViewChild('bestPracticesTemplate', { static: true }) bestPracticesTemplate!: TemplateRef<any>;
-  @ViewChild('prosConsTemplate', { static: true }) prosConsTemplate!: TemplateRef<any>;
-  @ViewChild('relatedTopicsTemplate', { static: true }) relatedTopicsTemplate!: TemplateRef<any>;
+  selectedTab = 1;
 
   standaloneComponentCode = `// Standalone component example
 import { Component } from '@angular/core';
@@ -72,20 +67,44 @@ export const routes: Routes = [
   }
 ];`;
 
-  providersCode = `// app.config.ts
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { provideAnimations } from '@angular/platform-browser/animations';
+  signalIntegrationCode = `// Signal-based standalone component
+import { Component, signal, computed } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations()
-  ]
-};`;
+@Component({
+  selector: 'app-counter',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  template: \`
+    <div class="counter">
+      <h2>Counter: {{ count() }}</h2>
+      <p>Doubled value: {{ doubledCount() }}</p>
+      <button (click)="increment()">Increment</button>
+      <button (click)="decrement()">Decrement</button>
+      <button (click)="reset()">Reset</button>
+    </div>
+  \`
+})
+export class CounterComponent {
+  // Signal-based state
+  count = signal(0);
+
+  // Computed signal
+  doubledCount = computed(() => this.count() * 2);
+
+  increment() {
+    this.count.update(value => value + 1);
+  }
+
+  decrement() {
+    this.count.update(value => value - 1);
+  }
+
+  reset() {
+    this.count.set(0);
+  }
+}`;
 
   dependencyInjectionCode = `// Dependency injection in standalone components
 import { Component, inject } from '@angular/core';
@@ -97,15 +116,17 @@ import { UserService } from '../services/user.service';
   standalone: true,
   imports: [CommonModule],
   template: \`
-    <div *ngIf="user$ | async as user">
-      <h2>{{ user.name }}</h2>
-      <p>{{ user.email }}</p>
+    <div *ngIf="user()">
+      <h2>{{ user().name }}</h2>
+      <p>{{ user().email }}</p>
     </div>
   \`
 })
 export class UserProfileComponent {
   // Inject service using the inject function
   private userService = inject(UserService);
-  user$ = this.userService.getCurrentUser();
+
+  // Signal-based state from service
+  user = this.userService.currentUser;
 }`;
 }

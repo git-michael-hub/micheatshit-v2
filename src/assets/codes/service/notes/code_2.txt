@@ -1,0 +1,39 @@
+// main.ts - Angular 19 application bootstrapping with standalone components
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { routes } from './app/app.routes';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideClientHydration } from '@angular/platform-browser';
+import { provideStore } from '@ngrx/store';
+import { reducers, metaReducers } from './app/reducers';
+
+// Bootstrap a standalone root component
+bootstrapApplication(AppComponent, {
+  providers: [
+    // Angular router with features enabled
+    provideRouter(
+      routes,
+      withComponentInputBinding() // Enable route parameters as inputs
+    ),
+
+    // HTTP client with fetch implementation
+    provideHttpClient(withFetch()),
+
+    // Animation support
+    provideAnimations(),
+
+    // Server-side rendering hydration
+    provideClientHydration(),
+
+    // State management (optional)
+    provideStore(reducers, { metaReducers }),
+
+    // Environment-specific providers
+    ...(import.meta.env.PROD ? [] : [
+      // Development-only providers
+    ])
+  ]
+})
+.catch(err => console.error('Error bootstrapping application', err));

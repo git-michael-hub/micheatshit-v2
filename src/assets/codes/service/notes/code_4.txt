@@ -1,0 +1,84 @@
+// Using services with standalone components in Angular 19
+import { Component, inject, computed, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { UserService } from '../services/user.service';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-user-profile',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  template: `
+    <div class="user-profile">
+      <h2>User Profile</h2>
+
+      <!-- Using signal-based service state -->
+      <div *ngIf="userDataLoaded()">
+        <p>Welcome, {{ userData().displayName }}</p>
+        <p>Email: {{ userData().email }}</p>
+
+        <div class="preferences">
+          <h3>Preferences</h3>
+          <label>
+            <input type="checkbox" [ngModel]="userData().preferences.darkMode"
+                  (ngModelChange)="toggleDarkMode($event)"> Dark Mode
+          </label>
+        </div>
+
+        <div class="stats">
+          <p>Last login: {{ formattedLastLogin() }}</p>
+          <p>Member since: {{ memberSince }}</p>
+        </div>
+      </div>
+
+      <div *ngIf="!userDataLoaded()">Loading user data...</div>
+
+      <button (click)="refreshUserData()" [disabled]="isLoading()">
+        Refresh User Data
+      </button>
+    </div>
+  `,
+  // Optional component-scoped providers
+  providers: [
+    // Service provided at component level (not singleton)
+    // { provide: UserActivityTrackingService, useClass: UserActivityTrackingService }
+  ]
+})
+export class UserProfileComponent {
+  // Inject services using the inject function (Angular 19 approach)
+  private userService = inject(UserService);
+
+  // Create local state with signals
+  private isLoading = signal(false);
+
+  // Get service signals directly
+  userData = this.userService.userData;
+  userDataLoaded = this.userService.userDataLoaded;
+
+  // Format data with computed signals
+  formattedLastLogin = computed(() => {
+    if (!this.userDataLoaded()) return '';
+    const lastLogin = new Date(this.userData().lastLogin);
+    return lastLogin.toLocaleString();
+  });
+
+  // Regular property
+  memberSince = new Date().toLocaleDateString();
+
+  // Method that uses the service
+  refreshUserData() {
+    this.isLoading.set(true);
+    this.userService.fetchUserProfile().subscribe({
+      next: () => this.isLoading.set(false),
+      error: (err) => {
+        console.error('Error loading user data', err);
+        this.isLoading.set(false);
+      }
+    });
+  }
+
+  // Method to update service state
+  toggleDarkMode(enabled: boolean) {
+    this.userService.updatePreference('darkMode', enabled);
+  }
+}

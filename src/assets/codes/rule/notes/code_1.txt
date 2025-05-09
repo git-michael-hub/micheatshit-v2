@@ -1,0 +1,87 @@
+// auth.service.ts - Signal-based authentication service
+import { Injectable, computed, signal } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  // User authentication state using signals
+  private _isAuthenticated = signal(false);
+  private _userRoles = signal<string[]>([]);
+  private _lastActivity = signal<Date>(new Date());
+
+  // Public API through computed signals
+  isAuthenticated = computed(() => this._isAuthenticated());
+  userRoles = computed(() => this._userRoles());
+
+  // Session timeout computation
+  isSessionValid = computed(() => {
+    const lastActivity = this._lastActivity();
+    const now = new Date();
+    // Session expires after 30 minutes of inactivity
+    return (now.getTime() - lastActivity.getTime()) < 30 * 60 * 1000;
+  });
+
+  // Method to update last activity
+  updateLastActivity() {
+    this._lastActivity.set(new Date());
+  }
+
+  // Login method
+  login(email: string, password: string): Promise<boolean> {
+    // Simulated API call
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (email && password) {
+          this._isAuthenticated.set(true);
+          this._userRoles.set(['user']);
+          this.updateLastActivity();
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      }, 500);
+    });
+  }
+
+  // Logout method
+  logout(): void {
+    this._isAuthenticated.set(false);
+    this._userRoles.set([]);
+  }
+}
+
+// auth.guard.ts - Signal-based route guard
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
+
+// Functional route guard using signals
+export const authGuard = () => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  // Use computed signals for guard logic
+  if (authService.isAuthenticated() && authService.isSessionValid()) {
+    // Update activity timestamp when navigating
+    authService.updateLastActivity();
+    return true;
+  }
+
+  // Redirect to login page
+  return router.parseUrl('/login');
+};
+
+// admin.guard.ts - Role-based guard using signals
+export const adminGuard = () => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  if (authService.isAuthenticated() &&
+      authService.userRoles().includes('admin')) {
+    return true;
+  }
+
+  // Redirect to unauthorized page
+  return router.parseUrl('/unauthorized');
+};

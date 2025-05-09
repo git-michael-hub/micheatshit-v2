@@ -1,0 +1,40 @@
+import { Rule, SchematicContext, Tree, chain, template, mergeWith, apply, url, move } from '@angular-devkit/schematics';
+import { strings } from '@angular-devkit/core';
+import { Schema } from './schema';
+
+export function createComponent(options: Schema): Rule {
+  return (tree: Tree, _context: SchematicContext) => {
+    const { name, path = 'src/app/components', flat } = options;
+
+    // Convert the component name to various formats using utility functions
+    const templateSource = apply(
+      url('./files'),
+      [
+        template({
+          ...strings,
+          ...options,
+          // Provide TypeScript utilities to templates
+          camelize: strings.camelize,
+          dasherize: strings.dasherize,
+          classify: strings.classify,
+          // Component metadata
+          name,
+          isSignalBased: options.signal || false,
+          useControlFlow: options.controlFlow || false
+        }),
+        // Specify the output directory for generated files
+        move(flat ? path : `${path}/${strings.dasherize(name)}`)
+      ]
+    );
+
+    // Chain multiple rules to apply sequentially
+    return chain([
+      // Add the template files to the file system
+      mergeWith(templateSource),
+      // Optionally update module imports if standalone is false
+      options.standalone ?
+        () => {} :
+        addComponentToModule(options)
+    ]);
+  };
+}
