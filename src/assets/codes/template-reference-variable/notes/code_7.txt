@@ -1,0 +1,46 @@
+<!-- Template references with deferred loading -->
+<!-- Main content with reference -->
+<div #mainContent>
+  <h2>Main Content</h2>
+  <p>This content is loaded immediately</p>
+</div>
+
+<!-- Deferred block with template reference -->
+@defer {
+  <!-- This reference is only available once the block is rendered -->
+  <div #deferredChart class="chart-container">
+    <app-chart #chartComponent [data]="chartData"></app-chart>
+
+    <!-- Using the references inside the deferred block -->
+    <button (click)="chartComponent.refresh()">
+      Refresh Chart
+    </button>
+    <button (click)="deferredChart.classList.toggle('expanded')">
+      Toggle Expanded View
+    </button>
+  </div>
+} @placeholder {
+  <div>Chart is loading...</div>
+} @loading {
+  <div>Preparing chart data...</div>
+} @error {
+  <div #errorDisplay class="error-message">
+    Failed to load chart component
+    <button (click)="errorDisplay.style.display = 'none'">
+      Dismiss
+    </button>
+  </div>
+}
+
+<!-- Trigger deferred loading with reference -->
+<button (click)="mainContent.scrollIntoView()">
+  Scroll to Top
+</button>
+
+<!-- Deferred with conditional reference access -->
+@defer (on viewport) {
+  <div #lazyLoadedContent>
+    <h3>Viewport Loaded Content</h3>
+    <p>This section loads when scrolled into view</p>
+  </div>
+}

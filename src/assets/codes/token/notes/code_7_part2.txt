@@ -1,0 +1,48 @@
+// Plugin manager that uses the multi-provider
+@Injectable({ providedIn: 'root' })
+export class PluginManager {
+  private plugins = inject(PLUGINS);
+
+  initializeAll(): void {
+    for (const plugin of this.plugins) {
+      try {
+        plugin.initialize();
+      } catch (error) {
+        console.error(`Failed to initialize plugin ${plugin.name}:`, error);
+      }
+    }
+  }
+
+  destroyAll(): void {
+    for (const plugin of this.plugins) {
+      if (plugin.onDestroy) {
+        try {
+          plugin.onDestroy();
+        } catch (error) {
+          console.error(`Failed to destroy plugin ${plugin.name}:`, error);
+        }
+      }
+    }
+  }
+
+  getPlugin(name: string): Plugin | undefined {
+    return this.plugins.find(plugin => plugin.name === name);
+  }
+}
+
+// Application setup with multi-providers
+export const pluginProviders = [
+  // Each plugin is registered as a separate provider with the same token
+  { provide: PLUGINS, useClass: LoggingPlugin, multi: true },
+  { provide: PLUGINS, useClass: AnalyticsPlugin, multi: true },
+  { provide: PLUGINS, useClass: StoragePlugin, multi: true }
+];
+
+// Dynamically adding a plugin later
+export function addCustomPlugin(pluginInstance: Plugin) {
+  return {
+    provide: PLUGINS,
+    useValue: pluginInstance,
+    multi: true
+  };
+}

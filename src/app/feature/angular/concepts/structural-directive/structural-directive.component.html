@@ -1,23 +1,25 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    structural directive
+    Structural Directives
   </p>
 
   <div class="text-content">
     <p>
+      <span class="text-zinc-50 tw-font-medium">Structural Directives</span>
+      in Angular 19 shape the DOM structure by adding, removing, or manipulating elements. With Angular 19's modern control flow syntax and optimized directive architecture, structural directives now offer improved performance, better type checking, and more intuitive templates.
     </p>
 
     <br>
 
     <div class="flex flex-col">
       <div class="flex border-b border-gray-200">
-        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Notes
         </button>
-        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Pros and Cons
         </button>
-        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
@@ -33,476 +35,161 @@
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
-
   </div>
 </section>
 
-
-
-
 <ng-template #notesRef>
-  <p>
-  </p>
+  <p>Understanding Structural Directives</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      Directives that shape or reshape the DOM structure by adding, removing, or manipulating HTML elements.
+    </li>
+    <li>
+      <strong>Syntax</strong>:
+      Denoted with an asterisk (*) prefix in traditional syntax, indicating they operate on the host element and its children.
+    </li>
+    <li>
+      <strong>Angular 19 Control Flow</strong>:
+      Now includes built-in control flow blocks that can replace traditional structural directives with more intuitive syntax.
+    </li>
+    <li>
+      <strong>Core Purpose</strong>:
+      Enable conditional rendering, list iteration, and template manipulation for dynamic UI.
+    </li>
+  </ul>
 
   <br>
-
-  <ol class="list-decimal px-10 text-sm">
+  <p>Angular 19 Structural Directive Improvements</p>
+  <ol class="list-decimal pl-4 text-sm">
     <li>
-      *ngIf
-
-      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code1 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_1"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Built-in Control Flow</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces a completely new control flow syntax for more performant alternatives to traditional structural directives.</li>
+        <li>Better type checking and code completion for template variables.</li>
+        <li>More efficient change detection with fine-grained updates.</li>
+      </ul>
     </li>
     <li>
-      *ngFor
-
-      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code2 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_2"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      *ngSwitchCase and *ngSwitchDefault
-
-      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code3 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_3"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-
-    </li>
-    <li>
-      *ngTemplateOutlet
-
-      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code4 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_4"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      *ngIf with else
-
-      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code5 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_5"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      *ngFor with trackBy
-
-      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code6 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_6"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-
-
-        <!-- <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button> -->
-
-      <span copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_6_1"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-
-      </span>
-
-    </li>
-    <li>
-      *ngFor with index and last
-
-      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code7 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_7"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      *ngFor with ng-container
-
-      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code8 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_8"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      *ngFor with starting index
-
-      <button (click)="code9.hidden = !code9.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code9 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_9"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      *ngFor with slice
-
-      <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code10 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_10"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-    </li>
-    <li>
-      *ngFor with groupBy
-
-      <button (click)="code11.hidden = !code11.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code11 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_11"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-
-
-        <!-- <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button> -->
-
-      <span copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_11_1"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
-      </span>
-
-    </li>
-    <li>
-      *ngSwitch with ng-container
-
-      <button (click)="code12.hidden = !code12.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code12 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_12"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Zoneless Optimization</strong>:
+      <ul class="list-disc pl-4">
+        <li>Structural directives now work efficiently in zoneless applications with improved performance.</li>
+        <li>Reduced CPU overhead when manipulating large DOM structures.</li>
+        <li>Better integration with signal-based reactivity for fine-grained control.</li>
+      </ul>
     </li>
   </ol>
 
   <br>
+  <p>Common Structural Directives</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Directive</th>
+        <th class="py-3 px-4 text-left">Traditional Syntax</th>
+        <th class="py-3 px-4 text-left">Angular 19 Syntax</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Conditional</td>
+        <td class="py-3 px-4">*ngIf="condition"</td>
+        <td class="py-3 px-4">if (condition)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Iteration</td>
+        <td class="py-3 px-4">*ngFor="let item of items"</td>
+        <td class="py-3 px-4">for (item of items)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Switch</td>
+        <td class="py-3 px-4">*ngSwitchCase="value"</td>
+        <td class="py-3 px-4">switch cases</td>
+      </tr>
+    </tbody>
+  </table>
 
-  <p>
+  <br>
+  <p>*ngIf - Conditional Rendering</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
-  </p>
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
 
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>*ngFor - List Iteration</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
 </ng-template>
 
-
-
-
 <ng-template #prosConsRef>
-  <strong class="text-sky-400">
-    Pros:
-  </strong>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Enables dynamic DOM manipulation based on application state</li>
+        <li>Simplifies conditional rendering and list iteration in templates</li>
+        <li>Angular 19's new control flow syntax improves performance</li>
+        <li>Built-in type checking improves developer experience</li>
+        <li>Better tree-shaking reduces final bundle size</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Learning curve for understanding template microsyntax</li>
+        <li>Potential performance issues when misused (missing trackBy/track)</li>
+        <li>Complex nested directives can be hard to debug</li>
+        <li>Limited debugging tools compared to component-based logic</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
 
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Flexibility</strong>
-      <p>
-        Structural directives are very flexible and allow you to create dynamic and complex templates that can adapt to different data and conditions.
-      </p>
-    </li>
-    <li>
-      <strong>Reusability</strong>
-      <p>
-        Structural directives can be reused across multiple components and templates, making it easy to maintain and modify them.
-      </p>
-    </li>
-    <li>
-      <strong>Improved performance</strong>
-      <p>
-        By using ngIf or ngSwitch to conditionally render elements, you can improve the performance of your application by reducing the number of elements in the DOM.
-      </p>
-    </li>
-    <li>
-      <strong>Better readability</strong>
-      <p>
-        By separating your code into smaller, more manageable templates, your code becomes easier to read and understand.
-      </p>
-    </li>
-    <li>
-      <strong>Consistent coding practices</strong>
-      <p>
-        Structural directives help enforce consistent coding practices across your team by providing a standard way of structuring and rendering templates.
-      </p>
-    </li>
-  </ol>
-
-  <br>
-
-  <strong class="text-sky-400">
-    Cons:
-  </strong>
-
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Complexity</strong>
-      <p>
-        With great flexibility comes increased complexity. Structural directives can be difficult to understand and manage, especially for developers who are new to Angular.
-      </p>
-    </li>
-    <li>
-      <strong>Performance overhead</strong>
-      <p>
-        Structural directives can introduce some performance overhead, especially when used incorrectly. It's important to understand how they work and use them in a way that doesn't negatively impact performance.
-      </p>
-    </li>
-    <li>
-      <strong>Debugging issues</strong>
-      <p>
-        When you have complex templates with many nested directives, it can be difficult to debug issues and find the source of problems.
-      </p>
-    </li>
-    <li>
-      <strong>Limited functionality</strong>
-      <p>
-        Although Angular's structural directives are very powerful, there are some limitations to what they can do. If you need more advanced functionality, you may need to use a custom directive or component.
-      </p>
-    </li>
-  </ol>
-
-
-  <br>
-
-  <p>
-    Overall, Angular's structural directives are a powerful tool that can help you create dynamic and flexible templates. However, they should be used judiciously and with a good understanding of their limitations and performance implications.
-  </p>
-
-  </ng-template>
-
-
-
-
-  <ng-template #topicsRef>
-    <p>
-      Some related topics to Angular Structural Directives:
-    </p>
-
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>Angular Template Syntax:</strong>
-        <p>
-          Structural directives are part of Angular's template syntax, which also includes attribute directives and interpolation.
-        </p>
-      </li>
-      <li>
-        <strong>Directives</strong>
-        <p>
-          Structural directives are one of three types of directives in Angular, along with attribute directives and component directives.
-        </p>
-      </li>
-      <li>
-        <strong>NgTemplateOutlet</strong>
-        <p>
-          The *ngTemplateOutlet directive is a commonly used structural directive in Angular that allows you to render templates dynamically.
-        </p>
-      </li>
-      <li>
-        <strong>NgIf</strong>
-        <p>
-          The *ngIf directive is another commonly used structural directive in Angular that adds or removes elements from the DOM based on a condition.
-        </p>
-      </li>
-      <li>
-        <strong>NgFor</strong>
-        <p>
-          The *ngFor directive is used to loop over a collection and create a template instance for each item.
-        </p>
-      </li>
-      <li>
-        <strong>NgSwitch</strong>
-        <p>
-          The *ngSwitch directive is used to conditionally render content based on a value.
-        </p>
-      </li>
-      <li>
-        <strong>TemplateRef</strong>
-        <p>
-          The TemplateRef class represents an Angular template that can be used to render content dynamically.
-        </p>
-      </li>
-      <li>
-        <strong>ViewContainerRef</strong>
-        <p>
-          The ViewContainerRef class represents a container where dynamic content can be added or removed.
-        </p>
-      </li>
-      <li>
-        <strong>Change Detection</strong>
-        <p>
-          Angular uses change detection to track changes in the component's data and update the view accordingly. Structural directives play a key role in this process.
-        </p>
-      </li>
-      <li>
-        <strong>NgTemplateOutletContext</strong>
-        <p>
-          The NgTemplateOutletContext interface is used to pass context data to a dynamically rendered template.
-        </p>
-      </li>
-    </ol>
-
-
-    <br>
-
-    <p>
-
-    </p>
-
-  </ng-template>
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Angular Control Flow</p>
+      <p class="text-sm">New built-in template syntax for conditional and iterative rendering</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Custom Directives</p>
+      <p class="text-sm">Creating reusable structural directives for application-specific needs</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Template Context</p>
+      <p class="text-sm">Using and accessing contextual variables in templates</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Microsyntax</p>
+      <p class="text-sm">The special syntax used by structural directives</p>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,36 @@
+<!-- Basic Property Access in Template Expressions -->
+<div>
+  <!-- Simple property access -->
+  <h1>Welcome, {{ username }}!</h1>
+
+  <!-- Nested property access -->
+  <p>Your account type: {{ user.account.type }}</p>
+
+  <!-- Array access -->
+  <p>Latest notification: {{ notifications[0].message }}</p>
+
+  <!-- Accessing getters -->
+  <p>Full name: {{ fullName }}</p>
+</div>
+
+<!-- Component TS file -->
+/*
+@Component({...})
+class UserProfileComponent {
+  username = 'jane_doe';
+  user = {
+    account: {
+      type: 'premium'
+    }
+  };
+  notifications = [
+    { message: 'New message received' },
+    { message: 'Update available' }
+  ];
+
+  // Getter automatically works in template expressions
+  get fullName(): string {
+    return 'Jane Doe';
+  }
+}
+*/

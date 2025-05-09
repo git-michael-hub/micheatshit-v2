@@ -1,0 +1,52 @@
+<!-- Modern JavaScript Features in Angular 19 Template Expressions -->
+<div>
+  <!-- Optional Chaining for nested properties -->
+  <p>User profile: {{ user?.profile?.bio || 'No bio available' }}</p>
+
+  <!-- Nullish Coalescing Operator -->
+  <p>Display name: {{ user.displayName ?? user.username ?? 'Anonymous' }}</p>
+
+  <!-- Combining Optional Chaining with Nullish Coalescing -->
+  <p>Location: {{ user?.address?.city ?? 'Location not provided' }}</p>
+
+  <!-- Array methods in expressions -->
+  <p>Admin users: {{ users.filter(u => u.role === 'admin').length }}</p>
+
+  <!-- Template literal expressions (inside component methods) -->
+  <p>Welcome message: {{ getWelcomeMessage() }}</p>
+
+  <!-- Using true/false properly in Angular 19 -->
+  <button [disabled]="isLoading">
+    {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+  </button>
+</div>
+
+<!-- Component TS file -->
+/*
+@Component({...})
+class UserProfileComponent {
+  isLoading = false;
+  isSubmitting = false;
+
+  user = {
+    username: 'john_doe',
+    displayName: '', // Empty string
+    profile: {
+      bio: 'Angular developer'
+    },
+    address: null
+  };
+
+  users = [
+    { name: 'John', role: 'admin' },
+    { name: 'Jane', role: 'user' },
+    { name: 'Bob', role: 'admin' }
+  ];
+
+  getWelcomeMessage() {
+    // Template literals are used in component methods
+    const name = this.user.displayName ?? this.user.username;
+    return `Welcome back, ${name}!`;
+  }
+}
+*/

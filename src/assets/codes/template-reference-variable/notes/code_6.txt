@@ -1,0 +1,54 @@
+<!-- Template references with Angular 19's new control flow -->
+<div>
+  <!-- Using reference with @if block -->
+  @if (isLoggedIn()) {
+    <div #userProfile>
+      <h2>Welcome, {{ username() }}</h2>
+      <button (click)="userProfile.classList.add('highlighted')">
+        Highlight Profile
+      </button>
+    </div>
+  } @else {
+    <!-- References are scoped to their respective blocks -->
+    <div #loginForm>
+      <input #usernameInput type="text" placeholder="Username">
+      <button (click)="login(usernameInput.value)">Login</button>
+    </div>
+  }
+
+  <!-- Using reference with @for block -->
+  <ul>
+    @for (item of items(); track item.id) {
+      <!-- Each iteration has its own scope for references -->
+      <li #listItem>
+        {{ item.name }}
+        <button (click)="listItem.classList.toggle('selected')">
+          Select
+        </button>
+      </li>
+    }
+  </ul>
+
+  <!-- Using reference with @switch -->
+  @switch (currentTab()) {
+    @case ('profile') {
+      <div #profileTab>
+        Profile Content
+        <button (click)="profileTab.classList.add('active')">
+          Activate
+        </button>
+      </div>
+    }
+    @case ('settings') {
+      <div #settingsTab>
+        Settings Content
+        <button (click)="settingsTab.classList.add('active')">
+          Activate
+        </button>
+      </div>
+    }
+    @default {
+      <div #defaultTab>Default Tab</div>
+    }
+  }
+</div>

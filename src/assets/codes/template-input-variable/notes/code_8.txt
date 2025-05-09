@@ -1,0 +1,98 @@
+// Custom structural directive with template input variables
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+
+// Interface for context
+export interface RangeContext {
+  // The $implicit value to be used by the template
+  $implicit: number;
+  // Index of the current iteration
+  index: number;
+  // Whether this is the first item
+  first: boolean;
+  // Whether this is the last item
+  last: boolean;
+}
+
+@Directive({
+  selector: '[appRepeatRange]'
+})
+export class RepeatRangeDirective {
+  constructor(
+    private templateRef: TemplateRef<RangeContext>,
+    private viewContainer: ViewContainerRef
+  ) {}
+
+  @Input() set appRepeatRange(range: number) {
+    // Clear previous views
+    this.viewContainer.clear();
+
+    // Create views for each number in the range
+    for (let i = 0; i < range; i++) {
+      // Create context with template input variables
+      const context: RangeContext = {
+        $implicit: i + 1,        // Value available as the default variable
+        index: i,                // Index available as let-index
+        first: i === 0,          // First item flag
+        last: i === range - 1    // Last item flag
+      };
+
+      // Create embedded view with the context
+      this.viewContainer.createEmbeddedView(this.templateRef, context);
+    }
+  }
+}
+
+// Using the directive in a component template
+/*
+<ul>
+  <li *appRepeatRange="5; let num; let idx = index; let isFirst = first; let isLast = last"
+      [class.first]="isFirst"
+      [class.last]="isLast">
+    Item #{{ idx }}: Value {{ num }}
+  </li>
+</ul>
+*/
+
+// Angular 19 Improvements - Using the directive with @defer
+/*
+@defer {
+  <ul>
+    <li *appRepeatRange="itemCount(); let num; let idx = index"
+        [class.active]="activeIndex() === idx">
+      Item #{{ idx }}: Value {{ num }}
+      <button (click)="setActive(idx)">Select</button>
+    </li>
+  </ul>
+} @placeholder {
+  <p>Loading items...</p>
+}
+*/
+
+// Component using the directive
+import { Component, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-range-demo',
+  template: `
+    <h2>Range Demo</h2>
+    <input type="number" [ngModel]="count()" (ngModelChange)="count.set($event)">
+
+    <ul>
+      <li *appRepeatRange="count(); let num; let idx = index; let isFirst = first; let isLast = last"
+          [class.first]="isFirst"
+          [class.last]="isLast"
+          [class.active]="activeIndex() === idx">
+        Item #{{ idx }}: Value {{ num }}
+        <button (click)="setActive(idx)">Select</button>
+      </li>
+    </ul>
+  `
+})
+export class RangeDemoComponent {
+  count = signal<number>(5);
+  activeIndex = signal<number>(-1);
+
+  setActive(index: number): void {
+    this.activeIndex.set(index);
+  }
+}

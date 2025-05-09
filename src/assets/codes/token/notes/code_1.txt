@@ -1,0 +1,38 @@
+// Enhanced functional providers in Angular 19
+import { Injectable, InjectionToken, makeEnvironmentProviders } from '@angular/core';
+
+// Define configuration interface
+interface AppConfig {
+  apiUrl: string;
+  enableDebug: boolean;
+}
+
+// Create a typed injection token
+export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
+
+// Service that depends on the configuration
+@Injectable({ providedIn: 'root' })
+export class ApiService {
+  constructor(@Inject(APP_CONFIG) private config: AppConfig) {}
+
+  getData() {
+    return fetch(`${this.config.apiUrl}/data`);
+  }
+}
+
+// Angular 19 enhanced functional providers
+export function provideAppConfig(config: AppConfig) {
+  return makeEnvironmentProviders([
+    { provide: APP_CONFIG, useValue: config }
+  ]);
+}
+
+// In your application setup
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideAppConfig({
+      apiUrl: 'https://api.example.com',
+      enableDebug: false
+    })
+  ]
+});

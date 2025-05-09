@@ -1,0 +1,85 @@
+// Using class tokens in Angular 19
+import { Component, Injectable, inject } from '@angular/core';
+
+// Base interface for logging
+interface Logger {
+  debug(message: string): void;
+  info(message: string): void;
+  warn(message: string): void;
+  error(message: string): void;
+}
+
+// Implementation for development
+@Injectable()
+export class DevLogger implements Logger {
+  debug(message: string): void {
+    console.log(`[DEBUG] ${message}`);
+  }
+
+  info(message: string): void {
+    console.info(`[INFO] ${message}`);
+  }
+
+  warn(message: string): void {
+    console.warn(`[WARN] ${message}`);
+  }
+
+  error(message: string): void {
+    console.error(`[ERROR] ${message}`);
+  }
+}
+
+// Implementation for production
+@Injectable()
+export class ProdLogger implements Logger {
+  debug(message: string): void {
+    // No-op in production
+  }
+
+  info(message: string): void {
+    // Only log to analytics in production
+  }
+
+  warn(message: string): void {
+    console.warn(`[WARN] ${message}`);
+  }
+
+  error(message: string): void {
+    console.error(`[ERROR] ${message}`);
+    // Send to error reporting service
+  }
+}
+
+// Application configuration
+const isProduction = true; // Determined at build time
+
+// Using class token in providers
+export const appConfig = {
+  providers: [
+    {
+      provide: DevLogger, // The class itself is the token
+      useClass: isProduction ? ProdLogger : DevLogger
+    }
+  ]
+};
+
+// Component using the service
+@Component({
+  selector: 'app-example',
+  template: '<button (click)="logSomething()">Log Message</button>'
+})
+export class ExampleComponent {
+  // Inject using the class token
+  private logger = inject(DevLogger);
+
+  logSomething() {
+    this.logger.info('Button clicked');
+
+    try {
+      // Some operation
+      throw new Error('Example error');
+    } catch (error) {
+      this.logger.error(`Operation failed: ${error.message}`);
+    }
+  }
+}

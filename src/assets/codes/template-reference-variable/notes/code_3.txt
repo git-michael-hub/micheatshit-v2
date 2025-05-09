@@ -1,0 +1,54 @@
+<!-- Directive reference example -->
+<!-- Using a directive with exportAs -->
+<div [appHighlight]="'yellow'" #highlighter="appHighlight">
+  Hover over me to activate the highlight!
+</div>
+
+<!-- Access directive methods directly -->
+<button (click)="highlighter.toggleHighlight()">Toggle Highlight</button>
+<button (click)="highlighter.setColor('green')">Set Green</button>
+<button (click)="highlighter.setColor('blue')">Set Blue</button>
+
+<!-- Get current directive state -->
+<p>Current color: {{ highlighter.highlightColor }}</p>
+<p>Currently active: {{ highlighter.isHighlighted }}</p>
+
+<!-- highlight.directive.ts -->
+@Directive({
+  selector: '[appHighlight]',
+  exportAs: 'appHighlight' // Makes directive accessible via template reference
+})
+export class HighlightDirective {
+  @Input('appHighlight') highlightColor = 'yellow';
+  isHighlighted = false;
+
+  constructor(private el: ElementRef) {}
+
+  @HostListener('mouseenter')
+  onMouseEnter() {
+    this.highlight(this.highlightColor);
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave() {
+    if (!this.isHighlighted) {
+      this.highlight(null);
+    }
+  }
+
+  toggleHighlight() {
+    this.isHighlighted = !this.isHighlighted;
+    this.highlight(this.isHighlighted ? this.highlightColor : null);
+  }
+
+  setColor(color: string) {
+    this.highlightColor = color;
+    if (this.isHighlighted) {
+      this.highlight(this.highlightColor);
+    }
+  }
+
+  private highlight(color: string | null) {
+    this.el.nativeElement.style.backgroundColor = color;
+  }
+}

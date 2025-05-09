@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { takeUntil } from 'rxjs';
 import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
 
@@ -16,6 +16,12 @@ export class SubscriberComponent extends UnsubscribeService {
   code_3 = '';
   code_4 = '';
   code_5 = '';
+
+  @ViewChild('code1') code1!: ElementRef;
+  @ViewChild('code2') code2!: ElementRef;
+  @ViewChild('code3') code3!: ElementRef;
+  @ViewChild('code4') code4!: ElementRef;
+  @ViewChild('code5') code5!: ElementRef;
 
   constructor(
     private http: HttpClient

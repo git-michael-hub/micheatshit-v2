@@ -1,0 +1,25 @@
+<!-- Traditional ngFor with template input variables -->
+<ul>
+  <li *ngFor="let user of users;
+              let i = index;
+              let isFirst = first;
+              let isLast = last;
+              let isEven = even;
+              let isOdd = odd">
+    <div [class.first-item]="isFirst"
+         [class.last-item]="isLast"
+         [class.even-row]="isEven"
+         [class.odd-row]="isOdd">
+      {{ i + 1 }}. {{ user.name }} ({{ user.email }})
+    </div>
+  </li>
+</ul>
+
+<!-- Component class -->
+export class UserListComponent {
+  users = [
+    { id: 1, name: 'John Doe', email: 'john@example.com' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com' }
+  ];
+}

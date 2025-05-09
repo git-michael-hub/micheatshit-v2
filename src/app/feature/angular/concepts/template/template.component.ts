@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { takeUntil } from 'rxjs';
 import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
 
@@ -17,6 +17,17 @@ export class TemplateComponent extends UnsubscribeService {
   code_4 = '';
   code_5 = '';
   code_6 = '';
+  code_7 = '';
+  code_8 = '';
+
+  @ViewChild('code1') code1!: ElementRef;
+  @ViewChild('code2') code2!: ElementRef;
+  @ViewChild('code3') code3!: ElementRef;
+  @ViewChild('code4') code4!: ElementRef;
+  @ViewChild('code5') code5!: ElementRef;
+  @ViewChild('code6') code6!: ElementRef;
+  @ViewChild('code7') code7!: ElementRef;
+  @ViewChild('code8') code8!: ElementRef;
 
   constructor(
     private http: HttpClient
@@ -41,14 +52,21 @@ export class TemplateComponent extends UnsubscribeService {
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_4 = data);
 
-      this.http.get('assets/codes/template/notes/code_5.txt', { responseType: 'text' })
+    this.http.get('assets/codes/template/notes/code_5.txt', { responseType: 'text' })
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_5 = data);
 
-      this.http.get('assets/codes/template/notes/code_6.txt', { responseType: 'text' })
+    this.http.get('assets/codes/template/notes/code_6.txt', { responseType: 'text' })
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_6 = data);
 
+    this.http.get('assets/codes/template/notes/code_7.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_7 = data);
+
+    this.http.get('assets/codes/template/notes/code_8.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_8 = data);
   }
 }
 

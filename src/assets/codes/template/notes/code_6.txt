@@ -1,3 +1,55 @@
 <ul>
   <li *ngFor="let item of items">{{ item }}</li>
 </ul>
+
+// main.ts - Bootstrap a zoneless Angular 19 application
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    // Remove Zone.js by NOT providing any zone.js providers
+  ]
+}).catch(err => console.error(err));
+
+// Component with manual change detection
+import { Component, signal, ChangeDetectorRef } from '@angular/core';
+
+@Component({
+  selector: 'app-counter',
+  template: `
+    <div class="counter">
+      <h2>Zoneless Counter: {{ count() }}</h2>
+      <button (click)="increment()">Increment</button>
+      <button (click)="decrement()">Decrement</button>
+      <button (click)="resetAsync()">Reset (Async)</button>
+    </div>
+  `
+})
+export class CounterComponent {
+  // Signal for reactive state
+  count = signal(0);
+
+  constructor(private cd: ChangeDetectorRef) {}
+
+  // Manual change detection after state update
+  increment() {
+    this.count.update(c => c + 1);
+    // No need to call detectChanges as signals automatically mark
+    // the component for change detection
+  }
+
+  decrement() {
+    this.count.update(c => c - 1);
+    // Signal updates trigger marking of dirty components
+  }
+
+  // For async operations in zoneless apps, manual change detection is needed
+  resetAsync() {
+    setTimeout(() => {
+      this.count.set(0);
+      // With async operations, we need to manually trigger change detection
+      this.cd.detectChanges();
+    }, 1000);
+  }
+}

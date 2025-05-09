@@ -1,0 +1,64 @@
+// Signal integration with tokens in Angular 19
+import { Injectable, InjectionToken, signal, computed, effect, inject } from '@angular/core';
+
+// Token for reactive theme configuration
+export const THEME_CONFIG = new InjectionToken<ReturnType<typeof createThemeConfig>>('theme.config');
+
+// Create a reactive theme configuration using signals
+export function createThemeConfig() {
+  const isDarkMode = signal(false);
+  const primaryColor = signal('#3366ff');
+  const secondaryColor = signal('#ff3366');
+
+  // Computed values derived from signals
+  const currentTheme = computed(() => {
+    return {
+      mode: isDarkMode() ? 'dark' : 'light',
+      primary: primaryColor(),
+      secondary: secondaryColor()
+    };
+  });
+
+  return {
+    isDarkMode,
+    primaryColor,
+    secondaryColor,
+    currentTheme
+  };
+}
+
+// Provide the theme configuration
+export function provideThemeConfig() {
+  return [
+    {
+      provide: THEME_CONFIG,
+      useFactory: () => createThemeConfig()
+    }
+  ];
+}
+
+// Using the token in a component
+@Component({
+  selector: 'app-theme-consumer',
+  template: `
+    <div [class.dark-mode]="themeConfig.isDarkMode()">
+      <h1 [style.color]="themeConfig.primaryColor()">Hello World</h1>
+      <button (click)="toggleTheme()">Toggle Theme</button>
+    </div>
+  `
+})
+export class ThemeConsumerComponent {
+  // Inject the token
+  themeConfig = inject(THEME_CONFIG);
+
+  // Effect that runs whenever theme changes
+  constructor() {
+    effect(() => {
+      console.log('Theme changed:', this.themeConfig.currentTheme());
+    });
+  }
+
+  toggleTheme() {
+    this.themeConfig.isDarkMode.update(dark => !dark);
+  }
+}

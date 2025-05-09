@@ -1,0 +1,118 @@
+// Using functional providers with tokens in Angular 19
+import {
+  InjectionToken,
+  Injectable,
+  inject,
+  makeEnvironmentProviders
+} from '@angular/core';
+
+// API URL token
+export const API_URL = new InjectionToken<string>('api.url');
+
+// Auth token
+export const AUTH_TOKEN = new InjectionToken<string>('auth.token');
+
+// Interceptor token
+export const HTTP_INTERCEPTORS = new InjectionToken<HttpInterceptor[]>('http.interceptors', {
+  providedIn: 'root',
+  factory: () => []
+});
+
+// Interface for interceptors
+interface HttpInterceptor {
+  intercept(request: Request, next: () => Promise<Response>): Promise<Response>;
+}
+
+// Auth interceptor implementation
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  private authToken = inject(AUTH_TOKEN);
+
+  async intercept(request: Request, next: () => Promise<Response>): Promise<Response> {
+    // Clone the request and add auth header
+    const authReq = new Request(request);
+    authReq.headers.set('Authorization', `Bearer ${this.authToken}`);
+    return next();
+  }
+}
+
+// Logging interceptor implementation
+@Injectable()
+export class LoggingInterceptor implements HttpInterceptor {
+  async intercept(request: Request, next: () => Promise<Response>): Promise<Response> {
+    const startTime = Date.now();
+    console.log(`[HTTP] Request: ${request.method} ${request.url}`);
+
+    try {
+      const response = await next();
+      const duration = Date.now() - startTime;
+      console.log(`[HTTP] Response: ${request.method} ${request.url} - ${response.status} (${duration}ms)`);
+      return response;
+    } catch (error) {
+      const duration = Date.now() - startTime;
+      console.error(`[HTTP] Error: ${request.method} ${request.url} - (${duration}ms)`, error);
+      throw error;
+    }
+  }
+}
+
+// HTTP client using interceptors
+@Injectable({ providedIn: 'root' })
+export class HttpClient {
+  private apiUrl = inject(API_URL);
+  private interceptors = inject(HTTP_INTERCEPTORS);
+
+  async get(endpoint: string): Promise<any> {
+    const url = `${this.apiUrl}/${endpoint}`;
+    const request = new Request(url);
+
+    // Create interceptor chain
+    const chain = this.interceptors.reduceRight(
+      (next, interceptor) => {
+        return () => interceptor.intercept(request, next);
+      },
+      () => fetch(request).then(response => response.json())
+    );
+
+    return chain();
+  }
+}
+
+// Functional provider for HTTP configuration
+export function provideHttp(config: {
+  apiUrl: string,
+  authToken: string,
+  enableLogging?: boolean
+}) {
+  const providers = [
+    { provide: API_URL, useValue: config.apiUrl },
+    { provide: AUTH_TOKEN, useValue: config.authToken }
+  ];
+
+  if (config.enableLogging) {
+    providers.push({
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptor,
+      multi: true
+    });
+  }
+
+  providers.push({
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  });
+
+  return makeEnvironmentProviders(providers);
+}
+
+// Usage in application setup
+const appConfig = {
+  providers: [
+    provideHttp({
+      apiUrl: 'https://api.example.com',
+      authToken: 'my-auth-token',
+      enableLogging: true
+    })
+  ]
+};

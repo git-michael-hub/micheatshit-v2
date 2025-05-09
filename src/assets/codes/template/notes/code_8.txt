@@ -1,0 +1,107 @@
+// Example of signal-based template functions in Angular 19
+import { Component, signal, computed, effect } from '@angular/core';
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+  inStock: boolean;
+}
+
+@Component({
+  selector: 'app-product-list',
+  template: `
+    <div class="filters">
+      <input
+        placeholder="Search products..."
+        (input)="searchTerm.set($event.target.value)"
+      />
+      <select (change)="selectedCategory.set($event.target.value)">
+        <option value="">All Categories</option>
+        <option *ngFor="let category of uniqueCategories()">
+          {{ category }}
+        </option>
+      </select>
+      <label>
+        <input
+          type="checkbox"
+          [checked]="showInStockOnly()"
+          (change)="showInStockOnly.set($event.target.checked)"
+        />
+        In-stock only
+      </label>
+    </div>
+
+    <p>Found {{ filteredProducts().length }} products</p>
+
+    <div class="products-grid">
+      @for (product of filteredProducts(); track product.id) {
+        <div class="product-card">
+          <h3>{{ product.name }}</h3>
+          <p class="price">{{ formatPrice(product.price) }}</p>
+          <span class="category">{{ product.category }}</span>
+          <div class="stock-status" [class.in-stock]="product.inStock">
+            {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
+          </div>
+        </div>
+      } @empty {
+        <div class="no-results">
+          No products found matching your criteria
+        </div>
+      }
+    </div>
+  `
+})
+export class ProductListComponent {
+  // Base data as signals
+  products = signal<Product[]>([
+    /* product data would be loaded here */
+  ]);
+  searchTerm = signal('');
+  selectedCategory = signal('');
+  showInStockOnly = signal(false);
+
+  // Derived state using computed signals
+  filteredProducts = computed(() => {
+    return this.products().filter(product => {
+      // Apply search filter
+      const matchesSearch = product.name
+        .toLowerCase()
+        .includes(this.searchTerm().toLowerCase());
+
+      // Apply category filter
+      const matchesCategory = this.selectedCategory() === '' ||
+        product.category === this.selectedCategory();
+
+      // Apply in-stock filter
+      const matchesStock = !this.showInStockOnly() || product.inStock;
+
+      return matchesSearch && matchesCategory && matchesStock;
+    });
+  });
+
+  // Compute unique categories from products
+  uniqueCategories = computed(() => {
+    const categories = new Set<string>();
+    this.products().forEach(p => categories.add(p.category));
+    return Array.from(categories);
+  });
+
+  // Template helper function
+  formatPrice(price: number): string {
+    return `$${price.toFixed(2)}`;
+  }
+
+  // Reactivity effect for analytics
+  constructor() {
+    effect(() => {
+      // Track filter changes for analytics
+      console.log('Filters changed:', {
+        search: this.searchTerm(),
+        category: this.selectedCategory(),
+        inStockOnly: this.showInStockOnly()
+      });
+    });
+  }
+}

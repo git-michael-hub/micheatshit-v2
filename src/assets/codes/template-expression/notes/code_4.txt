@@ -1,0 +1,49 @@
+<!-- Conditional (Ternary) Expressions in Angular Templates -->
+<div>
+  <!-- Basic ternary operator -->
+  <p>Status: {{ isActive ? 'Active' : 'Inactive' }}</p>
+
+  <!-- Comparison with property access -->
+  <p>{{ user.age >= 18 ? 'Adult' : 'Minor' }}</p>
+
+  <!-- With method calls -->
+  <p>Cart: {{ hasItems() ? 'Items in cart' : 'Empty cart' }}</p>
+
+  <!-- Multiple conditions -->
+  <p>
+    {{ isLoggedIn ?
+       (isPremium ? 'Premium User' : 'Standard User') :
+       'Guest' }}
+  </p>
+
+  <!-- Used for styling -->
+  <div [class]="isImportant ? 'highlight' : 'normal'">
+    Conditional styling
+  </div>
+
+  <!-- Used for attribute values -->
+  <button [disabled]="isLoading ? true : false">
+    {{ isLoading ? 'Loading...' : 'Submit' }}
+  </button>
+</div>
+
+<!-- Component TS file -->
+/*
+@Component({...})
+class UserComponent {
+  isActive = true;
+  isLoggedIn = true;
+  isPremium = false;
+  isImportant = true;
+  isLoading = false;
+
+  user = {
+    name: 'John',
+    age: 25
+  };
+
+  hasItems(): boolean {
+    return true; // Logic to check if items exist
+  }
+}
+*/

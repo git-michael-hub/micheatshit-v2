@@ -1,0 +1,49 @@
+<!-- Template with context variables -->
+<ng-template #userTemplate let-user let-index="index" let-isAdmin="isAdmin">
+  <div class="user-card">
+    <h3>{{ index + 1 }}. {{ user.name }}</h3>
+    <p>Email: {{ user.email }}</p>
+    @if (isAdmin) {
+      <span class="admin-badge">Administrator</span>
+    }
+  </div>
+</ng-template>
+
+<!-- Using the template with ngTemplateOutlet and context -->
+<div *ngFor="let user of users; let i = index">
+  <ng-container
+    [ngTemplateOutlet]="userTemplate"
+    [ngTemplateOutletContext]="{
+      $implicit: user,
+      index: i,
+      isAdmin: user.role === 'admin'
+    }">
+  </ng-container>
+</div>
+
+<!-- Angular 19 - More type-safe approach -->
+<div>
+  @for (user of users(); track user.id) {
+    <ng-container
+      [ngTemplateOutlet]="userTemplate"
+      [ngTemplateOutletContext]="{
+        $implicit: user,
+        index: $index,
+        isAdmin: user.role === 'admin'
+      }">
+    </ng-container>
+  }
+</div>
+
+<!-- Component code -->
+@Component({
+  selector: 'app-user-display',
+  templateUrl: './user-display.component.html'
+})
+export class UserDisplayComponent {
+  users = signal<User[]>([
+    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'user' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'admin' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'user' }
+  ]);
+}

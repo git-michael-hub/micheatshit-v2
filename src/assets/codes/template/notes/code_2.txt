@@ -1,1 +1,30 @@
 <input [value]="name">
+
+<!-- Example of Angular 19's @for control flow -->
+<ul>
+  @for (item of items; track item.id) {
+    <li>{{ item.name }}</li>
+  } @empty {
+    <li>No items found</li>
+  }
+</ul>
+
+<!-- With index and other metadata variables -->
+<ul>
+  @for (item of items; track item.id; let i = $index; let e = $even; let f = $first) {
+    <li [class.even]="e" [class.first]="f">
+      {{ i + 1 }}. {{ item.name }}
+    </li>
+  }
+</ul>
+
+<!-- Compared to older *ngFor approach -->
+<!--
+<ul>
+  <li *ngFor="let item of items; trackBy: trackById; let i = index; let e = even; let f = first"
+      [class.even]="e" [class.first]="f">
+    {{ i + 1 }}. {{ item.name }}
+  </li>
+  <li *ngIf="items.length === 0">No items found</li>
+</ul>
+-->

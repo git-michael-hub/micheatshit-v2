@@ -1,0 +1,73 @@
+// Tree-shaking optimization with tokens in Angular 19
+import { InjectionToken, Injectable, inject } from '@angular/core';
+
+// Feature flags token - enables granular tree-shaking
+export const FEATURE_FLAGS = new InjectionToken<Record<string, boolean>>('feature.flags', {
+  factory: () => ({
+    enableNewUI: false,
+    enableAnalytics: true,
+    enableExperimentalFeatures: false
+  }),
+  // Mark as providedIn: 'root' for tree-shaking
+  providedIn: 'root'
+});
+
+// Only imported and included in bundle when actually used
+@Injectable({ providedIn: 'root' })
+export class AnalyticsService {
+  private featureFlags = inject(FEATURE_FLAGS);
+
+  trackEvent(event: string, data: any) {
+    // Only executes if analytics is enabled
+    if (this.featureFlags.enableAnalytics) {
+      console.log('Tracking event', event, data);
+      // Analytics implementation
+    }
+  }
+}
+
+// Experimental feature - will be tree-shaken if not used
+@Injectable({ providedIn: 'root' })
+export class ExperimentalFeatureService {
+  constructor() {
+    console.log('Experimental feature service initialized');
+  }
+
+  doSomethingExperimental() {
+    // Implementation
+  }
+}
+
+// Usage in a component
+@Component({
+  template: `
+    <div>
+      <button (click)="trackButtonClick()">Track Click</button>
+
+      @if (featureFlags.enableNewUI) {
+        <new-ui-component />
+      } @else {
+        <legacy-ui-component />
+      }
+
+      @if (featureFlags.enableExperimentalFeatures) {
+        <experimental-component />
+      }
+    </div>
+  `,
+})
+export class AppComponent {
+  // Inject feature flags token
+  featureFlags = inject(FEATURE_FLAGS);
+  analytics = inject(AnalyticsService);
+
+  // Conditionally inject experimental service
+  // Will be tree-shaken if not used
+  experimentalService = this.featureFlags.enableExperimentalFeatures
+    ? inject(ExperimentalFeatureService)
+    : null;
+
+  trackButtonClick() {
+    this.analytics.trackEvent('button_click', { page: 'home' });
+  }
+}

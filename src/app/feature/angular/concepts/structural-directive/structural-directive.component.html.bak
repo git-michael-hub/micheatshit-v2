@@ -1,0 +1,412 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Structural Directives
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Structural Directives</span>
+      in Angular 19 shape the DOM structure by adding, removing, or manipulating elements. With Angular 19's modern control flow syntax and optimized directive architecture, structural directives now offer improved performance, better type checking, and more intuitive templates while supporting both classic asterisk syntax and the new built-in control flow.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Understanding Structural Directives</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      Directives that shape or reshape the DOM structure by adding, removing, or manipulating HTML elements.
+    </li>
+    <li>
+      <strong>Syntax</strong>:
+      Denoted with an asterisk (*) prefix in traditional syntax, indicating they operate on the host element and its children.
+    </li>
+    <li>
+      <strong>Angular 19 Control Flow</strong>:
+      Now includes built-in control flow blocks that can replace traditional structural directives with more intuitive syntax.
+    </li>
+    <li>
+      <strong>Core Purpose</strong>:
+      Enable conditional rendering, list iteration, and template manipulation for dynamic UI.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Structural Directive Improvements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Built-in Control Flow</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces a completely new control flow syntax (&#64;if, &#64;for, &#64;switch) as a more performant alternative to *ngIf, *ngFor, and *ngSwitch.</li>
+        <li>Better type checking and code completion for template variables.</li>
+        <li>More efficient change detection with fine-grained updates.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Optimization</strong>:
+      <ul class="list-disc pl-4">
+        <li>Structural directives now work efficiently in zoneless applications with improved performance.</li>
+        <li>Reduced CPU overhead when manipulating large DOM structures.</li>
+        <li>Better integration with signal-based reactivity for fine-grained control.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Deferrable Views</strong>:
+      <ul class="list-disc pl-4">
+        <li>Integration with &#64;defer block for conditionally loading elements based on different triggers.</li>
+        <li>Improved lazy loading capabilities for large templated content.</li>
+        <li>Granular loading strategies for better performance optimization.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Type Safety</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enhanced type checking for structural directive inputs and template variables.</li>
+        <li>Better IDE integration for code completion and error detection.</li>
+        <li>Stronger compile-time guarantees with Angular 19's type system improvements.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Standalone Component Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Better integration with standalone architecture and component-level imports.</li>
+        <li>More efficient tree-shaking for unused directives.</li>
+        <li>Cleaner dependency management in component-centric applications.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Common Structural Directives</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Directive</th>
+        <th class="py-3 px-4 text-left">Traditional Syntax</th>
+        <th class="py-3 px-4 text-left">Angular 19 Syntax</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Conditional</td>
+        <td class="py-3 px-4">*ngIf="condition"</td>
+        <td class="py-3 px-4">&#64;if (condition)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Iteration</td>
+        <td class="py-3 px-4">*ngFor="let item of items"</td>
+        <td class="py-3 px-4">&#64;for (item of items; track item.id)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Switch</td>
+        <td class="py-3 px-4">*ngSwitchCase="value"</td>
+        <td class="py-3 px-4">&#64;switch (expression) { &#64;case (value) }</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Template Outlet</td>
+        <td class="py-3 px-4">*ngTemplateOutlet="template"</td>
+        <td class="py-3 px-4">*ngTemplateOutlet="template"</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>*ngIf - Conditional Rendering (Traditional)</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>&#64;if - Angular 19 Control Flow (Modern)</p>
+  <button (click)="code10.hidden = !code10.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code10 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_10"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>*ngFor - List Iteration (Traditional)</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>&#64;for - Angular 19 Iteration (Modern)</p>
+  <button (click)="code11.hidden = !code11.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code11 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_11"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>*ngSwitch - Conditional Cases (Traditional)</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>&#64;switch - Angular 19 Switch (Modern)</p>
+  <button (click)="code12.hidden = !code12.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code12 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_12"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>*ngTemplateOutlet - Template Reuse</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Modern Control Flow When Possible</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Prefer Built-in Syntax</strong>:
+          Use Angular 19's built-in control flow (&#64;if, &#64;for, &#64;switch) for better performance and type checking.
+        </li>
+        <li>
+          <strong>Maintain Compatibility</strong>:
+          For libraries or shared code that must support older Angular versions, continue using traditional structural directives.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize List Rendering</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Always Use TrackBy</strong>:
+          Specify the "track" expression in &#64;for or trackBy in *ngFor to optimize rendering performance for collections.
+        </li>
+        <li>
+          <strong>Consider List Virtualization</strong>:
+          For large lists, use virtualization techniques like @angular/cdk/scrolling's virtual scroller.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Simplify Complex Templates</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use ng-container</strong>:
+          Apply multiple structural directives without creating extra DOM elements by using ng-container.
+        </li>
+        <li>
+          <strong>Extract Nested Logic</strong>:
+          Move complex template logic to component methods or computed properties for better readability.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Template Context</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Access Context Variables</strong>:
+          Use $index, $first, $last, and other context variables for more sophisticated rendering logic.
+        </li>
+        <li>
+          <strong>Type Context Variables</strong>:
+          Define explicit types for template context variables to improve development experience.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Conditional Logic</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Combine Related Conditions</strong>:
+          Use &#64;if/&#64;else blocks or *ngIf/else patterns instead of multiple separate conditional elements.
+        </li>
+        <li>
+          <strong>Minimize DOM Manipulation</strong>:
+          Use the [hidden] property instead of *ngIf when frequently toggling visibility without changing data.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Enables dynamic DOM manipulation based on application state</li>
+        <li>Simplifies conditional rendering and list iteration in templates</li>
+        <li>Angular 19's new control flow syntax improves performance</li>
+        <li>Built-in type checking improves developer experience</li>
+        <li>Better tree-shaking reduces final bundle size</li>
+        <li>Seamless integration with signal-based reactivity</li>
+        <li>Supports both traditional syntax and modern control flow</li>
+        <li>Provides template context variables for advanced use cases</li>
+        <li>Works efficiently in zoneless applications</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Mixing traditional and modern syntax can lead to inconsistent codebases</li>
+        <li>Learning curve for understanding template microsyntax</li>
+        <li>Potential performance issues when misused (missing trackBy/track)</li>
+        <li>Complex nested directives can be hard to debug</li>
+        <li>Limited debugging tools compared to component-based logic</li>
+        <li>Overuse can lead to complex template logic that should be in component code</li>
+        <li>Creating custom structural directives requires deeper Angular knowledge</li>
+        <li>Migration from traditional to modern syntax requires codebase updates</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Angular Control Flow</p>
+      <p class="text-sm">New built-in template syntax for conditional and iterative rendering</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Custom Directives</p>
+      <p class="text-sm">Creating reusable structural directives for application-specific needs</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Template Context</p>
+      <p class="text-sm">Using and accessing contextual variables in templates</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Microsyntax</p>
+      <p class="text-sm">The special syntax used by structural directives</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Virtual DOM</p>
+      <p class="text-sm">How Angular efficiently updates the DOM using structural directives</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Defer Blocks</p>
+      <p class="text-sm">Conditionally loading template content with optimized strategies</p>
+    </div>
+  </div>
+</ng-template>

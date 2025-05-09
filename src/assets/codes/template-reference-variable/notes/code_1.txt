@@ -1,0 +1,14 @@
+<!-- Basic DOM element reference -->
+<div #myElement>This is a referenced element</div>
+
+<!-- Using the reference in the template -->
+<button (click)="myElement.style.color = 'red'">
+  Change Text Color
+</button>
+
+<!-- You can also read properties -->
+<p>Element textContent: {{ myElement.textContent }}</p>
+
+<!-- With Angular 19's improved type safety -->
+<!-- TypeScript will provide better type checking for DOM properties -->
+<p>Element offsetWidth: {{ myElement.offsetWidth }}</p>

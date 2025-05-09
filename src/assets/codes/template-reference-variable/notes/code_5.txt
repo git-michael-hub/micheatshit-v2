@@ -1,0 +1,62 @@
+// Template reference with signals
+import { Component, signal, computed, effect, ViewChild, ElementRef } from '@angular/core';
+
+@Component({
+  selector: 'app-signal-reference-demo',
+  template: `
+    <div #signalElement>
+      This element's properties will be tracked via signals
+    </div>
+
+    <div>
+      Element width: {{ elementWidth() }}px
+    </div>
+
+    <button (click)="changeText()">Change Text</button>
+
+    <!-- Using template reference with signal syntax -->
+    <div>
+      Character count: {{ textLength() }}
+    </div>
+  `
+})
+export class SignalReferenceDemoComponent {
+  // Reference to the element
+  @ViewChild('signalElement', { static: true })
+  signalElement!: ElementRef<HTMLDivElement>;
+
+  // Signals derived from element reference
+  elementWidth = signal(0);
+  textLength = signal(0);
+
+  // Create a computed signal based on element width
+  isWideElement = computed(() => this.elementWidth() > 200);
+
+  constructor() {
+    // Create an effect to track element dimensions
+    effect(() => {
+      if (this.signalElement) {
+        const el = this.signalElement.nativeElement;
+
+        // Update signals when observed in templates
+        this.elementWidth.set(el.offsetWidth);
+        this.textLength.set(el.textContent?.trim().length || 0);
+
+        // Log when the element becomes "wide"
+        if (this.isWideElement()) {
+          console.log('Element is now wide!');
+        }
+      }
+    });
+  }
+
+  changeText() {
+    if (this.signalElement) {
+      // Update element content
+      this.signalElement.nativeElement.textContent =
+        'Text changed! ' + new Date().toLocaleTimeString();
+
+      // Signals will automatically update due to the effect
+    }
+  }
+}

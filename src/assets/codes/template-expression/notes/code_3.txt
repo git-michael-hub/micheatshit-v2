@@ -1,0 +1,38 @@
+<!-- Math Operators in Template Expressions -->
+<div>
+  <!-- Basic arithmetic operations -->
+  <p>Sum: {{ 5 + 10 }}</p>
+  <p>Subtraction: {{ 20 - 5 }}</p>
+  <p>Multiplication: {{ 4 * 3 }}</p>
+  <p>Division: {{ 10 / 2 }}</p>
+  <p>Modulus: {{ 10 % 3 }}</p>
+
+  <!-- Combined with variables -->
+  <p>Total items: {{ cart.items.length }}</p>
+  <p>Total cost: {{ price * quantity }}</p>
+  <p>Discounted price: {{ price - (price * discount) }}</p>
+
+  <!-- With parentheses for precedence -->
+  <p>Final price: {{ (price * quantity) * (1 - discount) }}</p>
+
+  <!-- Numeric comparison operators -->
+  <p>Is on sale: {{ price < originalPrice }}</p>
+</div>
+
+<!-- Component TS file -->
+/*
+@Component({...})
+class ProductComponent {
+  price = 29.99;
+  originalPrice = 39.99;
+  quantity = 2;
+  discount = 0.1; // 10%
+
+  cart = {
+    items: [
+      { name: 'Product 1', price: 29.99, quantity: 2 },
+      { name: 'Product 2', price: 19.99, quantity: 1 }
+    ]
+  };
+}
+*/

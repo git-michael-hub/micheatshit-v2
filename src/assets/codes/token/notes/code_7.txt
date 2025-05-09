@@ -1,0 +1,73 @@
+// Multi-providers for extensibility in Angular 19
+import { InjectionToken, Injectable, inject } from '@angular/core';
+
+// Plugin interface
+interface Plugin {
+  name: string;
+  version: string;
+  initialize(): void;
+  onDestroy?(): void;
+}
+
+// Plugin token using multi-provider pattern
+export const PLUGINS = new InjectionToken<Plugin[]>('app.plugins', {
+  factory: () => [],
+  providedIn: 'root'
+});
+
+// Example plugins
+@Injectable()
+export class LoggingPlugin implements Plugin {
+  name = 'Logging Plugin';
+  version = '1.0.0';
+
+  initialize(): void {
+    console.log(`[${this.name}] Initialized`);
+
+    // Override console methods for application-wide logging
+    const originalConsoleLog = console.log;
+    console.log = (...args) => {
+      originalConsoleLog(`[${new Date().toISOString()}]`, ...args);
+    };
+  }
+
+  onDestroy(): void {
+    console.log(`[${this.name}] Destroyed`);
+  }
+}
+
+@Injectable()
+export class AnalyticsPlugin implements Plugin {
+  name = 'Analytics Plugin';
+  version = '2.1.0';
+
+  initialize(): void {
+    console.log(`[${this.name}] Initialized`);
+
+    // Set up analytics tracking
+    window.addEventListener('click', this.trackClick);
+  }
+
+  onDestroy(): void {
+    window.removeEventListener('click', this.trackClick);
+  }
+
+  private trackClick(event: MouseEvent): void {
+    const element = event.target as HTMLElement;
+    const trackingId = element.getAttribute('data-track-id');
+
+    if (trackingId) {
+      console.log(`[Analytics] Click tracked: ${trackingId}`);
+    }
+  }
+}
+
+@Injectable()
+export class StoragePlugin implements Plugin {
+  name = 'Storage Plugin';
+  version = '1.2.0';
+
+  initialize(): void {
+    console.log(`[${this.name}] Initialized`);
+  }
+}

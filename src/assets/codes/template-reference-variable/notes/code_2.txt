@@ -1,0 +1,45 @@
+<!-- Component reference example -->
+<!-- Child component with public API -->
+<app-counter #myCounter></app-counter>
+
+<!-- Using the component instance methods directly -->
+<button (click)="myCounter.increment()">Increment</button>
+<button (click)="myCounter.decrement()">Decrement</button>
+<button (click)="myCounter.reset()">Reset</button>
+
+<!-- Accessing component properties -->
+<p>Current count: {{ myCounter.count }}</p>
+
+<!-- With Angular 19, references provide improved type safety -->
+<!-- Signals are fully type-checked when accessed via references -->
+<p>Count signal value: {{ myCounter.countSignal() }}</p>
+
+<!-- Counter.component.ts -->
+@Component({
+  selector: 'app-counter',
+  template: `
+    <div>Count: {{ countSignal() }}</div>
+  `
+})
+export class CounterComponent {
+  // Regular property
+  count = 0;
+
+  // Signal property with improved reactivity
+  countSignal = signal(0);
+
+  increment() {
+    this.count++;
+    this.countSignal.update(value => value + 1);
+  }
+
+  decrement() {
+    this.count--;
+    this.countSignal.update(value => value - 1);
+  }
+
+  reset() {
+    this.count = 0;
+    this.countSignal.set(0);
+  }
+}

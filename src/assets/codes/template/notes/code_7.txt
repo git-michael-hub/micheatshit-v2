@@ -1,0 +1,75 @@
+<!-- Advanced @switch control flow in Angular 19 templates -->
+<div class="notification-panel">
+  <h3>Notification Center</h3>
+
+  @switch (notification.type) {
+    @case ('error') {
+      <div class="alert alert-danger">
+        <span class="icon-error"></span>
+        <strong>Error:</strong> {{ notification.message }}
+        <button (click)="dismissNotification(notification.id)">Dismiss</button>
+      </div>
+    }
+    @case ('warning') {
+      <div class="alert alert-warning">
+        <span class="icon-warning"></span>
+        <strong>Warning:</strong> {{ notification.message }}
+        <button (click)="dismissNotification(notification.id)">Dismiss</button>
+      </div>
+    }
+    @case ('success') {
+      <div class="alert alert-success">
+        <span class="icon-success"></span>
+        <strong>Success:</strong> {{ notification.message }}
+        <div class="auto-dismiss-progress"></div>
+      </div>
+    }
+    @case ('info') {
+      <div class="alert alert-info">
+        <span class="icon-info"></span>
+        {{ notification.message }}
+        <button (click)="dismissNotification(notification.id)">Dismiss</button>
+      </div>
+    }
+    @default {
+      <div class="alert alert-secondary">
+        <span class="icon-notification"></span>
+        {{ notification.message }}
+      </div>
+    }
+  }
+</div>
+
+<!-- Compared to older [ngSwitch] directive approach -->
+<!--
+<div class="notification-panel">
+  <h3>Notification Center</h3>
+
+  <div [ngSwitch]="notification.type">
+    <div *ngSwitchCase="'error'" class="alert alert-danger">
+      <span class="icon-error"></span>
+      <strong>Error:</strong> {{ notification.message }}
+      <button (click)="dismissNotification(notification.id)">Dismiss</button>
+    </div>
+    <div *ngSwitchCase="'warning'" class="alert alert-warning">
+      <span class="icon-warning"></span>
+      <strong>Warning:</strong> {{ notification.message }}
+      <button (click)="dismissNotification(notification.id)">Dismiss</button>
+    </div>
+    <div *ngSwitchCase="'success'" class="alert alert-success">
+      <span class="icon-success"></span>
+      <strong>Success:</strong> {{ notification.message }}
+      <div class="auto-dismiss-progress"></div>
+    </div>
+    <div *ngSwitchCase="'info'" class="alert alert-info">
+      <span class="icon-info"></span>
+      {{ notification.message }}
+      <button (click)="dismissNotification(notification.id)">Dismiss</button>
+    </div>
+    <div *ngSwitchDefault class="alert alert-secondary">
+      <span class="icon-notification"></span>
+      {{ notification.message }}
+    </div>
+  </div>
+</div>
+-->

@@ -1,0 +1,518 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Template Expressions
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Template Expressions</span>
+      in Angular 19 are JavaScript-like code snippets that appear within double curly braces in HTML templates. These expressions enable dynamic content rendering, property binding, and event handling with improved performance through signals integration and optimized compilation.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<ng-template #notesRef>
+  <p>Understanding Template Expressions</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      JavaScript-like code snippets that appear within double curly braces {{ '{{' }} expression {{ '}}' }} in Angular templates.
+    </li>
+    <li>
+      <strong>Purpose</strong>:
+      Used to bind component properties to the view, calculate values on the fly, and provide dynamic content.
+    </li>
+    <li>
+      <strong>Context</strong>:
+      Template expressions have access to the component instance and a limited set of built-in globals.
+    </li>
+    <li>
+      <strong>Evaluation</strong>:
+      Expressions are evaluated during change detection to update the DOM when data changes.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Template Expression Features</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Signal Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Template expressions can now directly access signals without unwrapping them, leading to more efficient change detection and automatic UI updates when signal values change.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Type Checking</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces improved type checking for template expressions, reducing runtime errors through stricter compile-time validation.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Control Flow Optimization</strong>:
+      <ul class="list-disc pl-4">
+        <li>When used with the new block syntax (&#64;if, &#64;for, &#64;switch), expressions benefit from more efficient evaluation and better performance.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Compatibility</strong>:
+      <ul class="list-disc pl-4">
+        <li>Template expressions now work seamlessly in zoneless applications with improved detection of changes without relying on Zone.js.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Nullish Coalescing & Optional Chaining</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 fully supports modern JavaScript features like nullish coalescing (??) and optional chaining (?.) in template expressions for more concise code.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Expression Types & Usage</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      Basic Property Access
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Method Calls
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Math Operators
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Conditional (Ternary) Expressions
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Signal Integration
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Modern JavaScript Features
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Pipe Usage
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Expression in New Control Flow
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Template Expression Limitations</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Not Allowed</th>
+        <th class="py-3 px-4 text-left">Reason</th>
+        <th class="py-3 px-4 text-left">Alternative</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Assignments (=, +=, -=)</td>
+        <td class="py-3 px-4">Side effects are difficult to track</td>
+        <td class="py-3 px-4">Use event binding with component methods</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">new, ++, --</td>
+        <td class="py-3 px-4">Produces side effects</td>
+        <td class="py-3 px-4">Create objects in component methods</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Global namespace access</td>
+        <td class="py-3 px-4">Security and potential conflicts</td>
+        <td class="py-3 px-4">Expose needed values through the component</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Chained expressions</td>
+        <td class="py-3 px-4">Can become unreadable</td>
+        <td class="py-3 px-4">Use component properties/methods for complex logic</td>
+      </tr>
+    </tbody>
+  </table>
+
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Keep Expressions Simple</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Move Complex Logic to the Component</strong>:
+          Limit template expressions to simple property access, method calls, and basic operations. Move complex logic into component methods or computed properties.
+        </li>
+        <li>
+          <strong>Use Pure Functions</strong>:
+          Ensure methods called from template expressions are pure (no side effects) and return the same output for the same input.
+        </li>
+        <li>
+          <strong>Create Computed Values</strong>:
+          For complex calculations, use computed signals or properties in the component rather than calculating values in the template.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize for Performance</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Leverage Signals</strong>:
+          Use Angular 19's signals for reactive state that automatically updates the view when values change without unnecessary recalculations.
+        </li>
+        <li>
+          <strong>Avoid Heavy Computations</strong>:
+          Heavy computations in template expressions can degrade performance as they run during every change detection cycle.
+        </li>
+        <li>
+          <strong>Cache Expensive Results</strong>:
+          For expensive operations, cache results in the component rather than recalculating them in the template expression.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Ensure Type Safety</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Enable strictTemplates</strong>:
+          Configure your Angular project with strictTemplates to catch type errors in expressions during development.
+        </li>
+        <li>
+          <strong>Add Null Checks</strong>:
+          Use optional chaining (?.) and nullish coalescing (??) operators to handle potential null or undefined values.
+        </li>
+        <li>
+          <strong>Provide Default Values</strong>:
+          Always provide fallbacks for potentially undefined values to prevent template rendering errors.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Format for Readability</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Break Complex Expressions</strong>:
+          For complex expressions, create intermediate variables or methods in the component to make templates more readable.
+        </li>
+        <li>
+          <strong>Use Meaningful Names</strong>:
+          Give clear, descriptive names to methods and properties used in template expressions.
+        </li>
+        <li>
+          <strong>Consider Ternary Alternatives</strong>:
+          For complex conditional rendering, prefer Angular's built-in control flow blocks over nested ternary operators.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Security Considerations</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Trust Content Appropriately</strong>:
+          Use Angular's built-in sanitization for user-generated content, only bypassing it when necessary with appropriate DomSanitizer methods.
+        </li>
+        <li>
+          <strong>Avoid Direct DOM Manipulation</strong>:
+          Never use expressions to directly manipulate the DOM, which can lead to security vulnerabilities.
+        </li>
+        <li>
+          <strong>Be Careful with Evaluation</strong>:
+          Avoid creating expressions from user input or dynamically constructing expressions from strings.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      Template expressions enable dynamic content rendering without requiring manual DOM manipulation.
+    </li>
+    <li>
+      They provide a declarative way to connect component data to the UI with automatic updates.
+    </li>
+    <li>
+      Angular 19's signal integration makes expressions more efficient by only re-evaluating when relevant data changes.
+    </li>
+    <li>
+      Modern JavaScript features like optional chaining and nullish coalescing make expressions more concise and safer.
+    </li>
+    <li>
+      Enhanced type checking in Angular 19 helps catch expression errors at compile time rather than runtime.
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      Complex expressions in templates can reduce readability and make code harder to maintain.
+    </li>
+    <li>
+      Performance can degrade if expressions contain expensive operations that run during every change detection cycle.
+    </li>
+    <li>
+      Template expressions have limited access to JavaScript features and globals for security reasons.
+    </li>
+    <li>
+      Debugging complex expressions can be more difficult than debugging component code.
+    </li>
+    <li>
+      Overuse of expressions can lead to "fat templates" where too much logic resides in the view rather than the component.
+    </li>
+  </ol>
+
+
+  <br>
+
+  <p>
+    Template expressions in Angular 19 strike a balance between power and safety, offering a reactive way to render dynamic content while protecting against common pitfalls. With signal integration and improved type checking, they've become more performant and reliable, though they still require careful use to avoid complexity and performance issues.
+  </p>
+
+</ng-template>
+
+
+<ng-template #topicsRef>
+  <p>
+    Related topics to Angular 19 Template Expressions:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Interpolation</strong>
+      <p>
+        The core mechanism in Angular that evaluates expressions in double curly braces and converts their results to text in HTML templates.
+      </p>
+    </li>
+    <li>
+      <strong>Property Binding</strong>
+      <p>
+        Uses template expressions to bind component properties to HTML element properties, allowing dynamic updates to the DOM.
+      </p>
+    </li>
+    <li>
+      <strong>Event Binding</strong>
+      <p>
+        Enables templates to respond to user actions through expressions that execute when events like clicks or keypresses occur.
+      </p>
+    </li>
+    <li>
+      <strong>Signals</strong>
+      <p>
+        Angular 19's reactivity primitive that integrates with template expressions for more efficient change detection and updates.
+      </p>
+    </li>
+    <li>
+      <strong>Pipes</strong>
+      <p>
+        Transform displayed values within template expressions, enabling formatting, filtering, and other transformations without changing the source data.
+      </p>
+    </li>
+    <li>
+      <strong>Control Flow</strong>
+      <p>
+        Angular 19's new block-based control flow syntax that works with expressions to conditionally render content and iterate over collections.
+      </p>
+    </li>
+    <li>
+      <strong>Template Context</strong>
+      <p>
+        The scope available to expressions, including component properties, local variables, and a limited set of globals like built-in directives.
+      </p>
+    </li>
+  </ol>
+</ng-template>

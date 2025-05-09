@@ -232,7 +232,11 @@ export const glossaryItems = [
     "name": "template-driven forms"
   },
   {
-    "name": "template expression"
+    "name": "template expression",
+    "file_location": "components/template-expression",
+    "hashtags": [
+      ''
+    ]
   },
   {
     "name": "template reference variable"

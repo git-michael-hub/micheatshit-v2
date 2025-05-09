@@ -1,1 +1,25 @@
 <p>Hello, {{ name }}!</p>
+
+<!-- Example of Angular 19's @if control flow -->
+<div>
+  @if (user.isAdmin) {
+    <admin-dashboard></admin-dashboard>
+  } @else if (user.isManager) {
+    <manager-view></manager-view>
+  } @else {
+    <user-portal></user-portal>
+  }
+</div>
+
+<!-- Compared to older *ngIf approach -->
+<!--
+<div *ngIf="user.isAdmin">
+  <admin-dashboard></admin-dashboard>
+</div>
+<div *ngIf="!user.isAdmin && user.isManager">
+  <manager-view></manager-view>
+</div>
+<div *ngIf="!user.isAdmin && !user.isManager">
+  <user-portal></user-portal>
+</div>
+-->

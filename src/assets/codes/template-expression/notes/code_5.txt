@@ -1,0 +1,51 @@
+// Angular 19 Signal Integration with Template Expressions
+import { Component, signal, computed } from '@angular/core';
+
+@Component({
+  selector: 'app-counter',
+  template: `
+    <!-- Direct signal access in template expressions - no unwrapping needed -->
+    <div class="counter">
+      <h2>Counter: {{ count }}</h2>
+      <p>Double value: {{ doubleCount }}</p>
+      <p>Is positive: {{ count > 0 }}</p>
+
+      <!-- Conditional display based on signal values -->
+      <p *ngIf="count > 10">Count is greater than 10!</p>
+
+      <!-- Using signals with the new control flow -->
+      @if (count > 5) {
+        <div class="highlight">Count is getting high!</div>
+      } @else {
+        <div>Count is still low</div>
+      }
+
+      <!-- Event handlers that update signals -->
+      <button (click)="increment()">Increment</button>
+      <button (click)="decrement()">Decrement</button>
+      <button (click)="reset()">Reset</button>
+    </div>
+  `
+})
+export class CounterComponent {
+  // Create signals
+  count = signal(0);
+
+  // Computed signal based on another signal
+  doubleCount = computed(() => this.count() * 2);
+
+  // Methods that update signals
+  increment() {
+    // Using update() for modifying signal based on previous value
+    this.count.update(c => c + 1);
+  }
+
+  decrement() {
+    this.count.update(c => c - 1);
+  }
+
+  reset() {
+    // Using set() to directly set a new value
+    this.count.set(0);
+  }
+}

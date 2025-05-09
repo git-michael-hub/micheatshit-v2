@@ -1,0 +1,55 @@
+// component.ts
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+
+@Component({
+  selector: 'app-view-child-demo',
+  template: `
+    <div #titleDiv>This is a title element</div>
+    <button (click)="changeColor()">Change Color</button>
+    <app-counter #counter></app-counter>
+    <button (click)="resetCounter()">Reset from Component</button>
+  `
+})
+export class ViewChildDemoComponent implements AfterViewInit {
+  // Get reference to DOM element with type safety
+  @ViewChild('titleDiv') titleElement!: ElementRef<HTMLDivElement>;
+
+  // Get reference to component with proper typing
+  @ViewChild('counter') counterComponent!: CounterComponent;
+
+  // Can use static: true if element is available at initialization
+  @ViewChild('titleDiv', { static: true }) staticTitleElement!: ElementRef<HTMLDivElement>;
+
+  constructor() {
+    // Can't access views here yet!
+    // console.log(this.titleElement); // This will be undefined
+  }
+
+  ngOnInit() {
+    // Can access static references here
+    if (this.staticTitleElement) {
+      console.log('Static element in ngOnInit:', this.staticTitleElement.nativeElement.textContent);
+    }
+  }
+
+  ngAfterViewInit() {
+    // Access view references here once they're initialized
+    console.log('Element text:', this.titleElement.nativeElement.textContent);
+
+    // Type-safe access to element properties
+    this.titleElement.nativeElement.style.fontSize = '24px';
+
+    // Type-safe access to component methods and properties
+    console.log('Counter value:', this.counterComponent.count);
+  }
+
+  changeColor() {
+    // Manipulate DOM safely with ElementRef
+    this.titleElement.nativeElement.style.color = 'blue';
+  }
+
+  resetCounter() {
+    // Call methods on child component
+    this.counterComponent.reset();
+  }
+}

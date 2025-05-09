@@ -1,0 +1,46 @@
+<!-- Method Calls in Template Expressions -->
+<div>
+  <!-- Simple method call -->
+  <p>Greeting: {{ getGreeting() }}</p>
+
+  <!-- Method with arguments -->
+  <p>Total price: {{ calculateTotal(cart.items) | currency }}</p>
+
+  <!-- Methods with string arguments -->
+  <p>{{ formatText('Hello World', true) }}</p>
+
+  <!-- Chaining method results with property access -->
+  <p>User status: {{ getUserData().status }}</p>
+</div>
+
+<!-- Component TS file -->
+/*
+@Component({...})
+class ShoppingCartComponent {
+  cart = {
+    items: [
+      { name: 'Product 1', price: 29.99, quantity: 2 },
+      { name: 'Product 2', price: 19.99, quantity: 1 }
+    ]
+  };
+
+  getGreeting(): string {
+    return 'Welcome to our store!';
+  }
+
+  calculateTotal(items: any[]): number {
+    return items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  }
+
+  formatText(text: string, uppercase: boolean): string {
+    return uppercase ? text.toUpperCase() : text.toLowerCase();
+  }
+
+  getUserData() {
+    return {
+      name: 'Jane',
+      status: 'Active'
+    };
+  }
+}
+*/

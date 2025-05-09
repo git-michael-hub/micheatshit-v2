@@ -1,1 +1,44 @@
-<button (click)="doSomething()">Click me!</button>
+// Component with signal-based state
+import { Component, signal, computed } from '@angular/core';
+
+@Component({
+  selector: 'app-user-profile',
+  template: `
+    <div class="user-card">
+      <h2>{{ name() }}</h2>
+      <p>Member since: {{ formattedJoinDate() }}</p>
+
+      <div class="stats">
+        <div>Posts: {{ stats().posts }}</div>
+        <div>Followers: {{ stats().followers }}</div>
+      </div>
+
+      <div class="actions">
+        <button (click)="incrementFollowers()">Follow</button>
+      </div>
+    </div>
+  `
+})
+export class UserProfileComponent {
+  // Signals directly bound in template without async pipe
+  name = signal('Jane Doe');
+  joinDate = signal(new Date(2023, 5, 15));
+  stats = signal({ posts: 42, followers: 128 });
+
+  // Computed signal updates automatically when dependencies change
+  formattedJoinDate = computed(() => {
+    return this.joinDate().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  });
+
+  incrementFollowers() {
+    // Immutable update pattern with signals
+    this.stats.update(current => ({
+      ...current,
+      followers: current.followers + 1
+    }));
+  }
+}

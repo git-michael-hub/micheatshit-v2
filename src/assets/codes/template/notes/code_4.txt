@@ -1,1 +1,46 @@
 <input [(ngModel)]="name">
+
+<!-- Deferred loading with @defer block in Angular 19 -->
+<section>
+  <h2>User Dashboard</h2>
+
+  <!-- Critical content loads immediately -->
+  <div class="user-info">
+    <h3>Welcome, {{ user.name }}</h3>
+    <p>Account status: {{ user.status }}</p>
+  </div>
+
+  <!-- Heavy component loads after 2 seconds -->
+  @defer (on timer(2s)) {
+    <app-analytics-dashboard [userId]="user.id"></app-analytics-dashboard>
+  } @placeholder {
+    <div class="placeholder-box">
+      <p>Analytics loading...</p>
+      <div class="loading-spinner"></div>
+    </div>
+  } @loading {
+    <div class="loading-indicator">
+      <div class="progress-bar"></div>
+    </div>
+  } @error {
+    <div class="error-message">
+      Failed to load analytics. <button (click)="retryLoading()">Retry</button>
+    </div>
+  }
+
+  <!-- Lazy-load when component scrolls into view -->
+  @defer (on viewport) {
+    <app-recommendations [userId]="user.id"></app-recommendations>
+  } @placeholder {
+    <div class="content-placeholder">
+      <p>Scroll down to see your personalized recommendations</p>
+    </div>
+  }
+
+  <!-- Lazy-load when user interacts with the page -->
+  @defer (on interaction) {
+    <app-user-settings [userId]="user.id"></app-user-settings>
+  } @placeholder {
+    <button class="settings-button">Load Settings</button>
+  }
+</section>

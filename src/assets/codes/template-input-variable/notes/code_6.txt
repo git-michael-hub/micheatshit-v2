@@ -1,0 +1,77 @@
+<!-- Using template input variables with *ngIf/else -->
+<div *ngIf="isLoggedIn(); else loginTemplate">
+  <h2>Welcome, {{ currentUser().name }}!</h2>
+  <button (click)="logout()">Logout</button>
+</div>
+
+<ng-template #loginTemplate let-loginAttempts="loginAttempts">
+  <h2>Please log in</h2>
+  <form (submit)="login()">
+    <input type="text" [(ngModel)]="username" placeholder="Username">
+    <input type="password" [(ngModel)]="password" placeholder="Password">
+    <button type="submit">Login</button>
+  </form>
+
+  <p *ngIf="loginAttempts > 0">
+    Failed login attempts: {{ loginAttempts }}
+  </p>
+</ng-template>
+
+<!-- Angular 19 approach with @if/else -->
+@if (isLoggedIn()) {
+  <h2>Welcome, {{ currentUser().name }}!</h2>
+  <button (click)="logout()">Logout</button>
+} @else {
+  <!-- Variables inside the else block -->
+  <h2>Please log in</h2>
+  <form (submit)="login()">
+    <input type="text" [(ngModel)]="username" placeholder="Username">
+    <input type="password" [(ngModel)]="password" placeholder="Password">
+    <button type="submit">Login</button>
+  </form>
+
+  @if (loginAttempts() > 0) {
+    <p class="error">Failed login attempts: {{ loginAttempts() }}</p>
+  }
+}
+
+<!-- Component code -->
+import { Component, signal } from '@angular/core';
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html'
+})
+export class LoginComponent {
+  isLoggedIn = signal<boolean>(false);
+  currentUser = signal<User | null>(null);
+  loginAttempts = signal<number>(0);
+
+  username = '';
+  password = '';
+
+  login() {
+    if (this.username === 'admin' && this.password === 'password') {
+      this.currentUser.set({
+        id: 1,
+        name: 'Administrator',
+        email: 'admin@example.com'
+      });
+      this.isLoggedIn.set(true);
+      this.loginAttempts.set(0);
+    } else {
+      this.loginAttempts.update(attempts => attempts + 1);
+    }
+  }
+
+  logout() {
+    this.isLoggedIn.set(false);
+    this.currentUser.set(null);
+  }
+}

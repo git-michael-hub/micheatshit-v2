@@ -1,0 +1,98 @@
+// Configuring applications with InjectionToken in Angular 19
+import { InjectionToken, APP_INITIALIZER, Injectable, inject } from '@angular/core';
+
+// Type-safe configuration interfaces
+interface ApiConfig {
+  baseUrl: string;
+  timeout: number;
+  retryAttempts: number;
+}
+
+interface FeatureConfig {
+  enableDarkMode: boolean;
+  enableNotifications: boolean;
+  maxUploadSize: number;
+}
+
+interface AppConfig {
+  version: string;
+  environment: 'development' | 'staging' | 'production';
+  api: ApiConfig;
+  features: FeatureConfig;
+}
+
+// Create injection tokens
+export const API_CONFIG = new InjectionToken<ApiConfig>('app.config.api');
+export const FEATURE_CONFIG = new InjectionToken<FeatureConfig>('app.config.features');
+export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
+
+// Load configuration from external source
+@Injectable({ providedIn: 'root' })
+export class ConfigService {
+  private config: AppConfig | null = null;
+
+  async loadConfig(): Promise<AppConfig> {
+    // In a real app, this would load from an API or environment file
+    const response = await fetch('/assets/config.json');
+    this.config = await response.json();
+    return this.config;
+  }
+
+  getConfig(): AppConfig {
+    if (!this.config) {
+      throw new Error('Config not loaded');
+    }
+    return this.config;
+  }
+}
+
+// Provider factory functions
+export function provideAppConfig() {
+  return [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (configService: ConfigService) => {
+        return () => configService.loadConfig();
+      },
+      deps: [ConfigService],
+      multi: true
+    },
+    {
+      provide: APP_CONFIG,
+      useFactory: (configService: ConfigService) => configService.getConfig(),
+      deps: [ConfigService]
+    },
+    {
+      provide: API_CONFIG,
+      useFactory: (appConfig: AppConfig) => appConfig.api,
+      deps: [APP_CONFIG]
+    },
+    {
+      provide: FEATURE_CONFIG,
+      useFactory: (appConfig: AppConfig) => appConfig.features,
+      deps: [APP_CONFIG]
+    }
+  ];
+}
+
+// Usage in a service
+@Injectable({ providedIn: 'root' })
+export class ApiService {
+  private apiConfig = inject(API_CONFIG);
+
+  async fetchData(endpoint: string): Promise<any> {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), this.apiConfig.timeout);
+
+    try {
+      const response = await fetch(`${this.apiConfig.baseUrl}/${endpoint}`, {
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+      return response.json();
+    } catch (error) {
+      // Handle error, retry logic, etc.
+      throw error;
+    }
+  }
+}

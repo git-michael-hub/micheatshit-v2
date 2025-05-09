@@ -1,0 +1,70 @@
+<!-- Template references with forms -->
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+  <!-- Basic form field with reference to input element -->
+  <div class="form-field">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"
+           #nameInput
+           [(ngModel)]="user.name"
+           required minlength="3">
+
+    <!-- Using element reference for direct DOM interaction -->
+    <button type="button" (click)="nameInput.focus()">Focus Name</button>
+    <span *ngIf="nameInput.value.length > 0">
+      Characters: {{ nameInput.value.length }}
+    </span>
+  </div>
+
+  <!-- Form control with reference to NgModel -->
+  <div class="form-field">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"
+           [(ngModel)]="user.email"
+           #emailControl="ngModel"
+           required email>
+
+    <!-- Using NgModel reference for validation state -->
+    <div *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)">
+      <div *ngIf="emailControl.errors?.['required']">Email is required</div>
+      <div *ngIf="emailControl.errors?.['email']">Enter a valid email</div>
+    </div>
+  </div>
+
+  <!-- Angular 19: Using control flow with form references -->
+  <div class="form-field">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"
+           [(ngModel)]="user.password"
+           #passwordControl="ngModel"
+           required minlength="8">
+
+    <!-- Using @if with control reference -->
+    @if (passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)) {
+      @if (passwordControl.errors?.['required']) {
+        <div class="error">Password is required</div>
+      } @else if (passwordControl.errors?.['minlength']) {
+        <div class="error">
+          Password must be at least 8 characters
+          (currently {{ passwordControl.value?.length || 0 }})
+        </div>
+      }
+    }
+  </div>
+
+  <!-- Using NgForm reference for overall form state -->
+  <div class="form-actions">
+    <button type="submit" [disabled]="myForm.invalid">
+      Submit
+    </button>
+    <button type="button" (click)="myForm.resetForm()">
+      Reset
+    </button>
+  </div>
+
+  <!-- Form state debugging using references -->
+  <div class="form-debug">
+    <p>Form valid: {{ myForm.valid }}</p>
+    <p>Form touched: {{ myForm.touched }}</p>
+    <p>Form dirty: {{ myForm.dirty }}</p>
+  </div>
+</form>

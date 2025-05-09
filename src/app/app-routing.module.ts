@@ -31,6 +31,8 @@ import { StructuralDirectiveComponent } from './feature/angular/concepts/structu
 import { SubscriberComponent } from './feature/angular/concepts/subscriber/subscriber.component';
 import { TemplateFormComponent } from './feature/angular/concepts/template-form/template-form.component';
 import { TemplateComponent } from './feature/angular/concepts/template/template.component';
+import { TemplateExpressionComponent } from './feature/angular/concepts/template-expression/template-expression.component';
+import { TemplateReferenceVariableComponent } from './feature/angular/concepts/template-reference-variable/template-reference-variable.component';
 import { GlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
 import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
 import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-render/after-next-render.component';
@@ -85,6 +87,7 @@ import { SchematicComponent } from './feature/angular/concepts/schematic/schemat
 import { SchematicsCliComponent } from './feature/angular/concepts/schematics-cli/schematics-cli.component';
 import { ScopedPackageComponent } from './feature/angular/concepts/scoped-package/scoped-package.component';
 import { ServiceComponent } from './feature/angular/concepts/service/service.component';
+import { TargetComponent } from './feature/angular/concepts/target/target.component';
 
 const routes: Routes = [
   {
@@ -341,6 +344,10 @@ const routes: Routes = [
         component: StyleUrlComponent
       },
       {
+        path: 'target',
+        component: TargetComponent
+      },
+      {
         path: 'subscriber',
         component: SubscriberComponent
       },
@@ -349,8 +356,20 @@ const routes: Routes = [
         component: TemplateComponent
       },
       {
+        path: 'template-expression',
+        component: TemplateExpressionComponent
+      },
+      {
         path: 'template-form',
         component: TemplateFormComponent
+      },
+      {
+        path: 'template-input-variable',
+        loadChildren: () => import('./feature/angular/concepts/template-input-variable/template-input-variable.module').then(m => m.TemplateInputVariableModule)
+      },
+      {
+        path: 'template-reference-variable',
+        loadChildren: () => import('./feature/angular/concepts/template-reference-variable/template-reference-variable.module').then(m => m.TemplateReferenceVariableModule)
       },
       {
         path: 'universal',
@@ -459,6 +478,10 @@ const routes: Routes = [
       {
         path: 'service',
         loadChildren: () => import('./feature/angular/concepts/service/service.module').then(m => m.ServiceModule)
+      },
+      {
+        path: 'token',
+        loadChildren: () => import('./feature/angular/concepts/token/token.module').then(m => m.TokenModule)
       },
     ]
   },

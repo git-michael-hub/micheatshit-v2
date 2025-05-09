@@ -1,0 +1,89 @@
+<!-- Expressions in Angular 19's New Control Flow -->
+
+<!-- @if with expressions -->
+@if (user.role === 'admin') {
+  <admin-dashboard [userData]="user"></admin-dashboard>
+} @else if (user.role === 'manager') {
+  <manager-dashboard [permissions]="user.permissions"></manager-dashboard>
+} @else {
+  <user-dashboard [limitedAccess]="user.accessLevel < 3"></user-dashboard>
+}
+
+<!-- @for with dynamic expressions -->
+@for (item of items.filter(i => i.price > minPrice); track item.id) {
+  <div class="product-card">
+    <h3>{{ item.name }}</h3>
+    <p>Price: {{ item.price | currency }}</p>
+    <p>{{ item.inStock ? 'In Stock' : 'Out of Stock' }}</p>
+
+    <!-- Nested control flow with expressions -->
+    @if (item.discountPercentage > 0) {
+      <p class="discount">
+        Save {{ item.discountPercentage }}%
+        ({{ item.price * (item.discountPercentage / 100) | currency }})
+      </p>
+    }
+  </div>
+} @empty {
+  <p>No products match your filter criteria (min price: {{ minPrice | currency }})</p>
+}
+
+<!-- @switch with expressions -->
+@switch (calculateUserStatus(user)) {
+  @case ('premium') {
+    <premium-features [user]="user" [daysLeft]="user.subscription.daysRemaining"></premium-features>
+  }
+  @case ('trial') {
+    <trial-features
+      [timeLeft]="user.trial.hoursRemaining"
+      [upgradePrice]="getUpgradePrice(user)">
+    </trial-features>
+  }
+  @default {
+    <basic-features [canUpgrade]="user.accountAge > 30"></basic-features>
+  }
+}
+
+<!-- Component TS file -->
+/*
+import { Component, signal } from '@angular/core';
+
+@Component({...})
+class ProductListComponent {
+  user = {
+    role: 'manager',
+    permissions: ['read', 'write', 'moderate'],
+    accessLevel: 2,
+    accountAge: 45,
+    subscription: {
+      daysRemaining: 12
+    },
+    trial: {
+      hoursRemaining: 48
+    }
+  };
+
+  minPrice = 20;
+
+  items = [
+    { id: 1, name: 'Product 1', price: 29.99, inStock: true, discountPercentage: 10 },
+    { id: 2, name: 'Product 2', price: 19.99, inStock: true, discountPercentage: 0 },
+    { id: 3, name: 'Product 3', price: 39.99, inStock: false, discountPercentage: 15 }
+  ];
+
+  calculateUserStatus(user: any): string {
+    // Some complex logic to determine user status
+    if (user.subscription?.daysRemaining > 0) {
+      return 'premium';
+    } else if (user.trial?.hoursRemaining > 0) {
+      return 'trial';
+    }
+    return 'basic';
+  }
+
+  getUpgradePrice(user: any): number {
+    // Calculate special price based on user
+    return user.accountAge > 60 ? 49.99 : 59.99;
+  }
+}
+*/

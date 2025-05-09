@@ -1,0 +1,523 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Template Input Variables
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Template Input Variables</span>
+      in Angular 19 provide a way to reference values in template structures like *ngFor, @for, and ng-template. With Angular 19's enhanced type safety and improved integration with signals, template input variables help create more reactive, type-safe, and maintainable template code.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<ng-template #notesRef>
+  <p>Understanding Template Input Variables</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      Template input variables are local variables created in template structures like *ngFor, @for, and ng-template that give access to values from structural directives or embedded views.
+    </li>
+    <li>
+      <strong>Scope</strong>:
+      Available only within the specific template context where they're declared.
+    </li>
+    <li>
+      <strong>Usage</strong>:
+      Used to access iterated items, index values, and other contextual data within template blocks.
+    </li>
+    <li>
+      <strong>Distinction</strong>:
+      Different from template reference variables (#var), which reference DOM elements, components, or directives.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Enhancements for Template Input Variables</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Enhanced Type Safety</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 provides improved type inference for template input variables with strict typing by default, reducing the need for explicit type annotations.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Template input variables can now seamlessly work with signals, allowing for more reactive templates with automatic view updates when signal values change.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>New Control Flow Compatibility</strong>:
+      <ul class="list-disc pl-4">
+        <li>The new block-based control flow syntax (@for, @if, @switch) introduces more intuitive variable declaration with improved scope controls.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Template Type-Checking</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enhanced compile-time checking catches potential errors in template input variable usage, providing better developer feedback.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Better Performance</strong>:
+      <ul class="list-disc pl-4">
+        <li>Optimized handling of template input variables contributes to the overall performance improvements in Angular 19.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Common Usage Patterns</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      Basic ngFor Loop Variables
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      New @for Block Variables
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      NgTemplateOutlet Context Variables
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Signal Integration with @for
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Type Safety with Explicit Types
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Using Variables with NgIf/Else
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Nested Template Variables
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Custom Structural Directive Variables
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Standard Template Input Variable Names</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Context</th>
+        <th class="py-3 px-4 text-left">Common Variable Names</th>
+        <th class="py-3 px-4 text-left">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">*ngFor/@for</td>
+        <td class="py-3 px-4">item, index, first, last, even, odd, count</td>
+        <td class="py-3 px-4">Access iteration data</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">*ngIf/@if-else</td>
+        <td class="py-3 px-4">$implicit</td>
+        <td class="py-3 px-4">Access the condition value</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">ngTemplateOutlet</td>
+        <td class="py-3 px-4">$implicit, custom context properties</td>
+        <td class="py-3 px-4">Access template context data</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Custom directives</td>
+        <td class="py-3 px-4">context, item, value, etc.</td>
+        <td class="py-3 px-4">Access directive context</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">@switch-@case</td>
+        <td class="py-3 px-4">$implicit</td>
+        <td class="py-3 px-4">Access the matched value</td>
+      </tr>
+    </tbody>
+  </table>
+
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Naming Conventions</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Descriptive Names</strong>:
+          Choose meaningful names for template input variables that clearly describe their purpose. Instead of generic names like 'item', prefer more specific names like 'product', 'user', or 'message'.
+        </li>
+        <li>
+          <strong>Follow a Consistent Pattern</strong>:
+          Establish and follow a consistent naming convention across your application to improve readability and maintainability.
+        </li>
+        <li>
+          <strong>Avoid Single-Letter Variables</strong>:
+          Except for simple index variables (i, j), avoid single-letter variable names as they reduce code readability.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Type Safety</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Utilize Implicit Typing</strong>:
+          Angular 19 has improved type inference, so let it automatically detect types where possible to reduce boilerplate.
+        </li>
+        <li>
+          <strong>Add Explicit Types When Needed</strong>:
+          Use explicit type annotations when type inference is insufficient or to improve code documentation and IDE support.
+        </li>
+        <li>
+          <strong>Enable strictTemplates</strong>:
+          Always enable Angular's strict template type checking to catch type errors in template input variables during development.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Performance Considerations</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Minimize Template Expressions</strong>:
+          Keep expressions using template input variables simple to avoid unnecessary recalculations during change detection.
+        </li>
+        <li>
+          <strong>Use trackBy with *ngFor/@for</strong>:
+          Always use trackBy functions with iterable templates to improve performance by helping Angular identify which items have changed.
+        </li>
+        <li>
+          <strong>Prefer @for Over *ngFor</strong>:
+          The new @for syntax in Angular 19 offers better performance and more intuitive variable handling than the older *ngFor directive.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Signal Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Signal Collections</strong>:
+          When iterating over signals, use signal-based collections for automatic reactivity without additional boilerplate.
+        </li>
+        <li>
+          <strong>Avoid Unnecessary Computations</strong>:
+          When using signals with template input variables, avoid creating computed values inside the template that could be precomputed in the component.
+        </li>
+        <li>
+          <strong>Use Signal Selectors</strong>:
+          For complex signal transformations, use signal selectors in the component class rather than complex template expressions.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Template Organization</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Limit Variable Scope</strong>:
+          Keep the scope of template input variables as narrow as possible to prevent confusion and name collisions.
+        </li>
+        <li>
+          <strong>Extract Complex Templates</strong>:
+          For complex nested loops or conditionals with multiple variables, extract into separate template references for better organization.
+        </li>
+        <li>
+          <strong>Comment Variable Origins</strong>:
+          In complex templates with multiple sources of input variables, add comments to clarify where each variable comes from.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      Provides access to contextual data within template blocks without requiring additional component properties.
+    </li>
+    <li>
+      Enhances template readability by giving descriptive names to values within iterations and conditional blocks.
+    </li>
+    <li>
+      In Angular 19, offers improved type safety and better integration with the signal system.
+    </li>
+    <li>
+      Creates cleaner templates with the new block-based control flow syntax in Angular 19.
+    </li>
+    <li>
+      Enables more complex template logic without cluttering component classes with intermediate variables.
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      Limited to the scope of their template block, making it hard to share values across different template sections.
+    </li>
+    <li>
+      Can lead to template bloat if overused for complex logic that should be in the component.
+    </li>
+    <li>
+      May be confusing to developers new to Angular, especially with the distinction between template input variables and template reference variables.
+    </li>
+    <li>
+      Without proper typing, can introduce runtime errors that are hard to debug.
+    </li>
+    <li>
+      Excessive nesting of template structures can create confusing variable scopes and shadowed variables.
+    </li>
+  </ol>
+
+
+  <br>
+
+  <p>
+    Template input variables in Angular 19 provide a powerful mechanism for working with data within template structures. While they improve code readability and support powerful reactive patterns when combined with signals, they require careful management to avoid scope issues and template complexity. The new block-based control flow syntax in Angular 19 has significantly improved the clarity and performance of template input variables, making them more intuitive and type-safe than in previous versions.
+  </p>
+
+</ng-template>
+
+
+<ng-template #topicsRef>
+  <p>
+    Related topics to Angular 19 Template Input Variables:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Control Flow Blocks</strong>
+      <p>
+        Angular 19's @if, @for, and @switch syntax, which provide modern ways to declare and use template input variables.
+      </p>
+    </li>
+    <li>
+      <strong>Template Reference Variables</strong>
+      <p>
+        The companion feature to template input variables, allowing references to DOM elements and directives using the # syntax.
+      </p>
+    </li>
+    <li>
+      <strong>NgTemplateOutlet</strong>
+      <p>
+        A directive that works with template input variables to render embedded views with custom contexts.
+      </p>
+    </li>
+    <li>
+      <strong>Structural Directives</strong>
+      <p>
+        The directives like *ngFor and *ngIf that create template input variables in their microsyntax.
+      </p>
+    </li>
+    <li>
+      <strong>Signal-Based Reactivity</strong>
+      <p>
+        Angular 19's reactive system that works seamlessly with template input variables for automatic view updates.
+      </p>
+    </li>
+    <li>
+      <strong>Template Type Checking</strong>
+      <p>
+        Angular's compile-time type validation system that ensures type safety for template input variables.
+      </p>
+    </li>
+    <li>
+      <strong>Angular DevTools</strong>
+      <p>
+        Chrome extension for debugging Angular applications, including inspecting template input variables.
+      </p>
+    </li>
+  </ol>
+</ng-template>

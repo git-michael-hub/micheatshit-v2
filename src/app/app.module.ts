@@ -46,6 +46,7 @@ import { StructuralDirectiveComponent } from './feature/angular/concepts/structu
 import { SubscriberComponent } from './feature/angular/concepts/subscriber/subscriber.component';
 import { TemplateComponent } from './feature/angular/concepts/template/template.component';
 import { TemplateFormComponent } from './feature/angular/concepts/template-form/template-form.component';
+import { TemplateExpressionComponent } from './feature/angular/concepts/template-expression/template-expression.component';
 import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
 import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-render/after-next-render.component';
 import { CustomElementModule } from './feature/angular/concepts/custom-element/custom-element.module';
@@ -74,6 +75,7 @@ import { SchematicModule } from './feature/angular/concepts/schematic/schematic.
 import { SchematicsCliModule } from './feature/angular/concepts/schematics-cli/schematics-cli.module';
 import { ScopedPackageModule } from './feature/angular/concepts/scoped-package/scoped-package.module';
 import { ServiceModule } from './feature/angular/concepts/service/service.module';
+import { TargetComponent } from './feature/angular/concepts/target/target.component';
 
 @NgModule({
   declarations: [
@@ -118,6 +120,7 @@ import { ServiceModule } from './feature/angular/concepts/service/service.module
     StructuralDirectiveComponent,
     SubscriberComponent,
     TemplateComponent,
+    TemplateExpressionComponent,
     TemplateFormComponent,
     AfterNextRenderComponent,
     DiTokenComponent,
@@ -126,6 +129,7 @@ import { ServiceModule } from './feature/angular/concepts/service/service.module
     EcmascriptComponent,
     ElementComponent,
     EntryPointComponent,
+    TargetComponent,
   ],
   imports: [
     CommonModule,

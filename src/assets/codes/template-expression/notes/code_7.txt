@@ -1,0 +1,65 @@
+<!-- Pipe Usage in Angular 19 Template Expressions -->
+<div>
+  <!-- Basic pipe usage -->
+  <p>Created date: {{ user.createdAt | date:'medium' }}</p>
+
+  <!-- Pipe with parameters -->
+  <p>Account balance: {{ balance | currency:'USD':'symbol':'1.2-2' }}</p>
+
+  <!-- Pipe chaining -->
+  <p>Description: {{ product.description | slice:0:100 | uppercase }}</p>
+
+  <!-- Custom pipe with template expression -->
+  <p>Time ago: {{ commentDate | timeAgo:currentTime }}</p>
+
+  <!-- Async pipe with Observable -->
+  <p>User count: {{ userCount$ | async }}</p>
+
+  <!-- Async pipe with Signal -->
+  <p>Active users: {{ activeUsers }}</p>
+
+  <!-- Using pipe results in other expressions -->
+  <p>Days remaining: {{ (expiryDate | date:'yyyy-MM-dd') === today ? 'Expires today!' : daysRemaining + ' days left' }}</p>
+
+  <!-- JSON pipe for debugging -->
+  <pre>{{ debugObject | json }}</pre>
+</div>
+
+<!-- Component TS file -->
+/*
+import { Component, signal, computed } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
+@Component({...})
+class DataDisplayComponent {
+  // Regular properties
+  user = {
+    createdAt: new Date('2023-01-15')
+  };
+  balance = 1234.56;
+  product = {
+    description: 'This is a long product description that will be truncated and then made uppercase through chained pipes.'
+  };
+  commentDate = new Date('2023-06-20T14:30:00');
+  currentTime = new Date();
+  expiryDate = new Date('2023-07-30');
+  today = new Date().toISOString().slice(0, 10);
+  daysRemaining = 5;
+
+  // Signal
+  activeUsers = signal(42);
+
+  // Observable
+  userCount$: Observable<number> = of(120);
+
+  // Debug object
+  debugObject = {
+    name: 'Debug Info',
+    values: [1, 2, 3],
+    settings: {
+      enabled: true,
+      mode: 'advanced'
+    }
+  };
+}
+*/

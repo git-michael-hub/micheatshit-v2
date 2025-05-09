@@ -1,0 +1,89 @@
+<!-- Nested template input variables -->
+
+<!-- Traditional approach with *ngFor -->
+<div *ngFor="let category of categories; let i = index">
+  <h3>{{ i + 1 }}. {{ category.name }}</h3>
+
+  <ul>
+    <li *ngFor="let product of category.products; let j = index">
+      {{ i + 1 }}.{{ j + 1 }} {{ product.name }} - ${{ product.price }}
+    </li>
+  </ul>
+</div>
+
+<!-- Angular 19 approach with @for -->
+@for (category of categories(); track category.id) {
+  <h3>{{ $index + 1 }}. {{ category.name }}</h3>
+
+  <ul>
+    @for (product of category.products; track product.id) {
+      <!-- Nested template input variables with better scoping -->
+      <li>
+        {{ $parent.$index + 1 }}.{{ $index + 1 }} {{ product.name }} - ${{ product.price }}
+
+        <!-- Access to both parent and child variables -->
+        @if ($parent.$first && $first) {
+          <span class="badge">Featured</span>
+        }
+      </li>
+    } @empty {
+      <li>No products in this category</li>
+    }
+  </ul>
+}
+
+<!-- Using let for local variable in @for -->
+@for (category of categories(); track category.id; let catIndex = $index) {
+  <div class="category-section">
+    <h3>Category {{ catIndex + 1 }}: {{ category.name }}</h3>
+
+    <ul>
+      @for (product of category.products; track product.id; let prodIndex = $index) {
+        <li class="product-item">
+          <span class="product-id">{{ catIndex + 1 }}.{{ prodIndex + 1 }}</span>
+          {{ product.name }} - ${{ product.price }}
+        </li>
+      }
+    </ul>
+  </div>
+}
+
+<!-- Component code -->
+import { Component, signal } from '@angular/core';
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface Category {
+  id: number;
+  name: string;
+  products: Product[];
+}
+
+@Component({
+  selector: 'app-catalog',
+  templateUrl: './catalog.component.html'
+})
+export class CatalogComponent {
+  categories = signal<Category[]>([
+    {
+      id: 1,
+      name: 'Electronics',
+      products: [
+        { id: 101, name: 'Smartphone', price: 699 },
+        { id: 102, name: 'Laptop', price: 1299 }
+      ]
+    },
+    {
+      id: 2,
+      name: 'Clothing',
+      products: [
+        { id: 201, name: 'T-Shirt', price: 19.99 },
+        { id: 202, name: 'Jeans', price: 49.99 }
+      ]
+    }
+  ]);
+}

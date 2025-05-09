@@ -1,10 +1,12 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    template
+    Templates in Angular
   </p>
 
   <div class="text-content">
     <p>
+      <span class="text-zinc-50 tw-font-medium">Templates</span>
+      in Angular 19 define the component's view using HTML with Angular-specific enhancements. The latest version introduces significant improvements to template syntax and rendering performance through the new control flow syntax, signals integration, and enhanced type checking capabilities.
     </p>
 
     <br>
@@ -15,25 +17,30 @@
           Notes
         </button>
         <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
-          Pros and Cons
+          Best Practices
         </button>
         <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
-            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
           </div>
           <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
           </div>
           <div *ngSwitchDefault>
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
 
@@ -42,54 +49,110 @@
 
 
 <ng-template #notesRef>
-  <p>
-  </p>
+  <p>Template Fundamentals in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      Templates in Angular are HTML-based views with extended syntax to integrate with component data and react to user actions.
+    </li>
+    <li>
+      <strong>Components</strong>:
+      Each Angular component has an associated template that defines how its data should be rendered to the DOM.
+    </li>
+    <li>
+      <strong>Dynamic Content</strong>:
+      Templates support expressions, directives, and bindings to create dynamic, interactive interfaces.
+    </li>
+    <li>
+      <strong>Type Safety</strong>:
+      Angular 19 offers stronger type checking of templates through improved type inference and strictTemplates mode.
+    </li>
+  </ul>
 
   <br>
+  <br>
 
-  <ol class="list-decimal px-10 text-sm">
+  <p>Angular 19 Template Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
     <li>
-      Interpolation
+      <strong>Built-in Control Flow</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 fully stabilizes the new block syntax for control flow with @if, @for, and @switch, replacing the older *ngIf, *ngFor, and [ngSwitch] directives with more performant and type-safe alternatives.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Signal-Based Rendering</strong>:
+      <ul class="list-disc pl-4">
+        <li>Templates can now directly bind to signals for more granular and efficient change detection, eliminating unnecessary re-renders and improving overall performance.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Zoneless Optimization</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 templates fully support zoneless applications with optimized manual change detection, reducing the overhead of Zone.js and improving performance significantly.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Inline Template Types</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enhanced type checking within templates with better IDE integration, enabling more robust error detection at development time instead of runtime.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Deferred Loading</strong>:
+      <ul class="list-disc pl-4">
+        <li>The new @defer block allows for lazy loading of template sections, improving initial load performance by deferring non-critical content.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Core Template Features</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      Modern Control Flow with @if
 
       <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
       <span #code1 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
+          <span>html</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
         </div>
 
         <pre>
           <code
             [highlight]="code_1"
-            [languages]="['typescript']">
+            [languages]="['html']">
           </code>
         </pre>
       </span>
 
     </li>
     <li>
-      Property Binding
+      Enhanced Iteration with @for
 
       <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
       <span #code2 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
+          <span>html</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
         </div>
 
         <pre>
           <code
             [highlight]="code_2"
-            [languages]="['typescript']">
+            [languages]="['html']">
           </code>
         </pre>
       </span>
 
     </li>
     <li>
-      Event Binding
+      Signal Integration in Templates
 
       <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -109,27 +172,27 @@
 
     </li>
     <li>
-      Two-Way Binding
+      Deferred Content Loading
 
       <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
       <span #code4 hidden copyToClipboard>
         <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
+          <span>html</span>
           <span class="copy-button-wrapper bg-gray-700"></span>
         </div>
 
         <pre>
           <code
             [highlight]="code_4"
-            [languages]="['typescript']">
+            [languages]="['html']">
           </code>
         </pre>
       </span>
 
     </li>
     <li>
-      ngIf Directive
+      Strong Type Checking
 
       <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -149,7 +212,7 @@
 
     </li>
     <li>
-      ngFor Directive
+      Zoneless Template Rendering
 
       <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
@@ -168,16 +231,176 @@
       </span>
 
     </li>
+    <li>
+      Advanced @switch Control Flow
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>html</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['html']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
+    <li>
+      Signal-Based Template Functions
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+
+    </li>
   </ol>
 
   <br>
+  <br>
 
-  <p>
+  <p>Performance Comparison</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Feature</th>
+        <th class="py-3 px-4 text-left">Traditional Approach</th>
+        <th class="py-3 px-4 text-left">Angular 19 Approach</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Conditional Rendering</td>
+        <td class="py-3 px-4"><code>*ngIf</code> directive</td>
+        <td class="py-3 px-4"><code>@if</code> block syntax</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Iteration</td>
+        <td class="py-3 px-4"><code>*ngFor</code> directive</td>
+        <td class="py-3 px-4"><code>@for</code> block syntax</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Switch Statements</td>
+        <td class="py-3 px-4"><code>[ngSwitch]</code> directive</td>
+        <td class="py-3 px-4"><code>@switch</code> block syntax</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Reactive State</td>
+        <td class="py-3 px-4">Observable + async pipe</td>
+        <td class="py-3 px-4">Signals (direct binding)</td>
+      </tr>
+    </tbody>
+  </table>
 
-  </p>
 </ng-template>
 
 
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use Modern Control Flow</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Prefer @if over *ngIf</strong>:
+          Use the new @if syntax for conditional rendering as it provides better performance, improved type checking, and more concise error messages.
+        </li>
+        <li>
+          <strong>Replace *ngFor with @for</strong>:
+          The new @for syntax offers significant performance improvements, especially with large lists, and supports trackBy functionality more intuitively.
+        </li>
+        <li>
+          <strong>Adopt @switch over [ngSwitch]</strong>:
+          The @switch block offers cleaner syntax, better performance, and easier code maintenance compared to the older directive-based approach.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Signals for Reactive UIs</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Direct Signal Binding</strong>:
+          Bind signals directly in templates without the async pipe for more efficient change detection and cleaner syntax.
+        </li>
+        <li>
+          <strong>Use Computed Signals</strong>:
+          Derive values from signals with computed() for efficient template updates that only recalculate when dependencies change.
+        </li>
+        <li>
+          <strong>Implement Signal-Based Forms</strong>:
+          Use signal-based form controls for more predictable two-way binding and better performance in complex forms.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Initial Loading</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Implement @defer</strong>:
+          Use @defer blocks to lazy-load non-critical parts of your templates, improving initial page load performance.
+        </li>
+        <li>
+          <strong>Prioritize Critical Content</strong>:
+          Structure templates to render critical content first, deferring less important sections until after hydration.
+        </li>
+        <li>
+          <strong>Use Placeholders</strong>:
+          Provide meaningful loading states within @defer blocks to improve user experience during lazy-loading.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Enforce Type Safety</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Enable strictTemplates</strong>:
+          Configure your Angular project with strict template type checking to catch errors at compile time rather than runtime.
+        </li>
+        <li>
+          <strong>Use Input Type Validation</strong>:
+          Leverage Angular 19's enhanced input transform capabilities for better type checking and data validation in components.
+        </li>
+        <li>
+          <strong>Adopt Type-Safe Event Handling</strong>:
+          Use strict typing for event handlers to ensure type safety when handling user interactions.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Improve Performance</strong>:
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Implement OnPush Change Detection</strong>:
+          Use OnPush change detection strategy with signals for the most efficient rendering updates.
+        </li>
+        <li>
+          <strong>Consider Zoneless Applications</strong>:
+          For high-performance applications, adopt the zoneless approach for full control over change detection.
+        </li>
+        <li>
+          <strong>Minimize Template Expressions</strong>:
+          Keep template expressions simple and move complex logic to the component class for better performance and testability.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
 
 <ng-template #prosConsRef>
@@ -189,34 +412,19 @@
 
   <ol class="list-decimal px-10 text-sm">
     <li>
-      <strong>Easy to Learn:</strong>
-      <p>
-        Angular templates use familiar HTML syntax, making them easy to learn for web developers with HTML and CSS experience.
-      </p>
+      Angular 19's new control flow syntax (@if, @for, @switch) provides better performance and type safety than traditional directive-based approaches.
     </li>
     <li>
-      <strong>Separation of Concerns</strong>
-      <p>
-        Angular templates allow for a clear separation of concerns between presentation and logic, making it easier to maintain and update code.
-      </p>
+      Direct signal integration in templates enables more efficient and granular updates with less boilerplate compared to observable-based approaches.
     </li>
     <li>
-      <strong>Data Binding</strong>
-      <p>
-        Angular templates allow for easy data binding between components and the view, reducing boilerplate code and making it easier to manage application state.
-      </p>
+      Enhanced type checking and improved TypeScript integration catch template errors during development rather than at runtime.
     </li>
     <li>
-      <strong>Declarative Syntax</strong>
-      <p>
-        Angular templates use a declarative syntax, making it easier to write concise and readable code that is self-explanatory.
-      </p>
+      The @defer block enables better initial loading performance by lazy-loading non-critical template content.
     </li>
     <li>
-      <strong>Testability</strong>
-      <p>
-        Angular templates are testable, making it easier to write and run unit tests for individual components and the application as a whole.
-      </p>
+      Zoneless template support reduces application bundle size and improves runtime performance by eliminating Zone.js overhead.
     </li>
   </ol>
 
@@ -230,103 +438,81 @@
 
   <ol class="list-decimal px-10 text-sm">
     <li>
-      <strong>Complexity</strong>
-      <p>
-        Angular templates can become complex as applications grow, making it harder to manage and maintain code.
-      </p>
+      Migrating from traditional directive-based templates to the new control flow syntax requires codebase updates and refactoring.
     </li>
     <li>
-      <strong>Template Bloat</strong>
-      <p>
-        Angular templates can become bloated with repeated or duplicated code, leading to a larger application size and reduced performance.
-      </p>
+      Signal-based templates can introduce a learning curve for developers familiar with only Observable-based approaches.
     </li>
     <li>
-      <strong>Limited Logic</strong>
-      <p>
-        Angular templates have limited logic capabilities, which can make it difficult to create complex data transformations or business logic.
-      </p>
+      Implementing zoneless templates requires more manual change detection management, which can increase complexity.
     </li>
     <li>
-      <strong>Tight Coupling</strong>
-      <p>
-        Angular templates can create tight coupling between components and the view, making it harder to reuse and decouple code.
-      </p>
+      Strict template type checking might initially slow down development as it flags previously ignored type issues.
     </li>
     <li>
-      <strong>Performance</strong>
-      <p>
-        Angular templates can have an impact on application performance, particularly in larger or more complex applications. Techniques such as lazy loading and optimization can help mitigate this issue.
-      </p>
+      Some third-party libraries might not yet fully support the newest template features in Angular 19.
     </li>
   </ol>
+
 
   <br>
 
   <p>
-    Overall, Angular templates offer a powerful and flexible way to create dynamic and interactive user interfaces. While they do have some potential downsides, these can be mitigated with careful planning and use of best practices.
+    Angular 19's template system provides significant improvements in performance, type safety, and developer experience compared to previous versions. While there are migration challenges and learning curves, the benefits of more efficient rendering, better error detection, and enhanced reactive patterns make these templates a substantial step forward for Angular applications.
   </p>
 
-  </ng-template>
+</ng-template>
 
 
+<ng-template #topicsRef>
+  <p>
+    Related topics to Angular 19 Templates:
+  </p>
 
-  <ng-template #topicsRef>
-    <p>
-      Some related topics to Angular templates:
-    </p>
+  <br>
 
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>Directives</strong>
-        <p>
-          Angular templates use directives to add behavior to HTML elements. Directives can be structural, like *ngIf and *ngFor, or attribute-based, like [ngClass] and [ngStyle].
-        </p>
-      </li>
-      <li>
-        <strong>Template Syntax</strong>
-        <p>
-          Angular templates use a combination of HTML, Angular-specific syntax, and expressions to create dynamic views. Template syntax includes interpolation , property binding, event binding , two-way binding, and structural directives.
-        </p>
-      </li>
-      <li>
-        <strong>Template Reference Variables</strong>
-        <p>
-          Angular templates allow you to create references to elements and components using template reference variables. These variables are defined using the # symbol, and can be used to reference elements in event binding and two-way binding expressions.
-        </p>
-      </li>
-      <li>
-        <strong>Template-driven Forms</strong>
-        <p>
-          Angular templates can be used to create forms using the template-driven approach. Template-driven forms use Angular directives and template syntax to create form controls and handle user input.
-        </p>
-      </li>
-      <li>
-        <strong>Template Inheritance</strong>
-        <p>
-          Angular templates can be inherited by child components to create a consistent UI across an application. Template inheritance allows you to define a base template and extend it in child components.
-        </p>
-      </li>
-      <li>
-        <strong>Template Rendering</strong>
-        <p>
-          Angular templates are rendered by the browser using the DOM. The Angular compiler parses the template and generates the corresponding DOM elements, which are then inserted into the browser's rendering engine.
-        </p>
-      </li>
-      <li>
-        <strong>Performance Considerations</strong>
-        <p>
-          Angular templates can have an impact on application performance. Techniques such as lazy loading, change detection strategies, and optimization of expressions can help improve template rendering performance.
-        </p>
-      </li>
-    </ol>
-
-    <br>
-
-    <p>
-      Overall, Angular templates are a critical part of building Angular applications, and understanding their syntax and behavior is key to building effective and performant user interfaces.
-    </p>
-
-  </ng-template>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Signals API</strong>
+      <p>
+        Angular 19's signal system integrates deeply with templates, providing a reactive state management approach that's more efficient than Observables for UI updates.
+      </p>
+    </li>
+    <li>
+      <strong>Control Flow</strong>
+      <p>
+        The new block-based control flow syntax (@if, @for, @switch) replaces structural directives with a more performant and type-safe alternative for template logic.
+      </p>
+    </li>
+    <li>
+      <strong>Zoneless Applications</strong>
+      <p>
+        Templates in zoneless applications require explicit change detection management but offer significant performance benefits by eliminating Zone.js overhead.
+      </p>
+    </li>
+    <li>
+      <strong>Deferrable Views</strong>
+      <p>
+        The @defer block allows template sections to be lazy-loaded based on conditions, improving initial rendering performance and enabling progressive enhancement.
+      </p>
+    </li>
+    <li>
+      <strong>Angular DevTools</strong>
+      <p>
+        Enhanced debugging capabilities in Angular DevTools provide better visibility into template rendering, signal updates, and performance bottlenecks.
+      </p>
+    </li>
+    <li>
+      <strong>Hydration</strong>
+      <p>
+        Angular 19's improved hydration system works with templates to enable server-side rendering with seamless client-side takeover, preserving DOM state and event handlers.
+      </p>
+    </li>
+    <li>
+      <strong>Type Safety</strong>
+      <p>
+        Strict template type checking provides comprehensive compile-time validation, catching errors before runtime and improving overall application reliability.
+      </p>
+    </li>
+  </ol>
+</ng-template>

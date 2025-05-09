@@ -1,0 +1,154 @@
+// Using Environmental Injectors with Tokens in Angular 19
+import {
+  createEnvironmentInjector,
+  EnvironmentInjector,
+  InjectionToken,
+  Injectable,
+  runInInjectionContext,
+  inject,
+  EffectRef,
+  effect
+} from '@angular/core';
+
+// Feature-specific configuration interface
+interface FeatureConfig {
+  name: string;
+  enabled: boolean;
+  settings: Record<string, any>;
+}
+
+// Feature-specific token
+export const FEATURE_CONFIG = new InjectionToken<FeatureConfig>('feature.config');
+
+// Service that will be scoped to the feature
+@Injectable()
+export class FeatureService {
+  private config = inject(FEATURE_CONFIG);
+
+  getFeatureName(): string {
+    return this.config.name;
+  }
+
+  isEnabled(): boolean {
+    return this.config.enabled;
+  }
+
+  getSetting(key: string): any {
+    return this.config.settings[key];
+  }
+}
+
+// Reactive state bound to the feature's lifecycle
+@Injectable()
+export class FeatureState {
+  private config = inject(FEATURE_CONFIG);
+
+  // State that will be isolated to this feature's injector
+  private counter = signal(0);
+  private history = signal<string[]>([]);
+
+  // Computed values
+  readonly doubleCount = computed(() => this.counter() * 2);
+
+  readonly status = computed(() => {
+    const count = this.counter();
+    if (count === 0) return 'Not started';
+    if (count < 5) return 'In progress';
+    return 'Completed';
+  });
+
+  // Methods to update state
+  increment(): void {
+    this.counter.update(c => c + 1);
+    this.addToHistory('Incremented');
+  }
+
+  reset(): void {
+    this.counter.set(0);
+    this.history.set([]);
+  }
+
+  private addToHistory(action: string): void {
+    this.history.update(h => [...h, `${action} at ${new Date().toISOString()}`]);
+  }
+}
+
+// Create a function to set up a feature with its own environment injector
+export function createFeatureEnvironment(config: FeatureConfig): {
+  injector: EnvironmentInjector;
+  destroy: () => void;
+} {
+  // Create an environment injector with feature-specific providers
+  const injector = createEnvironmentInjector([
+    { provide: FEATURE_CONFIG, useValue: config },
+    FeatureService,
+    FeatureState
+  ]);
+
+  // Set up effects or initialization in the injector's context
+  const cleanupEffects: EffectRef[] = [];
+
+  // Run initialization in the context of this injector
+  runInInjectionContext(injector, () => {
+    const featureService = inject(FeatureService);
+
+    if (featureService.isEnabled()) {
+      console.log(`Feature ${featureService.getFeatureName()} initialized`);
+
+      // Create effect to track state changes
+      const effectRef = effect(() => {
+        const state = inject(FeatureState);
+        console.log(`Feature ${featureService.getFeatureName()} status: ${state.status()}`);
+      });
+
+      cleanupEffects.push(effectRef);
+    }
+  });
+
+  // Return functions to access and clean up this environment
+  return {
+    injector,
+    destroy: () => {
+      // Clean up all effects
+      cleanupEffects.forEach(ref => ref.destroy());
+
+      // Log destruction
+      runInInjectionContext(injector, () => {
+        const featureService = inject(FeatureService);
+        console.log(`Feature ${featureService.getFeatureName()} destroyed`);
+      });
+    }
+  };
+}
+
+// Usage example
+const featureA = createFeatureEnvironment({
+  name: 'Feature A',
+  enabled: true,
+  settings: { timeout: 5000, retries: 3 }
+});
+
+const featureB = createFeatureEnvironment({
+  name: 'Feature B',
+  enabled: false,
+  settings: { maxItems: 10 }
+});
+
+// Access a feature's services through its injector
+function useFeature(featureName: string) {
+  const feature = featureName === 'A' ? featureA : featureB;
+
+  runInInjectionContext(feature.injector, () => {
+    const state = inject(FeatureState);
+    state.increment();
+
+    const service = inject(FeatureService);
+    console.log(`Current status: ${state.status()}`);
+  });
+}
+
+// Clean up when no longer needed
+function destroyFeatures() {
+  featureA.destroy();
+  featureB.destroy();
+}

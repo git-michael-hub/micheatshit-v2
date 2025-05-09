@@ -1,0 +1,83 @@
+// Signal integration with template input variables
+import { Component, signal, computed } from '@angular/core';
+
+interface Task {
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+@Component({
+  selector: 'app-task-list',
+  template: `
+    <h2>Task List ({{ completedCount() }} of {{ totalCount() }} completed)</h2>
+
+    <ul>
+      @for (task of filteredTasks(); track task.id) {
+        <li [class.completed]="task.completed">
+          <input type="checkbox"
+                 [checked]="task.completed"
+                 (change)="toggleTask(task.id)">
+          {{ task.title }}
+
+          <!-- Using template input variables with signals -->
+          <span class="task-number">
+            Task {{ $index + 1 }} of {{ $count }}
+          </span>
+
+          <!-- Conditional content using $index -->
+          @if ($index === 0 && !task.completed) {
+            <span class="priority">Start with this!</span>
+          }
+        </li>
+      } @empty {
+        <li>No tasks match the filter</li>
+      }
+    </ul>
+
+    <div class="filters">
+      <button (click)="filter.set('all')">All</button>
+      <button (click)="filter.set('active')">Active</button>
+      <button (click)="filter.set('completed')">Completed</button>
+    </div>
+  `
+})
+export class TaskListComponent {
+  // Signal for the task list
+  tasks = signal<Task[]>([
+    { id: 1, title: 'Learn Angular 19', completed: false },
+    { id: 2, title: 'Build a project', completed: false },
+    { id: 3, title: 'Study signals', completed: true }
+  ]);
+
+  // Signal for the current filter
+  filter = signal<'all' | 'active' | 'completed'>('all');
+
+  // Computed signal for filtered tasks - updates automatically when dependencies change
+  filteredTasks = computed(() => {
+    const currentFilter = this.filter();
+
+    return this.tasks().filter(task => {
+      if (currentFilter === 'all') return true;
+      if (currentFilter === 'active') return !task.completed;
+      if (currentFilter === 'completed') return task.completed;
+      return true;
+    });
+  });
+
+  // Computed signals for counts
+  totalCount = computed(() => this.tasks().length);
+  completedCount = computed(() => this.tasks().filter(t => t.completed).length);
+
+  // Method to toggle task completion
+  toggleTask(id: number): void {
+    this.tasks.update(tasks =>
+      tasks.map(task =>
+        task.id === id
+          ? { ...task, completed: !task.completed }
+          : task
+      )
+    );
+    // All computed values and template input variables automatically update
+  }
+}

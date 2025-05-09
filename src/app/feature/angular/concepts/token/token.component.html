@@ -1,0 +1,566 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Tokens
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Tokens</span>
+      in Angular 19 are unique identifiers used for dependency injection to locate and provide services, configurations, and values. With Angular 19's enhanced type safety, functional providers, and improved tree-shaking, tokens play a crucial role in creating modular, testable, and optimized applications.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button  (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<ng-template #notesRef>
+  <p>Understanding Angular Tokens</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Definition</strong>:
+      Tokens are unique identifiers used in Angular's dependency injection system to locate and provide services, configurations, and values to components, directives, and other services.
+    </li>
+    <li>
+      <strong>Purpose</strong>:
+      They serve as keys in Angular's injection system, helping resolve dependencies by matching the requested token to the appropriate provider.
+    </li>
+    <li>
+      <strong>Types</strong>:
+      There are several token types including class-based, string-based, InjectionToken, and in Angular 19, the enhanced TypedInjectionToken.
+    </li>
+    <li>
+      <strong>Usage</strong>:
+      Tokens are used in provider registration, dependency lookup, and service configuration throughout Angular applications.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Token Types in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Class Tokens</strong>:
+      <ul class="list-disc pl-4">
+        <li>The most common type of token, where the class itself serves as the identifier for injection.</li>
+        <li>Angular 19 enhances type checking for class tokens, especially when working with signals and standalone APIs.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>String Tokens</strong>:
+      <ul class="list-disc pl-4">
+        <li>Less common in modern Angular applications, but still supported for backward compatibility and specialized cases.</li>
+        <li>Not type-safe by default, which makes them less ideal for complex applications.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>InjectionToken</strong>:
+      <ul class="list-disc pl-4">
+        <li>A type-safe alternative to string tokens, ideal for injecting non-class dependencies like configuration objects, primitive values, or external libraries.</li>
+        <li>In Angular 19, InjectionToken has enhanced type inference when used with functional providers and signal APIs.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Environmental Injectors</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 fully embraces environment injectors which provide more flexibility for managing token hierarchies outside of the component tree.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>TypedInjectionToken</strong>:
+      <ul class="list-disc pl-4">
+        <li>A new feature in Angular 19 that offers stronger type guarantees for injected values, particularly useful for complex configurations and third-party integrations.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Enhancements for Tokens</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Functional Providers</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 streamlines provider registration with an enhanced functional syntax that improves type safety and reduces boilerplate.</li>
+      </ul>
+
+      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code1 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_1"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Signal Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Tokens now have first-class integration with Angular's signal system, allowing for reactive dependency injection with improved performance.</li>
+      </ul>
+
+      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code2 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_2"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Improved Tree-Shaking</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 dramatically improves token-based tree-shaking, ensuring unused providers are removed from production bundles.</li>
+      </ul>
+
+      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code3 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_3"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Zoneless Application Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>Tokens in Angular 19 are optimized for zoneless applications, with better control over change detection when providing and injecting dependencies.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Type Safety</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 provides stronger type guarantees when working with tokens, reducing runtime errors and improving developer experience.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Common Token Use Cases in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      Using Class Tokens for Services
+
+      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code4 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_4"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      Configuring Applications with InjectionToken
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      Providing Values with Functional Providers
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      Multi-Providers for Extensibility
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      Using Environmental Injectors
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Token Provider Scopes in Angular 19</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Scope</th>
+        <th class="py-3 px-4 text-left">Description</th>
+        <th class="py-3 px-4 text-left">Angular 19 Enhancements</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Root</td>
+        <td class="py-3 px-4">Single instance for the entire application</td>
+        <td class="py-3 px-4">Better treeshaking, signal integration</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Platform</td>
+        <td class="py-3 px-4">Shared across multiple Angular applications</td>
+        <td class="py-3 px-4">Enhanced SSR optimizations, platform detection</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Any</td>
+        <td class="py-3 px-4">Injectable in any environment</td>
+        <td class="py-3 px-4">Improved type safety with environment detection</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Component Providers</td>
+        <td class="py-3 px-4">Instance per component and its children</td>
+        <td class="py-3 px-4">Signal-based inheritance, standalone support</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Lazy Module</td>
+        <td class="py-3 px-4">Instance per lazy loaded module</td>
+        <td class="py-3 px-4">Enhanced route-based providers, deferrable support</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Environmental</td>
+        <td class="py-3 px-4">Custom injector hierarchy</td>
+        <td class="py-3 px-4">First-class APIs, better debugging support</td>
+      </tr>
+    </tbody>
+  </table>
+
+</ng-template>
+
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Choose the Right Token Type</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Class Tokens</strong> for services that are instantiated from classes with the @Injectable decorator. They provide the best type safety and IDE support.
+        </li>
+        <li>
+          <strong>Use InjectionToken</strong> for non-class dependencies like configuration objects, primitive values, or external libraries to maintain type safety.
+        </li>
+        <li>
+          <strong>Avoid String Tokens</strong> in new code as they don't provide type safety. If you must use them, wrap them in an InjectionToken for better maintainability.
+        </li>
+        <li>
+          <strong>Consider TypedInjectionToken</strong> in Angular 19 for complex configuration objects that require additional type validation beyond TypeScript's static typing.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Provider Registration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Functional Providers</strong> in Angular 19 for more concise, type-safe provider syntax, which also enables better tree-shaking and IDE autocompletion.
+        </li>
+        <li>
+          <strong>Prefer providedIn: 'root'</strong> for singleton services to leverage Angular's optimization of tree-shakable providers.
+        </li>
+        <li>
+          <strong>Be Explicit with Injection Flags</strong> to clearly indicate how dependency resolution should behave (e.g., using @Optional(), @Self(), @SkipSelf()).
+        </li>
+        <li>
+          <strong>Leverage Signal-Based Providers</strong> for reactive dependencies that change over time, using Angular 19's enhanced signal integration.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Manage Token Hierarchies</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Design Thoughtful Hierarchies</strong> to ensure services are available at the right levels of your application, minimizing memory usage and increasing encapsulation.
+        </li>
+        <li>
+          <strong>Use Environmental Injectors</strong> in Angular 19 to create injector hierarchies independent of the component tree, especially for routing or lazy-loaded features.
+        </li>
+        <li>
+          <strong>Prefer Component Providers</strong> for services that should be scoped to a component and its children, promoting better encapsulation and testability.
+        </li>
+        <li>
+          <strong>Document Provider Scope</strong> clearly for other developers, especially for complex hierarchies or when using specialized injection techniques.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Enhance Testability</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Design for Token Overrides</strong> by using injection tokens consistently, making it easier to substitute implementations in tests.
+        </li>
+        <li>
+          <strong>Create Test Providers</strong> that mirror your production providers but with simplified or mock implementations.
+        </li>
+        <li>
+          <strong>Use TestBed.overrideProvider</strong> for granular control when testing specific parts of your application that depend on tokens.
+        </li>
+        <li>
+          <strong>Leverage Angular 19's Type-Safe Testing</strong> features to catch provider configuration errors during test setup rather than during execution.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Apply Performance Optimizations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Implement Factory Functions</strong> for expensive providers to defer instantiation until absolutely needed.
+        </li>
+        <li>
+          <strong>Consider Multi-Providers</strong> for collections of similar services to avoid unnecessary instantiation when only a subset is needed.
+        </li>
+        <li>
+          <strong>Leverage Zoneless Applications</strong> in Angular 19 with token providers that minimize change detection overhead in signal-based architectures.
+        </li>
+        <li>
+          <strong>Use Deferrable Loading</strong> with environmental injectors to lazy-load providers only when their tokens are actually requested in the application.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      Provides a flexible and powerful dependency injection system that helps decouple components from their dependencies, improving modularity and testability.
+    </li>
+    <li>
+      Enables hierarchical dependency injection, allowing services to be scoped to specific parts of the application to manage state and reduce memory usage.
+    </li>
+    <li>
+      Angular 19's enhanced token system improves type safety and developer experience, with better error messages and IDE integration.
+    </li>
+    <li>
+      Simplifies testing by allowing dependencies to be easily mocked or substituted without changing component code.
+    </li>
+    <li>
+      Functional providers in Angular 19 reduce boilerplate and improve tree-shaking, resulting in smaller bundle sizes in production builds.
+    </li>
+    <li>
+      First-class integration with signals provides powerful reactive patterns for managing dependencies that change over time.
+    </li>
+    <li>
+      Environmental injectors offer more flexibility for managing token hierarchies outside of the component tree.
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      Can introduce complexity, particularly for newcomers to Angular who must understand different token types and provider configurations.
+    </li>
+    <li>
+      Hierarchical injection can lead to subtle bugs when tokens are resolved from unexpected levels of the injector tree.
+    </li>
+    <li>
+      String tokens lack type safety, which can lead to runtime errors if not carefully managed.
+    </li>
+    <li>
+      Over-reliance on the DI system can sometimes lead to "magic" behaviors where it's unclear how dependencies are being provided and resolved.
+    </li>
+    <li>
+      Improper token configuration can lead to multiple instances of services that were intended to be singletons.
+    </li>
+    <li>
+      Debugging token resolution issues can be challenging, especially in large applications with complex provider configurations.
+    </li>
+  </ol>
+
+
+  <br>
+
+  <p>
+    Angular 19 has significantly improved the token-based dependency injection system with better type safety, functional providers, and signal integration. These enhancements reduce many of the traditional pain points while preserving the flexibility and power that make tokens fundamental to Angular's architecture. When used thoughtfully with appropriate scoping and clear documentation, tokens provide a robust foundation for building maintainable and testable applications.
+  </p>
+
+</ng-template>
+
+
+<ng-template #topicsRef>
+  <p>
+    Related topics to Angular 19 Tokens:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Dependency Injection</strong>
+      <p>
+        The core framework feature that uses tokens to locate and provide services, configurations, and values to components, directives, and other services.
+      </p>
+    </li>
+    <li>
+      <strong>Providers</strong>
+      <p>
+        Objects that tell the DI system how to create instances of dependencies using tokens as keys. Angular 19 introduces enhanced functional providers with better type inference.
+      </p>
+    </li>
+    <li>
+      <strong>Injectors</strong>
+      <p>
+        The service that holds the tokens and their corresponding providers, responsible for creating and caching dependency instances when requested.
+      </p>
+    </li>
+    <li>
+      <strong>Environmental Injectors</strong>
+      <p>
+        Angular 19's approach to creating injector hierarchies that exist outside the component tree, offering more flexibility for token management.
+      </p>
+    </li>
+    <li>
+      <strong>Signal-Based Reactivity</strong>
+      <p>
+        Angular 19's reactive programming model that integrates with tokens to provide reactive dependency injection capabilities.
+      </p>
+    </li>
+    <li>
+      <strong>Tree-Shaking Optimization</strong>
+      <p>
+        The process by which Angular 19 eliminates unused providers from production bundles, with enhanced capabilities for token-based tree-shaking.
+      </p>
+    </li>
+    <li>
+      <strong>Zoneless Applications</strong>
+      <p>
+        Angular 19's approach to building applications without zone.js, with implications for how tokens and change detection interact.
+      </p>
+    </li>
+    <li>
+      <strong>SSR and Hydration</strong>
+      <p>
+        How tokens behave in server-side rendering scenarios and during the hydration process in Angular 19.
+      </p>
+    </li>
+  </ol>
+</ng-template>

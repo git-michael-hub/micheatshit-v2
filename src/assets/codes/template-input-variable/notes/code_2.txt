@@ -1,0 +1,46 @@
+<!-- Angular 19's new @for control flow block with template input variables -->
+<ul>
+  @for (user of users(); track user.id) {
+    <!-- Template input variables are available directly -->
+    <li [class.first]="$first"
+        [class.last]="$last"
+        [class.even]="$even"
+        [class.odd]="$odd">
+      {{ $index + 1 }} of {{ $count }}. {{ user.name }}
+
+      <!-- Enhanced variable availability -->
+      @if ($index === 0) {
+        <span class="badge">First User</span>
+      }
+    </li>
+  } @empty {
+    <li>No users available</li>
+  }
+</ul>
+
+<!-- Enhanced type support in component class -->
+import { Component, signal } from '@angular/core';
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+@Component({
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html'
+})
+export class UserListComponent {
+  // Signal-based collection for automatic reactivity
+  users = signal<User[]>([
+    { id: 1, name: 'John Doe', email: 'john@example.com' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com' }
+  ]);
+
+  addUser(user: User): void {
+    this.users.update(users => [...users, user]);
+    // Template input variables like $count will automatically update
+  }
+}
