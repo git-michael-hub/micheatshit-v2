@@ -1,336 +1,399 @@
-<section class="p-2">
+<section class="p-4 text-sm">
   <p class="heading-1 mb-2">
-    router outlet
+    Router Outlet
   </p>
 
   <div class="text-content">
     <p>
+      <span class="text-zinc-50 tw-font-medium">Router Outlet</span>
+      in Angular 19 serves as a dynamic placeholder where routed components are rendered. With Angular 19's significant enhancements, router outlets now support signal-based activation, improved performance in zoneless applications, and seamless integration with the standalone component architecture, enabling more flexible and efficient routing patterns.
     </p>
 
     <br>
 
     <div class="flex flex-col">
       <div class="flex border-b border-gray-200">
-        <button  (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Notes
         </button>
-        <button  (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Pros and Cons
         </button>
-        <button  (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
           Related Topics
         </button>
       </div>
       <div class="p-4">
         <ng-container [ngSwitch]="selectedTab">
           <div *ngSwitchCase="2">
-            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
           </div>
           <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
             <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
           </div>
           <div *ngSwitchDefault>
             <ng-container *ngTemplateOutlet="notesRef"></ng-container>
           </div>
         </ng-container>
-
       </div>
     </div>
-
   </div>
 </section>
 
-
-
-
 <ng-template #notesRef>
-  <p>
-  </p>
+  <p>Why Use Router Outlet?</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Dynamic Content Rendering</strong>:
+      Provides a placeholder where Angular can dynamically load components based on the current route.
+    </li>
+    <li>
+      <strong>Multiple View Management</strong>:
+      Manages multiple view areas in an application with named outlets and auxiliary routes.
+    </li>
+    <li>
+      <strong>Navigation Control</strong>:
+      Enables complex navigation patterns like nested routes and component composition.
+    </li>
+    <li>
+      <strong>Transition Management</strong>:
+      Supports animations and transitions between routes for enhanced user experience.
+    </li>
+  </ul>
 
   <br>
+  <br>
 
-  <ol class="list-decimal px-10 text-sm">
+  <p>New Features and Enhancements in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
     <li>
-      <strong>Basic Usage</strong>
-
-      <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code1 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>html</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_1"
-            [languages]="['html']">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Signal-Based Activation</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces signal-based outlet activation for improved reactivity</li>
+        <li>More efficient change detection and component rendering</li>
+        <li>Better integration with Angular's signal-based reactivity model</li>
+      </ul>
     </li>
     <li>
-      <strong>Named Outlets</strong>
-
-      <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code2 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>html</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_2"
-            [languages]="['html']">
-          </code>
-        </pre>
-
-        <!-- <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button> -->
-
-        <span  copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_2_1"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-
-
-      </span>
-
+      <strong>Enhanced Performance in Zoneless Mode</strong>:
+      <ul class="list-disc pl-4">
+        <li>Optimized router outlet implementation for zoneless applications</li>
+        <li>Reduced overhead and memory footprint for better performance</li>
+        <li>Improved handling of component activation/deactivation cycles</li>
+      </ul>
     </li>
     <li>
-      <strong>Route Animations</strong>
-
-      <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code3 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_3"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-
-        <!-- <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button> -->
-
-        <span  copyToClipboard>
-          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-            <span>typescript</span>
-            <span class="copy-button-wrapper bg-gray-700"></span>
-          </div>
-
-          <pre>
-            <code
-              [highlight]="code_3_1"
-              [languages]="['typescript']">
-            </code>
-          </pre>
-        </span>
-
-      </span>
-
+      <strong>Standalone Component Integration</strong>:
+      <ul class="list-disc pl-4">
+        <li>First-class support for standalone components without NgModule dependencies</li>
+        <li>Simplified configuration and bootstrapping with standalone APIs</li>
+        <li>More flexible composition patterns for complex routing scenarios</li>
+      </ul>
     </li>
     <li>
-      <strong>Router Configuration</strong>
-
-      <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
-
-      <span #code4 hidden copyToClipboard>
-        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
-          <span>typescript</span>
-          <span class="copy-button-wrapper bg-gray-700"></span>
-        </div>
-
-        <pre>
-          <code
-            [highlight]="code_4"
-            [languages]="['typescript']">
-          </code>
-        </pre>
-      </span>
-
+      <strong>Improved Debugging Experience</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enhanced DevTools integration for inspecting router outlet state</li>
+        <li>Better error messages and debugging information</li>
+        <li>More predictable activation/deactivation lifecycle</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Support for Nested Component Structures</strong>:
+      <ul class="list-disc pl-4">
+        <li>Better handling of deeply nested outlet hierarchies</li>
+        <li>Improved performance for complex nested routing patterns</li>
+        <li>Enhanced support for parameterized nested routes</li>
+      </ul>
     </li>
   </ol>
 
   <br>
+  <br>
 
-  <p>
-  </p>
+  <p>Router Outlet Types</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Type</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Primary Outlet</td>
+        <td class="py-3 px-4">The default unnamed outlet that renders components for the primary navigation path</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Named Outlet</td>
+        <td class="py-3 px-4">Secondary outlets with unique names that can display multiple routed views simultaneously</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Child Outlet</td>
+        <td class="py-3 px-4">Outlet inside a routed component that handles nested route segments</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Auxiliary Outlet</td>
+        <td class="py-3 px-4">Independent secondary outlet that displays content alongside the primary outlet</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Basic Router Outlet Usage</p>
+  <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code1 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_1"
+        [languages]="['html']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Named Outlets Configuration</p>
+  <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code2 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>html</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_2"
+        [languages]="['html']">
+      </code>
+    </pre>
+
+    <span copyToClipboard>
+      <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+        <span>typescript</span>
+        <span class="copy-button-wrapper bg-gray-700"></span>
+      </div>
+
+      <pre>
+        <code
+          [highlight]="code_2_1"
+          [languages]="['typescript']">
+        </code>
+      </pre>
+    </span>
+  </span>
+
+  <br>
+  <p>Signal-Based Router Outlet (Angular 19)</p>
+  <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code5 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_5"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
+
+  <br>
+  <p>Route Animations with Router Outlet</p>
+  <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code3 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_3"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+
+    <span copyToClipboard>
+      <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+        <span>typescript</span>
+        <span class="copy-button-wrapper bg-gray-700"></span>
+      </div>
+
+      <pre>
+        <code
+          [highlight]="code_3_1"
+          [languages]="['typescript']">
+        </code>
+      </pre>
+    </span>
+  </span>
+
+  <br>
+  <p>Standalone Router Configuration</p>
+  <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+  <span #code4 hidden copyToClipboard>
+    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+      <span>typescript</span>
+      <span class="copy-button-wrapper bg-gray-700"></span>
+    </div>
+
+    <pre>
+      <code
+        [highlight]="code_4"
+        [languages]="['typescript']">
+      </code>
+    </pre>
+  </span>
 </ng-template>
 
-
-
-
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Organize Router Outlets Strategically</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Hierarchical Structure</strong>:
+          Plan your router outlet hierarchy to match your application's logical structure for better maintainability.
+        </li>
+        <li>
+          <strong>Avoid Deep Nesting</strong>:
+          Limit nesting depth to 3-4 levels to prevent complexity and performance issues with deeply nested outlets.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Named Outlets Judiciously</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Clear Naming Conventions</strong>:
+          Adopt consistent naming patterns for auxiliary outlets to improve code readability.
+        </li>
+        <li>
+          <strong>Limit Multiple Outlets</strong>:
+          Use named outlets sparingly to avoid confusion and maintain a simpler routing structure.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Router Animations Effectively</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Predictable Transitions</strong>:
+          Keep animations simple and predictable to avoid disorienting users during navigation.
+        </li>
+        <li>
+          <strong>Performance Considerations</strong>:
+          Optimize animations to prevent jank and ensure smooth transitions, especially on mobile devices.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Signal-Based Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Reactive Patterns</strong>:
+          Use Angular 19's signal-based router outlet activation for more reactive and efficient rendering.
+        </li>
+        <li>
+          <strong>Eliminate Subscription Management</strong>:
+          Take advantage of signals to reduce the need for manual subscription handling in components.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Lazy Loading with Router Outlets</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Feature Modules</strong>:
+          Structure your application around feature modules that can be lazy-loaded through router outlets.
+        </li>
+        <li>
+          <strong>Preloading Strategies</strong>:
+          Configure intelligent preloading strategies to balance initial load time and subsequent navigation speed.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
 <ng-template #prosConsRef>
-  <strong class="text-sky-400">
-    Pros:
-  </strong>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sky-400">Pros:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Enables dynamic component rendering based on the current route</li>
+        <li>Supports multiple named outlets for complex UI layouts</li>
+        <li>Facilitates nested routing for hierarchical application structures</li>
+        <li>Signal-based activation in Angular 19 improves reactivity and performance</li>
+        <li>Integrates seamlessly with standalone components without NgModule dependencies</li>
+        <li>Supports route animations for enhanced user experience</li>
+        <li>Works efficiently in zoneless applications with optimized change detection</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-sky-400">Cons:</p>
+      <ul class="list-disc pl-4 text-sm">
+        <li>Can introduce complexity when using multiple nested or named outlets</li>
+        <li>May lead to performance overhead if too many outlets are active simultaneously</li>
+        <li>Route configuration becomes more complex with auxiliary routes</li>
+        <li>Debugging can be challenging with deeply nested outlet structures</li>
+        <li>Animations can be difficult to implement correctly across different routes</li>
+        <li>Learning curve for advanced outlet patterns and configurations</li>
+        <li>State management across multiple outlets requires careful design</li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
 
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Flexible Routing</strong>
-      <p>
-        Angular Router Outlet allows you to create complex routing structures with multiple named outlets, nested outlets, and componentless routes.
-      </p>
-    </li>
-    <li>
-      <strong>Route Animations</strong>
-      <p>
-        Angular Router Outlet supports route animations, which allows you to animate the transition between different routes in your application.
-      </p>
-    </li>
-    <li>
-      <strong>Dynamic Configuration</strong>
-      <p>
-        Angular Router Outlet allows you to dynamically configure your routes at runtime, allowing you to create more flexible and dynamic applications.
-      </p>
-    </li>
-    <li>
-      <strong>Route Parameters</strong>
-      <p>
-        Angular Router Outlet allows you to pass data to components via the URL using route parameters.
-      </p>
-    </li>
-    <li>
-      <strong>Route Guards</strong>
-      <p>
-        Angular Router Outlet allows you to add security and data validation to your routes using route guards.
-      </p>
-    </li>
-    <li>
-      <strong>Route Resolvers</strong>
-      <p>
-        Angular Router Outlet allows you to pre-fetch data for a component before it is rendered using route resolvers, improving the performance of your application.
-      </p>
-    </li>
-  </ol>
-
-  <br>
-
-  <strong class="text-sky-400">
-    Cons:
-  </strong>
-
-  <br>
-
-  <ol class="list-decimal px-10 text-sm">
-    <li>
-      <strong>Complexity</strong>
-      <p>
-        Angular Router Outlet can become complex to use when creating advanced routing structures.
-      </p>
-    </li>
-    <li>
-      <strong>Learning Curve</strong>
-      <p>
-        Angular Router Outlet has a learning curve, especially for beginners who are new to Angular.
-      </p>
-    </li>
-    <li>
-      <strong>Performance Overhead</strong>
-      <p>
-        Angular Router Outlet has some performance overhead due to its dynamic nature and the fact that it needs to maintain a stateful routing configuration.
-      </p>
-    </li>
-    <li>
-      <strong>Debugging</strong>
-      <p>
-        Debugging complex routing structures can be difficult and time-consuming.
-      </p>
-    </li>
-  </ol>
-
-
-  <br>
-
-  <p>
-    Overall, Angular Router Outlet is a powerful tool for creating complex routing structures and dynamic applications, but it can also add complexity and overhead to your application. It's important to carefully consider your routing requirements and design your routing structures accordingly.
-  </p>
-
-  </ng-template>
-
-
-
-
-
-  <ng-template #topicsRef>
-    <p>
-      Some related topics to Angular Router Outlet:
-    </p>
-
-    <br>
-
-    <ol class="list-decimal px-10 text-sm">
-      <li>
-        <strong>Nested Router Outlets</strong>
-        <p>
-          You can use multiple router-outlet elements in a single template to create nested routing structures. This allows you to define multiple named outlets that can be used to load different components depending on the current route.
-        </p>
-      </li>
-      <li>
-        <strong>Route Animations</strong>
-        <p>
-          Angular Router supports route animations, which allows you to animate the transition between different routes in your application. You can define animations using the @angular/animations package and apply them to your routes using the [@routeAnimation] directive.
-        </p>
-      </li>
-      <li>
-        <strong>Componentless Routes</strong>
-        <p>
-          Componentless routes allow you to define routes that have no associated component. This can be useful for creating complex nested routes where only the child routes have associated components.
-        </p>
-      </li>
-      <li>
-        <strong>Route Configuration</strong>
-        <p>
-          Angular Router allows you to configure your routes using a combination of static and dynamic configuration. Static configuration involves defining your routes in code, while dynamic configuration allows you to load routes dynamically at runtime.
-        </p>
-      </li>
-      <li>
-        <strong>Route Parameters:</strong>
-        <p>
-          Route parameters allow you to pass data to a component via the URL. You can define route parameters by adding a colon (:) before the parameter name in the route path. You can then access the parameter value via the ActivatedRoute service.
-        </p>
-      </li>
-      <li>
-        <strong>Route Guards</strong>
-        <p>
-          Route guards allow you to add security and data validation to your routes. You can use route guards to prevent unauthorized access to certain routes, validate user input, or perform other tasks before allowing the user to access a particular route.
-        </p>
-      </li>
-      <li>
-        <strong>Route Resolvers</strong>
-        <p>
-          Route resolvers allow you to pre-fetch data for a component before it is rendered. This can help to improve the performance of your application by reducing the time it takes to load data. You can define route resolvers by adding a resolve property to your route configuration.
-        </p>
-      </li>
-    </ol>
-
-
-    <br>
-
-    <p>
-      These are some related topics that are often used in conjunction with Angular Router Outlet. By understanding these topics, you can create more complex and dynamic applications using Angular.
-    </p>
-
-  </ng-template>
+<ng-template #topicsRef>
+  <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Angular Router</p>
+      <p class="text-sm">Core routing system that router outlets work with to render components</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Auxiliary Routes</p>
+      <p class="text-sm">Independent secondary routes that can be displayed alongside primary routes</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Route Animations</p>
+      <p class="text-sm">Transition effects between routes for improved user experience</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Lazy Loading</p>
+      <p class="text-sm">On-demand loading of modules as they're needed through router outlets</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Nested Routes</p>
+      <p class="text-sm">Hierarchical routing structure with parent-child relationships</p>
+    </div>
+    <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors">
+      <p class="font-medium text-sky-400">Route Guards</p>
+      <p class="text-sm">Protection mechanisms that control access to routes and outlets</p>
+    </div>
+  </div>
+</ng-template>
 
 
 

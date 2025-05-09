@@ -1,0 +1,58 @@
+// app.routes.ts - Signal-based router configuration in Angular 19
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'profile/:id', component: ProfileComponent }
+];
+
+// app.component.ts - Using signal-based router outlet
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  template: `
+    <h1>Signal-Based Router in Angular 19</h1>
+
+    <!-- Basic router outlet usage -->
+    <router-outlet></router-outlet>
+
+    <!-- Current route information using signals -->
+    <div class="route-info">
+      <p>Current URL: {{ url() }}</p>
+      <p>Route Params: {{ paramId() || 'none' }}</p>
+    </div>
+
+    <!-- Navigation with signals -->
+    <button (click)="navigateHome()">Home</button>
+    <button (click)="navigateToProfile()">Profile</button>
+  `
+})
+export class AppComponent {
+  private router = inject(Router);
+
+  // Convert route parameters to signals
+  url = toSignal(this.router.events.pipe(
+    // Transform to current URL string
+  ), { initialValue: this.router.url });
+
+  // Access route params as signals
+  paramId = toSignal(this.router.routerState.root.paramMap.pipe(
+    // Map to get the 'id' parameter
+  ), { initialValue: null });
+
+  navigateHome() {
+    this.router.navigate(['/']);
+  }
+
+  navigateToProfile() {
+    this.router.navigate(['/profile', 123]);
+  }
+}

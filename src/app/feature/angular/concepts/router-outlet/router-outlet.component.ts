@@ -17,6 +17,7 @@ export class RouterOutletComponent extends UnsubscribeService {
   code_3 = '';
   code_3_1 = '';
   code_4 = '';
+  code_5 = '';
 
   constructor(
     private http: HttpClient
@@ -51,7 +52,9 @@ export class RouterOutletComponent extends UnsubscribeService {
       .pipe(takeUntil(this.toUnsubscribe$))
       .subscribe(data => this.code_4 = data);
 
-
+    this.http.get('assets/codes/router-outlet/notes/code_5.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_5 = data);
   }
 }
 
