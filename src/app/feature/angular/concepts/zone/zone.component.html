@@ -1,0 +1,464 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Zone
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Zone</span>
+      in Angular 19 is an execution context that persists across asynchronous operations, allowing Angular to track when asynchronous tasks start and complete. Zones enable Angular's automatic change detection by intercepting asynchronous operations (like timers, event listeners, and HTTP requests) and triggering UI updates when these operations complete, without requiring manual intervention.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <!-- Tab 1: Notes -->
+        <div *ngIf="selectedTab === 1">
+          <p>What is Zone.js?</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Execution Context Framework</strong>:
+              A library that extends JavaScript to create execution contexts that persist across async operations.
+            </li>
+            <li>
+              <strong>Asynchronous Task Tracking</strong>:
+              Intercepts and wraps common asynchronous operations to notify when tasks start and complete.
+            </li>
+            <li>
+              <strong>Change Detection Integration</strong>:
+              Provides Angular with signals to run change detection when asynchronous operations finish.
+            </li>
+            <li>
+              <strong>Monkeypatching</strong>:
+              Works by patching browser APIs like setTimeout, Promise, and event listeners to track their execution.
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Angular 19 Zone Enhancements</p>
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong>Enhanced Zone Configuration</strong>:
+              <ul class="list-disc pl-4">
+                <li>Angular 19 introduces more granular Zone.js configuration options through the provideZoneChangeDetection function, allowing developers to fine-tune performance characteristics.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Improved Performance Profiling</strong>:
+              <ul class="list-disc pl-4">
+                <li>New built-in tools for profiling Zone-related performance issues, helping identify operations that trigger unnecessary change detection cycles.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Zone Compatibility Mode</strong>:
+              <ul class="list-disc pl-4">
+                <li>Introduces a compatibility mode that allows applications to gradually migrate from Zone-based to Signal-based change detection, with clear zone boundaries in DevTools.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Zone Optimizations</strong>:
+              <ul class="list-disc pl-4">
+                <li>Angular 19 includes smarter Zone scheduling with improved event coalescing and more efficient batching of updates to minimize unnecessary renders.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Optional Zone Usage</strong>:
+              <ul class="list-disc pl-4">
+                <li>While Zone.js remains supported, Angular 19 continues the trend toward zoneless applications, with improved documentation and migration paths for developers choosing either approach.</li>
+              </ul>
+            </li>
+          </ol>
+
+          <br>
+          <br>
+
+          <p>Zone.js in Angular Applications</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Importing Zone.js</strong>:
+              Zone.js is included by default in Angular projects.
+
+              <button (click)="code16.hidden = !code16.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code16 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_16"></code>
+                </pre>
+              </span>
+
+            </li>
+            <li>
+              <strong>Default Angular Setup</strong>:
+              Zone.js is used implicitly for change detection.
+
+              <button (click)="code17.hidden = !code17.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code17 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_17"></code>
+                </pre>
+              </span>
+
+            </li>
+            <li>
+              <strong>Explicit Zone Configuration</strong>:
+              Configuring Zone-based change detection explicitly.
+
+              <button (click)="code18.hidden = !code18.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code18 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_18"></code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Zone Configuration Options in Angular 19</p>
+          <br>
+          <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+            <thead>
+              <tr class="bg-gray-800 text-gray-100">
+                <th class="py-3 px-4 text-left">Option</th>
+                <th class="py-3 px-4 text-left">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>eventCoalescing</code></td>
+                <td class="py-3 px-4">Combines multiple events into a single change detection cycle to improve performance.</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>runCoalescing</code></td>
+                <td class="py-3 px-4">Batches multiple Zone tasks to reduce the number of change detection cycles.</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>disableErrorHandling</code></td>
+                <td class="py-3 px-4">Disables Zone's built-in error handling, useful when providing custom error handling.</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>shouldCoalesceRunChangeDetection</code></td>
+                <td class="py-3 px-4">A function that determines whether to coalesce a specific run of change detection.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <br>
+          <br>
+
+          <p>Advanced Zone Usage</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Zone Configuration</strong>:
+              Advanced configuration options for Zone.js.
+
+              <button (click)="code20.hidden = !code20.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code20 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_20"></code>
+                </pre>
+              </span>
+
+            </li>
+            <li>
+              <strong>Custom Zones</strong>:
+              Creating custom zones for specific behavior.
+
+              <button (click)="code21.hidden = !code21.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code21 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_21"></code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tab 2: Best Practices -->
+        <div *ngIf="selectedTab === 2">
+          <ol class="list-decimal px-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Use Explicit Zone Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Configure Explicitly</strong>:
+                  Always explicitly configure Zone.js with provideZoneChangeDetection in your application bootstrap to ensure consistent behavior and make your intentions clear to other developers.
+                </li>
+                <li>
+                  <strong>Enable Optimization Features</strong>:
+                  Use eventCoalescing and runCoalescing options to optimize performance in applications with frequent events or multiple asynchronous operations.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Understand Zone Boundaries</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Be Aware of Zone-Unaware APIs</strong>:
+                  Some modern APIs (like IndexedDB, WebWorkers, or some third-party libraries) don't work properly with Zone.js tracking. Use appropriate wrappers or manual change detection in these cases.
+                </li>
+                <li>
+                  <strong>NgZone Service</strong>:
+                  Utilize Angular's NgZone service when working with code that should not trigger change detection or when you need to explicitly run inside or outside Angular's zone.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Performance Optimization</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Reduce Zone-Triggered Change Detection</strong>:
+                  Minimize code that unnecessarily triggers change detection through Zone.js by using runOutsideAngular for operations that don't affect the UI.
+                </li>
+                <li>
+                  <strong>Profile Zone Operations</strong>:
+                  Use Angular DevTools and browser performance tools to identify and optimize Zone-related performance issues, focusing on frequent or expensive change detection cycles.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Strategic Zone Usage</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Consider Zoneless for Performance-Critical Apps</strong>:
+                  For applications with strict performance requirements, consider adopting zoneless architecture with signal-based change detection, especially for new projects.
+                </li>
+                <li>
+                  <strong>Hybrid Approach</strong>:
+                  For existing applications, adopt a hybrid approach where performance-critical sections use explicit change detection while other parts continue using Zone.js.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Testing with Zones</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>FakeAsync for Testing</strong>:
+                  Leverage Angular testing utilities like fakeAsync and tick to efficiently test code that relies on Zone.js for handling asynchronous operations.
+                </li>
+                <li>
+                  <strong>Explicitly Stabilize in Tests</strong>:
+                  In complex tests, explicitly call fixture.detectChanges() at appropriate points rather than relying solely on automatic Zone-based change detection for more predictable test behavior.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Tab 3: Pros and Cons -->
+        <div *ngIf="selectedTab === 3">
+          <strong class="text-sky-400">
+            Pros:
+          </strong>
+
+          <br>
+
+          <ol class="list-decimal px-10 text-sm">
+            <li>
+              <strong>Automatic Change Detection</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Zone.js enables Angular's automatic change detection, eliminating the need to manually notify the framework after asynchronous operations complete.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Simplified Programming Model</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Developers don't need to worry about when to trigger UI updates, making Angular applications easier to develop, especially for those new to the framework.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Comprehensive Async Operation Tracking</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Zone.js intercepts virtually all standard asynchronous operations, ensuring UI consistency regardless of how state changes occur.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Debugging Support</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  The execution context maintained by Zone.js improves stack traces and error handling across asynchronous boundaries, making debugging easier.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Error Handling</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Zone.js provides a unified mechanism for handling errors that occur in asynchronous operations, allowing for centralized error handling strategies.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Backwards Compatibility</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Zone-based change detection continues to be well-supported in Angular 19, ensuring existing applications can be maintained and gradually migrated if desired.
+                </li>
+              </ul>
+            </li>
+          </ol>
+
+          <br>
+
+          <strong class="text-sky-400">
+            Cons:
+          </strong>
+
+          <br>
+
+          <ol class="list-decimal px-10 text-sm">
+            <li>
+              <strong>Performance Overhead</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  The patching and tracking of asynchronous operations adds runtime overhead, which can impact application performance, especially in high-frequency event scenarios.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Bundle Size</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Zone.js adds approximately 100KB to application bundles before minification, which can be significant for applications prioritizing initial load performance.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Unpredictable Change Detection</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Zone-based change detection can sometimes run at unexpected times or too frequently, leading to performance issues that are difficult to diagnose and fix.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Limited Control</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Developers have less direct control over when change detection runs compared to signal-based or manual approaches, making fine-grained optimization challenging.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Compatibility Issues</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Some modern browser APIs and third-party libraries don't work well with Zone.js patching, requiring special handling or workarounds.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Conceptual Complexity</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Zone.js introduces a non-standard concept to JavaScript, creating a learning curve and making it harder to reason about application behavior, especially for developers unfamiliar with Angular.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Tab 4: Related Topics -->
+        <div *ngIf="selectedTab === 4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Related Angular Concepts</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="/angular/change-detection" class="text-sky-400 hover:text-rose-400">Change Detection</a></li>
+                <li><a href="/angular/zoneless-applications" class="text-sky-400 hover:text-rose-400">Zoneless Applications</a></li>
+                <li><a href="/angular/signals" class="text-sky-400 hover:text-rose-400">Signals</a></li>
+                <li><a href="/angular/ngzone" class="text-sky-400 hover:text-rose-400">NgZone</a></li>
+                <li><a href="/angular/performance" class="text-sky-400 hover:text-rose-400">Performance Optimization</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">JavaScript Concepts</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="/angular/asynchronous-programming" class="text-sky-400 hover:text-rose-400">Asynchronous Programming</a></li>
+                <li><a href="/angular/event-loop" class="text-sky-400 hover:text-rose-400">Event Loop</a></li>
+                <li><a href="/angular/promises" class="text-sky-400 hover:text-rose-400">Promises</a></li>
+                <li><a href="/angular/observables" class="text-sky-400 hover:text-rose-400">Observables</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Advanced Patterns</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="/angular/manual-change-detection" class="text-sky-400 hover:text-rose-400">Manual Change Detection</a></li>
+                <li><a href="/angular/onpush-change-detection" class="text-sky-400 hover:text-rose-400">OnPush Change Detection</a></li>
+                <li><a href="/angular/detach-change-detector" class="text-sky-400 hover:text-rose-400">Detaching Change Detector</a></li>
+                <li><a href="/angular/async-pipe" class="text-sky-400 hover:text-rose-400">Async Pipe</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Testing</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="/angular/testing" class="text-sky-400 hover:text-rose-400">Angular Testing</a></li>
+                <li><a href="/angular/fakeasync" class="text-sky-400 hover:text-rose-400">fakeAsync</a></li>
+                <li><a href="/angular/testing-async" class="text-sky-400 hover:text-rose-400">Testing Asynchronous Code</a></li>
+                <li><a href="/angular/test-bed" class="text-sky-400 hover:text-rose-400">TestBed</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

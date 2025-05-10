@@ -1,240 +1,555 @@
-<div class="container">
-  <h1>View Transitions API in Angular</h1>
-  <p>
-    Angular 19 introduces integration with the Web View Transitions API, which provides a standardized way to create smooth, animated transitions between different views and states in your web applications.
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    View Transitions
   </p>
 
-  <div class="tab-navigation">
-    <button
-      type="button"
-      [class.active]="selectedTab === 'notes'"
-      (click)="selectedTab = 'notes'">
-      Notes
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'bestPractices'"
-      (click)="selectedTab = 'bestPractices'">
-      Best Practices
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'prosCons'"
-      (click)="selectedTab = 'prosCons'">
-      Pros and Cons
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'relatedTopics'"
-      (click)="selectedTab = 'relatedTopics'">
-      Related Topics
-    </button>
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">View Transitions</span>
+      in Angular 19 provide a standardized way to create smooth, animated transitions between different views or states in your application. Using the Web View Transitions API, Angular enables performant, browser-native transitions that improve user experience with visual continuity across page navigations and state changes.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
   </div>
+</section>
 
-  <ng-container [ngSwitch]="selectedTab">
-    <ng-container *ngSwitchCase="'notes'">
-      <ng-container *ngTemplateOutlet="notesTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'bestPractices'">
-      <ng-container *ngTemplateOutlet="bestPracticesTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'prosCons'">
-      <ng-container *ngTemplateOutlet="prosConsTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'relatedTopics'">
-      <ng-container *ngTemplateOutlet="relatedTopicsTemplate"></ng-container>
-    </ng-container>
-  </ng-container>
-</div>
-
-<ng-template #notesTemplate>
-  <h2>Overview</h2>
-  <p>
-    The View Transitions API provides a standardized way to animate changes in your web application, making page and state transitions more visually appealing and improving user experience.
-  </p>
-
-  <h3>Key Features:</h3>
-  <ul>
-    <li>Smooth transitions between routes</li>
-    <li>API integration with Angular Router</li>
-    <li>Control over transition timing and effects</li>
-    <li>Support for cross-fade, slide, and custom transitions</li>
-    <li>Browser-native implementation for performance</li>
+<ng-template #notesRef>
+  <p>Key Concepts of View Transitions in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Browser Native API</strong>:
+      Leverages the Web View Transitions API for performant, hardware-accelerated transitions.
+    </li>
+    <li>
+      <strong>Router Integration</strong>:
+      Seamlessly integrates with Angular Router through the withViewTransitions() function.
+    </li>
+    <li>
+      <strong>Declarative Syntax</strong>:
+      Simple directive-based approach for defining transitions in templates.
+    </li>
+    <li>
+      <strong>Animation Control</strong>:
+      Fine-grained control over transition timing, easing, and effects.
+    </li>
   </ul>
 
-  <h3>Basic Example:</h3>
-  <div class="code-container">
-    <pre><code [highlight]="basicExampleCode" [languages]="['typescript']"></code></pre>
-  </div>
+  <br>
+  <br>
 
-  <h3>Integration with Angular Router</h3>
-  <p>
-    Angular 19 provides built-in integration with the Router through the <code>withViewTransitions</code> feature:
-  </p>
-  <div class="code-container">
-    <pre><code [highlight]="routerExampleCode" [languages]="['typescript']"></code></pre>
-  </div>
+  <p>View Transitions Implementation in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Router Configuration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Enable view transitions at the application level with the Router provider.</li>
+        <li>Configure global transition behavior with customization options.</li>
 
-  <h3>Customizing Transitions</h3>
-  <p>
-    You can customize how transitions work with configuration options:
-  </p>
-  <div class="code-container">
-    <pre><code [highlight]="customTransitionsCode" [languages]="['typescript']"></code></pre>
-  </div>
+        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
-  <h3>Targeted Transitions</h3>
-  <p>
-    Angular allows you to specify different transitions for different links:
-  </p>
-  <div class="code-container">
-    <pre><code [highlight]="targetedTransitionsCode" [languages]="['typescript']"></code></pre>
-  </div>
+        <span #code1 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="routerExampleCode"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Customizing Transition Behavior</strong>:
+      <ul class="list-disc pl-4">
+        <li>Control transition timing, skipping initial transitions, and handling transition events.</li>
+        <li>Add custom logic when transitions are created or completed.</li>
+
+        <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code2 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="customTransitionsCode"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Per-Link Transition Control</strong>:
+      <ul class="list-disc pl-4">
+        <li>Apply different transition styles to specific navigation links.</li>
+        <li>Use the viewTransition directive to define transition types.</li>
+
+        <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code3 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="targetedTransitionsCode"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>CSS Control and Styling</strong>:
+      <ul class="list-disc pl-4">
+        <li>Customize transitions using CSS with ::view-transition selectors.</li>
+        <li>Define animations for specific parts of your UI during transitions.</li>
+
+        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code4 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>css</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="cssTransitionsCode"
+              [languages]="['css']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Element-Specific Transitions</strong>:
+      <ul class="list-disc pl-4">
+        <li>Tag elements with view-transition-name for granular control.</li>
+        <li>Create morphing effects between pages with shared elements.</li>
+
+        <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code5 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>html</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="sharedElementsCode"
+              [languages]="['html']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Browser Support and Fallbacks</p>
+  <br>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Browser</th>
+        <th class="py-3 px-4 text-left">Support Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Chrome (desktop & mobile)</td>
+        <td class="py-3 px-4">Full support</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Edge</td>
+        <td class="py-3 px-4">Full support</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Safari</td>
+        <td class="py-3 px-4">Support in Technical Preview</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Firefox</td>
+        <td class="py-3 px-4">Behind a flag</td>
+      </tr>
+    </tbody>
+  </table>
+
 </ng-template>
 
-<ng-template #bestPracticesTemplate>
-  <h2>Best Practices</h2>
-
-  <ul>
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
     <li>
-      <strong>Keep transitions short:</strong> Aim for transitions that are 300ms or less. Anything longer can make your app feel sluggish.
+      <strong class="text-sky-400">Optimize for User Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Keep Transitions Brief</strong>:
+          Limit transitions to 300ms or less. Longer transitions can make your application feel sluggish and unresponsive.
+        </li>
+        <li>
+          <strong>Use Appropriate Easing</strong>:
+          Choose easing functions that match the interaction. For most UI transitions, use ease-out or ease-in-out for natural movement.
+        </li>
+        <li>
+          <strong>Be Purposeful</strong>:
+          Use transitions to enhance user experience and provide continuity, not simply for decorative purposes.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Use appropriate easing:</strong> Different easings communicate different feelings. For most UI transitions, use ease-out or ease-in-out.
+      <strong class="text-sky-400">Implement Accessibility Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Respect Reduced Motion Preferences</strong>:
+          Detect and honor the prefers-reduced-motion media query, providing alternative subtle transitions or none at all.
+        </li>
+        <li>
+          <strong>Avoid Motion That Could Trigger Vestibular Disorders</strong>:
+          Minimize large zooming or spinning effects that could cause discomfort for some users.
+        </li>
+        <li>
+          <strong>Ensure Keyboard Navigation Compatibility</strong>:
+          Verify that transitions work properly when navigating with the keyboard and don't disrupt focus management.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Consider reduced motion preferences:</strong> Respect user preferences for reduced motion using media queries.
+      <strong class="text-sky-400">Handle Browser Compatibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Provide CSS Fallbacks</strong>:
+          Implement CSS-only fallbacks for browsers that don't support the View Transitions API.
+        </li>
+        <li>
+          <strong>Feature Detection</strong>:
+          Use Angular's built-in feature detection to apply appropriate transitions based on browser support.
+        </li>
+        <li>
+          <strong>Test Across Browsers</strong>:
+          Verify your transitions work as expected in all target browsers or gracefully degrade when unsupported.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Test across browsers:</strong> View Transitions API has varying levels of support across browsers.
+      <strong class="text-sky-400">Enhance Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Composite Properties</strong>:
+          Prefer animating transform and opacity for better performance (GPU acceleration).
+        </li>
+        <li>
+          <strong>Avoid Expensive Properties</strong>:
+          Minimize animations that trigger layout recalculations (like height, width, margin, etc).
+        </li>
+        <li>
+          <strong>Consider Content Complexity</strong>:
+          Be cautious when transitioning pages with large DOM trees or complex visual elements.
+        </li>
+      </ul>
     </li>
     <li>
-      <strong>Provide fallbacks:</strong> Have CSS-only fallbacks for browsers that don't support View Transitions API.
-    </li>
-    <li>
-      <strong>Don't overuse:</strong> Transitions should enhance UX, not distract from it. Use them purposefully.
-    </li>
-    <li>
-      <strong>Consider performance:</strong> Transition complex UIs carefully to avoid janky animations.
-    </li>
-  </ul>
-
-  <h3>Implementation Patterns</h3>
-  <ol>
-    <li>
-      <strong>Route Transitions:</strong> Use with router navigation to transition between pages.
-    </li>
-    <li>
-      <strong>Component State Transitions:</strong> Apply when component's internal state changes significantly.
-    </li>
-    <li>
-      <strong>List Item Transitions:</strong> Use when items are added/removed from lists.
-    </li>
-    <li>
-      <strong>Form Feedback Transitions:</strong> Apply subtle transitions for form validations and submissions.
+      <strong class="text-sky-400">Implement Advanced Techniques</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Shared Element Transitions</strong>:
+          Use view-transition-name to create the illusion of elements morphing between pages.
+        </li>
+        <li>
+          <strong>Sequential Transitions</strong>:
+          Coordinate multiple transitions to create more complex, staggered effects when appropriate.
+        </li>
+        <li>
+          <strong>State-Based Transitions</strong>:
+          Apply transitions for significant state changes within components, not just route changes.
+        </li>
+      </ul>
     </li>
   </ol>
 </ng-template>
 
-<ng-template #prosConsTemplate>
-  <h2>Pros and Cons</h2>
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
 
-  <h3>Advantages</h3>
-  <ul>
-    <li><strong>Native Performance:</strong> Uses browser's native capabilities for smooth animations</li>
-    <li><strong>Easy Integration:</strong> Simple to add to existing Angular applications</li>
-    <li><strong>Better UX:</strong> Improves user experience by providing visual continuity</li>
-    <li><strong>Angular Integration:</strong> Built-in support with Router and declarative syntax</li>
-    <li><strong>Standardized:</strong> Uses web standards rather than framework-specific solutions</li>
-  </ul>
+  <br>
 
-  <h3>Limitations</h3>
-  <ul>
-    <li><strong>Browser Support:</strong> Not fully supported in all browsers</li>
-    <li><strong>Complex Transitions:</strong> Advanced transitions may require additional work</li>
-    <li><strong>Performance Overhead:</strong> Can introduce performance issues if overused</li>
-    <li><strong>Accessibility Concerns:</strong> Need to consider users who prefer reduced motion</li>
-  </ul>
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Browser-Native Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Uses the browser's native rendering capabilities, resulting in smoother animations and better performance compared to JavaScript-based solutions.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Simple Integration with Angular</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Seamlessly integrates with Angular Router with minimal configuration, making implementation straightforward.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced User Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Provides visual continuity between pages and states, reducing the jarring effect of abrupt content changes.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Declarative Implementation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular's implementation offers a clean, declarative API that fits well with the framework's design philosophy.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Granular Control</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Enables element-specific transitions with the ability to create sophisticated effects like shared element transitions.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Standardized Approach</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Based on web standards rather than framework-specific solutions, potentially offering better long-term stability.
+        </li>
+      </ul>
+    </li>
+  </ol>
 
-  <h3>Comparison with Other Animation Approaches</h3>
-  <table class="comparison-table">
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Limited Browser Support</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          As of Angular 19's release, full browser support is limited primarily to Chromium-based browsers, with other browsers having partial or no support.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Requires Fallbacks</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Developers need to implement fallback transitions for unsupported browsers, which can increase development complexity.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Performance Issues</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Complex or overused transitions can negatively impact performance, especially on lower-end devices.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Accessibility Considerations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Requires careful implementation to accommodate users who prefer reduced motion or have vestibular disorders.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Limited Control Compared to Animation Libraries</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Offers fewer customization options compared to full-featured animation libraries like GSAP or Framer Motion.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Not Ideal for Complex Animations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Better suited for page transitions and simple state changes than for complex, multi-stage animations.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
     <thead>
-      <tr>
-        <th>Feature</th>
-        <th>View Transitions API</th>
-        <th>Angular Animations</th>
-        <th>CSS Transitions</th>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/3">Feature</th>
+        <th class="py-3 px-4 text-left w-1/3">View Transitions API</th>
+        <th class="py-3 px-4 text-left w-1/3">Angular Animations</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Performance</td>
-        <td>Excellent (browser-native)</td>
-        <td>Good</td>
-        <td>Very Good</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Performance</td>
+        <td class="py-3 px-4">Excellent (browser-native)</td>
+        <td class="py-3 px-4">Good</td>
       </tr>
-      <tr>
-        <td>Complexity</td>
-        <td>Medium</td>
-        <td>High</td>
-        <td>Low</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Ease of Use</td>
+        <td class="py-3 px-4">Simple for basic transitions</td>
+        <td class="py-3 px-4">More complex syntax</td>
       </tr>
-      <tr>
-        <td>Control</td>
-        <td>Medium</td>
-        <td>High</td>
-        <td>Limited</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Browser Support</td>
+        <td class="py-3 px-4">Limited</td>
+        <td class="py-3 px-4">Excellent</td>
       </tr>
-      <tr>
-        <td>Browser Support</td>
-        <td>Limited</td>
-        <td>Excellent</td>
-        <td>Excellent</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Animation Complexity</td>
+        <td class="py-3 px-4">Moderate</td>
+        <td class="py-3 px-4">High</td>
       </tr>
-      <tr>
-        <td>Integration with Router</td>
-        <td>Built-in with Angular 19</td>
-        <td>Yes, with setup</td>
-        <td>Requires manual integration</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Route Integration</td>
+        <td class="py-3 px-4">Native in Angular 19</td>
+        <td class="py-3 px-4">Requires setup</td>
       </tr>
     </tbody>
   </table>
 </ng-template>
 
-<ng-template #relatedTopicsTemplate>
-  <h2>Related Topics</h2>
+<ng-template #topicsRef>
+  <p>
+    Related topics to View Transitions in Angular 19:
+  </p>
 
-  <ul>
-    <li>
-      <strong>Angular Router:</strong> Works closely with the Router for page transitions
-    </li>
-    <li>
-      <strong>Angular Animations:</strong> Can be used alongside View Transitions for more complex animations
-    </li>
-    <li>
-      <strong>CSS Animations:</strong> Used as fallbacks for browsers without View Transitions support
-    </li>
-    <li>
-      <strong>Server-Side Rendering (SSR):</strong> View Transitions can enhance user experience in SSR applications
-    </li>
-    <li>
-      <strong>Performance Optimization:</strong> Understanding browser rendering to optimize transitions
-    </li>
-    <li>
-      <strong>Accessibility:</strong> Ensuring transitions don't affect users with motion sensitivity
-    </li>
-  </ul>
+  <br>
 
-  <h3>Further Reading</h3>
-  <ul>
+  <ol class="list-decimal px-10 text-sm">
     <li>
-      <a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API" target="_blank">MDN Web Docs: View Transitions API</a>
+      <strong>Angular Router</strong>
+      <p>
+        The primary integration point for View Transitions in Angular, enabling transitions between different routes and views.
+      </p>
     </li>
     <li>
-      <a href="https://angular.dev/guide/animations" target="_blank">Angular Animations Guide</a>
+      <strong>Angular Animations</strong>
+      <p>
+        Angular's animation system that can be used alongside View Transitions for more complex animation scenarios.
+      </p>
     </li>
     <li>
-      <a href="https://angular.dev/guide/routing" target="_blank">Angular Routing & Navigation</a>
+      <strong>Web View Transitions API</strong>
+      <p>
+        The underlying browser API that Angular's implementation builds upon, providing standardized transition capabilities.
+      </p>
     </li>
-  </ul>
+    <li>
+      <strong>Server-Side Rendering (SSR)</strong>
+      <p>
+        View Transitions can enhance SSR applications by providing smooth transitions after the initial page load.
+      </p>
+    </li>
+    <li>
+      <strong>Accessibility (a11y)</strong>
+      <p>
+        Considerations for users who prefer reduced motion or have vestibular disorders when implementing view transitions.
+      </p>
+    </li>
+    <li>
+      <strong>Progressive Enhancement</strong>
+      <p>
+        Strategy for implementing view transitions that work across all browsers by providing appropriate fallbacks.
+      </p>
+    </li>
+    <li>
+      <strong>Performance Optimization</strong>
+      <p>
+        Techniques for ensuring view transitions remain smooth and don't negatively impact application performance.
+      </p>
+    </li>
+    <li>
+      <strong>Shared Element Transitions</strong>
+      <p>
+        Advanced technique where elements appear to morph between different views to create a sense of continuity.
+      </p>
+    </li>
+    <li>
+      <strong>CSS Animation</strong>
+      <p>
+        Used to define the specific transition effects and timing when implementing view transitions.
+      </p>
+    </li>
+    <li>
+      <strong>User Experience (UX) Design</strong>
+      <p>
+        Principles for effectively using transitions to enhance user experience rather than distract from it.
+      </p>
+    </li>
+    <li>
+      <strong>Media Queries</strong>
+      <p>
+        Used to detect user preferences like reduced motion to adjust or disable transitions accordingly.
+      </p>
+    </li>
+    <li>
+      <strong>Component State Management</strong>
+      <p>
+        Applying transitions to component state changes in addition to route changes for a consistent UX.
+      </p>
+    </li>
+  </ol>
 </ng-template>

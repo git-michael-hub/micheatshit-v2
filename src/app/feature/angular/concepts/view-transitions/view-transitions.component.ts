@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
 import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
 
@@ -11,12 +11,7 @@ import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
   styleUrls: ['./view-transitions.component.scss']
 })
 export class ViewTransitionsComponent extends UnsubscribeService {
-  selectedTab = 'notes';
-
-  @ViewChild('notesTemplate', { static: true }) notesTemplate!: TemplateRef<any>;
-  @ViewChild('bestPracticesTemplate', { static: true }) bestPracticesTemplate!: TemplateRef<any>;
-  @ViewChild('prosConsTemplate', { static: true }) prosConsTemplate!: TemplateRef<any>;
-  @ViewChild('relatedTopicsTemplate', { static: true }) relatedTopicsTemplate!: TemplateRef<any>;
+  selectedTab = 1;
 
   basicExampleCode = `// In the component
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -89,5 +84,88 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet, RouterLink]
 })
-export class AppComponent {}`
+export class AppComponent {}`;
+
+  cssTransitionsCode = `/* styles.css */
+/* Default transition for all page changes */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+}
+
+/* Custom transition for specific elements */
+::view-transition-old(hero-image),
+::view-transition-new(hero-image) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Different transitions based on direction */
+html[data-transition="slide-right"] {
+  & ::view-transition-old(root) {
+    animation-name: slide-out-left;
+  }
+  & ::view-transition-new(root) {
+    animation-name: slide-in-right;
+  }
+}
+
+html[data-transition="slide-left"] {
+  & ::view-transition-old(root) {
+    animation-name: slide-out-right;
+  }
+  & ::view-transition-new(root) {
+    animation-name: slide-in-left;
+  }
+}
+
+/* Animation keyframes */
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}`;
+
+  sharedElementsCode = `<!-- Page 1: Product List -->
+<div class="product-list">
+  <a routerLink="/product/1">
+    <div class="product-card">
+      <!-- The same view-transition-name will create a shared element transition -->
+      <img
+        style="view-transition-name: product-image-1"
+        src="product1.jpg"
+        alt="Product 1">
+      <h3>Product 1</h3>
+    </div>
+  </a>
+</div>
+
+<!-- Page 2: Product Detail -->
+<div class="product-detail">
+  <!-- The matching view-transition-name creates continuity -->
+  <img
+    style="view-transition-name: product-image-1"
+    src="product1-large.jpg"
+    alt="Product 1 Large">
+
+  <div class="product-info">
+    <h1>Product 1</h1>
+    <p>Product description here...</p>
+  </div>
+</div>`;
 }

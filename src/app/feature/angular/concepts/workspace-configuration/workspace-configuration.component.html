@@ -1,0 +1,447 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Workspace Configuration
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Workspace Configuration</span>
+      in Angular 19 refers to the comprehensive set of settings and preferences that define the structure, behavior, and capabilities of an Angular workspace. Centered around the angular.json file, it provides fine-grained control over build configurations, development settings, deployment options, and default generator settings for all projects within a workspace.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <!-- Tab 1: Notes -->
+        <div *ngIf="selectedTab === 1">
+          <p>What is Workspace Configuration?</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Central Configuration File</strong>:
+              The angular.json file is the primary configuration file that defines all workspace and project settings.
+            </li>
+            <li>
+              <strong>Project Definitions</strong>:
+              Specifies all projects (applications, libraries) in the workspace and their individual settings.
+            </li>
+            <li>
+              <strong>Build Configurations</strong>:
+              Defines build options, targets, and environments for each project.
+            </li>
+            <li>
+              <strong>Schematics Settings</strong>:
+              Controls default generation options for components, services, and other Angular artifacts.
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Angular 19 Configuration Enhancements</p>
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong>ESBuild-First Configuration</strong>:
+              <ul class="list-disc pl-4">
+                <li>Angular 19 workspaces now use ESBuild as the default build system, with optimized configuration that delivers significantly faster build times.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Enhanced Build Caching</strong>:
+              <ul class="list-disc pl-4">
+                <li>New cache configuration options in Angular 19 provide more granular control over build caching, with improved performance and reliability.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Standalone-First Defaults</strong>:
+              <ul class="list-disc pl-4">
+                <li>Angular 19 workspace configurations default to standalone components, directives, and pipes, reflecting the framework's shift away from NgModules.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Server-Side Rendering Configuration</strong>:
+              <ul class="list-disc pl-4">
+                <li>Expanded configuration options for SSR and partial hydration, with simplified setup for Universal applications.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Improved Type Safety</strong>:
+              <ul class="list-disc pl-4">
+                <li>Stricter JSON schema validation for angular.json with better error messages and IDE integration.</li>
+              </ul>
+            </li>
+          </ol>
+
+          <br>
+          <br>
+
+          <p>Main Configuration Sections</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Project Configuration</strong>:
+              Defines settings for each project in the workspace.
+
+              <button (click)="code16.hidden = !code16.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code16 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>json</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_16"></code>
+                </pre>
+              </span>
+
+            </li>
+            <li>
+              <strong>CLI Configuration</strong>:
+              Global CLI settings for the workspace.
+
+              <button (click)="code17.hidden = !code17.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code17 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>json</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_17"></code>
+                </pre>
+              </span>
+
+            </li>
+            <li>
+              <strong>Schematics Configuration</strong>:
+              Default settings for code generation.
+
+              <button (click)="code18.hidden = !code18.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code18 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>json</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_18"></code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Configuration Commands</p>
+          <br>
+          <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+            <thead>
+              <tr class="bg-gray-800 text-gray-100">
+                <th class="py-3 px-4 text-left">Command</th>
+                <th class="py-3 px-4 text-left">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>ng config [key] [value]</code></td>
+                <td class="py-3 px-4">Updates a configuration value in angular.json.</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>ng config projects.my-app.architect.build.options.optimization true</code></td>
+                <td class="py-3 px-4">Enables build optimization for a specific project.</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>ng config cli.cache.enabled true</code></td>
+                <td class="py-3 px-4">Enables build caching for faster rebuilds.</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>ng config -g cli.analytics false</code></td>
+                <td class="py-3 px-4">Disables analytics globally (affects ~/.angular-config.json).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tab 2: Best Practices -->
+        <div *ngIf="selectedTab === 2">
+          <ol class="list-decimal px-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Organize Projects Strategically</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Logical Project Structure</strong>:
+                  Group related applications and libraries together with consistent naming conventions to make navigation and management easier.
+                </li>
+                <li>
+                  <strong>Configure Default Project</strong>:
+                  Set a default project in the CLI configuration to streamline commands like ng serve and ng build when working in a multi-project workspace.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Optimize Build Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Environment-Specific Configurations</strong>:
+                  Create separate build configurations for development, testing, and production to manage environment-specific settings effectively.
+                </li>
+                <li>
+                  <strong>Enable Build Optimizations</strong>:
+                  Configure production builds with optimization, bundling, and minification to enhance application performance.
+
+                  <button (click)="code20.hidden = !code20.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+                  <span #code20 hidden>
+                    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                      <span>bash</span>
+                      <span class="copy-button-wrapper bg-gray-700"></span>
+                    </div>
+
+                    <pre>
+                      <code [innerText]="code_20"></code>
+                    </pre>
+                  </span>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Streamline Development Workflow</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Enable Caching</strong>:
+                  Use Angular's build cache feature to speed up rebuilds during development.
+
+                  <button (click)="code21.hidden = !code21.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+                  <span #code21 hidden>
+                    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                      <span>bash</span>
+                      <span class="copy-button-wrapper bg-gray-700"></span>
+                    </div>
+
+                    <pre>
+                      <code [innerText]="code_21"></code>
+                    </pre>
+                  </span>
+                </li>
+                <li>
+                  <strong>Configure Schematics Defaults</strong>:
+                  Set sensible defaults for code generation to maintain consistency across the project and reduce repetitive manual configuration.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Maintain Configuration Hygiene</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Version Control angular.json</strong>:
+                  Always include angular.json in version control to ensure consistent configuration across all development environments.
+                </li>
+                <li>
+                  <strong>Document Non-Standard Settings</strong>:
+                  Add comments or documentation for any custom or non-standard configuration settings to help onboard new developers.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Leverage Advanced Features</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Custom Builders</strong>:
+                  For complex build requirements, create or use custom builders to extend Angular CLI's capabilities.
+                </li>
+                <li>
+                  <strong>Configuration Composition</strong>:
+                  Use configuration inheritance and overrides to avoid duplication across similar build targets.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Tab 3: Pros and Cons -->
+        <div *ngIf="selectedTab === 3">
+          <strong class="text-sky-400">
+            Pros:
+          </strong>
+
+          <br>
+
+          <ol class="list-decimal px-10 text-sm">
+            <li>
+              <strong>Centralized Configuration Management</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Provides a single source of truth for all workspace and project settings, making it easier to maintain consistency across the development environment.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Flexible Build Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Allows for detailed customization of build processes, output formats, and optimization settings for different environments and requirements.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Standardized Code Generation</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Enables consistent code generation through schematics configuration, enforcing coding standards and architectural decisions across the team.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Multi-Project Support</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Efficiently manages multiple related projects in a single workspace, with shared configuration and clear project boundaries.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Extensibility</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Supports custom builders, schematics, and plugins that can extend Angular CLI's capabilities for specialized project requirements.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Performance Optimizations</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Provides configuration options for build caching, incremental compilation, and other performance enhancements that improve developer experience.
+                </li>
+              </ul>
+            </li>
+          </ol>
+
+          <br>
+
+          <strong class="text-sky-400">
+            Cons:
+          </strong>
+
+          <br>
+
+          <ol class="list-decimal px-10 text-sm">
+            <li>
+              <strong>Complexity</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  The angular.json file can become large and complex in multi-project workspaces, making it difficult to navigate and understand all configuration options.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Learning Curve</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  The extensive configuration options and complex structure require significant time to master, especially for developers new to Angular.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Limited Modularity</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  While angular.json supports multiple projects, it doesn't easily allow splitting the configuration into smaller, more manageable files.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Version Conflicts</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Configuration options can change between Angular versions, potentially causing migration issues when upgrading to newer versions.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Debugging Challenges</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Configuration errors can be difficult to diagnose, with cryptic error messages that don't always clearly indicate the source of the problem.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Global vs. Project Settings Confusion</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  The distinction between global CLI settings (in ~/.angular-config.json) and project-specific settings can be confusing and lead to unexpected behavior.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Tab 4: Related Topics -->
+        <div *ngIf="selectedTab === 4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Related Angular Concepts</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="/angular/workspace" class="text-sky-400 hover:text-rose-400">Angular Workspace</a></li>
+                <li><a href="/angular/architect" class="text-sky-400 hover:text-rose-400">Angular Architect</a></li>
+                <li><a href="/angular/builder" class="text-sky-400 hover:text-rose-400">Builders</a></li>
+                <li><a href="/angular/cli" class="text-sky-400 hover:text-rose-400">Angular CLI</a></li>
+                <li><a href="/angular/schematic" class="text-sky-400 hover:text-rose-400">Schematics</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Configuration Types</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="/angular/tsconfig" class="text-sky-400 hover:text-rose-400">TypeScript Configuration</a></li>
+                <li><a href="/angular/configuration" class="text-sky-400 hover:text-rose-400">Application Configuration</a></li>
+                <li><a href="/angular/ssr" class="text-sky-400 hover:text-rose-400">Server-Side Rendering Configuration</a></li>
+                <li><a href="/angular/library" class="text-sky-400 hover:text-rose-400">Library Configuration</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Build Concepts</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="/angular/aot" class="text-sky-400 hover:text-rose-400">Ahead-of-Time Compilation</a></li>
+                <li><a href="/angular/lazy-loading" class="text-sky-400 hover:text-rose-400">Lazy Loading</a></li>
+                <li><a href="/angular/bundling" class="text-sky-400 hover:text-rose-400">Bundle Optimization</a></li>
+                <li><a href="/angular/deployment" class="text-sky-400 hover:text-rose-400">Deployment</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Development Tools</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="/angular/angular-devtools" class="text-sky-400 hover:text-rose-400">Angular DevTools</a></li>
+                <li><a href="/angular/testing" class="text-sky-400 hover:text-rose-400">Testing Configuration</a></li>
+                <li><a href="/angular/linting" class="text-sky-400 hover:text-rose-400">Linting</a></li>
+                <li><a href="/angular/esbuild" class="text-sky-400 hover:text-rose-400">ESBuild Integration</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

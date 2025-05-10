@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UnidirectionalDataFlowComponent } from './unidirectional-data-flow/unidirectional-data-flow.component';
 import { ViewComponent } from './view/view.component';
 import { ViewEngineComponent } from './view-engine/view-engine.component';
+import { WorkspaceConfigurationComponent } from './workspace-configuration/workspace-configuration.component';
+import { ZoneComponent } from './zone/zone.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ViewEngineComponent } from './view-engine/view-engine.component';
     HighlightModule,
     HttpClientModule,
     ViewComponent,
-    ViewEngineComponent
+    ViewEngineComponent,
+    WorkspaceConfigurationComponent,
+    ZoneComponent
   ]
 })
 export class TsconfigModule { }

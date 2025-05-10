@@ -1,0 +1,474 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Web Components
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Web Components</span>
+      in Angular 19 provide a powerful way to create reusable, encapsulated custom elements that work across modern browsers and frameworks. Angular's integration with web standards enables developers to build native custom elements that can be used anywhere HTML is used, with improved interoperability and a streamlined developer experience.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <!-- Tab 1: Notes -->
+        <div *ngIf="selectedTab === 1">
+          <p>What Are Web Components?</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Browser-Native Custom Elements</strong>:
+              Standards-based technology for creating custom, reusable HTML elements with encapsulated functionality.
+            </li>
+            <li>
+              <strong>Composed of Four Main Technologies</strong>:
+              Custom Elements, Shadow DOM, HTML Templates, and ES Modules.
+            </li>
+            <li>
+              <strong>Framework-Agnostic</strong>:
+              Can be used with any JavaScript framework or no framework at all.
+            </li>
+            <li>
+              <strong>Encapsulated Styling and Behavior</strong>:
+              Component styles and DOM are isolated from the rest of the page.
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Angular 19 Web Components Integration</p>
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong>Enhanced Angular Elements</strong>:
+              <ul class="list-disc pl-4">
+                <li>Angular 19 brings significant improvements to Angular Elements, the package that converts Angular components into custom elements (Web Components), with better performance and smaller bundle sizes.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Signal-Based Web Components</strong>:
+              <ul class="list-disc pl-4">
+                <li>Leverage Angular's new signal-based reactivity system for more efficient, fine-grained updates to Web Components, reducing unnecessary DOM operations.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Zone-Less Custom Elements</strong>:
+              <ul class="list-disc pl-4">
+                <li>Angular 19's stabilized zone-less change detection now integrates seamlessly with custom elements, providing significant performance improvements and eliminating the need for zone.js in Web Component implementations.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Server-Side Rendering (SSR) Support</strong>:
+              <ul class="list-disc pl-4">
+                <li>Custom Elements created with Angular now support hydration and partial hydration strategies, making them compatible with Angular's server-side rendering capabilities.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Improved Interoperability</strong>:
+              <ul class="list-disc pl-4">
+                <li>Better support for using Angular-based Web Components in other frameworks, with improvements in event handling, property binding, and lifecycle management.</li>
+              </ul>
+            </li>
+          </ol>
+
+          <br>
+          <br>
+
+          <p>Creating Angular-Based Web Components</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Basic Setup</strong>:
+              Install Angular Elements package.
+
+              <button (click)="code16.hidden = !code16.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code16 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>bash</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_16"></code>
+                </pre>
+              </span>
+
+            </li>
+            <li>
+              <strong>Create and Register Custom Element</strong>:
+              Define component and register it as a custom element.
+
+              <button (click)="code17.hidden = !code17.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code17 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_17"></code>
+                </pre>
+              </span>
+
+            </li>
+            <li>
+              <strong>Signal-Based Custom Element</strong>:
+              Use Angular's signal-based reactivity.
+
+              <button (click)="code18.hidden = !code18.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code18 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>typescript</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_18"></code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Using Angular Web Components</p>
+          <br>
+          <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+            <thead>
+              <tr class="bg-gray-800 text-gray-100">
+                <th class="py-3 px-4 text-left">Usage Context</th>
+                <th class="py-3 px-4 text-left">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Plain HTML</td>
+                <td class="py-3 px-4"><code>&lt;my-element prop="value"&gt;&lt;/my-element&gt;</code></td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">React Application</td>
+                <td class="py-3 px-4"><code>&lt;my-element prop=&#123;dynamicValue&#125; onEvent=&#123;handleEvent&#125;&gt;&lt;/my-element&gt;</code></td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Vue Application</td>
+                <td class="py-3 px-4"><code>&lt;my-element :prop="dynamicValue" &#64;event="handleEvent"&gt;&lt;/my-element&gt;</code></td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4">Another Angular Application</td>
+                <td class="py-3 px-4"><code>&lt;my-element [prop]="dynamicValue" (event)="handleEvent($event)"&gt;&lt;/my-element&gt;</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tab 2: Best Practices -->
+        <div *ngIf="selectedTab === 2">
+          <ol class="list-decimal px-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Design for Cross-Framework Compatibility</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Use DOM Properties and Events</strong>:
+                  Instead of Angular-specific input/output bindings, design Web Components to work with standard DOM properties and events that are compatible across frameworks.
+                </li>
+                <li>
+                  <strong>Avoid Framework-Specific Features</strong>:
+                  Minimize dependencies on Angular-specific APIs in your Web Component's public interface to ensure they work seamlessly in other environments.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Optimize Bundle Size and Performance</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Use Signals for State Management</strong>:
+                  Leverage Angular 19's signal-based reactivity for efficient, fine-grained updates within Web Components.
+
+                  <button (click)="code20.hidden = !code20.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+                  <span #code20 hidden>
+                    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                      <span>typescript</span>
+                      <span class="copy-button-wrapper bg-gray-700"></span>
+                    </div>
+
+                    <pre>
+                      <code [innerText]="code_20"></code>
+                    </pre>
+                  </span>
+                </li>
+                <li>
+                  <strong>Build Zone-Less Web Components</strong>:
+                  Take advantage of Angular 19's stable zone-less architecture to create smaller, faster Web Components that don't require zone.js.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Leverage Shadow DOM Effectively</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Control Shadow DOM Encapsulation</strong>:
+                  Use the right encapsulation mode based on your component's needs:
+
+                  <button (click)="code21.hidden = !code21.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+                  <span #code21 hidden>
+                    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                      <span>typescript</span>
+                      <span class="copy-button-wrapper bg-gray-700"></span>
+                    </div>
+
+                    <pre>
+                      <code [innerText]="code_21"></code>
+                    </pre>
+                  </span>
+                </li>
+                <li>
+                  <strong>Handle Cross-Shadow DOM Events</strong>:
+                  Implement proper event bubbling across Shadow DOM boundaries for complex component hierarchies.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Handle Custom Element Lifecycle Properly</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Respect Custom Element Lifecycle</strong>:
+                  Understand the interactions between Angular component lifecycle and Custom Element lifecycle methods.
+                </li>
+                <li>
+                  <strong>Clean Up Resources</strong>:
+                  Ensure proper cleanup in the disconnectedCallback equivalent (ngOnDestroy) to prevent memory leaks.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Support Server-Side Rendering</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Design for Hydration</strong>:
+                  Create components that work with Angular's hydration system for server-rendered content.
+                </li>
+                <li>
+                  <strong>Use Partial Hydration When Appropriate</strong>:
+                  Configure components to support partial hydration for better performance in SSR scenarios.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Implement Proper Property and Attribute Handling</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Define Observed Attributes</strong>:
+                  Specify which attributes should trigger reactions when they change.
+                </li>
+                <li>
+                  <strong>Handle Both Properties and Attributes</strong>:
+                  Support both DOM property access and HTML attribute access for maximum compatibility.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Provide Documentation and Examples</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Document API Surface</strong>:
+                  Clearly document properties, methods, events, and slots that consumers of your Web Component should use.
+                </li>
+                <li>
+                  <strong>Include Framework-Specific Examples</strong>:
+                  Provide examples of how to use your component in different frameworks (React, Vue, vanilla JS).
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Tab 3: Pros and Cons -->
+        <div *ngIf="selectedTab === 3">
+          <strong class="text-sky-400">
+            Pros:
+          </strong>
+
+          <br>
+
+          <ol class="list-decimal px-10 text-sm">
+            <li>
+              <strong>Framework Interoperability</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Angular-based Web Components can be used in any framework or no framework at all, making them highly versatile for cross-framework projects and micro-frontend architectures.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Encapsulation and Shadow DOM</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Shadow DOM provides strong style and DOM encapsulation, preventing style leakage and DOM conflicts with the rest of the application.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Standardized Web Technology</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Web Components are built on web standards, ensuring long-term compatibility and reducing the risk of framework obsolescence.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Simplified Integration</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Angular Elements package makes it straightforward to convert Angular components into Web Components, leveraging existing Angular development knowledge.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Progressive Enhancement</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Web Components can be delivered progressively, allowing for better user experiences on varying network conditions and device capabilities.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Signals and Zone-Less Architecture in Angular 19</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Angular 19's signal-based reactivity and zone-less change detection provide significant performance improvements for Web Components, with smaller bundle sizes and more efficient updates.
+                </li>
+              </ul>
+            </li>
+          </ol>
+
+          <br>
+
+          <strong class="text-sky-400">
+            Cons:
+          </strong>
+
+          <br>
+
+          <ol class="list-decimal px-10 text-sm">
+            <li>
+              <strong>Bundle Size Considerations</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Angular-based Web Components typically include parts of the Angular framework, which can lead to larger bundles compared to lighter alternatives like Lit or Stencil, though Angular 19's zone-less approach has significantly improved this.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Browser Compatibility</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  While major modern browsers support Web Components, older browsers may require polyfills, adding complexity and potential performance costs.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Framework Feature Limitations</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Some Angular-specific features like content projection or the router may not work as expected when components are converted to Web Components.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Complexity in Communication</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Communication between Web Components and their host applications can be more complex than within a single framework, requiring careful API design.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Development Tooling</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Development tools for Web Components are not as mature as framework-specific tools, though this gap continues to narrow.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Learning Curve</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Understanding Web Component specifications (Custom Elements, Shadow DOM) requires additional learning beyond Angular knowledge.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Tab 4: Related Topics -->
+        <div *ngIf="selectedTab === 4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Related Angular Concepts</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Angular Elements</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Custom Elements</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Component Architecture</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">View Encapsulation</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Standalone Components</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Signals</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Web Standards</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Custom Elements API</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Shadow DOM</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">HTML Templates</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">ES Modules</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Integration Scenarios</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Micro Frontends</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Cross-Framework Components</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Component Libraries</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Design Systems</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Advanced Techniques</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Server-Side Rendering</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Hydration Strategies</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Zone-Less Web Components</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Slot-Based Composition</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,473 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Angular Workspace
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Angular Workspace</span>
+      in Angular 19 represents a logical collection of multiple projects, including applications and libraries, that are managed together in a unified development environment. The workspace structure simplifies multi-project development, streamlines dependency management, and enables efficient code sharing and reuse across related Angular projects.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <!-- Tab 1: Notes -->
+        <div *ngIf="selectedTab === 1">
+          <p>What is an Angular Workspace?</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Development Environment Structure</strong>:
+              A framework for organizing and managing multiple Angular projects with shared configuration and dependencies.
+            </li>
+            <li>
+              <strong>Multiple Project Types</strong>:
+              Supports applications, libraries, and other Angular project types in a single repository.
+            </li>
+            <li>
+              <strong>Configuration Management</strong>:
+              Centralized configuration with workspace-wide and project-specific settings.
+            </li>
+            <li>
+              <strong>Monorepo Capabilities</strong>:
+              Enables monorepo development patterns with shared code and dependency management.
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Angular 19 Workspace Enhancements</p>
+          <ol class="list-decimal pl-4 text-sm">
+            <li>
+              <strong>Improved Node.js Compatibility</strong>:
+              <ul class="list-disc pl-4">
+                <li>Angular 19 workspaces now support Node.js v20 with enhanced compatibility, better performance, and improved security features while maintaining support for earlier versions.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Next-Generation Build System</strong>:
+              <ul class="list-disc pl-4">
+                <li>The esbuild-based build system is now the default in Angular 19 workspaces, replacing webpack with significantly faster build times and improved development experience.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Enhanced Library Development</strong>:
+              <ul class="list-disc pl-4">
+                <li>Angular 19 introduces streamlined library development with improved integration between application and library projects, simplified API exports, and seamless dependency management.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Standalone Project Structure</strong>:
+              <ul class="list-disc pl-4">
+                <li>New workspaces are now configured for standalone-first development by default, moving away from NgModules toward a more modern, simpler architecture for applications and libraries.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Improved Build Caching</strong>:
+              <ul class="list-disc pl-4">
+                <li>Workspaces feature intelligent build caching and incremental compilation strategies that dramatically reduce build times for multi-project workspaces.</li>
+              </ul>
+            </li>
+          </ol>
+
+          <br>
+          <br>
+
+          <p>Creating and Managing Workspaces</p>
+          <ul class="list-disc pl-4 text-sm">
+            <li>
+              <strong>Creating a Standard Workspace</strong>:
+              Generate a new workspace with a default application.
+
+              <button (click)="code16.hidden = !code16.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code16 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>bash</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_16"></code>
+                </pre>
+              </span>
+
+            </li>
+            <li>
+              <strong>Adding Applications to a Workspace</strong>:
+              Create additional applications in an existing workspace.
+
+              <button (click)="code17.hidden = !code17.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code17 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>bash</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_17"></code>
+                </pre>
+              </span>
+
+            </li>
+            <li>
+              <strong>Workspace Configuration</strong>:
+              The angular.json file defines workspace and project settings.
+
+              <button (click)="code18.hidden = !code18.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+              <span #code18 hidden>
+                <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                  <span>json</span>
+                  <span class="copy-button-wrapper bg-gray-700"></span>
+                </div>
+
+                <pre>
+                  <code [innerText]="code_18"></code>
+                </pre>
+              </span>
+
+            </li>
+          </ul>
+
+          <br>
+          <br>
+
+          <p>Common Workspace Commands</p>
+          <br>
+          <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+            <thead>
+              <tr class="bg-gray-800 text-gray-100">
+                <th class="py-3 px-4 text-left">Command</th>
+                <th class="py-3 px-4 text-left">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>ng generate library my-lib</code></td>
+                <td class="py-3 px-4">Creates a new library project in the workspace.</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>ng build my-app</code></td>
+                <td class="py-3 px-4">Builds a specific application in the workspace.</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>ng serve my-app</code></td>
+                <td class="py-3 px-4">Serves a specific application in the workspace.</td>
+              </tr>
+              <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+                <td class="py-3 px-4"><code>ng test my-lib</code></td>
+                <td class="py-3 px-4">Runs tests for a specific project in the workspace.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tab 2: Best Practices -->
+        <div *ngIf="selectedTab === 2">
+          <ol class="list-decimal px-4 text-sm">
+            <li>
+              <strong class="text-sky-400">Organize for Modularity and Sharing</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Extract Shared Code into Libraries</strong>:
+                  Identify and extract common functionality, components, and services into dedicated libraries that can be shared across applications in the workspace.
+                </li>
+                <li>
+                  <strong>Design Focused, Cohesive Libraries</strong>:
+                  Create libraries with clear, single responsibilities rather than catch-all utility libraries. This improves maintainability and enables selective use across projects.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Leverage Library Development Features</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Use Angular CLI for Library Generation</strong>:
+                  Create well-structured libraries using the Angular CLI, which sets up the proper build configuration and testing infrastructure.
+
+                  <button (click)="code20.hidden = !code20.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+                  <span #code20 hidden>
+                    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                      <span>bash</span>
+                      <span class="copy-button-wrapper bg-gray-700"></span>
+                    </div>
+
+                    <pre>
+                      <code [innerText]="code_20"></code>
+                    </pre>
+                  </span>
+                </li>
+                <li>
+                  <strong>Design for Public API Clarity</strong>:
+                  Explicitly export only what consumers should use through the public-api.ts file in each library, providing a clean contract for library users.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Optimize Workspace Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Start with an Empty Workspace for Complex Projects</strong>:
+                  For larger projects with multiple applications and libraries, start with an empty workspace and add projects as needed.
+
+                  <button (click)="code21.hidden = !code21.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+                  <span #code21 hidden>
+                    <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+                      <span>bash</span>
+                      <span class="copy-button-wrapper bg-gray-700"></span>
+                    </div>
+
+                    <pre>
+                      <code [innerText]="code_21"></code>
+                    </pre>
+                  </span>
+                </li>
+                <li>
+                  <strong>Standardize Project Settings</strong>:
+                  Use the schematics configuration in angular.json to set consistent defaults for generated projects, such as preferred style format (SCSS, CSS), test setup, and other project settings.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Streamline Dependency Management</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Centralize Version Management</strong>:
+                  Keep dependencies in the root package.json whenever possible to ensure consistency across projects and simplify updates.
+                </li>
+                <li>
+                  <strong>Use Peer Dependencies Appropriately</strong>:
+                  For libraries, specify framework dependencies like Angular as peer dependencies to avoid duplication and version conflicts when consumed by applications.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Implement Consistent Tooling</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Share Linting and Formatting Configuration</strong>:
+                  Use workspace-wide ESLint and Prettier configurations to maintain code quality and consistency across all projects.
+                </li>
+                <li>
+                  <strong>Standardize Testing Frameworks</strong>:
+                  Use consistent testing frameworks and configurations across projects to simplify the developer experience and CI/CD setup.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Plan for Development Performance</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Enable Build Caching</strong>:
+                  Configure build caching to speed up iterative development, especially in large workspaces with many projects.
+                </li>
+                <li>
+                  <strong>Optimize for Incremental Builds</strong>:
+                  Structure projects to maximize the benefits of incremental builds, avoiding unnecessary rebuilds of unchanged projects.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="text-sky-400">Deploy Strategies for Multi-App Workspaces</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  <strong>Configure Project-Specific Deployment Targets</strong>:
+                  Set up dedicated deployment configurations for each application in the workspace, potentially using different environments or servers.
+                </li>
+                <li>
+                  <strong>Implement CI/CD Pipeline Optimization</strong>:
+                  Configure CI/CD pipelines to build and deploy only projects affected by changes, rather than rebuilding the entire workspace.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Tab 3: Pros and Cons -->
+        <div *ngIf="selectedTab === 3">
+          <strong class="text-sky-400">
+            Pros:
+          </strong>
+
+          <br>
+
+          <ol class="list-decimal px-10 text-sm">
+            <li>
+              <strong>Simplified Code Sharing</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Angular workspaces make it easy to extract, share, and reuse code across multiple applications through internal libraries, promoting consistency and reducing duplication.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Centralized Configuration</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Common settings, dependencies, and tooling can be managed in one place, ensuring consistency across projects and simplifying maintenance.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Enhanced Developer Experience</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Developers can easily navigate between related projects, see the entire ecosystem at once, and use consistent commands across all projects.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Optimized Building and Testing</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Angular 19's build system provides intelligent caching and incremental builds, significantly improving performance in multi-project workspaces.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Improved Version Consistency</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Dependencies are managed at the workspace level, ensuring all projects use compatible versions and reducing the risk of version conflicts.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Simplified CI/CD Integration</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  A single repository with multiple projects makes it easier to implement comprehensive CI/CD pipelines that can build, test, and deploy multiple applications together.
+                </li>
+              </ul>
+            </li>
+          </ol>
+
+          <br>
+
+          <strong class="text-sky-400">
+            Cons:
+          </strong>
+
+          <br>
+
+          <ol class="list-decimal px-10 text-sm">
+            <li>
+              <strong>Increased Repository Size</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  As more projects are added to a workspace, the overall repository size grows, which can lead to slower clone times and increased storage requirements.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Potential Build Performance Challenges</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Very large workspaces with many projects may experience longer build times, even with optimizations, especially when changes affect multiple projects.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Steeper Learning Curve</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  Developers new to the workspace concept may need time to understand the project structure, inter-project dependencies, and build configurations.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>All-or-Nothing Version Control</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  In a monorepo setup, all projects share the same version history, which may be challenging for teams that prefer more granular control over each project's versioning.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Increased Coordination Requirements</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  With multiple projects in one repository, teams need stronger coordination to avoid conflicting changes or breaking dependent projects.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Potential for Tight Coupling</strong>
+              <ul class="list-disc pl-4">
+                <li>
+                  The ease of sharing code between projects can sometimes lead to tight coupling if library boundaries and APIs are not carefully designed.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Tab 4: Related Topics -->
+        <div *ngIf="selectedTab === 4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Related Angular Concepts</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Angular CLI</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Angular Libraries</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Standalone Components</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Build Configuration</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Deployment</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Development Patterns</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Monorepo Architecture</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Micro Frontends</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Component Libraries</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Design Systems</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Build Tools</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">ESBuild</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Angular Architect</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Nx Workspace</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">Bazel</a></li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4 shadow">
+              <h3 class="text-lg font-semibold text-sky-400 mb-2">Configuration Files</h3>
+              <ul class="list-disc pl-4 text-sm">
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">angular.json</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">package.json</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">tsconfig.json</a></li>
+                <li><a href="#" class="text-sky-400 hover:text-rose-400">project.json</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

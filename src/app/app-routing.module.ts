@@ -91,6 +91,10 @@ import { TargetComponent } from './feature/angular/concepts/target/target.compon
 import { UnidirectionalDataFlowComponent } from './feature/angular/concepts/unidirectional-data-flow/unidirectional-data-flow.component';
 import { ViewComponent } from './feature/angular/concepts/view/view.component';
 import { ViewEngineComponent } from './feature/angular/concepts/view-engine/view-engine.component';
+import { WebComponentComponent } from './feature/angular/concepts/web-component/web-component.component';
+import { WorkspaceComponent } from './feature/angular/concepts/workspace/workspace.component';
+import { WorkspaceConfigurationComponent } from './feature/angular/concepts/workspace-configuration/workspace-configuration.component';
+import { ZoneComponent } from './feature/angular/concepts/zone/zone.component';
 
 const routes: Routes = [
   {
@@ -395,6 +399,18 @@ const routes: Routes = [
         component: ViewTransitionsComponent
       },
       {
+        path: 'web-component',
+        component: WebComponentComponent
+      },
+      {
+        path: 'workspace',
+        component: WorkspaceComponent
+      },
+      {
+        path: 'workspace-configuration',
+        component: WorkspaceConfigurationComponent
+      },
+      {
         path: 'zoneless-applications',
         component: ZonelessApplicationsComponent
       },
@@ -517,6 +533,10 @@ const routes: Routes = [
       {
         path: 'view-engine',
         component: ViewEngineComponent
+      },
+      {
+        path: 'zone',
+        component: ZoneComponent
       },
     ]
   },
