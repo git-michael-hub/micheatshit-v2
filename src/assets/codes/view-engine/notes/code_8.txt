@@ -1,0 +1,141 @@
+// View Engine Build Process
+// How Angular < 9 applications were built
+
+// Angular CLI build process with View Engine (simplified)
+
+/*
+1. COMPILATION STEPS
+-------------------
+Angular View Engine's build process went through several phases:
+*/
+
+// Phase 1: TS Compilation
+// tsc converts TypeScript to JavaScript
+const tsCompilation = {
+  command: 'tsc -p tsconfig.json',
+  input: [
+    'src/app/app.component.ts',
+    'src/app/app.module.ts',
+    // All other TypeScript files
+  ],
+  output: [
+    'dist/out-tsc/app/app.component.js',
+    'dist/out-tsc/app/app.module.js',
+    // Corresponding JavaScript files
+  ]
+};
+
+// Phase 2: Metadata Extraction
+// The Angular compiler extracted and generated metadata
+const metadataExtraction = {
+  command: 'ngc -p tsconfig.json',
+  input: [
+    'dist/out-tsc/app/app.component.js',
+    'dist/out-tsc/app/app.module.js'
+  ],
+  output: [
+    'dist/out-tsc/app/app.component.metadata.json',
+    'dist/out-tsc/app/app.module.metadata.json'
+  ]
+};
+
+// Phase 3: Factory Generation
+// The Angular compiler generated view factories using metadata
+const factoryGeneration = {
+  command: 'ngc -p tsconfig.json',
+  input: [
+    'dist/out-tsc/app/app.component.metadata.json',
+    'dist/out-tsc/app/app.module.metadata.json'
+  ],
+  output: [
+    'dist/out-tsc/app/app.component.ngfactory.js',
+    'dist/out-tsc/app/app.module.ngfactory.js'
+  ]
+};
+
+// Phase 4: Bundling
+// Webpack bundled all JavaScript files
+const bundling = {
+  command: 'webpack --config webpack.config.js',
+  input: [
+    'dist/out-tsc/app/main.js',
+    'dist/out-tsc/app/app.module.ngfactory.js',
+    // All other factories and JS files
+  ],
+  output: [
+    'dist/main.bundle.js',
+    'dist/polyfills.bundle.js',
+    'dist/vendor.bundle.js'
+  ]
+};
+
+/*
+2. ISSUES WITH VIEW ENGINE BUILD PROCESS
+----------------------------------------
+*/
+
+// 1. Global Compilation Requirement
+// View Engine required full program analysis
+const globalCompilation = `
+// View Engine needed to analyze the entire application at once
+// This is because each component's metadata might refer to other components
+
+// For example, in a module:
+@NgModule({
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  imports: [CommonModule, SharedModule]
+})
+class AppModule {}
+
+// The compiler needed to know about all declarations and imports
+// to create correct factories
+`;
+
+// 2. Metadata and Factory File Explosion
+// View Engine generated many extra files
+const fileExplosion = `
+// For each component:
+src/app/app.component.ts                   // Original source
+dist/out-tsc/app/app.component.js          // Compiled JavaScript
+dist/out-tsc/app/app.component.d.ts        // TypeScript declaration
+dist/out-tsc/app/app.component.metadata.json // Angular metadata
+dist/out-tsc/app/app.component.ngfactory.js // View factory
+dist/out-tsc/app/app.component.ngfactory.d.ts // Factory declaration
+
+// These extra files made builds slower and larger
+`;
+
+// 3. Incremental Compilation Challenges
+// Small changes could trigger large rebuilds
+const incrementalChallenges = `
+// Changing a component used in many places could invalidate
+// many component factories and force a large rebuild
+
+// This was especially problematic in larger applications
+// where a small change could trigger a nearly full rebuild
+`;
+
+/*
+3. HOW ANGULAR 19 IMPROVES THE BUILD PROCESS WITH IVY
+---------------------------------------------------
+*/
+
+// In Angular 19 with Ivy, the build process is simplified
+const ivyImprovements = `
+// Angular 19 with Ivy eliminates separate factory and metadata files
+// Instead, component info is embedded in the compiled output
+
+// Locality principle means components compile independently
+// Changes to one component don't require recompiling others
+
+// No more global analysis requirement
+// Components can be compiled in isolation
+
+// Faster incremental builds
+// Smaller bundle sizes
+// Better tree-shaking
+`;
+
+// Note: Although View Engine is no longer used in Angular 19,
+// understanding its historical context helps developers
+// appreciate the improvements in modern Angular

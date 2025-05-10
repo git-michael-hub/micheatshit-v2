@@ -1,0 +1,75 @@
+// View Encapsulation in Angular 19
+import { Component, ViewEncapsulation } from '@angular/core';
+
+// Example 1: Emulated Encapsulation (Default)
+@Component({
+  selector: 'app-emulated',
+  template: `
+    <div class="box">
+      <h2>Emulated Encapsulation</h2>
+      <p>This component uses emulated view encapsulation</p>
+    </div>
+  `,
+  styles: [`
+    .box {
+      border: 2px solid blue;
+      padding: 10px;
+      margin: 10px;
+    }
+    h2 { color: blue; }
+  `],
+  // ViewEncapsulation.Emulated is the default
+  encapsulation: ViewEncapsulation.Emulated
+})
+export class EmulatedComponent {}
+// Angular adds unique attributes to elements and scopes CSS
+// Result: <div _ngcontent-xya-1 class="box">...</div>
+// CSS: .box[_ngcontent-xya-1] { border: 2px solid blue; }
+
+// Example 2: No Encapsulation
+@Component({
+  selector: 'app-none',
+  template: `
+    <div class="box">
+      <h2>No Encapsulation</h2>
+      <p>This component has no view encapsulation</p>
+    </div>
+  `,
+  styles: [`
+    .box {
+      border: 2px solid red;
+      padding: 10px;
+      margin: 10px;
+    }
+    h2 { color: red; }
+  `],
+  // CSS is added to global styles - no scoping
+  encapsulation: ViewEncapsulation.None
+})
+export class NoneComponent {}
+// CSS is added globally and affects all components
+// Can cause unintended style leakage
+
+// Example 3: ShadowDOM Encapsulation
+@Component({
+  selector: 'app-shadow-dom',
+  template: `
+    <div class="box">
+      <h2>ShadowDOM Encapsulation</h2>
+      <p>This component uses native shadow DOM encapsulation</p>
+    </div>
+  `,
+  styles: [`
+    .box {
+      border: 2px solid green;
+      padding: 10px;
+      margin: 10px;
+    }
+    h2 { color: green; }
+  `],
+  // Uses browser's native Shadow DOM
+  encapsulation: ViewEncapsulation.ShadowDom
+})
+export class ShadowDomComponent {}
+// Angular creates a Shadow DOM for the component
+// Styles are truly isolated and can't leak in or out

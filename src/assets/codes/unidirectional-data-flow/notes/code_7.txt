@@ -1,0 +1,99 @@
+// user.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export interface UserState {
+  users: User[];
+  selectedUserId: number | null;
+  loading: boolean;
+  error: string | null;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  // Private state - single source of truth
+  private state = new BehaviorSubject<UserState>({
+    users: [],
+    selectedUserId: null,
+    loading: false,
+    error: null
+  });
+
+  // Public observables for components to subscribe to
+  readonly users$ = this.state.pipe(map(state => state.users));
+  readonly selectedUser$ = this.state.pipe(
+    map(state => {
+      if (state.selectedUserId === null) return null;
+      return state.users.find(user => user.id === state.selectedUserId) || null;
+    })
+  );
+  readonly loading$ = this.state.pipe(map(state => state.loading));
+  readonly error$ = this.state.pipe(map(state => state.error));
+
+  constructor(private http: HttpClient) {}
+
+  // Actions
+  loadUsers() {
+    // Update loading state
+    this.updateState({ loading: true, error: null });
+
+    this.http.get<User[]>('api/users')
+      .pipe(
+        tap(users => {
+          this.updateState({ users, loading: false });
+        }),
+        catchError(error => {
+          this.updateState({
+            loading: false,
+            error: 'Failed to load users'
+          });
+          return of([]);
+        })
+      )
+      .subscribe();
+  }
+
+  selectUser(userId: number) {
+    this.updateState({ selectedUserId: userId });
+  }
+
+  addUser(user: Omit<User, 'id'>) {
+    this.updateState({ loading: true, error: null });
+
+    this.http.post<User>('api/users', user)
+      .pipe(
+        tap(newUser => {
+          const currentUsers = this.state.value.users;
+          this.updateState({
+            users: [...currentUsers, newUser],
+            loading: false
+          });
+        }),
+        catchError(error => {
+          this.updateState({
+            loading: false,
+            error: 'Failed to add user'
+          });
+          return of(null);
+        })
+      )
+      .subscribe();
+  }
+
+  // Helper method to update state immutably
+  private updateState(partialState: Partial<UserState>) {
+    this.state.next({
+      ...this.state.value,
+      ...partialState
+    });
+  }
+}

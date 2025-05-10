@@ -1,0 +1,69 @@
+// View Engine Compilation Process
+// How Angular < 9 compiled your components
+
+// The compilation pipeline in View Engine:
+
+/*
+1. Parse TypeScript into AST (Abstract Syntax Tree)
+   - TypeScript compiler processes source files
+   - Recognizes Angular decorators, components, pipes, etc.
+
+2. Collect Metadata
+   - Extracts information from @Component, @NgModule, etc.
+   - Collects template URLs, styles, dependencies
+
+3. Parse Templates into AST
+   - HTML templates parsed into structured representation
+   - Identifies bindings, directives, pipes
+
+4. Type Checking
+   - Verifies template expressions match component properties
+   - Validates directive inputs and outputs
+
+5. Generate View Definition
+   - Creates blueprint for component rendering
+   - Defines node structure, bindings, events
+
+6. Generate factory functions
+   - ComponentFactory: Creates component instances
+   - ViewFactory: Creates DOM for component view
+   - ModuleFactory: Assembles module structure
+
+7. Output JavaScript
+   - Generates .js and .d.ts files
+   - Includes factories and metadata for runtime use
+*/
+
+// This is a simplified representation of generated View Engine output:
+
+// Generated Component Factory (pseudo-code)
+var ExampleComponentNgFactory = new ComponentFactory({
+  moduleId: 'angular://example-app/example.component.ngfactory.js',
+  selector: 'app-example',
+  type: ExampleComponent,
+  viewDefFactory: function() {
+    return viewDefinition;
+  },
+  hostBindings: function(view, component) {
+    // Apply host bindings
+  },
+  changeDetection: ChangeDetectionStrategy.Default
+});
+
+// Node definitions for a simple component template
+function View_ExampleComponent_0(componentView, component) {
+  // Define all nodes for the view
+  // Set up bindings and listeners
+
+  return {
+    // View data structures for change detection
+    def: viewDefinition,
+    root: componentView,
+    nodes: [
+      // Array of view nodes with binding and event data
+    ]
+  };
+}
+
+// Notice how View Engine generated large factory functions
+// This is one reason why it was replaced by Ivy in Angular 9+

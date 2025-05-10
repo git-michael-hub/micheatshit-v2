@@ -1,0 +1,634 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    TypeScript
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">TypeScript</span>
+      in Angular 19 is a superset of JavaScript that adds static types and advanced features to enable better developer experience, enhanced code quality, and improved maintainability. Angular 19 leverages TypeScript 5.2+ with enhanced type-checking, decorators, and template type safety to build robust, scalable applications.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>TypeScript Fundamentals</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Core Concept</strong>:
+      TypeScript is a strongly typed programming language that builds on JavaScript, providing optional static typing, classes, interfaces, and other features for large-scale application development.
+    </li>
+    <li>
+      <strong>Angular Integration</strong>:
+      Angular is built with TypeScript and leverages its features to provide enhanced IDE support, compile-time error checking, and improved maintainability.
+    </li>
+    <li>
+      <strong>Compilation Process</strong>:
+      TypeScript code is transpiled to JavaScript for browser execution, with Angular 19 using advanced compilation techniques to optimize the output.
+    </li>
+    <li>
+      <strong>Type System</strong>:
+      TypeScript's type system helps catch errors early in development through static analysis, making it ideal for large-scale applications.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 TypeScript Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>TypeScript 5.2+ Support</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 fully embraces TypeScript 5.2+, enabling advanced language features like const type parameters, using declarations, and more.</li>
+
+        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code1 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_1"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Type-Checking</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 improves template type-checking with better error messages, strict mode enhancements, and more accurate type inference.</li>
+
+        <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code2 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_2"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Signals Type Safety</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19's reactive signals system fully leverages TypeScript's type system for strongly-typed reactivity with excellent IDE support.</li>
+
+        <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code3 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_3"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Decorator Metadata</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 takes advantage of TypeScript's enhanced decorator metadata features for better dependency injection and component configuration.</li>
+
+        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code4 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_4"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Modern TypeScript Patterns</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 adopts modern TypeScript patterns, including discriminated unions, utility types, and conditional types for more expressive code.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>TypeScript Configuration in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>tsconfig.json Enhancements</strong>:
+      Angular 19 provides optimized TypeScript configuration options for better performance and type safety.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Strict Type Checking</strong>:
+      Angular 19 recommends and enhances strict type checking modes for better code quality.
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>TypeScript-Specific Features</strong>:
+      Angular 19 leverages TypeScript-specific features like path mapping, declaration files, and module resolution.
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>TypeScript Language Features in Angular 19</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Feature</th>
+        <th class="py-3 px-4 text-left">Description</th>
+        <th class="py-3 px-4 text-left">Angular 19 Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Decorators</td>
+        <td class="py-3 px-4">Special declarations that can modify classes and members</td>
+        <td class="py-3 px-4">@Component, @Input, @Injectable, etc.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Interfaces</td>
+        <td class="py-3 px-4">Type checking for object shapes</td>
+        <td class="py-3 px-4">Data models, component inputs, API responses</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Generics</td>
+        <td class="py-3 px-4">Type templates for reusable code</td>
+        <td class="py-3 px-4">Services, reactive forms, HTTP clients</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Type Guards</td>
+        <td class="py-3 px-4">Runtime checks that guarantee type information</td>
+        <td class="py-3 px-4">Conditional rendering, data processing</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Utility Types</td>
+        <td class="py-3 px-4">Built-in type transformations</td>
+        <td class="py-3 px-4">Partial, Pick, Omit for form models</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enums</td>
+        <td class="py-3 px-4">Named constants and numeric values</td>
+        <td class="py-3 px-4">Status codes, action types, config options</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Union Types</td>
+        <td class="py-3 px-4">Variables that can be multiple types</td>
+        <td class="py-3 px-4">Signals, reactive forms, route parameters</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Debugging TypeScript in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Source Maps</strong>:
+      Angular 19 generates improved source maps for debugging TypeScript code directly in developer tools.
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Type Checking Tools</strong>:
+      Angular 19 integrates with TypeScript's type checking tools for better error reporting and analysis.
+    </li>
+    <li>
+      <strong>Enhanced IDE Integration</strong>:
+      Angular 19 provides better TypeScript integration with IDEs like VS Code for improved code navigation, refactoring, and IntelliSense.
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Leverage Strict Type Checking</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Enable Strict Mode</strong> by setting <code>"strict": true</code> in tsconfig.json to catch type errors during development.
+        </li>
+        <li>
+          <strong>Use Strict Template Type Checking</strong> with <code>"strictTemplates": true</code> in Angular compiler options.
+        </li>
+        <li>
+          <strong>Avoid Any Type</strong> whenever possible, as it bypasses TypeScript's type checking, which negates much of its value.
+        </li>
+        <li>
+          <strong>Enable Additional Checks</strong> like <code>noImplicitReturns</code> and <code>noFallthroughCasesInSwitch</code> to catch more potential issues.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Use Modern TypeScript Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Leverage Discriminated Unions</strong> for handling different states in your application, which provides type safety for conditional logic.
+        </li>
+        <li>
+          <strong>Adopt Utility Types</strong> (Partial, Pick, Omit, etc.) to transform existing types for specific use cases.
+        </li>
+        <li>
+          <strong>Use Type Guards</strong> to safely narrow down types and provide compile-time safety with runtime checks.
+        </li>
+        <li>
+          <strong>Implement Generic Types</strong> for reusable components, services, and functions that work with different data types.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Angular TypeScript Patterns</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Type Component Inputs/Outputs</strong> explicitly to ensure proper usage and enable better IDE support.
+        </li>
+        <li>
+          <strong>Use Interface Segregation</strong> by creating focused interfaces for specific use cases rather than large, monolithic ones.
+        </li>
+        <li>
+          <strong>Type HTTP Responses</strong> to ensure proper handling of API data throughout your application.
+        </li>
+        <li>
+          <strong>Implement Strongly-Typed Forms</strong> using Angular's typed reactive forms API to catch validation and value errors at compile time.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Organize TypeScript Code Effectively</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Create Shared Type Definitions</strong> in dedicated files to ensure consistency across the application.
+        </li>
+        <li>
+          <strong>Use Path Aliases</strong> in tsconfig.json to simplify imports and make refactoring easier.
+        </li>
+        <li>
+          <strong>Implement Barrel Files</strong> (index.ts) to simplify imports while maintaining clean module boundaries.
+        </li>
+        <li>
+          <strong>Create Type Libraries</strong> for domain-specific types that can be shared across features.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage TypeScript for Enhanced Angular Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Type Guards for Control Flow</strong> in templates to ensure type safety in conditional content.
+        </li>
+        <li>
+          <strong>Type-Safe DI Tokens</strong> using <code>inject</code> function with explicit typing to avoid runtime errors.
+        </li>
+        <li>
+          <strong>Signal Type Safety</strong> by leveraging TypeScript's type inference with Angular's reactive primitives.
+        </li>
+        <li>
+          <strong>Strongly Typed Route Parameters</strong> to ensure navigation parameters are handled correctly.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Enhanced Type Safety</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Static typing catches potential errors at compile time rather than runtime, reducing bugs and making applications more robust.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Developer Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Better code completion, navigation, and refactoring tools in IDEs significantly boost developer productivity.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Better Code Documentation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Type annotations serve as living documentation, making code more self-explanatory and easier to understand.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Scalability</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          TypeScript's type system makes large codebases more maintainable by ensuring consistency and providing clear contracts.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Angular Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19 leverages TypeScript for enhanced build optimizations, better tree shaking, and improved template type checking.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Modern JavaScript Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          TypeScript provides access to the latest ECMAScript features while maintaining compatibility with older browsers through transpilation.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Developers new to static typing may find TypeScript's advanced features overwhelming at first, requiring additional training.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Build Time Overhead</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          TypeScript compilation adds an extra step to the build process, which can increase development and build times, although Angular 19 has optimized this.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Type Definition Maintenance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Using third-party libraries may require additional type definition files (@types packages), which can sometimes be incomplete or outdated.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Over-engineering</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Complex type hierarchies can sometimes lead to over-engineered solutions that are harder to understand than simpler JavaScript alternatives.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Runtime Type Erasure</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          TypeScript types are removed during compilation to JavaScript, meaning there's no runtime type checking without additional validation code.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Configuration Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          TypeScript configuration through tsconfig.json can be complex with many options, requiring careful consideration for optimal setup.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    TypeScript in Angular 19 provides significant benefits that outweigh the potential drawbacks, especially for medium to large applications. The enhanced developer experience, improved code quality, and better maintainability make it an excellent choice for Angular development. The framework's deep integration with TypeScript ensures that developers get the most out of both technologies.
+  </p>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced type safety</td>
+        <td class="py-3 px-4">Learning curve for newcomers</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Improved developer experience</td>
+        <td class="py-3 px-4">Build time overhead</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Better code documentation</td>
+        <td class="py-3 px-4">Type definition maintenance</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced scalability</td>
+        <td class="py-3 px-4">Potential over-engineering</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Angular optimization</td>
+        <td class="py-3 px-4">Runtime type erasure</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Modern JavaScript features</td>
+        <td class="py-3 px-4">Configuration complexity</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>
+    Related topics to TypeScript in Angular 19:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Angular Compiler (ngc)</strong>
+      <p>
+        The Angular compiler that processes TypeScript code and Angular templates, performing type checking and generating optimized JavaScript.
+      </p>
+    </li>
+    <li>
+      <strong>Decorators</strong>
+      <p>
+        TypeScript feature heavily used in Angular to define components, services, directives, and other core elements with metadata.
+      </p>
+    </li>
+    <li>
+      <strong>Type-Safe Templates</strong>
+      <p>
+        Angular 19's enhanced template type checking that leverages TypeScript to catch errors in templates during compilation.
+      </p>
+    </li>
+    <li>
+      <strong>Reactive Programming with RxJS</strong>
+      <p>
+        How TypeScript enhances Angular's reactive programming model with RxJS through strong typing of Observables and operators.
+      </p>
+    </li>
+    <li>
+      <strong>Signals</strong>
+      <p>
+        Angular 19's reactive primitives that leverage TypeScript's type system for type-safe reactivity throughout applications.
+      </p>
+    </li>
+    <li>
+      <strong>Dependency Injection</strong>
+      <p>
+        How Angular's DI system uses TypeScript decorators and type information to provide a robust inversion of control framework.
+      </p>
+    </li>
+    <li>
+      <strong>Tree Shaking</strong>
+      <p>
+        How TypeScript and Angular 19 work together to enable better dead code elimination and smaller production bundles.
+      </p>
+    </li>
+    <li>
+      <strong>Testing</strong>
+      <p>
+        TypeScript's role in making Angular tests more robust through type checking, interface contracts, and mocking capabilities.
+      </p>
+    </li>
+  </ol>
+</ng-template>

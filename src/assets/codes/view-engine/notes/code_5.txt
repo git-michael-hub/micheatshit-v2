@@ -1,0 +1,99 @@
+// View Engine Dependency Injection
+// How DI worked in Angular < 9
+
+// Component using dependency injection
+import { Component, Injectable } from '@angular/core';
+
+@Injectable()
+class DataService {
+  getData() {
+    return ['Item 1', 'Item 2', 'Item 3'];
+  }
+}
+
+@Component({
+  selector: 'app-data-list',
+  template: `
+    <ul>
+      <li *ngFor="let item of items">{{ item }}</li>
+    </ul>
+  `,
+  providers: [DataService] // Register provider at component level
+})
+class DataListComponent {
+  items: string[];
+
+  constructor(private dataService: DataService) {
+    this.items = this.dataService.getData();
+  }
+}
+
+// Behind the scenes, View Engine generated injector code:
+
+// Module Definition
+@NgModule({
+  declarations: [DataListComponent],
+  providers: [
+    // Global providers
+  ]
+})
+class AppModule {}
+
+// Generated Module Factory (simplified)
+const AppModuleNgFactory = new NgModuleFactory({
+  moduleType: AppModule,
+
+  // Module definition with bootstrap components, declarations, imports, etc.
+  definition: { /* ... */ },
+
+  // Factory for creating injector
+  createInjector: function() {
+    return new ModuleInjector(
+      // Parent injector (platform or null)
+      null,
+      // Global providers from module
+      [
+        // Module providers array
+      ]
+    );
+  }
+});
+
+// View injector creation (simplified)
+function createComponentInjector(parentInjector, component) {
+  // Start with module-level injector
+  let currentInjector = parentInjector;
+
+  // If component has providers, create an element injector
+  if (component.providers && component.providers.length) {
+    currentInjector = new ElementInjector(
+      parentInjector,
+      component.providers
+    );
+  }
+
+  return currentInjector;
+}
+
+// Component factory with injector handling
+function createComponentInstance(
+  parentInjector,
+  componentDef,
+  hostElement
+) {
+  // Create component injector with providers
+  const injector = createComponentInjector(
+    parentInjector,
+    { providers: [DataService] }
+  );
+
+  // Resolve constructor parameters using injector
+  const dataService = injector.get(DataService);
+
+  // Create component with resolved dependencies
+  return new DataListComponent(dataService);
+}
+
+// Note: View Engine built an injector tree matching the component tree
+// This hierarchical injection system remains conceptually similar in Angular 19
+// but Ivy's implementation is more efficient and tree-shakable

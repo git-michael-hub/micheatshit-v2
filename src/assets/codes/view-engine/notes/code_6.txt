@@ -1,0 +1,116 @@
+// View Engine Template Compilation
+// How templates were processed in Angular < 9
+
+// Sample component with template
+@Component({
+  selector: 'app-user-profile',
+  template: `
+    <div class="user-card">
+      <h2>{{ user.name }}</h2>
+      <p>Email: {{ user.email }}</p>
+      <p *ngIf="user.isAdmin">Administrator</p>
+      <button (click)="sendMessage()">Send Message</button>
+    </div>
+  `
+})
+class UserProfileComponent {
+  @Input() user: { name: string; email: string; isAdmin: boolean };
+
+  sendMessage() {
+    console.log('Sending message to', this.user.name);
+  }
+}
+
+// View Engine Template Compilation Process:
+
+// 1. Template Parsing
+// The template is parsed into an HTML AST (Abstract Syntax Tree)
+const templateAst = [
+  {
+    type: 'element',
+    name: 'div',
+    attrs: [{ name: 'class', value: 'user-card' }],
+    children: [
+      {
+        type: 'element',
+        name: 'h2',
+        children: [
+          { type: 'binding', expression: 'user.name' }
+        ]
+      },
+      {
+        type: 'element',
+        name: 'p',
+        children: [
+          { type: 'text', value: 'Email: ' },
+          { type: 'binding', expression: 'user.email' }
+        ]
+      },
+      {
+        type: 'template',
+        templateAttrs: [
+          { name: '*ngIf', value: 'user.isAdmin' }
+        ],
+        children: [
+          {
+            type: 'element',
+            name: 'p',
+            children: [
+              { type: 'text', value: 'Administrator' }
+            ]
+          }
+        ]
+      },
+      {
+        type: 'element',
+        name: 'button',
+        events: [
+          { name: 'click', handler: 'sendMessage()' }
+        ],
+        children: [
+          { type: 'text', value: 'Send Message' }
+        ]
+      }
+    ]
+  }
+];
+
+// 2. Converting to View Engine nodes
+// These nodes would define how to create and bind DOM elements
+const viewNodes = [
+  // Root div (node 0)
+  { nodeIndex: 0, type: 'element', name: 'div', attrs: ['class', 'user-card'], children: [1, 3, 5, 8] },
+
+  // h2 (node 1)
+  { nodeIndex: 1, type: 'element', name: 'h2', children: [2] },
+  { nodeIndex: 2, type: 'text', bindingIndex: 0 }, // Bound to user.name
+
+  // First p (node 3)
+  { nodeIndex: 3, type: 'element', name: 'p', children: [4] },
+  { nodeIndex: 4, type: 'text', textParts: ['Email: ', ''], bindingIndices: [null, 1] }, // Bound to user.email
+
+  // Template for *ngIf (nodes 5-7)
+  { nodeIndex: 5, type: 'template', bindingIndex: 2 }, // Bound to user.isAdmin
+  { nodeIndex: 6, type: 'element', name: 'p', children: [7] },
+  { nodeIndex: 7, type: 'text', text: 'Administrator' },
+
+  // Button (node 8)
+  { nodeIndex: 8, type: 'element', name: 'button', children: [9], events: [0] },
+  { nodeIndex: 9, type: 'text', text: 'Send Message' }
+];
+
+// 3. Bindings for the view
+const viewBindings = [
+  { bindingIndex: 0, expression: 'user.name', target: 'textContent', source: 'user.name' },
+  { bindingIndex: 1, expression: 'user.email', target: 'textContent', source: 'user.email' },
+  { bindingIndex: 2, expression: 'user.isAdmin', target: 'template', source: 'user.isAdmin' }
+];
+
+// 4. Event handlers
+const viewEvents = [
+  { nodeIndex: 8, event: 'click', handler: 'sendMessage' }
+];
+
+// All of this would be compiled into a view definition
+// and factory functions in View Engine
+// Much more verbose than Ivy's instructions in Angular 19

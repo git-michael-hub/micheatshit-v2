@@ -1,268 +1,629 @@
-<div class="container">
-  <h1>Angular Universal</h1>
-  <p>
-    Angular Universal is a technology that enables server-side rendering (SSR) for Angular applications. It allows your app to render on the server before sending HTML to the client, providing better performance, SEO, and user experience.
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Angular Universal
   </p>
 
-  <div class="tab-navigation">
-    <button
-      type="button"
-      [class.active]="selectedTab === 'notes'"
-      (click)="selectedTab = 'notes'">
-      Notes
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'bestPractices'"
-      (click)="selectedTab = 'bestPractices'">
-      Best Practices
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'prosCons'"
-      (click)="selectedTab = 'prosCons'">
-      Pros and Cons
-    </button>
-    <button
-      type="button"
-      [class.active]="selectedTab === 'relatedTopics'"
-      (click)="selectedTab = 'relatedTopics'">
-      Related Topics
-    </button>
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Angular Universal</span>
+      in Angular 19 provides server-side rendering (SSR) capabilities for Angular applications. This technology renders your app on the server before sending HTML to the client, enhancing performance, SEO, and user experience while incorporating modern features like enhanced hydration, partial hydration, and improved prerendering workflows.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
   </div>
+</section>
 
-  <ng-container [ngSwitch]="selectedTab">
-    <ng-container *ngSwitchCase="'notes'">
-      <ng-container *ngTemplateOutlet="notesTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'bestPractices'">
-      <ng-container *ngTemplateOutlet="bestPracticesTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'prosCons'">
-      <ng-container *ngTemplateOutlet="prosConsTemplate"></ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'relatedTopics'">
-      <ng-container *ngTemplateOutlet="relatedTopicsTemplate"></ng-container>
-    </ng-container>
-  </ng-container>
-</div>
-
-<ng-template #notesTemplate>
-  <h2>Overview</h2>
-  <p>
-    Angular Universal renders your Angular application on the server, generating static HTML that's sent to the browser. This approach combines the benefits of server-side rendering with Angular's client-side capabilities.
-  </p>
-
-  <h3>Benefits of Angular Universal</h3>
-  <ul class="benefits-list">
+<ng-template #notesRef>
+  <p>Key Features of Angular Universal in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
     <li>
-      <strong>Improved SEO:</strong> Search engines can crawl and index the fully rendered HTML content.
+      <strong>Server-Side Rendering (SSR)</strong>:
+      Renders Angular applications on the server, generating HTML that's sent to the browser before JavaScript bundles load.
     </li>
     <li>
-      <strong>Faster First Contentful Paint:</strong> Users see rendered content quickly before the JavaScript bundles load.
+      <strong>Enhanced Hydration</strong>:
+      Improved hydration logic that preserves server-rendered DOM and restores application state without re-rendering.
     </li>
     <li>
-      <strong>Better Performance on Low-Power Devices:</strong> Less client-side processing required initially.
+      <strong>Standalone Component Support</strong>:
+      Full SSR support for Angular's standalone component architecture without NgModules.
     </li>
     <li>
-      <strong>Improved Social Media Sharing:</strong> Proper preview images and metadata for social media platforms.
+      <strong>Selective Hydration</strong>:
+      Control which parts of your application are hydrated using the ngSkipHydration attribute.
     </li>
   </ul>
 
-  <h3>How Angular Universal Works</h3>
-  <p>
-    The workflow of an Angular Universal application:
-  </p>
-  <div class="workflow-diagram">
-    <h4>Request Flow:</h4>
-    <ol>
-      <li>User requests your application URL</li>
-      <li>Request is received by the server (Node.js with Express typically)</li>
-      <li>Angular Universal renders your application on the server</li>
-      <li>Server responds with fully rendered HTML</li>
-      <li>Browser displays the HTML immediately</li>
-      <li>Angular JavaScript bundles load in the background</li>
-      <li>Once loaded, Angular "hydrates" the application, taking over interaction handling</li>
-    </ol>
-  </div>
+  <br>
+  <br>
 
-  <h3>Setup and Installation</h3>
-  <div class="code-container">
-    <pre><code [highlight]="setupCode" [languages]="['bash']"></code></pre>
-  </div>
-
-  <h3>Building and Running</h3>
-  <div class="code-container">
-    <pre><code [highlight]="buildRunCode" [languages]="['bash']"></code></pre>
-  </div>
-
-  <h3>Server Module Configuration</h3>
-  <div class="code-container">
-    <pre><code [highlight]="serverModuleCode" [languages]="['typescript']"></code></pre>
-  </div>
-
-  <h3>Angular Configuration</h3>
-  <div class="code-container">
-    <pre><code [highlight]="angularJsonCode" [languages]="['json']"></code></pre>
-  </div>
-</ng-template>
-
-<ng-template #bestPracticesTemplate>
-  <h2>Best Practices</h2>
-
-  <h3>Browser/Server Code Differentiation</h3>
-  <p>
-    Use platform detection to handle browser-specific code:
-  </p>
-  <div class="code-container">
-    <pre><code [highlight]="isBrowserCode" [languages]="['typescript']"></code></pre>
-  </div>
-
-  <h3>Managing State Transfer</h3>
-  <p>
-    Use TransferState to avoid duplicate data fetching:
-  </p>
-  <div class="code-container">
-    <pre><code [highlight]="transferStateCode" [languages]="['typescript']"></code></pre>
-  </div>
-
-  <h3>Additional Best Practices</h3>
-  <ul>
+  <p>Getting Started with Angular Universal</p>
+  <ol class="list-decimal pl-4 text-sm">
     <li>
-      <strong>Avoid Browser-Only APIs:</strong> Window, document, localStorage, and other browser-specific APIs aren't available during server rendering. Use conditional checks or Angular abstractions.
+      <strong>Installation</strong>:
+      <ul class="list-disc pl-4">
+        <li>Adding Universal to an Angular 19 project.</li>
+
+        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code1 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>bash</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_1"
+              [languages]="['bash']">
+            </code>
+          </pre>
+        </span>
+      </ul>
     </li>
     <li>
-      <strong>Optimize for Time-to-First-Byte (TTFB):</strong> Keep server rendering efficient to minimize delays.
-    </li>
-    <li>
-      <strong>Implement Proper Caching:</strong> Use response caching strategies to reduce server load and improve performance.
-    </li>
-    <li>
-      <strong>Use Relative URLs:</strong> For API requests and asset references to ensure they work both on server and client.
-    </li>
-    <li>
-      <strong>Implement Pre-rendering for Static Content:</strong> Consider pre-rendering routes with static content during build time.
-    </li>
-    <li>
-      <strong>Optimize Bundle Size:</strong> Smaller bundles lead to quicker hydration after the initial server-rendered view.
-    </li>
-    <li>
-      <strong>Use Angular's Meta and Title Services:</strong> Ensure proper metadata for SEO and social sharing.
-    </li>
-  </ul>
-</ng-template>
+      <strong>Server Configuration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Setting up the server-side Angular modules and components.</li>
 
-<ng-template #prosConsTemplate>
-  <h2>Pros and Cons</h2>
+        <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
 
-  <h3>Advantages</h3>
-  <ul>
-    <li><strong>SEO Benefits:</strong> Better indexing by search engines</li>
-    <li><strong>Improved Performance:</strong> Faster initial rendering and Time to Interactive</li>
-    <li><strong>Progressive Enhancement:</strong> Content available before JavaScript loads</li>
-    <li><strong>Better Accessibility:</strong> Content available to users with JavaScript disabled</li>
-    <li><strong>Social Media Sharing:</strong> Proper preview cards on social platforms</li>
-  </ul>
+        <span #code2 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
 
-  <h3>Challenges and Limitations</h3>
-  <ul>
-    <li><strong>Increased Complexity:</strong> More complex architecture and deployment</li>
-    <li><strong>Server Requirements:</strong> Need for Node.js server infrastructure</li>
-    <li><strong>Development Overhead:</strong> Must account for both client and server environments</li>
-    <li><strong>Potential for Double HTTP Requests:</strong> If not using TransferState properly</li>
-    <li><strong>Additional Build/Deploy Steps:</strong> More complex CI/CD pipelines</li>
-  </ul>
+          <pre>
+            <code
+              [highlight]="code_2"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Standalone Configuration</strong>:
+      <ul class="list-disc pl-4">
+        <li>Configuring server rendering with the standalone APIs in Angular 19.</li>
 
-  <h3>Comparison: SSR vs CSR vs Pre-rendering</h3>
-  <table class="comparison-table">
+        <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code3 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_3"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Building and Running</strong>:
+      <ul class="list-disc pl-4">
+        <li>Commands to build and run a Universal application in Angular 19.</li>
+
+        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code4 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>bash</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_4"
+              [languages]="['bash']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Advanced Features in Angular 19 Universal</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Platform Detection</strong>:
+      Detecting browser vs. server environments safely.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>TransferState</strong>:
+      Avoiding duplicate data fetching between server and client.
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Enhanced Hydration</strong>:
+      Configuring and using Angular 19's improved hydration system.
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Prerendering</strong>:
+      Generating static pages at build time for optimal performance.
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Angular Universal Rendering Process</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
     <thead>
-      <tr>
-        <th>Feature</th>
-        <th>Server-Side Rendering (SSR)</th>
-        <th>Client-Side Rendering (CSR)</th>
-        <th>Static Pre-rendering</th>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Stage</th>
+        <th class="py-3 px-4 text-left">Description</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Initial Load Time</td>
-        <td>Fast (HTML ready)</td>
-        <td>Slower (wait for JS)</td>
-        <td>Fastest (pre-built HTML)</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Server Rendering</td>
+        <td class="py-3 px-4">Application is rendered on the server, generating full HTML content.</td>
       </tr>
-      <tr>
-        <td>SEO</td>
-        <td>Good</td>
-        <td>Limited</td>
-        <td>Excellent</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Client Receives HTML</td>
+        <td class="py-3 px-4">Browser displays the pre-rendered HTML immediately for fast initial paint.</td>
       </tr>
-      <tr>
-        <td>Server Load</td>
-        <td>High (per request)</td>
-        <td>Low</td>
-        <td>Build-time only</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">JavaScript Loading</td>
+        <td class="py-3 px-4">Angular bundles load in the background while the user views the content.</td>
       </tr>
-      <tr>
-        <td>Dynamic Content</td>
-        <td>Supported</td>
-        <td>Supported</td>
-        <td>Limited (build-time only)</td>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Hydration</td>
+        <td class="py-3 px-4">Angular reuses the server-rendered DOM and attaches event handlers without re-rendering.</td>
       </tr>
-      <tr>
-        <td>Development Complexity</td>
-        <td>Higher</td>
-        <td>Lower</td>
-        <td>Medium</td>
-      </tr>
-      <tr>
-        <td>Infrastructure</td>
-        <td>Node.js server</td>
-        <td>Static hosting</td>
-        <td>Static hosting</td>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Fully Interactive</td>
+        <td class="py-3 px-4">Application becomes fully interactive with client-side features enabled.</td>
       </tr>
     </tbody>
   </table>
 </ng-template>
 
-<ng-template #relatedTopicsTemplate>
-  <h2>Related Topics</h2>
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Implement Platform-Specific Code Properly</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use isPlatformBrowser/isPlatformServer</strong>:
+          Always check the platform before using browser-specific APIs to avoid server-side errors.
+        </li>
+        <li>
+          <strong>Create Platform Abstractions</strong>:
+          Implement services that abstract platform-specific functionality behind common interfaces.
+        </li>
+        <li>
+          <strong>Leverage Angular's Built-in Abstractions</strong>:
+          Use Angular's DOCUMENT token and Meta/Title services instead of direct window/document access.
+        </li>
+        <li>
+          <strong>Implement Lazy Browser Features</strong>:
+          Initialize browser-specific features after verifying you're in the browser environment.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Data Transfer Between Server and Client</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use TransferState for API Responses</strong>:
+          Avoid duplicate HTTP requests by transferring server-fetched data to the client.
+        </li>
+        <li>
+          <strong>Implement State Serialization Strategy</strong>:
+          Ensure complex objects are properly serialized when transferred from server to client.
+        </li>
+        <li>
+          <strong>Consider Request-Specific Data</strong>:
+          Transfer user-specific information like authentication status or locale settings.
+        </li>
+        <li>
+          <strong>Clean Up After Hydration</strong>:
+          Remove transferred state after consumption to prevent memory leaks and stale data.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Configure Hydration Effectively</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Enable Client Hydration</strong>:
+          Use provideClientHydration() in your app configuration to ensure proper DOM reuse.
+        </li>
+        <li>
+          <strong>Leverage Selective Hydration</strong>:
+          Use ngSkipHydration for static content that doesn't need client-side interactivity.
+        </li>
+        <li>
+          <strong>Identify Hydration Issues</strong>:
+          Use dev tools and Angular's built-in warnings to identify and fix hydration mismatches.
+        </li>
+        <li>
+          <strong>Optimize First Contentful Paint</strong>:
+          Ensure critical CSS is included inline to prevent layout shifts during hydration.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Balance SSR and Client-Side Processing</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Consider Response Time Limits</strong>:
+          Keep server rendering time under control to avoid timeouts and poor user experience.
+        </li>
+        <li>
+          <strong>Implement Proper Caching</strong>:
+          Cache rendered pages where appropriate to reduce server load and improve performance.
+        </li>
+        <li>
+          <strong>Use Prerendering for Static Content</strong>:
+          Pre-generate routes with static content at build time rather than per-request.
+        </li>
+        <li>
+          <strong>Consider Partial Hydration</strong>:
+          Prioritize hydration of critical interactive elements while deferring less important ones.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Performance and Development Workflow</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use ng serve --ssr During Development</strong>:
+          Test SSR behavior during development without manual build and serve steps.
+        </li>
+        <li>
+          <strong>Implement Tree-Shakable Components</strong>:
+          Design components that can be tree-shaken effectively to minimize bundle sizes.
+        </li>
+        <li>
+          <strong>Measure Core Web Vitals</strong>:
+          Monitor critical performance metrics like LCP, FID, and CLS to ensure SSR benefits are realized.
+        </li>
+        <li>
+          <strong>Configure Proper Deployment Pipeline</strong>:
+          Set up CI/CD that handles both client and server bundles correctly for production.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
 
-  <ul>
-    <li>
-      <strong>Server-Side Rendering (SSR):</strong> The underlying concept behind Angular Universal
-    </li>
-    <li>
-      <strong>Hydration:</strong> Process of attaching event listeners to server-rendered HTML
-    </li>
-    <li>
-      <strong>Partial Hydration:</strong> Selectively hydrating only parts of your application
-    </li>
-    <li>
-      <strong>TransferState:</strong> API for transferring state from server to client
-    </li>
-    <li>
-      <strong>Pre-rendering:</strong> Generating static HTML at build time rather than per request
-    </li>
-    <li>
-      <strong>App Shell:</strong> Minimal UI shown during app loading
-    </li>
-    <li>
-      <strong>SEO (Search Engine Optimization):</strong> Improving discoverability in search results
-    </li>
-    <li>
-      <strong>Express.js:</strong> Common Node.js framework used with Angular Universal
-    </li>
-  </ul>
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
 
-  <h3>Recent Angular Universal Updates</h3>
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Enhanced Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Faster First Contentful Paint (FCP) as users see rendered HTML immediately, rather than waiting for JavaScript to load and execute.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved SEO</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Search engines can easily crawl and index fully rendered content, improving discoverability and rankings for Angular applications.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Better User Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Provides immediate content display on slow connections or devices, reducing perceived loading time and improving engagement metrics.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Social Media Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Enables proper rendering of Open Graph and other social media tags, ensuring attractive and informative link previews on social platforms.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Progressive Enhancement</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Applications work even with JavaScript disabled or while JavaScript is loading, ensuring wider accessibility.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Hydration in Angular 19</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Improved DOM preservation and state transfer mechanics make hydration faster and more reliable than in previous versions.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Increased Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Adds architectural complexity with server-side code, platform detection, and state transfer considerations.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Server Resource Requirements</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Requires a Node.js-capable server environment and consumes more server CPU and memory compared to static hosting.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Development Environment Differences</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Developers must account for both server and browser environments, potentially leading to platform-specific bugs.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Build and Deployment Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Requires more complex build and deployment pipelines to handle both client and server bundles.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Hydration Issues</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Mismatches between server and client rendering can cause hydration errors, although Angular 19 has significantly improved this area.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Time-to-Interactive Trade-offs</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          While initial content is visible faster, the application may take longer to become fully interactive as JavaScript loads and hydrates.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
   <p>
-    Angular 19 brings several improvements to Universal:
+    Angular Universal in Angular 19 provides significant benefits for application performance, SEO, and user experience. The enhanced hydration system, standalone component support, and improved developer experience make it more accessible than previous versions. While there are still complexity trade-offs, the advancements in Angular 19 make the benefits increasingly outweigh the costs for most production applications.
   </p>
-  <ul>
-    <li>Improved performance for server-side rendering</li>
-    <li>Better integration with Angular signals</li>
-    <li>Enhanced hydration capabilities</li>
-    <li>Support for partial hydration</li>
-    <li>More streamlined setup process</li>
-  </ul>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced performance and faster FCP</td>
+        <td class="py-3 px-4">Increased architectural complexity</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Improved SEO capabilities</td>
+        <td class="py-3 px-4">Server resource requirements</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Better user experience on slow connections</td>
+        <td class="py-3 px-4">Development environment differences</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Proper social media link previews</td>
+        <td class="py-3 px-4">Build and deployment complexity</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Progressive enhancement support</td>
+        <td class="py-3 px-4">Potential hydration issues</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced hydration in Angular 19</td>
+        <td class="py-3 px-4">Time-to-interactive trade-offs</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>
+    Related topics to Angular Universal in Angular 19:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Hydration</strong>
+      <p>
+        The process of attaching event listeners and reviving the JavaScript application state for server-rendered HTML, now enhanced in Angular 19 with better DOM preservation.
+      </p>
+    </li>
+    <li>
+      <strong>Partial Hydration</strong>
+      <p>
+        Selectively hydrating parts of your application, prioritizing interactive elements while deferring others to optimize time-to-interactive metrics.
+      </p>
+    </li>
+    <li>
+      <strong>Prerendering</strong>
+      <p>
+        Generating static HTML at build time rather than at request time, providing SSR benefits with the performance advantages of static hosting.
+      </p>
+    </li>
+    <li>
+      <strong>TransferState API</strong>
+      <p>
+        Angular's mechanism for transferring data from server to client to avoid duplicate data fetching and improve application performance.
+      </p>
+    </li>
+    <li>
+      <strong>Server-Side Rendering (SSR)</strong>
+      <p>
+        The general concept of rendering web applications on the server before sending HTML to clients, which Angular Universal implements.
+      </p>
+    </li>
+    <li>
+      <strong>Core Web Vitals</strong>
+      <p>
+        Performance metrics like Largest Contentful Paint (LCP), First Input Delay (FID), and Cumulative Layout Shift (CLS) that are improved by effective use of Universal.
+      </p>
+    </li>
+    <li>
+      <strong>SEO for SPAs</strong>
+      <p>
+        Strategies for improving search engine optimization for single-page applications, with Universal being a key approach.
+      </p>
+    </li>
+    <li>
+      <strong>Static Site Generation (SSG)</strong>
+      <p>
+        Pre-rendering techniques similar to Universal prerendering but often with different optimization goals and implementation details.
+      </p>
+    </li>
+    <li>
+      <strong>Standalone Components in Universal</strong>
+      <p>
+        Angular 19's improved support for standalone components in Universal applications without requiring NgModules.
+      </p>
+    </li>
+    <li>
+      <strong>Platform Detection</strong>
+      <p>
+        Techniques for determining whether code is running on the server or in the browser, essential for Universal applications.
+      </p>
+    </li>
+  </ol>
 </ng-template>

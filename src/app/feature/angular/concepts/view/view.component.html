@@ -1,0 +1,637 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    View
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">View</span>
+      in Angular 19 refers to the rendered output of a component's template. Views are the fundamental building blocks of an Angular application's UI, with each component having its own view that defines how the component is displayed. Angular 19 enhances view management with improved Ivy rendering, signal-based reactivity, and optimization features for better performance and developer experience.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Core Concepts of Views in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Component-Based Architecture</strong>:
+      Views belong to components, and each component has its own template that defines the view.
+    </li>
+    <li>
+      <strong>View Hierarchy</strong>:
+      Views form a hierarchical tree structure mirroring the component hierarchy.
+    </li>
+    <li>
+      <strong>View Engine vs. Ivy</strong>:
+      Angular 19 uses the Ivy renderer, which has replaced the legacy View Engine with better performance.
+    </li>
+    <li>
+      <strong>Signal-Based Reactivity</strong>:
+      Angular 19 introduces enhanced signal support for fine-grained reactivity in views.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Basic Component View Structure</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Component with View</strong>:
+      <ul class="list-disc pl-4">
+        <li>A simple component with template and styles defining its view.</li>
+
+        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code1 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_1"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>View Engine Architecture</strong>:
+      <ul class="list-disc pl-4">
+        <li>The legacy architecture pre-Ivy that managed views (for historical context).</li>
+
+        <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code2 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_2"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Ivy Renderer</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19's modern view rendering system with improved performance.</li>
+
+        <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code3 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_3"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>View Hierarchy</strong>:
+      <ul class="list-disc pl-4">
+        <li>How views are organized in a parent-child relationship.</li>
+
+        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code4 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_4"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Advanced View Concepts in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>View Encapsulation</strong>:
+      Different encapsulation modes for component styles.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Embedded Views & View Containers</strong>:
+      Creating and managing dynamic views.
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>View Change Detection</strong>:
+      How Angular detects changes in views.
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Signal-Based Views</strong>:
+      New reactive views using signals in Angular 19.
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Types of Views in Angular 19</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">View Type</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Component Views</td>
+        <td class="py-3 px-4">Views created from component templates that form the application's UI.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Embedded Views</td>
+        <td class="py-3 px-4">Views created from TemplateRefs that can be dynamically inserted into view containers.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Host Views</td>
+        <td class="py-3 px-4">Views created when dynamically instantiating components with ComponentFactoryResolver.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Signal-Based Views</td>
+        <td class="py-3 px-4">New in Angular 19, these views use signals for fine-grained reactivity and efficient rendering.</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Optimize View Creation and Rendering</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use OnPush Change Detection</strong>:
+          Apply ChangeDetectionStrategy.OnPush to components where possible to reduce unnecessary render cycles. This is particularly effective in large applications with many components.
+        </li>
+        <li>
+          <strong>Leverage Trackby in *ngFor</strong>:
+          Always use trackBy with *ngFor for lists that change frequently to avoid recreating DOM elements when the list changes.
+        </li>
+        <li>
+          <strong>Avoid Complex Calculations in Templates</strong>:
+          Use pure pipes or computed properties instead of complex inline expressions in templates to prevent recalculation during every change detection cycle.
+        </li>
+        <li>
+          <strong>Embrace Signal-Based Views</strong>:
+          In Angular 19, take advantage of signals for reactive state management to benefit from fine-grained updates and better performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Manage View Hierarchies Effectively</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Maintain Logical Component Boundaries</strong>:
+          Design your component hierarchy to mirror your application's logical structure, keeping related functionality grouped together.
+        </li>
+        <li>
+          <strong>Avoid Deep Nesting</strong>:
+          Limit the depth of your component tree, as deep hierarchies can impact performance and make change detection more expensive.
+        </li>
+        <li>
+          <strong>Consider Component Granularity</strong>:
+          Find the right balance between too many small components (which can add overhead) and too few large components (which can be harder to maintain).
+        </li>
+        <li>
+          <strong>Use Container-Presentation Pattern</strong>:
+          Separate "smart" container components that manage state from "dumb" presentation components that simply render based on inputs.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Efficient Dynamic Views</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use *ngIf with else</strong>:
+          Prefer *ngIf with else template rather than showing/hiding with [hidden] for content that changes infrequently.
+        </li>
+        <li>
+          <strong>Lazy Load Components</strong>:
+          For complex, infrequently accessed views, consider using dynamic component loading or defer blocks in Angular 19.
+        </li>
+        <li>
+          <strong>Clean Up View Resources</strong>:
+          Always manage subscriptions, clear timeouts, and release other resources in ngOnDestroy to prevent memory leaks when views are destroyed.
+        </li>
+        <li>
+          <strong>Cache Expensive View Operations</strong>:
+          Cache results of expensive operations that create or manipulate views, especially if they might be repeated.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Choose Appropriate View Encapsulation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Default to Emulated Encapsulation</strong>:
+          Use ViewEncapsulation.Emulated (the default) for most components to prevent style leaking without the limitations of ShadowDOM.
+        </li>
+        <li>
+          <strong>Use ShadowDOM Selectively</strong>:
+          Consider ViewEncapsulation.ShadowDom for truly isolated components, especially those that might be used across different applications.
+        </li>
+        <li>
+          <strong>Apply None Encapsulation Carefully</strong>:
+          Use ViewEncapsulation.None only when you explicitly need styles to affect other components, such as for application-wide themes.
+        </li>
+        <li>
+          <strong>Document Encapsulation Decisions</strong>:
+          When using non-default encapsulation modes, document the reasoning to help other developers understand the intention.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Master Control Flow Primitives in Angular 19</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use New Control Flow Syntax</strong>:
+          Adopt the @if, @for, @switch primitives introduced in Angular 19 for better type checking and improved performance.
+        </li>
+        <li>
+          <strong>Embrace Block Syntax</strong>:
+          Use block syntax for template fragments to improve readability and maintainability of complex views.
+        </li>
+        <li>
+          <strong>Leverage Signal-Based Conditionals</strong>:
+          Combine signals with control flow primitives for highly efficient conditional rendering in Angular 19.
+        </li>
+        <li>
+          <strong>Consider Deferrable Views</strong>:
+          For performance-critical applications, use Angular 19's deferrable views to load non-critical parts of the UI on-demand.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Declarative UI Definition</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular views provide a declarative way to define user interfaces, allowing developers to describe what the UI should look like rather than imperatively manipulating the DOM.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Component Encapsulation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Views are encapsulated within components, promoting reusability, testability, and separation of concerns. Each component manages its own view independently.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Efficient Change Detection</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19's Ivy renderer provides highly optimized change detection for views, with improvements in both performance and bundle size compared to earlier versions.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Reactive UI with Signals</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19 expands signal support in views, enabling fine-grained reactivity with less boilerplate code and better performance than traditional Observable patterns.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Rich Template Expressions</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular views support powerful template expressions, event handling, property binding, and structural directives that make building complex UIs more manageable.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Control Flow</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19 introduces modern control flow primitives (@if, @for, @switch) that improve template type-checking and rendering performance.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The comprehensive view architecture in Angular can present a steep learning curve for newcomers, especially concepts like view hierarchies, embedded views, and change detection.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Overhead</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          While greatly improved in Angular 19, complex view hierarchies with default change detection can still introduce performance overhead in large applications if not properly optimized.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Bundle Size Implications</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The view rendering engine contributes to Angular's overall bundle size, though Ivy has significantly reduced this impact compared to the older ViewEngine.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Debugging Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Issues in view rendering, particularly with complex change detection scenarios or component interactions, can sometimes be challenging to debug.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Mixing View Paradigms</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          In Angular 19, teams may face challenges transitioning from Observable-based patterns to signal-based views, potentially leading to mixing paradigms during transition periods.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Limited Server-Side Manipulation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          While Angular Universal supports server-side rendering, manipulating views on the server has different constraints than client-side rendering due to the absence of DOM.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Angular 19's view system represents an evolution of the platform's rendering capabilities, with significant improvements in performance, developer experience, and flexibility. The introduction of signal-based reactivity and enhanced control flow addresses many historical limitations while maintaining compatibility with existing patterns. While there are still trade-offs to consider, the pros generally outweigh the cons for most application development scenarios.
+  </p>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Declarative UI definition</td>
+        <td class="py-3 px-4">Learning curve for newcomers</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Component encapsulation</td>
+        <td class="py-3 px-4">Performance overhead in complex cases</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Efficient change detection</td>
+        <td class="py-3 px-4">Bundle size implications</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Reactive UI with signals</td>
+        <td class="py-3 px-4">Debugging complexity</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Rich template expressions</td>
+        <td class="py-3 px-4">Mixing view paradigms during transition</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced control flow</td>
+        <td class="py-3 px-4">Limited server-side manipulation</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>
+    Related topics to Angular Views in Angular 19:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Components</strong>
+      <p>
+        The building blocks of Angular applications, components define the templates and logic that create views.
+      </p>
+    </li>
+    <li>
+      <strong>Templates</strong>
+      <p>
+        HTML with Angular-specific syntax that defines how the component's view should be structured and rendered.
+      </p>
+    </li>
+    <li>
+      <strong>Change Detection</strong>
+      <p>
+        The mechanism Angular uses to detect changes in component data and update the views accordingly.
+      </p>
+    </li>
+    <li>
+      <strong>Ivy Renderer</strong>
+      <p>
+        Angular's rendering engine introduced in Angular 9 and enhanced in Angular 19, which is responsible for translating templates into DOM operations.
+      </p>
+    </li>
+    <li>
+      <strong>Signals</strong>
+      <p>
+        Angular 19's reactive primitives that enable fine-grained reactivity and more efficient view updates.
+      </p>
+    </li>
+    <li>
+      <strong>View Encapsulation</strong>
+      <p>
+        Techniques for containing styles within component views, preventing unintended style leakage between components.
+      </p>
+    </li>
+    <li>
+      <strong>Control Flow</strong>
+      <p>
+        Angular 19's new @if, @for, and @switch primitives for managing conditional rendering and list generation in views.
+      </p>
+    </li>
+    <li>
+      <strong>ViewChild and ContentChild</strong>
+      <p>
+        Decorators that provide access to child elements, components, or directives from a parent component's class.
+      </p>
+    </li>
+    <li>
+      <strong>ViewContainerRef</strong>
+      <p>
+        A container where one or more views can be attached, used for dynamic component loading and manipulation.
+      </p>
+    </li>
+    <li>
+      <strong>Deferrable Views</strong>
+      <p>
+        Angular 19's mechanism for lazy-loading portions of the view to improve initial load performance.
+      </p>
+    </li>
+    <li>
+      <strong>View Engine</strong>
+      <p>
+        Angular's previous rendering architecture, now replaced by Ivy, which is important to understand when working with older codebases.
+      </p>
+    </li>
+    <li>
+      <strong>Zone.js</strong>
+      <p>
+        The library that Angular uses to trigger change detection, with new zoneless options in Angular 19 for improved performance.
+      </p>
+    </li>
+  </ol>
+</ng-template>

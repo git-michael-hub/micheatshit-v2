@@ -1,0 +1,38 @@
+{
+  "angularCompilerOptions": {
+    // Type checking options
+    "strictTemplates": true,             // Enable strict type checking of templates
+    "strictInjectionParameters": true,   // Verify types of parameters passed to dependency injection
+    "strictInputAccessModifiers": true,  // Honor accessibility modifiers when validating inputs
+    "strictOutputEventTypes": true,      // Verify event binding types
+    "strictAttributeTypes": true,        // Verify attribute binding types
+
+    // Angular Ivy compiler options
+    "enableIvy": true,                    // Use the Ivy compiler (default in Angular 19)
+    "compilationMode": "partial",         // Use partial compilation mode for better performance
+
+    // Template checking options
+    "fullTemplateTypeCheck": true,        // Check all template expressions, not just inputs/outputs
+    "extendedDiagnostics": {              // Configure extended template diagnostics
+      "checks": {
+        "nullishCoalescingNotNullable": "error",
+        "optionalChainNotNullable": "error"
+      }
+    },
+
+    // Internationalization options
+    "enableI18nLegacyMessageIdFormat": false,  // Use the new message ID format for i18n
+
+    // Optimization options
+    "enableResourceInlining": true,        // Inline resources in ngfactory files
+    "preserveWhitespaces": false,          // Remove whitespace to reduce bundle size
+
+    // Library options
+    "flatModuleOutFile": null,             // File name for flat module index
+    "flatModuleId": null,                  // ID for the flat module
+
+    // Angular 19 specific options
+    "disableTypeScriptVersionCheck": false, // Don't disable TypeScript version check
+    "enabledBlockTypes": ["deferblock", "switch", "forBlock", "if"] // Enable block types for template control flow
+  }
+}

@@ -1,0 +1,80 @@
+// Embedded Views and View Containers in Angular 19
+import { Component, ViewContainerRef, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-view-container-demo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <h2>View Container & Embedded Views Demo</h2>
+
+    <!-- Button to create views -->
+    <button (click)="createView()">Create View</button>
+    <button (click)="clearViews()">Clear Views</button>
+
+    <!-- Template reference that will be used to create embedded views -->
+    <ng-template #tpl let-name="name" let-index="index">
+      <div class="embedded-view">
+        <h3>Embedded View {{index}}</h3>
+        <p>Hello, {{name}}!</p>
+      </div>
+    </ng-template>
+
+    <!-- The container where views will be inserted -->
+    <div class="view-container">
+      <h4>View Container:</h4>
+      <div #container></div>
+    </div>
+  `,
+  styles: [`
+    .embedded-view {
+      border: 1px solid #3f51b5;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #f0f0ff;
+    }
+    .view-container {
+      border: 2px dashed #ccc;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  `]
+})
+export class ViewContainerDemoComponent implements AfterViewInit {
+  // Reference to the container where views will be inserted
+  @ViewChild('container', { read: ViewContainerRef })
+  viewContainer!: ViewContainerRef;
+
+  // Reference to the template that will be used to create views
+  @ViewChild('tpl')
+  templateRef!: TemplateRef<any>;
+
+  // Counter for created views
+  viewCount = 0;
+
+  ngAfterViewInit() {
+    // Create an initial view
+    this.createView();
+  }
+
+  createView() {
+    if (this.viewContainer && this.templateRef) {
+      // Create an embedded view from the template
+      const view = this.viewContainer.createEmbeddedView(this.templateRef, {
+        name: 'View ' + (++this.viewCount),
+        index: this.viewCount
+      });
+
+      // Optionally manipulate the view
+      view.detectChanges(); // Trigger change detection for this view
+    }
+  }
+
+  clearViews() {
+    if (this.viewContainer) {
+      this.viewContainer.clear(); // Remove all views
+      this.viewCount = 0;
+    }
+  }
+}

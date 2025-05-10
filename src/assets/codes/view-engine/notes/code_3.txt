@@ -1,0 +1,76 @@
+// View Engine Change Detection
+// How Angular < 9 detected and applied changes
+
+// Let's look at a component and how View Engine would handle change detection
+
+// Component Definition
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
+@Component({
+  selector: 'app-counter',
+  template: `
+    <div>Count: {{ count }}</div>
+    <button (click)="increment()">Increment</button>
+  `,
+  changeDetection: ChangeDetectionStrategy.Default // Default or OnPush
+})
+class CounterComponent {
+  count = 0;
+
+  increment() {
+    this.count++;
+  }
+}
+
+// Behind the scenes, View Engine generated code would look like:
+
+// 1. Change Detection Function (simplified)
+function detectChangesInView(view, component) {
+  // Store previous values for comparison
+  const oldValues = view.oldValues || [];
+
+  // Check each binding to see if it changed
+  // For our template with "{{ count }}"
+  if (oldValues[0] !== component.count) {
+    // Update the DOM with new value
+    const textNode = view.nodes[1]; // Text node inside the div
+    updateTextContent(textNode, component.count);
+
+    // Store new value for next change detection cycle
+    oldValues[0] = component.count;
+  }
+
+  // Store updated values
+  view.oldValues = oldValues;
+}
+
+// 2. How View Engine triggered change detection
+function handleEvent(view, nodeIndex, eventName, event) {
+  // For button click in our component
+  if (nodeIndex === 2 && eventName === 'click') {
+    // Call component method
+    view.component.increment();
+
+    // Mark view for check (trigger change detection)
+    markViewDirty(view);
+  }
+}
+
+// 3. Change detection tree traversal
+function detectChanges(appRef) {
+  // Start from root component
+  const rootView = appRef.components[0]._view;
+
+  // Traverse component tree in depth-first order
+  detectChangesInView(rootView, rootView.component);
+
+  // Process child components
+  for (let i = 0; i < rootView.childComponents.length; i++) {
+    const childView = rootView.childComponents[i]._view;
+    detectChangesInView(childView, childView.component);
+  }
+}
+
+// Note: View Engine's change detection created a tree of components
+// and checked each component's bindings against the previous values.
+// This was effective but not as optimized as Ivy's approach in Angular 19.

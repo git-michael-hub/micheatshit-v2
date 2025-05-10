@@ -1,0 +1,48 @@
+// ViewEngine Architecture Flow (Angular <9, now replaced by Ivy)
+// This is a conceptual representation
+
+/*
+1. Component Creation:
+Angular loads component classes and their metadata
+
+2. Template Parsing:
+Angular parses the component's template into an Abstract Syntax Tree (AST)
+
+3. View Factory Generation:
+The ViewEngine creates a ViewDefinition and compiles it into a ViewFactory
+
+4. View Creation:
+When a component is used, Angular uses the ViewFactory to create:
+   - ElementNodes (DOM elements)
+   - TextNodes (text content)
+   - DirectiveNodes (attached directives)
+   - ViewContainers (for dynamic content)
+
+5. Change Detection:
+Each view maintains bindings to component properties
+When properties change, View updates the DOM accordingly
+*/
+
+// Example of how ViewEngine represented a component internally
+// (simplified conceptual code)
+const ViewDefinition = {
+  template: '<div>{{ message }}</div>',
+  factory: function createView(component, context) {
+    const view = {
+      nodes: [
+        // DOM elements and their bindings
+        { type: 'element', name: 'div', bindings: [] },
+        { type: 'text', bindingIndex: 0 }
+      ],
+      bindings: [
+        // Expression bindings
+        { source: 'message', target: 'textContent', type: 'property' }
+      ],
+      update: function() {
+        // Code to update the DOM based on component changes
+        this.nodes[1].value = component.message;
+      }
+    };
+    return view;
+  }
+};

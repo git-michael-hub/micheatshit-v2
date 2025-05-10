@@ -1,0 +1,57 @@
+// Using TransferState in Angular 19
+import { Component, OnInit, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+// Define a key for the user data
+const USERS_KEY = makeStateKey<any[]>('users');
+
+@Component({
+  selector: 'app-users',
+  standalone: true,
+  template: `
+    <div>
+      <h3>Users List</h3>
+      <div *ngIf="isLoading">Loading...</div>
+      <ul>
+        <li *ngFor="let user of users$ | async">
+          {{ user.name }} ({{ user.email }})
+        </li>
+      </ul>
+    </div>
+  `,
+  imports: [/* necessary imports */]
+})
+export class UsersComponent implements OnInit {
+  private http = inject(HttpClient);
+  private transferState = inject(TransferState);
+
+  users$!: Observable<any[]>;
+  isLoading = true;
+
+  ngOnInit() {
+    // Check if we have the state transferred from server
+    if (this.transferState.hasKey(USERS_KEY)) {
+      // Use the state from the server without making an HTTP call
+      const users = this.transferState.get(USERS_KEY, []);
+      this.users$ = of(users);
+      this.isLoading = false;
+
+      // Remove the state to avoid using stale data on client navigation
+      this.transferState.remove(USERS_KEY);
+    } else {
+      // Make the HTTP request if the data isn't in transfer state
+      this.users$ = this.http.get<any[]>('https://api.example.com/users')
+        .pipe(
+          tap(users => {
+            // Store the result in transfer state
+            // This only has an effect on the server
+            this.transferState.set(USERS_KEY, users);
+            this.isLoading = false;
+          })
+        );
+    }
+  }
+}

@@ -1,0 +1,628 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    TypeScript Configuration (tsconfig.json)
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">TypeScript Configuration</span>
+      in Angular 19 is a critical part of the development process, defined in the tsconfig.json file. This configuration controls the TypeScript compiler's behavior, enables advanced type checking, and optimizes compatibility between TypeScript code and Angular's compilation pipeline for best performance and developer experience.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>TypeScript Configuration in Angular 19</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Core Function</strong>:
+      The tsconfig.json file configures the TypeScript compiler, controlling how TypeScript code is compiled to JavaScript, enabling static type checking, and defining paths for module resolution.
+    </li>
+    <li>
+      <strong>Angular-Specific Configuration</strong>:
+      Angular 19 extends TypeScript's capabilities with Angular-specific compiler options that optimize performance and enable Angular-specific features.
+    </li>
+    <li>
+      <strong>Multiple Configuration Files</strong>:
+      Angular 19 projects typically include multiple tsconfig files for different contexts: root config, app-specific, testing, and editor integration.
+    </li>
+    <li>
+      <strong>TypeScript Version</strong>:
+      Angular 19 supports TypeScript 5.2+ with enhanced type-checking and language features.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 TypeScript Configuration Files</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Root tsconfig.json</strong>:
+      <ul class="list-disc pl-4">
+        <li>The base configuration file that other project-specific configurations extend, setting up common compiler options for the entire project.</li>
+
+        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code1 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>json</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_1"
+              [languages]="['json']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>tsconfig.app.json</strong>:
+      <ul class="list-disc pl-4">
+        <li>Configuration specific to the application code, extending the root config with settings optimized for application compilation.</li>
+
+        <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code2 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>json</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_2"
+              [languages]="['json']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>tsconfig.spec.json</strong>:
+      <ul class="list-disc pl-4">
+        <li>Configuration for unit testing environments, with settings that accommodate testing frameworks and test-specific behavior.</li>
+
+        <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code3 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>json</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_3"
+              [languages]="['json']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>tsconfig.editor.json</strong>:
+      <ul class="list-disc pl-4">
+        <li>Optional configuration for editor tooling, providing settings that enhance the development experience in IDEs like Visual Studio Code.</li>
+
+        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code4 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>json</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_4"
+              [languages]="['json']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Key Compiler Options in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Type Checking Options</strong>:
+      Angular 19 recommends enabling strict type checking for better code quality and runtime reliability.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Module and Target Settings</strong>:
+      Angular 19 uses ESNext and ES2022 by default for modern language features and module system.
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Angular-Specific Options</strong>:
+      Angular 19 provides special compiler options for template type checking and Angular-specific optimizations.
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Common TypeScript Configuration Options in Angular 19</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Option</th>
+        <th class="py-3 px-4 text-left">Description</th>
+        <th class="py-3 px-4 text-left">Angular 19 Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>strict</code></td>
+        <td class="py-3 px-4">Enables all strict type checking options</td>
+        <td class="py-3 px-4">true</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>module</code></td>
+        <td class="py-3 px-4">Specifies module code generation method</td>
+        <td class="py-3 px-4">ESNext</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>target</code></td>
+        <td class="py-3 px-4">Specifies ECMAScript target version</td>
+        <td class="py-3 px-4">ES2022</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>experimentalDecorators</code></td>
+        <td class="py-3 px-4">Enables experimental support for decorators</td>
+        <td class="py-3 px-4">true</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>forceConsistentCasingInFileNames</code></td>
+        <td class="py-3 px-4">Disallows inconsistent references to the same file</td>
+        <td class="py-3 px-4">true</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>strictTemplates</code></td>
+        <td class="py-3 px-4">Enables strict type checking in templates</td>
+        <td class="py-3 px-4">true</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4"><code>noImplicitOverride</code></td>
+        <td class="py-3 px-4">Ensures explicit override keywords</td>
+        <td class="py-3 px-4">true</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Path Mapping in tsconfig.json</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Path Aliases</strong>:
+      Angular 19 supports path aliases for cleaner imports and improved code organization.
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Library Path Resolution</strong>:
+      The configuration controls how the TypeScript compiler resolves external libraries and module imports.
+    </li>
+    <li>
+      <strong>baseUrl and rootDir</strong>:
+      These settings help establish the base directories for module resolution and source files.
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Enable Strict Type Checking</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Set "strict": true</strong> to enable all strict type checking options for better code quality.
+        </li>
+        <li>
+          <strong>Use strictTemplates</strong> in angularCompilerOptions to catch template errors during compilation.
+        </li>
+        <li>
+          <strong>Enable strictNullChecks</strong> to prevent null and undefined errors at runtime.
+        </li>
+        <li>
+          <strong>Set noImplicitAny to true</strong> to ensure all types are explicitly declared or inferrable.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize for Modern JavaScript</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use target: "ES2022"</strong> to leverage modern JavaScript features while ensuring browser compatibility through Angular's build system.
+        </li>
+        <li>
+          <strong>Set module: "ESNext"</strong> for modern module syntax, letting Angular's build tools handle compatibility.
+        </li>
+        <li>
+          <strong>Enable moduleResolution: "node16"</strong> or "bundler" for best compatibility with modern package ecosystems.
+        </li>
+        <li>
+          <strong>Enable allowSyntheticDefaultImports</strong> for compatibility with libraries that don't use ES modules properly.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Implement Path Aliases</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Configure path aliases</strong> in compilerOptions.paths to simplify imports and avoid relative path hell.
+        </li>
+        <li>
+          <strong>Create logical module groupings</strong> with path aliases that reflect your application's architecture.
+        </li>
+        <li>
+          <strong>Set baseUrl correctly</strong> to ensure path aliases work consistently.
+        </li>
+        <li>
+          <strong>Use path aliases for testing</strong> to maintain consistency between app and test imports.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Enhance Developer Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Enable sourceMap generation</strong> for improved debugging experience.
+        </li>
+        <li>
+          <strong>Configure editor integration</strong> with a separate tsconfig.editor.json for IDE-specific settings.
+        </li>
+        <li>
+          <strong>Use incremental compilation</strong> to speed up development build times.
+        </li>
+        <li>
+          <strong>Set declarationMap: true</strong> if your project exports libraries to improve source navigation.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Angular-Specific Optimizations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Configure fullTemplateTypeCheck</strong> in angularCompilerOptions for comprehensive template checking.
+        </li>
+        <li>
+          <strong>Use strictInjectionParameters</strong> to catch dependency injection errors at compile time.
+        </li>
+        <li>
+          <strong>Enable strictInputAccessModifiers</strong> for better component input property type safety.
+        </li>
+        <li>
+          <strong>Configure preserveSymlinks</strong> appropriately when using linked packages during development.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Enhanced Type Safety</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          TypeScript configuration enables compile-time type checking that catches errors before runtime, reducing bugs in production.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Developer Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Proper configuration enhances editor tooling with better auto-completion, refactoring support, and navigation.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Angular-Specific Optimizations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular compiler options provide template type checking and other Angular-specific features that improve application quality.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Code Organization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Path mapping enables cleaner imports and better code organization, improving maintainability in large applications.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Proper configuration options can lead to better build performance through incremental compilation and other optimizations.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Consistent Codebase</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          TypeScript configuration enforces code style and structural constraints that maintain consistency across the codebase.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Configuration Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          TypeScript configuration can be complex with many options, requiring significant knowledge to set up correctly.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Build Time Overhead</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Strict type checking and comprehensive type analysis can increase build times, especially in large projects.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Migration Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Transitioning existing JavaScript code to strict TypeScript can be challenging and time-consuming.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Potential Over-engineering</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Complex type systems enabled by advanced configuration can lead to over-engineered solutions that are difficult to maintain.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Version Compatibility Issues</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular requires specific TypeScript versions, which can sometimes lag behind the latest TypeScript releases.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Learning Curve</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Teams new to TypeScript may struggle with understanding and implementing proper configuration patterns.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    TypeScript configuration in Angular 19 provides significant benefits through type safety, improved developer experience, and Angular-specific optimizations. While there are challenges related to complexity and initial setup, the long-term benefits for code quality and maintainability make it valuable for most Angular projects. Modern Angular applications benefit from thoughtful TypeScript configuration that balances strict type checking with practical development concerns.
+  </p>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced type safety</td>
+        <td class="py-3 px-4">Configuration complexity</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Improved developer experience</td>
+        <td class="py-3 px-4">Build time overhead</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Angular-specific optimizations</td>
+        <td class="py-3 px-4">Migration challenges</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Code organization</td>
+        <td class="py-3 px-4">Potential over-engineering</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Performance optimization</td>
+        <td class="py-3 px-4">Version compatibility issues</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Consistent codebase</td>
+        <td class="py-3 px-4">Learning curve</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>
+    Related topics to TypeScript Configuration in Angular 19:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>TypeScript Language</strong>
+      <p>
+        The programming language that Angular uses, with its type system, language features, and compilation process.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Compiler (ngc)</strong>
+      <p>
+        Angular's compiler that processes TypeScript code and Angular templates, working alongside the TypeScript compiler.
+      </p>
+    </li>
+    <li>
+      <strong>Module Resolution</strong>
+      <p>
+        How TypeScript and Angular resolve module imports, affecting application structure and bundling.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Template Type Checking</strong>
+      <p>
+        Angular's system for type checking templates based on TypeScript's type system and compiler options.
+      </p>
+    </li>
+    <li>
+      <strong>Tree Shaking</strong>
+      <p>
+        How TypeScript configuration affects dead code elimination during the Angular build process.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Library Format</strong>
+      <p>
+        TypeScript configuration options that affect how Angular libraries are built and consumed.
+      </p>
+    </li>
+    <li>
+      <strong>ESLint Configuration</strong>
+      <p>
+        How TypeScript and ESLint work together for code linting and quality control in Angular projects.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Build System</strong>
+      <p>
+        The build pipeline that processes TypeScript files based on tsconfig.json settings.
+      </p>
+    </li>
+  </ol>
+</ng-template>

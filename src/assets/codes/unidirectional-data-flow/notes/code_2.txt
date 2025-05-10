@@ -1,0 +1,33 @@
+// child.component.ts
+import { Component, EventEmitter, Output } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `
+    <button (click)="sendDataToParent()">Send to Parent</button>
+  `
+})
+export class ChildComponent {
+  @Output() dataEvent = new EventEmitter<string>();
+
+  sendDataToParent() {
+    // Child components emit events upward
+    this.dataEvent.emit('Data from child');
+  }
+}
+
+// parent.component.ts
+@Component({
+  selector: 'app-parent',
+  template: `
+    <div>Last received: {{ receivedData }}</div>
+    <app-child (dataEvent)="handleChildData($event)"></app-child>
+  `
+})
+export class ParentComponent {
+  receivedData = '';
+
+  handleChildData(data: string) {
+    this.receivedData = data;
+  }
+}

@@ -1,0 +1,44 @@
+// app.config.ts - Angular 19 Hydration Configuration
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideClientHydration } from '@angular/platform-browser';
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+
+    // Enable hydration - preserves the server-rendered DOM
+    // and restores the application state without re-rendering
+    provideClientHydration(),
+
+    // With custom options
+    // provideClientHydration({
+    //   // Enable skipping hydration for elements with the ngSkipHydration attribute
+    //   skip: true,
+    //   // Enable reuse of DOM nodes during hydration
+    //   reuse: true,
+    // })
+  ]
+};
+
+// Component using Skip Hydration
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-no-hydration',
+  standalone: true,
+  template: `
+    <!-- This element will be skipped during hydration -->
+    <div ngSkipHydration>
+      This content will not be hydrated and will keep the server-rendered state.
+      Useful for static content or third-party widgets.
+    </div>
+
+    <!-- This element will be hydrated normally -->
+    <div>
+      This content will be hydrated as normal.
+    </div>
+  `
+})
+export class SkipHydrationExampleComponent {}

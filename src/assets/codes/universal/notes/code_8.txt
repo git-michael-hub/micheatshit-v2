@@ -1,0 +1,46 @@
+// angular.json configuration for prerendering in Angular 19
+{
+  "projects": {
+    "your-app-name": {
+      "architect": {
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "routes": [
+              "/",
+              "/about",
+              "/contact",
+              "/products/featured"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "your-app-name:build:production",
+              "serverTarget": "your-app-name:server:production"
+            },
+            "development": {
+              "browserTarget": "your-app-name:build:development",
+              "serverTarget": "your-app-name:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
+    }
+  }
+}
+
+// Command to run prerendering
+// ng run your-app-name:prerender
+
+// For dynamic routes prerendering, you can use a routes file:
+// routes.txt
+/
+/about
+/contact
+/products/1
+/products/2
+/products/3
+
+// And then reference it in angular.json:
+// "routesFile": "routes.txt"

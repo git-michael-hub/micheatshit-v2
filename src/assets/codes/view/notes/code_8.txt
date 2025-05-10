@@ -1,0 +1,136 @@
+// Signal-Based Views in Angular 19
+import { Component, signal, computed, effect, TemplateRef } from '@angular/core';
+
+@Component({
+  selector: 'app-signal-view',
+  standalone: true,
+  template: `
+    <div class="signal-view">
+      <h2>Signal-Based View in Angular 19</h2>
+
+      <div class="counter-display">
+        <p>Counter: {{ counter() }}</p>
+        <p>Doubled: {{ doubledCounter() }}</p>
+        <p>Counter is {{ isEven() ? 'even' : 'odd' }}</p>
+      </div>
+
+      <div class="actions">
+        <button (click)="increment()">Increment</button>
+        <button (click)="decrement()">Decrement</button>
+        <button (click)="reset()">Reset</button>
+      </div>
+
+      <div class="conditional-view">
+        <h3>Conditional Views with Signals</h3>
+        <!-- Signal-based conditional rendering -->
+        @if (counter() > 5) {
+          <div class="high-value">
+            <p>Counter is greater than 5!</p>
+          </div>
+        } @else if (counter() > 0) {
+          <div class="medium-value">
+            <p>Counter is between 1 and 5</p>
+          </div>
+        } @else {
+          <div class="low-value">
+            <p>Counter is 0 or negative</p>
+          </div>
+        }
+      </div>
+
+      <div class="repeated-view">
+        <h3>Repeated Views with Signals</h3>
+        <ul>
+          @for (item of items(); track item.id) {
+            <li [class.highlighted]="item.id === selectedId()">
+              {{ item.name }}
+              <button (click)="selectItem(item.id)">Select</button>
+            </li>
+          } @empty {
+            <li>No items available</li>
+          }
+        </ul>
+      </div>
+    </div>
+  `,
+  styles: [`
+    .signal-view {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .counter-display {
+      margin: 15px 0;
+      padding: 10px;
+      background-color: #f5f5f5;
+    }
+    .actions button {
+      margin-right: 10px;
+    }
+    .high-value {
+      padding: 10px;
+      background-color: #ffdddd;
+      border-left: 4px solid #ff4444;
+    }
+    .medium-value {
+      padding: 10px;
+      background-color: #ffffdd;
+      border-left: 4px solid #ffcc00;
+    }
+    .low-value {
+      padding: 10px;
+      background-color: #ddffdd;
+      border-left: 4px solid #44aa44;
+    }
+    .highlighted {
+      background-color: #e6f7ff;
+      font-weight: bold;
+    }
+  `]
+})
+export class SignalViewComponent {
+  // State signals
+  counter = signal(0);
+  selectedId = signal<number | null>(null);
+
+  // Items for the list
+  items = signal([
+    { id: 1, name: 'Item 1' },
+    { id: 2, name: 'Item 2' },
+    { id: 3, name: 'Item 3' }
+  ]);
+
+  // Computed values derived from signals
+  doubledCounter = computed(() => this.counter() * 2);
+  isEven = computed(() => this.counter() % 2 === 0);
+
+  // Actions that modify signals
+  increment() {
+    this.counter.update(value => value + 1);
+  }
+
+  decrement() {
+    this.counter.update(value => value - 1);
+  }
+
+  reset() {
+    this.counter.set(0);
+  }
+
+  selectItem(id: number) {
+    this.selectedId.set(id);
+  }
+
+  constructor() {
+    // Effects run automatically when signals they depend on change
+    effect(() => {
+      // This code runs every time counter signal changes
+      console.log(`Counter changed to: ${this.counter()}`);
+
+      // You could also trigger side effects here based on the new value
+      if (this.counter() === 10) {
+        console.log('Milestone reached: 10!');
+      }
+    });
+  }
+}

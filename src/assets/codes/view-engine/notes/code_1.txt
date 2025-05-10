@@ -1,0 +1,62 @@
+// View Engine Architecture (Angular <9)
+// This is now replaced by Ivy in Angular 19
+
+// Components in View Engine were compiled into factories
+// This is a simplified version of how View Engine worked internally
+
+// Component Definition
+@Component({
+  selector: 'app-example',
+  template: `
+    <div>{{ message }}</div>
+    <button (click)="updateMessage()">Update</button>
+  `
+})
+class ExampleComponent {
+  message = 'Hello World';
+
+  updateMessage() {
+    this.message = 'Updated message';
+  }
+}
+
+// Behind the scenes, View Engine would generate:
+
+// 1. Component Factory
+function createExampleComponentFactory() {
+  return new ComponentFactory({
+    type: ExampleComponent,
+    nodes: [ /* DOM node definitions */ ],
+    viewFactory: viewFactory,
+    hostBindings: [ /* host binding functions */ ]
+  });
+}
+
+// 2. View Definition
+const viewDefinition = {
+  factory: viewFactory,
+  nodes: [
+    { nodeIndex: 0, type: 'element', name: 'div', bindings: [0], children: [1] },
+    { nodeIndex: 1, type: 'text', bindings: [0] },
+    { nodeIndex: 2, type: 'element', name: 'button', events: ['click'], children: [3] },
+    { nodeIndex: 3, type: 'text', text: 'Update' }
+  ],
+  bindings: [
+    { nodeIndex: 1, source: 'message', target: 'textContent' }
+  ],
+  events: [
+    { nodeIndex: 2, name: 'click', handler: 'updateMessage' }
+  ]
+};
+
+// 3. View Factory
+function viewFactory(renderer, contextView) {
+  const component = new ExampleComponent();
+  const view = { component, nodes: [], context: component };
+
+  // Create nodes and set up bindings
+  // Add event listeners
+  // Add change detection
+
+  return view;
+}

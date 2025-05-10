@@ -1,0 +1,102 @@
+// Views and Change Detection in Angular 19
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+
+@Component({
+  selector: 'app-change-detection-demo',
+  standalone: true,
+  template: `
+    <div class="container">
+      <h2>Change Detection Demo</h2>
+      <div class="card">
+        <h3>Default Change Detection</h3>
+        <p>Counter: {{ defaultCounter }}</p>
+        <button (click)="incrementDefault()">Increment</button>
+      </div>
+
+      <div class="card">
+        <h3>OnPush Change Detection</h3>
+        <p>Counter: {{ onPushCounter }}</p>
+        <p>Last updated: {{ lastUpdated }}</p>
+        <button (click)="incrementOnPush()">Increment</button>
+        <button (click)="runChangeDetection()">Force Refresh</button>
+        <button (click)="updateTime()">Update Time Only</button>
+      </div>
+    </div>
+  `,
+  styles: [`
+    .container { padding: 15px; }
+    .card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+  `]
+})
+export class DefaultCdComponent {
+  defaultCounter = 0;
+
+  incrementDefault() {
+    this.defaultCounter++;
+  }
+}
+
+@Component({
+  selector: 'app-onpush-component',
+  standalone: true,
+  template: `
+    <div class="card">
+      <h3>OnPush Change Detection</h3>
+      <p>Counter: {{ onPushCounter }}</p>
+      <p>Last updated: {{ lastUpdated }}</p>
+      <button (click)="incrementOnPush()">Increment</button>
+      <button (click)="runChangeDetection()">Force Refresh</button>
+      <button (click)="updateTime()">Update Time Only</button>
+    </div>
+  `,
+  styles: [`
+    .card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+    }
+  `],
+  // OnPush makes Angular only check this view when:
+  // 1. An @Input() property changes (reference changes for objects)
+  // 2. An event handler (like click) runs inside the component
+  // 3. An Observable subscribed with the async pipe emits a new value
+  // 4. Change detection is manually triggered
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class OnPushCdComponent {
+  onPushCounter = 0;
+  lastUpdated = new Date().toLocaleTimeString();
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  incrementOnPush() {
+    this.onPushCounter++;
+    this.lastUpdated = new Date().toLocaleTimeString();
+    // No need to call detectChanges here because
+    // click events automatically trigger change detection
+    // even in OnPush components
+  }
+
+  updateTime() {
+    this.lastUpdated = new Date().toLocaleTimeString();
+    // This update won't be visible until change detection runs
+    // because we're not in an event handler now
+
+    // Explicitly tell Angular to check this view
+    this.cdr.detectChanges();
+  }
+
+  runChangeDetection() {
+    // Manually trigger change detection for this view
+    this.cdr.markForCheck();  // Marks path to root for checking
+    // OR
+    this.cdr.detectChanges(); // Immediately checks this view
+  }
+}

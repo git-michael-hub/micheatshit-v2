@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    // Base path options
+    "baseUrl": "./",               // Base directory to resolve non-relative module names
+    "rootDir": "src",              // Root directory of input files
+
+    // Path mapping configuration
+    "paths": {
+      // Core application path aliases
+      "@app/*": ["src/app/*"],
+      "@core/*": ["src/app/core/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@features/*": ["src/app/features/*"],
+
+      // Environment configuration
+      "@env/*": ["src/environments/*"],
+
+      // Asset paths
+      "@assets/*": ["src/assets/*"],
+
+      // Components and modules
+      "@components/*": ["src/app/components/*"],
+      "@services/*": ["src/app/services/*"],
+      "@models/*": ["src/app/models/*"],
+      "@utils/*": ["src/app/utils/*"],
+
+      // Specific utility paths
+      "@pipes/*": ["src/app/utils/pipes/*"],
+      "@guards/*": ["src/app/utils/guards/*"],
+      "@directives/*": ["src/app/utils/directives/*"],
+
+      // Testing utilities
+      "@testing/*": ["src/testing/*"]
+    },
+
+    // Output configuration
+    "outDir": "./dist/out-tsc",    // Output directory for all emitted files
+
+    // Module resolution options
+    "moduleResolution": "node",    // How to resolve imports
+    "resolveJsonModule": true      // Allow importing .json files
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

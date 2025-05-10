@@ -1,0 +1,10 @@
+# Build both client and server bundles
+ng build
+ng run your-app-name:server
+
+# Run the Angular Universal server
+node dist/your-app-name/server/main.js
+
+# Angular CLI dev server with SSR (Angular 19)
+# This allows you to develop with SSR in watch mode
+ng serve --ssr

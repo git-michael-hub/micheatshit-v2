@@ -1,0 +1,58 @@
+// Ivy Renderer Architecture (Angular 9+)
+// Used in Angular 19 with enhanced optimizations
+
+// Component definition with Ivy
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-example',
+  template: `
+    <div>
+      <h1>{{ title }}</h1>
+      <p>Count: {{ count }}</p>
+      <button (click)="increment()">Increment</button>
+    </div>
+  `
+})
+export class ExampleComponent {
+  title = 'Ivy View Example';
+  count = 0;
+
+  increment() {
+    this.count++;
+  }
+}
+
+// Behind the scenes, Ivy generates code like this (simplified):
+// This is conceptual code to illustrate Ivy's approach
+function ɵɵComponentDefinition(type) {
+  return {
+    type: type,
+    selectors: [['app-example']],
+    factory: () => new ExampleComponent(),
+    hostBindings: null,
+    // Instructions to build the view
+    template: function(rf, ctx) {
+      if (rf & 1) { // Create mode
+        ɵɵelementStart(0, 'div');
+          ɵɵelementStart(1, 'h1');
+            ɵɵtext(2);
+          ɵɵelementEnd();
+          ɵɵelementStart(3, 'p');
+            ɵɵtext(4);
+          ɵɵelementEnd();
+          ɵɵelementStart(5, 'button');
+            ɵɵlistener('click', function() { return ctx.increment(); });
+            ɵɵtext(6, 'Increment');
+          ɵɵelementEnd();
+        ɵɵelementEnd();
+      }
+      if (rf & 2) { // Update mode
+        ɵɵadvance(2);
+        ɵɵtextInterpolate(ctx.title);
+        ɵɵadvance(2);
+        ɵɵtextInterpolate1('Count: ', ctx.count, '');
+      }
+    }
+  };
+}

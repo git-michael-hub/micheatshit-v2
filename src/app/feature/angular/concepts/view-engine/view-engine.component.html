@@ -1,0 +1,653 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    View Engine
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">View Engine</span>
+      was Angular's original rendering and compilation pipeline used prior to Angular 9. While deprecated and replaced by Ivy in Angular 19, understanding View Engine provides historical context for Angular's evolution. View Engine compiled components into factory files, maintained separate metadata storage, and used a different change detection approach than modern Angular.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Key Concepts of View Engine (Historical Context)</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Component Factories</strong>:
+      View Engine compiled components into factory files that knew how to create and render component instances.
+    </li>
+    <li>
+      <strong>Metadata Files</strong>:
+      Component metadata was extracted and stored in separate JSON files used during compilation.
+    </li>
+    <li>
+      <strong>Global Compilation</strong>:
+      Required analyzing the entire dependency tree, making incremental compilation challenging.
+    </li>
+    <li>
+      <strong>Template Parsing</strong>:
+      Converted HTML templates into a data structure that could be used to generate DOM nodes.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>View Engine Architecture</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Basic Architecture</strong>:
+      <ul class="list-disc pl-4">
+        <li>How View Engine components were compiled and rendered.</li>
+
+        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code1 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_1"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Compilation Process</strong>:
+      <ul class="list-disc pl-4">
+        <li>How View Engine transformed TypeScript components into executable code.</li>
+
+        <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code2 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_2"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Change Detection</strong>:
+      <ul class="list-disc pl-4">
+        <li>How View Engine detected and applied changes to component state.</li>
+
+        <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code3 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_3"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>View Engine vs. Ivy Comparison</strong>:
+      <ul class="list-disc pl-4">
+        <li>Comparing View Engine to Angular 19's Ivy renderer.</li>
+
+        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code4 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_4"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>View Engine Implementation Details</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Dependency Injection</strong>:
+      How View Engine implemented Angular's DI system.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Template Compilation</strong>:
+      How View Engine processed Angular templates.
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Metadata Handling</strong>:
+      How View Engine stored and processed component metadata.
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Build Process</strong>:
+      How View Engine applications were built and deployed.
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Key View Engine Artifacts</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Artifact</th>
+        <th class="py-3 px-4 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Component Factory</td>
+        <td class="py-3 px-4">Generated class responsible for creating component instances and their views.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Metadata JSON</td>
+        <td class="py-3 px-4">External files storing component decorators, inputs, outputs, and other metadata.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">NgModule Factory</td>
+        <td class="py-3 px-4">Factory for creating module instances and their dependency injectors.</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">View Definition</td>
+        <td class="py-3 px-4">Blueprint describing a component's DOM structure, bindings, and events.</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Historical Knowledge for Modern Angular</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Understand Ivy's Improvements</strong>:
+          Learn View Engine to better appreciate how Ivy in Angular 19 solved its limitations with locality, tree-shaking, and incremental compilation.
+        </li>
+        <li>
+          <strong>Legacy Codebase Maintenance</strong>:
+          Know View Engine architecture when maintaining older Angular applications that haven't fully migrated to Ivy.
+        </li>
+        <li>
+          <strong>Migration Planning</strong>:
+          Understand what changed between View Engine and Ivy to plan effective migrations for legacy applications.
+        </li>
+        <li>
+          <strong>Debugging Hybrid Applications</strong>:
+          Use knowledge of both rendering engines when working with applications that may have components compiled with both systems.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Working with View Engine in Legacy Code</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Maintain Strict NgModule Structure</strong>:
+          View Engine required careful management of NgModule declarations, exports, and imports without the standalone flexibility of Angular 19.
+        </li>
+        <li>
+          <strong>Be Cautious with AOT Compilation</strong>:
+          View Engine's AOT compilation was more brittle, so avoid dynamic component references and complex metadata.
+        </li>
+        <li>
+          <strong>Manage Metadata Carefully</strong>:
+          Understand that component properties used in templates must be properly exposed in the class since View Engine relied on external metadata.
+        </li>
+        <li>
+          <strong>Consider Build Performance</strong>:
+          Structure applications to minimize impact on build times, as View Engine's global compilation model was less optimized.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Migrating from View Engine to Ivy</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Official Migration Tools</strong>:
+          Leverage Angular's official migration schematics when upgrading from View Engine to Ivy-based versions.
+        </li>
+        <li>
+          <strong>Address Static Analysis Issues</strong>:
+          Fix any metadata errors highlighted during migration, as Ivy has stricter compile-time checks.
+        </li>
+        <li>
+          <strong>Update Third-Party Libraries</strong>:
+          Ensure all dependencies are compatible with Ivy, as libraries compiled with View Engine may cause issues.
+        </li>
+        <li>
+          <strong>Migrate Incrementally</strong>:
+          Use compatibility mode when possible to allow gradual migration of complex applications.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Performance Optimization After Migration</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Leverage Tree-Shaking</strong>:
+          Refactor code to take advantage of Ivy's superior tree-shaking capabilities after migrating from View Engine.
+        </li>
+        <li>
+          <strong>Adopt Standalone Components</strong>:
+          Gradually move to standalone components in Angular 19 to fully benefit from Ivy's improved compilation model.
+        </li>
+        <li>
+          <strong>Implement OnPush Change Detection</strong>:
+          Ivy's change detection is more efficient than View Engine's, especially with OnPush strategy.
+        </li>
+        <li>
+          <strong>Remove View Engine Workarounds</strong>:
+          Identify and remove code patterns that were specifically needed to work around View Engine limitations.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Debugging View Engine Applications</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Inspect Generated Factories</strong>:
+          When debugging issues, examine the generated factory files to understand how templates are actually rendered.
+        </li>
+        <li>
+          <strong>Check Metadata Consistency</strong>:
+          Verify metadata.json files are consistent with component definitions when encountering unexplained behavior.
+        </li>
+        <li>
+          <strong>Use Angular Compiler Options</strong>:
+          Leverage fullTemplateTypeCheck and strictTemplates compiler options to catch issues early.
+        </li>
+        <li>
+          <strong>Understand Error Context</strong>:
+          View Engine errors often occurred during build rather than runtime, so interpret build errors in their compilation context.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros (Historical Context):
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Established Framework</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          View Engine was the foundation of Angular's success for many years, powering thousands of production applications worldwide.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Comprehensive Compilation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The global compilation approach caught many errors during build time rather than runtime, helping prevent some types of production issues.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Rigorous Type Checking</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          View Engine incorporated TypeScript type checking for templates, improving code quality and developer experience.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Ahead-of-Time Compilation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          View Engine introduced AOT compilation to Angular, eliminating the need for shipping the template compiler to browsers.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Established Patterns</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Established well-documented patterns and best practices that many developers were familiar with and could implement effectively.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Library Ecosystem</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Supported a large ecosystem of libraries and tools built specifically to work with its compilation and rendering approach.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons (Compared to Angular 19's Ivy):
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Bundle Size</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Generated significantly larger JavaScript bundles compared to Ivy, as it included more generated code and runtime libraries.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Build Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Required global analysis of the application, leading to slower build times, especially for large applications.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>File Proliferation</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Generated numerous additional files (factories, metadata.json), complicating the build output and deployment process.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Incremental Compilation Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Small changes often triggered large rebuilds due to the interdependent nature of the compilation process.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Debugging Difficulty</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          The generated code was often difficult to understand and debug, with error messages that could be cryptic or misleading.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Limited Tree-Shaking</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Less effective tree-shaking compared to Ivy, making it harder to eliminate unused code from production bundles.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>NgModule Requirement</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Required NgModules for all components without the standalone component option available in Angular 19.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Dynamic Component Limitations</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Creating dynamic components was more complex, requiring ComponentFactoryResolver and specific coding patterns.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    View Engine served Angular well for many years but was eventually replaced by Ivy in Angular 9 to address these limitations. Angular 19 continues to build on Ivy's foundation with further optimizations, making the historical limitations of View Engine even more apparent. Understanding this history helps developers appreciate the significant improvements in modern Angular.
+  </p>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">View Engine (Historical)</th>
+        <th class="py-3 px-4 text-left w-1/2">Ivy (Angular 19)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Global compilation</td>
+        <td class="py-3 px-4">Locality principle (component-level compilation)</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Separate metadata files</td>
+        <td class="py-3 px-4">Metadata embedded in component definition</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Generated factory files</td>
+        <td class="py-3 px-4">Inline instruction-based rendering</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">NgModules required</td>
+        <td class="py-3 px-4">Standalone components supported</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Limited tree-shaking</td>
+        <td class="py-3 px-4">Effective tree-shaking</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Larger bundle sizes</td>
+        <td class="py-3 px-4">Smaller, optimized bundles</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>
+    Related topics to View Engine (in Angular 19 context):
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Ivy</strong>
+      <p>
+        Angular's current rendering engine that replaced View Engine, featuring improved performance, smaller bundles, and better developer experience.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Compilation</strong>
+      <p>
+        The process of transforming Angular components into executable JavaScript code, which differs significantly between View Engine and Ivy.
+      </p>
+    </li>
+    <li>
+      <strong>AOT Compilation</strong>
+      <p>
+        Ahead-of-Time compilation, a technique initially introduced with View Engine and later improved with Ivy to optimize rendering performance.
+      </p>
+    </li>
+    <li>
+      <strong>JIT Compilation</strong>
+      <p>
+        Just-in-Time compilation, the alternative to AOT that compiles templates in the browser, historically used for development with View Engine.
+      </p>
+    </li>
+    <li>
+      <strong>NgModules</strong>
+      <p>
+        A core organizational unit in Angular that was mandatory in View Engine but has been complemented by standalone components in Angular 19.
+      </p>
+    </li>
+    <li>
+      <strong>Component Factories</strong>
+      <p>
+        Classes generated by View Engine that created component instances, a concept largely abstracted away in Ivy-based Angular 19.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Metadata</strong>
+      <p>
+        Component decorator information that View Engine stored in separate files but Ivy embeds directly in the compiled component.
+      </p>
+    </li>
+    <li>
+      <strong>Build Process</strong>
+      <p>
+        The steps involved in compiling an Angular application, which has been streamlined since moving from View Engine to Ivy.
+      </p>
+    </li>
+    <li>
+      <strong>Migration</strong>
+      <p>
+        The process of upgrading applications from View Engine to Ivy, which may still be relevant for maintaining legacy Angular applications.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Version History</strong>
+      <p>
+        The evolution of Angular through major versions, with View Engine powering versions 2-8 before Ivy was introduced in version 9.
+      </p>
+    </li>
+    <li>
+      <strong>Tree Shaking</strong>
+      <p>
+        The process of eliminating unused code, which was significantly improved when Angular moved from View Engine to Ivy.
+      </p>
+    </li>
+    <li>
+      <strong>Change Detection</strong>
+      <p>
+        Angular's mechanism for updating the DOM in response to data changes, which underwent architectural changes in the transition to Ivy.
+      </p>
+    </li>
+  </ol>
+</ng-template>

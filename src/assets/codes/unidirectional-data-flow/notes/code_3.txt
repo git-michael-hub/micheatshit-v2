@@ -1,0 +1,43 @@
+// data.service.ts
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+interface UserState {
+  name: string;
+  isAuthenticated: boolean;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+  // Private subject maintains the single source of truth
+  private userStateSubject = new BehaviorSubject<UserState>({
+    name: '',
+    isAuthenticated: false
+  });
+
+  // Public observable for components to subscribe to
+  userState$: Observable<UserState> = this.userStateSubject.asObservable();
+
+  // Actions to update state
+  login(userName: string) {
+    // Create new state object (immutability)
+    const newState = {
+      name: userName,
+      isAuthenticated: true
+    };
+
+    // Update the state
+    this.userStateSubject.next(newState);
+  }
+
+  logout() {
+    const newState = {
+      name: '',
+      isAuthenticated: false
+    };
+
+    this.userStateSubject.next(newState);
+  }
+}

@@ -1,0 +1,122 @@
+// View Engine Metadata Handling
+// How Angular < 9 stored and processed component metadata
+
+import { Component, NgModule } from '@angular/core';
+
+// Component with various metadata
+@Component({
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css'],
+  inputs: ['product'],
+  outputs: ['addToCart'],
+  host: {
+    'class': 'product-item',
+    '(click)': 'selectProduct()'
+  },
+  providers: [ProductService],
+  viewProviders: [ProductFormatter]
+})
+class ProductComponent {
+  // Component implementation...
+}
+
+// Module that includes this component
+@NgModule({
+  declarations: [ProductComponent],
+  exports: [ProductComponent]
+})
+class ProductModule {}
+
+// View Engine would extract all this metadata during compilation
+// and store it in separate metadata files:
+
+// product.component.metadata.json (example)
+{
+  "__symbolic": "module",
+  "version": 4,
+  "metadata": {
+    "ProductComponent": {
+      "__symbolic": "class",
+      "decorators": [{
+        "__symbolic": "call",
+        "expression": {"__symbolic": "reference", "name": "Component"},
+        "arguments": [{
+          "selector": "app-product",
+          "templateUrl": "./product.component.html",
+          "styleUrls": ["./product.component.css"],
+          "inputs": ["product"],
+          "outputs": ["addToCart"],
+          "host": {
+            "class": "product-item",
+            "(click)": "selectProduct()"
+          },
+          "providers": [
+            {"__symbolic": "reference", "name": "ProductService"}
+          ],
+          "viewProviders": [
+            {"__symbolic": "reference", "name": "ProductFormatter"}
+          ]
+        }]
+      }],
+      "members": {
+        // Component methods and properties metadata
+      }
+    }
+  }
+}
+
+// product.module.metadata.json (example)
+{
+  "__symbolic": "module",
+  "version": 4,
+  "metadata": {
+    "ProductModule": {
+      "__symbolic": "class",
+      "decorators": [{
+        "__symbolic": "call",
+        "expression": {"__symbolic": "reference", "name": "NgModule"},
+        "arguments": [{
+          "declarations": [
+            {"__symbolic": "reference", "name": "ProductComponent"}
+          ],
+          "exports": [
+            {"__symbolic": "reference", "name": "ProductComponent"}
+          ]
+        }]
+      }],
+      "members": {}
+    }
+  }
+}
+
+// During runtime, View Engine would use these metadata files
+// to initialize components and modules:
+
+// Example of how View Engine used metadata (simplified)
+function initializeComponent(metadata) {
+  // Get component metadata from the metadata.json file
+  const componentMetadata = loadMetadata('ProductComponent');
+
+  // Create view definition from metadata
+  const viewDef = createViewDefinition(
+    componentMetadata.template,
+    componentMetadata.inputs,
+    componentMetadata.outputs,
+    // other metadata...
+  );
+
+  // Create component factory
+  return new ComponentFactory({
+    selector: componentMetadata.selector,
+    inputs: componentMetadata.inputs,
+    outputs: componentMetadata.outputs,
+    hostBindings: parseHostBindings(componentMetadata.host),
+    viewDef: viewDef,
+    // other factory properties...
+  });
+}
+
+// Note: This separate metadata storage approach was a key limitation
+// of View Engine that Ivy solved in Angular 9+ by inlining this
+// metadata directly in the component definition

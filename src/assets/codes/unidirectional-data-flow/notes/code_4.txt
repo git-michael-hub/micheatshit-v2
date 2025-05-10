@@ -1,0 +1,51 @@
+// counter.service.ts
+import { Injectable, signal, computed } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CounterService {
+  // Signal: the primary source of truth
+  private count = signal(0);
+
+  // Read-only accessor
+  readonly counter = this.count.asReadonly();
+
+  // Computed values derive from signals
+  readonly doubleCount = computed(() => this.count() * 2);
+  readonly isEven = computed(() => this.count() % 2 === 0);
+
+  // Actions to update state
+  increment() {
+    // Update the signal with a new value
+    this.count.update(value => value + 1);
+  }
+
+  decrement() {
+    this.count.update(value => value - 1);
+  }
+
+  reset() {
+    this.count.set(0);
+  }
+}
+
+// counter.component.ts
+import { Component, inject } from '@angular/core';
+import { CounterService } from './counter.service';
+
+@Component({
+  selector: 'app-counter',
+  template: `
+    <div>Count: {{ counterService.counter() }}</div>
+    <div>Double: {{ counterService.doubleCount() }}</div>
+    <div>{{ counterService.isEven() ? 'Even' : 'Odd' }}</div>
+    <button (click)="counterService.increment()">+</button>
+    <button (click)="counterService.decrement()">-</button>
+    <button (click)="counterService.reset()">Reset</button>
+  `
+})
+export class CounterComponent {
+  // Inject the service
+  counterService = inject(CounterService);
+}

@@ -1,0 +1,48 @@
+// signal-counter.component.ts
+import { Component, signal, computed, input, output } from '@angular/core';
+
+@Component({
+  selector: 'app-signal-counter',
+  standalone: true,
+  template: `
+    <div>
+      <h3>{{ title() }}</h3>
+      <div>Count: {{ count() }}</div>
+      <div>Is even: {{ isEven() }}</div>
+      <div>Multiplied by factor: {{ multipliedCount() }}</div>
+
+      <button (click)="increment()">Increment</button>
+      <button (click)="decrement()">Decrement</button>
+      <button (click)="reset()">Reset</button>
+      <button (click)="countChanged.emit(count())">Emit Current Count</button>
+    </div>
+  `
+})
+export class SignalCounterComponent {
+  // Input signals
+  title = input<string>('Counter');
+  factor = input<number>(1);
+
+  // Internal state as signals
+  count = signal(0);
+
+  // Derived state with computed signals
+  isEven = computed(() => this.count() % 2 === 0);
+  multipliedCount = computed(() => this.count() * this.factor());
+
+  // Output events
+  countChanged = output<number>();
+
+  // Actions
+  increment() {
+    this.count.update(n => n + 1);
+  }
+
+  decrement() {
+    this.count.update(n => n - 1);
+  }
+
+  reset() {
+    this.count.set(0);
+  }
+}

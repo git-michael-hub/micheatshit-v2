@@ -1,0 +1,40 @@
+// Using isPlatformBrowser/isPlatformServer in Angular 19
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+
+@Component({
+  selector: 'app-platform-example',
+  standalone: true,
+  template: `
+    <div>
+      <h3>Platform Detection</h3>
+      <p>Running on: {{ platformName }}</p>
+    </div>
+  `
+})
+export class PlatformExampleComponent {
+  platformName = 'unknown';
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.platformName = 'Browser';
+      // Browser-only code
+      this.initializeBrowserFeatures();
+    } else if (isPlatformServer(this.platformId)) {
+      this.platformName = 'Server';
+      // Server-only code
+      this.handleServerSideRendering();
+    }
+  }
+
+  private initializeBrowserFeatures(): void {
+    // Safe to use browser APIs like localStorage, window, etc.
+    console.log('Window width:', window.innerWidth);
+    localStorage.setItem('lastVisit', new Date().toISOString());
+  }
+
+  private handleServerSideRendering(): void {
+    // Server-specific logic
+    console.log('Rendering on server - no browser APIs available');
+  }
+}

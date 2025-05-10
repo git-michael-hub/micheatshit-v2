@@ -1,0 +1,25 @@
+// parent.component.ts
+@Component({
+  selector: 'app-parent',
+  template: `
+    <app-child [data]="parentData"></app-child>
+    <button (click)="updateData()">Update Data</button>
+  `
+})
+export class ParentComponent {
+  parentData = { name: 'Initial Data' };
+
+  updateData() {
+    // Create a new object reference for immutability
+    this.parentData = { name: 'Updated Data' };
+  }
+}
+
+// child.component.ts
+@Component({
+  selector: 'app-child',
+  template: `<div>Received: {{ data.name }}</div>`
+})
+export class ChildComponent {
+  @Input() data!: { name: string };
+}

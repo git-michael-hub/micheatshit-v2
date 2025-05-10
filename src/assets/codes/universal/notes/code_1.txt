@@ -1,0 +1,11 @@
+# Install Angular Universal in Angular 19
+ng add @nguniversal/express-engine
+
+# This creates the following files:
+# - server.ts (Express server)
+# - main.server.ts (Entry point for server-side app)
+# - app.server.module.ts (Server module configuration)
+# - tsconfig.server.json (TypeScript config for server)
+
+# Angular 19 also supports Standalone APIs with SSR
+# You can choose a minimal setup with standalone components

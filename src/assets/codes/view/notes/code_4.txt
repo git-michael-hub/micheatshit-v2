@@ -1,0 +1,70 @@
+// View Hierarchy in Angular 19
+// Example of Parent-Child Component View Relationship
+
+// parent.component.ts
+import { Component } from '@angular/core';
+import { ChildComponent } from './child.component';
+
+@Component({
+  selector: 'app-parent',
+  standalone: true,
+  imports: [ChildComponent],
+  template: `
+    <div class="parent-view">
+      <h2>Parent Component View</h2>
+      <p>This is managed by the parent component</p>
+
+      <!-- Child component view is embedded here -->
+      <app-child [data]="dataForChild"></app-child>
+
+      <p>Back to parent component's view</p>
+    </div>
+  `
+})
+export class ParentComponent {
+  dataForChild = 'Data passed from parent';
+}
+
+// child.component.ts
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  standalone: true,
+  template: `
+    <div class="child-view">
+      <h3>Child Component View</h3>
+      <p>This is a separate view managed by the child component</p>
+      <p>Received data: {{ data }}</p>
+    </div>
+  `
+})
+export class ChildComponent {
+  @Input() data: string = '';
+}
+
+// View hierarchy relationship:
+/*
+DOM Structure:
+<app-parent>
+  <div class="parent-view">
+    <h2>Parent Component View</h2>
+    <p>This is managed by the parent component</p>
+
+    <app-child>
+      <div class="child-view">
+        <h3>Child Component View</h3>
+        <p>This is a separate view managed by the child component</p>
+        <p>Received data: Data passed from parent</p>
+      </div>
+    </app-child>
+
+    <p>Back to parent component's view</p>
+  </div>
+</app-parent>
+*/
+
+// Each component manages its own view
+// Views form a hierarchical structure
+// Data flows from parent to child through @Input()
+// Events flow from child to parent through @Output()

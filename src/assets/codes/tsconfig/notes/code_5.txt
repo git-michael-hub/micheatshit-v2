@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    // Master strict flag - enables all strict type checking options
+    "strict": true,
+
+    // Individual strict checks (automatically enabled by strict: true)
+    "noImplicitAny": true,      // Raise error on expressions and declarations with an implied 'any' type
+    "strictNullChecks": true,   // Enable strict null checks
+    "strictFunctionTypes": true, // Enable strict checking of function types
+    "strictBindCallApply": true, // Enable strict 'bind', 'call', and 'apply' methods on functions
+    "strictPropertyInitialization": true, // Ensure non-undefined class properties are initialized
+    "noImplicitThis": true,     // Raise error on 'this' expressions with an implied 'any' type
+
+    // Additional type checking options often used with strict mode
+    "noImplicitReturns": true,  // Report error when not all code paths in function return a value
+    "noFallthroughCasesInSwitch": true, // Report errors for fallthrough cases in switch statement
+    "noUncheckedIndexedAccess": true, // Add 'undefined' to a type when accessed using an index
+    "noImplicitOverride": true, // Ensure overriding members are marked with an override modifier
+    "noPropertyAccessFromIndexSignature": true // Require use of indexed accessor for index signatures
+  },
+  "angularCompilerOptions": {
+    // Angular-specific strict type checking
+    "strictTemplates": true,    // Enable strict type checking in templates
+    "strictInjectionParameters": true, // Verify types of parameters passed to DI
+    "strictInputAccessModifiers": true, // Honor accessibility modifiers for inputs
+    "strictOutputEventTypes": true     // Enable strict type checking for event bindings
+  }
+}

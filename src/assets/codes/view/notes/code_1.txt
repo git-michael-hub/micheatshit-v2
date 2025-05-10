@@ -1,0 +1,30 @@
+// Basic Component with View
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  // The template defines the component's view
+  template: `
+    <div class="container">
+      <h1>{{ title }}</h1>
+      <p>This is a simple Angular 19 view.</p>
+      <button (click)="updateTitle()">Update Title</button>
+    </div>
+  `,
+  styles: [`
+    .container {
+      padding: 20px;
+      border: 1px solid #eee;
+    }
+    h1 { color: #3f51b5; }
+    button { background: #3f51b5; color: white; border: none; padding: 8px 16px; }
+  `]
+})
+export class ExampleComponent {
+  title = 'Hello Angular 19';
+
+  updateTitle() {
+    this.title = 'Title Updated at ' + new Date().toLocaleTimeString();
+  }
+}

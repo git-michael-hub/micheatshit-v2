@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { HighlightModule } from 'ngx-highlightjs';
+import { HttpClient } from '@angular/common/http';
 import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-universal',
@@ -11,108 +13,52 @@ import { UnsubscribeService } from 'src/app/utils/services/unsubscribe.service';
   styleUrls: ['./universal.component.scss']
 })
 export class UniversalComponent extends UnsubscribeService {
-  selectedTab = 'notes';
+  selectedTab = 1;
 
-  @ViewChild('notesTemplate', { static: true }) notesTemplate!: TemplateRef<any>;
-  @ViewChild('bestPracticesTemplate', { static: true }) bestPracticesTemplate!: TemplateRef<any>;
-  @ViewChild('prosConsTemplate', { static: true }) prosConsTemplate!: TemplateRef<any>;
-  @ViewChild('relatedTopicsTemplate', { static: true }) relatedTopicsTemplate!: TemplateRef<any>;
+  code_1 = '';
+  code_2 = '';
+  code_3 = '';
+  code_4 = '';
+  code_5 = '';
+  code_6 = '';
+  code_7 = '';
+  code_8 = '';
 
-  setupCode = `// Install Angular Universal
-ng add @nguniversal/express-engine
-
-// This creates the following files:
-// - server.ts (Express server)
-// - main.server.ts (Entry point for server-side app)
-// - app.server.module.ts (Server module configuration)
-// - tsconfig.server.json (TypeScript config for server)`;
-
-  buildRunCode = `# Build the application for server-side rendering
-ng build
-ng run your-app-name:server
-
-# Run the server
-node dist/your-app-name/server/main.js`;
-
-  serverModuleCode = `// app.server.module.ts
-import { NgModule } from '@angular/core';
-import { ServerModule } from '@angular/platform-server';
-import { AppModule } from './app.module';
-import { AppComponent } from './app.component';
-
-@NgModule({
-  imports: [
-    AppModule,
-    ServerModule,
-  ],
-  bootstrap: [AppComponent],
-})
-export class AppServerModule {}`;
-
-  angularJsonCode = `// angular.json (partial)
-{
-  "projects": {
-    "your-app-name": {
-      "architect": {
-        "build": { ... },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/your-app-name/server",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json"
-          }
-        }
-      }
-    }
+  constructor(private http: HttpClient) {
+    super();
   }
-}`;
 
-  isBrowserCode = `// Check if code is running in browser or server
-import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+  ngOnInit(): void {
+    this.http.get('assets/codes/universal/notes/code_1.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_1 = data);
 
-@Component({...})
-export class MyComponent {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    if (isPlatformBrowser(this.platformId)) {
-      // Browser-only code (e.g., accessing window, localStorage)
-      console.log('Running in browser');
-    } else {
-      // Server-only code
-      console.log('Running on server');
-    }
+    this.http.get('assets/codes/universal/notes/code_2.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_2 = data);
+
+    this.http.get('assets/codes/universal/notes/code_3.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_3 = data);
+
+    this.http.get('assets/codes/universal/notes/code_4.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_4 = data);
+
+    this.http.get('assets/codes/universal/notes/code_5.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_5 = data);
+
+    this.http.get('assets/codes/universal/notes/code_6.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_6 = data);
+
+    this.http.get('assets/codes/universal/notes/code_7.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_7 = data);
+
+    this.http.get('assets/codes/universal/notes/code_8.txt', { responseType: 'text' })
+      .pipe(takeUntil(this.toUnsubscribe$))
+      .subscribe(data => this.code_8 = data);
   }
-}`;
-
-  transferStateCode = `// Using TransferState to avoid duplicate HTTP requests
-import { Component, OnInit, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { TransferState, makeStateKey } from '@angular/platform-browser';
-
-const USER_KEY = makeStateKey<any>('user');
-
-@Component({...})
-export class UserComponent implements OnInit {
-  private http = inject(HttpClient);
-  private transferState = inject(TransferState);
-
-  user: any;
-
-  ngOnInit() {
-    // Try to get the state from server transfer
-    if (this.transferState.hasKey(USER_KEY)) {
-      this.user = this.transferState.get(USER_KEY, null);
-      // We've used the transferred state, so remove it
-      this.transferState.remove(USER_KEY);
-    } else {
-      // If not available in transfer state, make the API call
-      this.http.get('/api/user').subscribe(user => {
-        this.user = user;
-        // On server side, this will be transferred to the client
-        this.transferState.set(USER_KEY, user);
-      });
-    }
-  }
-}`;
 }

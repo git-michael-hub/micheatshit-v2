@@ -88,6 +88,9 @@ import { SchematicsCliComponent } from './feature/angular/concepts/schematics-cl
 import { ScopedPackageComponent } from './feature/angular/concepts/scoped-package/scoped-package.component';
 import { ServiceComponent } from './feature/angular/concepts/service/service.component';
 import { TargetComponent } from './feature/angular/concepts/target/target.component';
+import { UnidirectionalDataFlowComponent } from './feature/angular/concepts/unidirectional-data-flow/unidirectional-data-flow.component';
+import { ViewComponent } from './feature/angular/concepts/view/view.component';
+import { ViewEngineComponent } from './feature/angular/concepts/view-engine/view-engine.component';
 
 const routes: Routes = [
   {
@@ -376,6 +379,10 @@ const routes: Routes = [
         loadChildren: () => import('./feature/angular/concepts/tree/tree.module').then(m => m.TreeModule)
       },
       {
+        path: 'typescript',
+        loadChildren: () => import('./feature/angular/concepts/typescript/typescript.module').then(m => m.TypescriptModule)
+      },
+      {
         path: 'universal',
         component: UniversalComponent
       },
@@ -490,6 +497,26 @@ const routes: Routes = [
       {
         path: 'transpile',
         loadChildren: () => import('./feature/angular/concepts/transpile/transpile.module').then(m => m.TranspileModule)
+      },
+      {
+        path: 'tsconfig',
+        loadChildren: () => import('./feature/angular/concepts/tsconfig.module').then(m => m.TsconfigModule)
+      },
+      {
+        path: 'typescript-configuration',
+        loadChildren: () => import('./feature/angular/concepts/tsconfig.module').then(m => m.TsconfigModule)
+      },
+      {
+        path: 'unidirectional-data-flow',
+        component: UnidirectionalDataFlowComponent
+      },
+      {
+        path: 'view',
+        component: ViewComponent
+      },
+      {
+        path: 'view-engine',
+        component: ViewEngineComponent
       },
     ]
   },

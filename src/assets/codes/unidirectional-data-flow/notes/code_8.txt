@@ -1,0 +1,113 @@
+// NgRx Store Example
+
+// counter.actions.ts
+import { createAction, props } from '@ngrx/store';
+
+export const increment = createAction('[Counter] Increment');
+export const decrement = createAction('[Counter] Decrement');
+export const reset = createAction('[Counter] Reset');
+export const setCount = createAction(
+  '[Counter] Set Count',
+  props<{ count: number }>()
+);
+
+// counter.reducer.ts
+import { createReducer, on } from '@ngrx/store';
+import * as CounterActions from './counter.actions';
+
+export interface CounterState {
+  count: number;
+}
+
+export const initialState: CounterState = {
+  count: 0
+};
+
+export const counterReducer = createReducer(
+  initialState,
+  on(CounterActions.increment, state => ({
+    ...state,
+    count: state.count + 1
+  })),
+  on(CounterActions.decrement, state => ({
+    ...state,
+    count: state.count - 1
+  })),
+  on(CounterActions.reset, state => ({
+    ...state,
+    count: 0
+  })),
+  on(CounterActions.setCount, (state, { count }) => ({
+    ...state,
+    count
+  }))
+);
+
+// counter.selectors.ts
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { CounterState } from './counter.reducer';
+
+export const selectCounterState = createFeatureSelector<CounterState>('counter');
+
+export const selectCount = createSelector(
+  selectCounterState,
+  state => state.count
+);
+
+export const selectIsEven = createSelector(
+  selectCount,
+  count => count % 2 === 0
+);
+
+export const selectDoubled = createSelector(
+  selectCount,
+  count => count * 2
+);
+
+// counter.component.ts
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as CounterActions from './counter.actions';
+import * as CounterSelectors from './counter.selectors';
+
+@Component({
+  selector: 'app-counter',
+  template: `
+    <div>
+      <h3>NgRx Counter Example</h3>
+      <div>Count: {{ count$ | async }}</div>
+      <div>Is Even: {{ isEven$ | async }}</div>
+      <div>Doubled: {{ doubled$ | async }}</div>
+
+      <button (click)="increment()">Increment</button>
+      <button (click)="decrement()">Decrement</button>
+      <button (click)="reset()">Reset</button>
+    </div>
+  `
+})
+export class CounterComponent {
+  count$: Observable<number>;
+  isEven$: Observable<boolean>;
+  doubled$: Observable<number>;
+
+  constructor(private store: Store) {
+    // Select state from the store
+    this.count$ = this.store.select(CounterSelectors.selectCount);
+    this.isEven$ = this.store.select(CounterSelectors.selectIsEven);
+    this.doubled$ = this.store.select(CounterSelectors.selectDoubled);
+  }
+
+  // Dispatch actions to the store
+  increment() {
+    this.store.dispatch(CounterActions.increment());
+  }
+
+  decrement() {
+    this.store.dispatch(CounterActions.decrement());
+  }
+
+  reset() {
+    this.store.dispatch(CounterActions.reset());
+  }
+}

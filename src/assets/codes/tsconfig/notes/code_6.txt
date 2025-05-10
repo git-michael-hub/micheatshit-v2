@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    // ECMAScript target version
+    "target": "ES2022", // Specify ECMAScript target version - ES2022 for Angular 19
+
+    // Module code generation options
+    "module": "ESNext",     // Specify module code generation - ESNext for latest features
+    "moduleResolution": "node", // Module resolution strategy - 'node' for classic resolution
+
+    // Optional - newer module resolution strategies available in TypeScript 5+
+    // "moduleResolution": "node16", // Use node16 or bundler for package.json exports
+    // "moduleResolution": "bundler", // Support for newer bundler features
+
+    // Module interoperability options
+    "esModuleInterop": true,     // Emit additional JS to ease imports from CommonJS
+    "allowSyntheticDefaultImports": true, // Allow synthetic default imports
+
+    // JavaScript support
+    "allowJs": true,          // Allow JavaScript files to be compiled
+    "checkJs": false,         // Don't type check JavaScript files
+
+    // Import helpers for downleveling
+    "importHelpers": true,    // Import helper functions from tslib
+
+    // Emit options
+    "declaration": false,     // Don't generate .d.ts files
+    "downlevelIteration": true, // Provide full support for iterables
+
+    // Library includes
+    "lib": [
+      "ES2022",
+      "dom",      // DOM APIs
+      "dom.iterable" // DOM Iterable APIs
+    ],
+
+    // Experimental features support
+    "experimentalDecorators": true, // Enables experimental support for decorators
+    "useDefineForClassFields": false // Use Object.defineProperty for class fields
+  }
+}

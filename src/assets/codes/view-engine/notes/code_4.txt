@@ -1,0 +1,101 @@
+// View Engine vs. Ivy Comparison
+// Key differences between Angular's old and new rendering engines
+
+/*
+Component Definition (Same in both):
+*/
+
+@Component({
+  selector: 'app-greeting',
+  template: `
+    <h1>Hello, {{name}}!</h1>
+    <button (click)="changeName()">Change Name</button>
+  `
+})
+class GreetingComponent {
+  name = 'World';
+
+  changeName() {
+    this.name = this.name === 'World' ? 'Angular' : 'World';
+  }
+}
+
+/*
+1. BUNDLE SIZE
+--------------
+View Engine:
+- Generated large factory files
+- Required metadata.json files
+- Stored template information in external files
+
+Ivy (Angular 19):
+- Generated smaller, localized code
+- No separate metadata files needed
+- Templates compiled directly into component code
+*/
+
+// View Engine generated component factory (simplified)
+export const GreetingComponentNgFactory = new ComponentFactory({
+  moduleId: 'app-greeting-factory',
+  selector: 'app-greeting',
+  factory: () => new GreetingComponent(),
+  viewDefFactory: viewDef, // References large view definition
+  changeDetection: ChangeDetectionStrategy.Default,
+  // More factory metadata...
+});
+
+// Ivy generated code (simplified in Angular 19)
+class GreetingComponent {
+  name = 'World';
+
+  changeName() { /* ... */ }
+
+  // Template instructions generated directly in component
+  static ɵcmp = defineComponent({
+    type: GreetingComponent,
+    selectors: [['app-greeting']],
+    template: function(rf, ctx) {
+      if (rf & 1) { // Create mode
+        elementStart(0, 'h1');
+        text(1);
+        elementEnd();
+        elementStart(2, 'button');
+        listener('click', function() { return ctx.changeName(); });
+        text(3, 'Change Name');
+        elementEnd();
+      }
+      if (rf & 2) { // Update mode
+        textBinding(1, 'Hello, ' + ctx.name + '!');
+      }
+    }
+  });
+}
+
+/*
+2. COMPILATION MODEL
+-------------------
+View Engine:
+- Global compilation: needed to analyze entire dependency tree
+- Generated separate factory files
+- Required NgModules for component registration
+
+Ivy (Angular 19):
+- Locality principle: components compile independently
+- Tree-shakable: unused components removed from bundle
+- Components can be standalone without NgModules
+*/
+
+/*
+3. RUNTIME PERFORMANCE
+---------------------
+View Engine:
+- Static component factories
+- Interpreter-based template execution
+- Less optimized directive matching
+
+Ivy (Angular 19):
+- Dynamic component creation without factories
+- JIT-friendly code generation
+- Optimized property bindings and directive matching
+- Enhanced for incremental DOM updates
+*/
