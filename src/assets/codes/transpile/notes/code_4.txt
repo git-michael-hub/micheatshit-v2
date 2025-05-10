@@ -1,0 +1,81 @@
+// tsconfig.json with enhanced type checking options in Angular 19
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    // Angular 19 enhanced template type checking
+    "strictTemplates": true,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictSafeNavigationTypes": true,
+    "strictDomLocalRefTypes": true,
+    "strictDomEventTypes": true,
+    "strictContextGenerics": true,
+    "strictLiteralTypes": true,
+    "strictNullInputTypes": true,
+    "strictAttributeTypes": true,
+    "strictOutputEventTypes": true,
+    "strictDomEventTypes": true
+  },
+  "angularCompilerOptions": {
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    // New in Angular 19
+    "extendedDiagnostics": {
+      "checks": {
+        "missingControlFlowDirective": "error",
+        "nullishCoalescingNotNullable": "warning",
+        "optionalChainingNotNullable": "warning"
+      }
+    }
+  }
+}
+
+// Example component demonstrating type-safe templates in Angular 19
+@Component({
+  selector: 'app-type-safe',
+  template: `
+    <!-- Template type checking will catch errors like these -->
+    <div>{{ user.name | uppercase }}</div>
+
+    <!-- Using optional chaining safely -->
+    <div>Location: {{ user?.address?.city }}</div>
+
+    <!-- Signal-based properties with type inference -->
+    <div>Stats: {{ userStats() }}</div>
+
+    <!-- Enhanced control flow with type checking -->
+    @if (user.isAdmin) {
+      <admin-panel [adminUser]="user"></admin-panel>
+    } @else {
+      <regular-user-panel [regularUser]="user"></regular-user-panel>
+    }
+
+    <!-- Type-safe event binding -->
+    <button (click)="updateUser($event)">Update</button>
+  `
+})
+export class TypeSafeComponent {
+  // Type-safe user object
+  user: User = {
+    id: 1,
+    name: 'John Doe',
+    isAdmin: false,
+    address: {
+      street: '123 Main St',
+      city: 'Anytown'
+    }
+  };
+
+  // Signals with proper type inference
+  userStats = computed(() => `Points: ${this.user.points || 0}`);
+
+  // Type-safe event handler
+  updateUser(event: MouseEvent): void {
+    console.log('Update requested', event);
+  }
+}

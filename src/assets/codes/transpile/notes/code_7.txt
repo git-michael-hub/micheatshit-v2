@@ -1,0 +1,113 @@
+// Creating a custom builder to enhance transpilation in Angular 19
+// my-custom-builder/index.ts
+import { BuilderContext, BuilderOutput, createBuilder } from '@angular-devkit/architect';
+import { JsonObject } from '@angular-devkit/core';
+import { from, Observable, of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import * as esbuild from 'esbuild';
+import * as fs from 'fs';
+import * as path from 'path';
+
+interface CustomBuilderOptions extends JsonObject {
+  tsConfig: string;
+  outputPath: string;
+  assets: string[];
+  entryPoints: string[];
+  optimize: boolean;
+  sourcemap: boolean;
+  watch: boolean;
+  target: string;
+  deployUrl?: string;
+}
+
+export default createBuilder<CustomBuilderOptions>(
+  (options, context): Observable<BuilderOutput> => {
+    context.logger.info('🚀 Starting custom Angular 19 build process...');
+
+    // Validate options
+    if (!options.tsConfig) {
+      return of({ success: false, error: 'tsConfig option is required' });
+    }
+
+    const projectRoot = context.workspaceRoot;
+    const tsConfigPath = path.resolve(projectRoot, options.tsConfig);
+
+    // Load TypeScript configuration
+    const tsconfigContents = fs.readFileSync(tsConfigPath, 'utf8');
+    const tsconfig = JSON.parse(tsconfigContents);
+
+    // Handle assets
+    const copyAssets = async () => {
+      context.logger.info('Copying assets...');
+
+      if (options.assets && options.assets.length) {
+        for (const asset of options.assets) {
+          // Asset copying logic here
+          context.logger.info(`Copied asset: ${asset}`);
+        }
+      }
+    };
+
+    // Run esbuild
+    return from(copyAssets()).pipe(
+      switchMap(() => {
+        context.logger.info('Running enhanced transpilation with esbuild...');
+
+        const esbuildConfig: esbuild.BuildOptions = {
+          entryPoints: options.entryPoints.map(entry => path.resolve(projectRoot, entry)),
+          bundle: true,
+          outdir: path.resolve(projectRoot, options.outputPath),
+          sourcemap: options.sourcemap,
+          minify: options.optimize,
+          target: options.target || 'es2022',
+          format: 'esm',
+          splitting: true,
+          treeShaking: true,
+          metafile: true,
+          logLevel: 'info',
+          plugins: [
+            // Custom plugins could be added here to enhance the transpilation process
+            {
+              name: 'angular-templates',
+              setup(build) {
+                // Process Angular templates
+                build.onLoad({ filter: /\.component\.html$/ }, async (args) => {
+                  // Custom template processing for better optimization
+                  return { contents: '/* processed template */' };
+                });
+              },
+            },
+            // Add more custom plugins as needed
+          ],
+        };
+
+        if (options.watch) {
+          // Set up watch mode
+          const context = esbuild.context(esbuildConfig);
+          return from(context.then(ctx => ctx.watch()));
+        } else {
+          // One-time build
+          return from(esbuild.build(esbuildConfig));
+        }
+      }),
+      map((result) => {
+        context.logger.info('✅ Build completed successfully');
+        return { success: true };
+      }),
+      catchError((error) => {
+        context.logger.error('❌ Build failed');
+        context.logger.error(error);
+        return of({ success: false, error: error.message });
+      })
+    );
+  }
+);
+
+// Register the builder in angular.json
+// "builders": {
+//   "custom-build": {
+//     "implementation": "./path-to-builders/my-custom-builder",
+//     "schema": "./path-to-builders/my-custom-builder/schema.json",
+//     "description": "Custom Angular 19 builder with enhanced transpilation features"
+//   }
+// }

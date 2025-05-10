@@ -1,0 +1,24 @@
+// angular.json configuration for persistent build cache
+{
+  "projects": {
+    "my-angular-app": {
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            // Enable advanced persistent build cache
+            "cache": {
+              "enabled": true,
+              "path": ".angular/cache",
+              // New in Angular 19: more granular cache configuration
+              "environment": "all",
+              "maxSize": "500mb",
+              "hashAlgorithm": "sha256"
+            },
+            // ...other build options
+          }
+        }
+      }
+    }
+  }
+}

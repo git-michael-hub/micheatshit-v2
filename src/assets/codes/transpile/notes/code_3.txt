@@ -1,0 +1,44 @@
+// angular.json configuration for esbuild in Angular 19
+{
+  "projects": {
+    "my-app": {
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
+          "options": {
+            "optimization": true,
+            "sourceMap": true,
+            "namedChunks": true,
+            "vendorChunk": true,
+            "buildOptimizer": true,
+            "statsJson": false,
+            "progress": true,
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }
+            ],
+            // Enhanced esbuild options available in Angular 19
+            "esbuildOptions": {
+              "target": "es2022",
+              "legalComments": "none",
+              "tsconfigPath": "tsconfig.app.json",
+              "minify": true,
+              "keepNames": false,
+              "splitting": true,
+              "metafile": true,
+              "banner": "/* My Angular 19 App - Built with esbuild */",
+              "treeShaking": true,
+              "format": "esm"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Example CLI command to build with esbuild
+// $ ng build --configuration production

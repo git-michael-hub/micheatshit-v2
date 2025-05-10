@@ -1,0 +1,129 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "my-angular19-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": false,
+          "standalone": true,
+          "changeDetection": "OnPush"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
+          "options": {
+            "outputPath": "dist/my-angular19-app",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [],
+            // Enhanced tree shaking configurations
+            "optimization": {
+              "scripts": true,
+              "styles": {
+                "minify": true,
+                "inlineCritical": true
+              },
+              "fonts": true
+            },
+            // Budgets to enforce size limits
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "500kb",
+                "maximumError": "1mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ],
+            // esbuild configuration for better tree shaking
+            "esbuildOptions": {
+              "target": "es2022",
+              "legalComments": "none",
+              "treeShaking": true,
+              "format": "esm"
+            },
+            // Enable caching for faster rebuilds
+            "cache": true,
+            "sourceMap": true,
+            "namedChunks": true,
+            "vendorChunk": true,
+            "commonChunk": true,
+            // Enable build optimizer for better tree shaking
+            "buildOptimizer": true
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              // Maximum tree shaking in production
+              "optimization": true,
+              "extraWebpackConfig": "webpack.prod.config.js",
+              "sourceMap": false,
+              // Disable verbose output that might interfere with static analysis
+              "verbose": false,
+              // Enhanced production settings for optimal tree shaking
+              "aot": true,
+              "buildOptimizer": true,
+              "statsJson": true
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false,
+    "cache": {
+      "enabled": true
+    }
+  }
+}

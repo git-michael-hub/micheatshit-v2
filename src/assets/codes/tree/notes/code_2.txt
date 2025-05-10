@@ -1,0 +1,44 @@
+// Example of Angular 19's side effect analysis for tree shaking
+
+// util.ts - File with side effects
+export const APP_VERSION = '1.0.0';
+
+// This has a side effect (modifies window object)
+window.appVersion = APP_VERSION;
+
+export function formatDate(date: Date): string {
+  return date.toISOString().split('T')[0];
+}
+
+export function calculateAge(birthDate: Date): number {
+  const diff = Date.now() - birthDate.getTime();
+  return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+}
+
+// In package.json, we can now be explicit about which files have side effects
+{
+  "name": "my-angular-app",
+  "version": "1.0.0",
+  "sideEffects": [
+    "./src/util.ts",
+    "*.css"
+  ],
+  // Rest of package.json...
+}
+
+// Angular 19 component using the utilities
+import { Component } from '@angular/core';
+import { calculateAge } from './util'; // Only import what's needed
+
+@Component({
+  selector: 'app-user-profile',
+  template: `<div>Age: {{ userAge }}</div>`
+})
+export class UserProfileComponent {
+  birthDate = new Date('1990-01-01');
+  userAge = calculateAge(this.birthDate);
+
+  // Even though we only import calculateAge,
+  // the side effect of setting window.appVersion will be preserved
+  // but formatDate will be tree-shaken away completely
+}

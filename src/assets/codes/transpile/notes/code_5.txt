@@ -1,0 +1,50 @@
+// Optimized tsconfig.json for Angular 19
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    // ES2022 is the default target in Angular 19
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    // Path aliases for cleaner imports
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@core/*": ["src/app/core/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@env/*": ["src/environments/*"]
+    },
+    // Performance optimizations
+    "incremental": true,
+    "skipLibCheck": true,
+    // New in Angular 19: type checking improvements
+    "allowSyntheticDefaultImports": true,
+    "verbatimModuleSyntax": true,
+    // ESM support
+    "esModuleInterop": true
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    // Angular 19 compiler improvements
+    "disableTypeScriptVersionCheck": true,
+    "compilationMode": "partial",
+    "enableResourceInlining": true,
+    "preserveWhitespaces": false
+  }
+}

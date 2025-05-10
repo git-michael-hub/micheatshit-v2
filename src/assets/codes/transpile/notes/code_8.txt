@@ -1,0 +1,76 @@
+// Enhanced source map configuration in Angular 19
+// angular.json (partial)
+{
+  "projects": {
+    "my-app": {
+      "architect": {
+        "build": {
+          "options": {
+            // Angular 19 enhanced source map options
+            "sourceMap": {
+              "scripts": true,
+              "styles": true,
+              "vendor": true,
+              "hidden": false,
+              // New in Angular 19
+              "inlineSources": true,
+              "includeSources": true
+            }
+          },
+          "configurations": {
+            "development": {
+              "sourceMap": {
+                "scripts": true,
+                "styles": true,
+                "vendor": true,
+                "hidden": false
+              }
+            },
+            "production": {
+              "sourceMap": {
+                "scripts": false,
+                "styles": false,
+                "vendor": false,
+                "hidden": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// tsconfig.json (partial)
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "inlineSources": true,
+    "inlineSourceMap": false,
+    "declaration": true,
+    "declarationMap": true,
+    // Angular 19 supports more granular source map control
+    "sourceRoot": "/"
+  }
+}
+
+// Example of using source maps with the Chrome DevTools
+// Launch Chrome with source maps enabled:
+// $ chrome --enable-features=SourceMapImprovedSourceTracking
+
+// Using source-map-explorer to analyze bundle sizes:
+// $ npx source-map-explorer dist/my-app/main.*.js
+
+// Configuring server to serve source maps correctly
+// Example for Express.js
+const express = require('express');
+const app = express();
+
+// Serve source maps with correct MIME type
+app.get('*.js.map', (req, res, next) => {
+  res.set('Content-Type', 'application/json');
+  next();
+});
+
+// Serve application
+app.use(express.static('dist/my-app'));

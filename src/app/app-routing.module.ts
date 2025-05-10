@@ -372,6 +372,10 @@ const routes: Routes = [
         loadChildren: () => import('./feature/angular/concepts/template-reference-variable/template-reference-variable.module').then(m => m.TemplateReferenceVariableModule)
       },
       {
+        path: 'tree',
+        loadChildren: () => import('./feature/angular/concepts/tree/tree.module').then(m => m.TreeModule)
+      },
+      {
         path: 'universal',
         component: UniversalComponent
       },
@@ -482,6 +486,10 @@ const routes: Routes = [
       {
         path: 'token',
         loadChildren: () => import('./feature/angular/concepts/token/token.module').then(m => m.TokenModule)
+      },
+      {
+        path: 'transpile',
+        loadChildren: () => import('./feature/angular/concepts/transpile/transpile.module').then(m => m.TranspileModule)
       },
     ]
   },

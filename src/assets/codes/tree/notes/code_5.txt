@@ -1,0 +1,67 @@
+{
+  "name": "my-angular19-app",
+  "version": "1.0.0",
+  "type": "module",
+
+  // The sideEffects property is crucial for effective tree shaking
+  // false = no side effects (best for pure utility libraries)
+  // array = only these files have side effects
+  "sideEffects": [
+    "*.css",
+    "*.scss",
+    "./src/app/core/polyfills.ts",
+    "./src/app/core/global-initialization.ts"
+  ],
+
+  // Properly configured exports for better tree shaking
+  "exports": {
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "default": "./dist/utils/index.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "default": "./dist/components/index.js"
+    }
+  },
+
+  // Control which files are included in the package
+  "files": [
+    "dist"
+  ],
+
+  // Modern module format identifiers
+  "module": "./dist/esm/index.js",
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/types/index.d.ts",
+
+  // Scripts optimized for tree shaking analysis
+  "scripts": {
+    "build": "ng build --configuration production",
+    "analyze": "ng build --configuration production --stats-json && webpack-bundle-analyzer dist/stats.json",
+    "analyze:tree-shaking": "webpack-bundle-analyzer dist/stats.json --mode static --report tree-shaking-report.html"
+  },
+
+  // Dependencies with ESM support for better tree shaking
+  "dependencies": {
+    "@angular/animations": "^19.0.0",
+    "@angular/common": "^19.0.0",
+    "@angular/compiler": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "@angular/platform-browser": "^19.0.0",
+    "@angular/platform-browser-dynamic": "^19.0.0",
+    "@angular/router": "^19.0.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.6.0",
+    "zone.js": "~0.14.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.0.0",
+    "@angular/cli": "^19.0.0",
+    "@angular/compiler-cli": "^19.0.0",
+    "@types/node": "^18.18.0",
+    "typescript": "~5.2.0",
+    "webpack-bundle-analyzer": "^4.9.0"
+  }
+}

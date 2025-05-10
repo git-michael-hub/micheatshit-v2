@@ -1,0 +1,619 @@
+<section class="p-4 text-sm">
+  <p class="heading-1 mb-2">
+    Tree Shaking
+  </p>
+
+  <div class="text-content">
+    <p>
+      <span class="text-zinc-50 tw-font-medium">Tree Shaking</span>
+      in Angular 19 is an optimization technique that eliminates unused code during compilation, resulting in smaller bundle sizes and faster applications. Angular 19 introduces enhanced tree shaking capabilities with improved static analysis, more efficient code elimination, and better dependency tracking.
+    </p>
+
+    <br>
+
+    <div class="flex flex-col">
+      <div class="flex border-b border-gray-200">
+        <button (click)="selectedTab = 1" [class.text-rose-300]="selectedTab===1" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Notes
+        </button>
+        <button (click)="selectedTab = 2" [class.text-rose-300]="selectedTab===2" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Best Practices
+        </button>
+        <button (click)="selectedTab = 3" [class.text-rose-300]="selectedTab===3" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Pros and Cons
+        </button>
+        <button (click)="selectedTab = 4" [class.text-rose-300]="selectedTab===4" class="text-sky-400 hover:text-rose-400 font-semibold py-2 px-4 border-b-2 border-transparent hover:border-gray-500 focus:outline-none">
+          Related Topics
+        </button>
+      </div>
+      <div class="p-4">
+        <ng-container [ngSwitch]="selectedTab">
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="bestRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="prosConsRef;"></ng-container>
+          </div>
+          <div *ngSwitchCase="4">
+            <ng-container *ngTemplateOutlet="topicsRef"></ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="notesRef"></ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<ng-template #notesRef>
+  <p>Tree Shaking Fundamentals</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Core Concept</strong>:
+      Tree shaking is an optimization technique that removes unused code from the final bundle, making applications smaller and faster to load.
+    </li>
+    <li>
+      <strong>Dead Code Elimination</strong>:
+      Angular 19 improves static analysis to better identify and remove code that's never accessed or executed.
+    </li>
+    <li>
+      <strong>Module-Based Analysis</strong>:
+      Tree shaking works at the module level, examining import and export statements to determine which code is necessary.
+    </li>
+    <li>
+      <strong>Build Process Integration</strong>:
+      Angular CLI integrates tree shaking natively into the build process, with improved configurations in Angular 19.
+    </li>
+  </ul>
+
+  <br>
+  <br>
+
+  <p>Angular 19 Tree Shaking Enhancements</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>Enhanced Static Analysis</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 includes improved static analysis that better identifies unused code, including more complex patterns like conditional imports and dynamic references.</li>
+
+        <button (click)="code1.hidden = !code1.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code1 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_1"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Side Effect Analysis</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 introduces improved detection of side effects in code, allowing for more aggressive tree shaking without breaking application functionality.</li>
+
+        <button (click)="code2.hidden = !code2.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code2 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_2"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>ESM Optimization</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 optimizes ESM (ECMAScript Modules) for better tree shaking, leveraging ES2022 features for more efficient code elimination.</li>
+
+        <button (click)="code3.hidden = !code3.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code3 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_3"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Dependency Tracking</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 implements more sophisticated dependency tracking to better understand code relationships and remove unused imports throughout the dependency chain.</li>
+
+        <button (click)="code4.hidden = !code4.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+        <span #code4 hidden copyToClipboard>
+          <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+            <span>typescript</span>
+            <span class="copy-button-wrapper bg-gray-700"></span>
+          </div>
+
+          <pre>
+            <code
+              [highlight]="code_4"
+              [languages]="['typescript']">
+            </code>
+          </pre>
+        </span>
+      </ul>
+    </li>
+    <li>
+      <strong>Advanced Code Splitting</strong>:
+      <ul class="list-disc pl-4">
+        <li>Angular 19 features improved code splitting that works with tree shaking to optimize lazy-loaded modules and reduce initial bundle size.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Tree Shaking Configuration in Angular 19</p>
+  <ol class="list-decimal pl-4 text-sm">
+    <li>
+      <strong>package.json Configuration</strong>:
+      Setting up package.json for optimal tree shaking with the sideEffects property.
+
+      <button (click)="code5.hidden = !code5.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code5 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_5"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>angular.json Optimization Settings</strong>:
+      Configuring the build process for optimal tree shaking.
+
+      <button (click)="code6.hidden = !code6.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code6 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>json</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_6"
+            [languages]="['json']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>esbuild Integration</strong>:
+      Angular 19's integration with esbuild for faster and more efficient tree shaking.
+
+      <button (click)="code7.hidden = !code7.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code7 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>typescript</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_7"
+            [languages]="['typescript']">
+          </code>
+        </pre>
+      </span>
+    </li>
+  </ol>
+
+  <br>
+  <br>
+
+  <p>Bundle Size Comparison with Tree Shaking in Angular 19</p>
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left">Optimization Level</th>
+        <th class="py-3 px-4 text-left">Bundle Size Reduction</th>
+        <th class="py-3 px-4 text-left">Build Time Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">No Tree Shaking</td>
+        <td class="py-3 px-4">0% (Baseline)</td>
+        <td class="py-3 px-4">Fastest build time</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Standard Tree Shaking</td>
+        <td class="py-3 px-4">30-40% reduction</td>
+        <td class="py-3 px-4">Moderate increase</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Advanced Tree Shaking (Angular 19)</td>
+        <td class="py-3 px-4">45-60% reduction</td>
+        <td class="py-3 px-4">Minimal increase with esbuild</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Full Optimization (Tree Shaking + Code Splitting)</td>
+        <td class="py-3 px-4">60-75% reduction</td>
+        <td class="py-3 px-4">Significant but optimized in Angular 19</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <p>Measuring Tree Shaking Effectiveness</p>
+  <ul class="list-disc pl-4 text-sm">
+    <li>
+      <strong>Bundle Analysis Tools</strong>:
+      Angular 19 includes improved integration with bundle analyzers to visualize the effectiveness of tree shaking.
+
+      <button (click)="code8.hidden = !code8.hidden" class="border border-rose-400 rounded-md px-1 text-sky-400">code</button>
+
+      <span #code8 hidden copyToClipboard>
+        <div class="flex flex-row justify-between items-center bg-gray-900 px-4 py-2 relative top-5">
+          <span>bash</span>
+          <span class="copy-button-wrapper bg-gray-700"></span>
+        </div>
+
+        <pre>
+          <code
+            [highlight]="code_8"
+            [languages]="['bash']">
+          </code>
+        </pre>
+      </span>
+    </li>
+    <li>
+      <strong>Performance Metrics</strong>:
+      Angular 19 provides built-in performance measurement tools to assess the impact of tree shaking on application load time and runtime performance.
+    </li>
+    <li>
+      <strong>Build Reports</strong>:
+      The Angular CLI generates detailed build reports showing the effectiveness of tree shaking for each module and dependency.
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #bestRef>
+  <ol class="list-decimal px-4 text-sm">
+    <li>
+      <strong class="text-sky-400">Use ES Modules Exclusively</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Prefer ESM Modules</strong> for all dependencies to maximize tree shaking potential. Angular 19 works best with ESM-compatible packages.
+        </li>
+        <li>
+          <strong>Use "type": "module"</strong> in package.json to enforce ESM module usage throughout your application.
+        </li>
+        <li>
+          <strong>Avoid CommonJS Modules</strong> as they cannot be effectively tree-shaken due to their dynamic nature.
+        </li>
+        <li>
+          <strong>Choose ESM-Compatible Libraries</strong> when selecting third-party dependencies.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Optimize Import/Export Patterns</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Named Imports/Exports</strong> instead of default exports whenever possible, as named imports are easier to tree-shake.
+        </li>
+        <li>
+          <strong>Avoid Re-exporting Everything</strong> from a module using wildcard exports like <code>export * from './module'</code>.
+        </li>
+        <li>
+          <strong>Implement Barrel Files Carefully</strong>, ensuring they only re-export what's necessary.
+        </li>
+        <li>
+          <strong>Import Only What You Need</strong> from each module rather than importing entire libraries.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Leverage Angular's Tree Shaking Features</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Standalone Components</strong> which are more effectively tree-shaken than NgModule-based components.
+        </li>
+        <li>
+          <strong>Implement Lazy Loading</strong> for routes and features to leverage code splitting alongside tree shaking.
+        </li>
+        <li>
+          <strong>Use the @Injectable() providedIn Syntax</strong> to make services tree-shakable.
+        </li>
+        <li>
+          <strong>Use Signals for State Management</strong> as they're designed to be optimally tree-shakable in Angular 19.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Configure Side Effects Properly</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Mark Packages as Side Effect Free</strong> when appropriate using the "sideEffects" field in package.json.
+        </li>
+        <li>
+          <strong>Be Explicit About Side Effects</strong> by using an array of file patterns for files that do have side effects.
+        </li>
+        <li>
+          <strong>Avoid Global Side Effects</strong> in imported modules wherever possible.
+        </li>
+        <li>
+          <strong>Document Side Effect Behavior</strong> for custom libraries and shared modules.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong class="text-sky-400">Monitor and Analyze Bundle Size</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          <strong>Use Bundle Analysis Tools</strong> like webpack-bundle-analyzer or Angular's built-in bundle analysis to identify tree shaking issues.
+        </li>
+        <li>
+          <strong>Set Bundle Budgets</strong> in angular.json to get warnings when bundles exceed size thresholds.
+        </li>
+        <li>
+          <strong>Compare Production vs Development Builds</strong> to ensure tree shaking is working effectively.
+        </li>
+        <li>
+          <strong>Use Source Map Explorer</strong> to visualize what's included in your bundles after tree shaking.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</ng-template>
+
+<ng-template #prosConsRef>
+  <strong class="text-sky-400">
+    Pros:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Reduced Bundle Size</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Tree shaking significantly reduces application bundle size by removing unused code, leading to faster downloads and improved initial load time.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Improved Runtime Performance</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Smaller bundles mean less JavaScript for browsers to parse, compile, and execute, resulting in faster application startup and better runtime performance.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Better Mobile Experience</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Reduced bundle sizes are particularly beneficial for mobile users with limited bandwidth and processing power.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Automatic Optimization</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          In Angular 19, tree shaking is fully integrated into the build process and requires minimal manual configuration.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>More Efficient Library Usage</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Tree shaking allows developers to use large libraries while only including the specific features they need.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Enhanced Static Analysis</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Angular 19's improved static analysis capabilities can detect and eliminate more unused code patterns than previous versions.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <strong class="text-sky-400">
+    Cons:
+  </strong>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Build Time Impact</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Tree shaking can increase build times, especially for large applications, although Angular 19's esbuild integration mitigates this.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Limited Effectiveness with Dynamic Code</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Tree shaking is less effective with dynamically loaded modules, dynamic imports, or code using reflection.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Dependency on Module Format</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Tree shaking works best with ESM modules and may have limited effectiveness with CommonJS or AMD modules.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Side Effect Challenges</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Code with side effects can't be safely tree-shaken, and detecting all side effects accurately is challenging.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Third-Party Library Compatibility</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Not all third-party libraries are optimized for tree shaking, potentially limiting overall optimization.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Configuration Complexity</strong>
+      <ul class="list-disc pl-4">
+        <li>
+          Advanced tree shaking may require careful configuration of build tools and package settings.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br>
+
+  <p>
+    Angular 19 significantly improves tree shaking capabilities, addressing many of the traditional challenges while enhancing the benefits. With better static analysis, improved esbuild integration, and enhanced ESM support, tree shaking in Angular 19 provides substantial bundle size reductions with minimal configuration effort.
+  </p>
+
+  <br>
+
+  <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md mt-4">
+    <thead>
+      <tr class="bg-gray-800 text-gray-100">
+        <th class="py-3 px-4 text-left w-1/2">Pros</th>
+        <th class="py-3 px-4 text-left w-1/2">Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Reduced bundle size</td>
+        <td class="py-3 px-4">Potential build time increase</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Improved runtime performance</td>
+        <td class="py-3 px-4">Limited with dynamic code</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Better mobile experience</td>
+        <td class="py-3 px-4">Module format dependency</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Automatic optimization</td>
+        <td class="py-3 px-4">Side effect challenges</td>
+      </tr>
+      <tr class="border-b border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">More efficient library usage</td>
+        <td class="py-3 px-4">Third-party library compatibility issues</td>
+      </tr>
+      <tr class="bg-gray-950 hover:bg-gray-800 transition-colors">
+        <td class="py-3 px-4">Enhanced static analysis</td>
+        <td class="py-3 px-4">Configuration complexity</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #topicsRef>
+  <p>
+    Related topics to Tree Shaking in Angular 19:
+  </p>
+
+  <br>
+
+  <ol class="list-decimal px-10 text-sm">
+    <li>
+      <strong>Bundlers</strong>
+      <p>
+        Tools like Webpack, Rollup, and esbuild that perform tree shaking as part of the bundling process. Angular 19 integrates with modern bundlers for optimal tree shaking.
+      </p>
+    </li>
+    <li>
+      <strong>ESM (ECMAScript Modules)</strong>
+      <p>
+        The modern JavaScript module system that facilitates effective tree shaking with its static import/export structure. Angular 19 fully embraces ESM.
+      </p>
+    </li>
+    <li>
+      <strong>Code Splitting</strong>
+      <p>
+        A technique that works alongside tree shaking to divide code into smaller chunks that can be loaded on demand, further optimizing application performance.
+      </p>
+    </li>
+    <li>
+      <strong>Lazy Loading</strong>
+      <p>
+        Loading modules only when needed, which complements tree shaking by reducing the initial bundle size. Angular 19 enhances lazy loading with improved tree shaking.
+      </p>
+    </li>
+    <li>
+      <strong>Side Effects</strong>
+      <p>
+        Code operations that affect state outside their local scope, which must be carefully managed to enable effective tree shaking in Angular applications.
+      </p>
+    </li>
+    <li>
+      <strong>Bundle Analysis</strong>
+      <p>
+        Tools and techniques for examining bundle composition to identify opportunities for better tree shaking and optimization in Angular applications.
+      </p>
+    </li>
+    <li>
+      <strong>Ahead-of-Time (AOT) Compilation</strong>
+      <p>
+        Angular's compilation process that works with tree shaking to optimize templates and component code during the build process.
+      </p>
+    </li>
+    <li>
+      <strong>Angular Compiler Options</strong>
+      <p>
+        Configuration settings that affect how the Angular compiler generates code, influencing tree shaking effectiveness and bundle size.
+      </p>
+    </li>
+  </ol>
+</ng-template>

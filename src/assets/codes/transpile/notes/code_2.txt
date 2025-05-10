@@ -1,0 +1,48 @@
+// package.json with ESM configuration in Angular 19
+{
+  "name": "my-angular19-app",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/index.js",
+      "esm": "./esm2022/index.js",
+      "default": "./index.js"
+    }
+  },
+  "dependencies": {
+    "@angular/core": "^19.0.0",
+    // ...other dependencies
+  }
+}
+
+// Example of an optimized component that leverages ESM for better tree-shaking
+// my-component.ts
+import { Component, Input, computed, signal } from '@angular/core';
+
+// Only the used imports will be included in the final bundle
+@Component({
+  selector: 'app-esm-example',
+  standalone: true,
+  template: `
+    <div>
+      <h2>{{ title() }}</h2>
+      <p>{{ description }}</p>
+      <div>Status: {{ status() }}</div>
+    </div>
+  `
+})
+export class EsmExampleComponent {
+  // Signal-based reactivity works efficiently with ESM
+  counter = signal(0);
+  @Input() description = '';
+
+  // Computed values are tree-shaken efficiently with ESM
+  title = computed(() => `Count: ${this.counter()}`);
+  status = computed(() => this.counter() > 5 ? 'High' : 'Low');
+
+  increment() {
+    this.counter.update(value => value + 1);
+  }
+}

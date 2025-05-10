@@ -1,0 +1,75 @@
+// Angular 19 esbuild integration for improved tree shaking
+
+// webpack.config.js - Custom configuration with esbuild
+const { AngularWebpackPlugin } = require('@ngtools/webpack');
+const { EsbuildPlugin } = require('esbuild-loader');
+
+module.exports = {
+  mode: 'production',
+  optimization: {
+    minimizer: [
+      // Use esbuild for minification and tree shaking
+      new EsbuildPlugin({
+        target: 'es2022',
+        css: true,
+        legalComments: 'none',
+        treeShaking: true, // Enhanced tree shaking in Angular 19
+        format: 'esm',
+        minify: true,
+        // Custom tree shaking configuration
+        treeShakingOptions: {
+          // Preserve imports with side effects
+          preserveImportSideEffects: true,
+          // Preserve getters and setters
+          preserveAccessors: true,
+          // Preserve unused exports in specific files
+          preserveUnusedExports: ['**/polyfills.ts', '**/environment.ts']
+        }
+      }),
+    ],
+    // Improved chunk splitting for better tree shaking
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 20000,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module) {
+            // Get the package name
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+            // Create separate chunk for each package - better tree shaking
+            return `npm.${packageName.replace('@', '')}`;
+          },
+        },
+      },
+    },
+  },
+  plugins: [
+    // Enhanced Angular integration in Angular 19
+    new AngularWebpackPlugin({
+      tsConfigPath: 'tsconfig.app.json',
+      // Enable tree shaking for i18n
+      inlineStyleFileExtension: '.scss',
+      // Remove unused style rules
+      purgeUnusedStyles: true,
+      // Improved component tree shaking
+      removeUnusedTemplateComponents: true
+    }),
+  ],
+  // More aggressive tree shaking through module resolution
+  resolve: {
+    extensions: ['.ts', '.mjs', '.js'],
+    mainFields: ['es2022', 'es2020', 'esm2022', 'esm2020', 'module', 'main'],
+  },
+  // Faster builds through memory usage optimization
+  cache: {
+    type: 'filesystem',
+    buildDependencies: {
+      config: [__filename],
+    },
+  },
+};
+
+// Sample Angular CLI command to use this configuration
+// ng build --configuration production --extra-webpack-config webpack.config.js

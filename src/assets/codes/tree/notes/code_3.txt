@@ -1,0 +1,67 @@
+// Example of ESM optimization for better tree shaking in Angular 19
+
+// auth.service.ts - Modern ESM structure for optimal tree shaking
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+// User interfaces
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'user';
+}
+
+export interface AdminUser extends User {
+  role: 'admin';
+  permissions: string[];
+}
+
+// Using providedIn: 'root' makes this service tree-shakable
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  constructor(private http: HttpClient) {}
+
+  login(email: string, password: string): Observable<User> {
+    return this.http.post<User>('/api/login', { email, password });
+  }
+
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>(`/api/users/${id}`);
+  }
+
+  // AdminUser-specific functionality
+  getAdminDetails(user: User): Observable<AdminUser | null> {
+    if (user.role !== 'admin') return null;
+    return this.http.get<AdminUser>(`/api/admin/${user.id}`);
+  }
+}
+
+// In a component that only uses regular user functionality
+import { Component } from '@angular/core';
+import { AuthService, User } from './auth.service';
+// Notice we don't import AdminUser
+
+@Component({
+  selector: 'app-user-profile',
+  template: `<div>Welcome, {{ user?.name }}</div>`
+})
+export class UserProfileComponent {
+  user: User;
+
+  constructor(private authService: AuthService) {
+    // Only using the regular user methods
+    this.authService.getUser('123').subscribe(user => {
+      this.user = user;
+    });
+  }
+}
+
+// Angular 19's enhanced ESM support enables:
+// 1. Tree-shaking of unused code (AdminUser interface and getAdminDetails method)
+// 2. Preservation of only the code paths actually used
+// 3. Clear static dependencies for better bundling
