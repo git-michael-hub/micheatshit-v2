@@ -4,11 +4,11 @@ import { BoxWidgetDirective } from 'src/app/utils/directives/box-widget.directiv
 import { StateService } from '../../data-access/state.service';
 
 @Component({
-  selector: 'app-ng-glossary-page',
+  selector: 'app-rxjs-glossary-page',
   templateUrl: './glossary-page.component.html',
   styleUrls: ['./glossary-page.component.scss']
 })
-export class NgGlossaryPageComponent {
+export class RxjsGlossaryPageComponent {
   // @ViewChild('appBoxWidgetRef', { static: false }) appBoxWidgetRef!: BoxWidgetDirective;
 
   appBoxWidgetIsClosed!: number;

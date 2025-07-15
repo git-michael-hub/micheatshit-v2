@@ -4,7 +4,7 @@ import { StateService } from '../../data-access/state.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-glossary',
+  selector: 'app-ng-glossary',
   templateUrl: './glossary.component.html',
   styleUrls: ['./glossary.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush

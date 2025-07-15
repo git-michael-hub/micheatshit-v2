@@ -1,10 +1,9 @@
 import { angular } from "./feature/angular/data-access/values";
+import { rxjs } from "./feature/rxjs/data-access/values";
 
 export const technologies = {
   angular,
-  "rxjs": {
-    name: "rxjs"
-  },
+  rxjs,
   "ngrx": {
     name: "ngrx"
   }

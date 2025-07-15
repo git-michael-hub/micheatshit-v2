@@ -33,7 +33,6 @@ import { TemplateFormComponent } from './feature/angular/concepts/template-form/
 import { TemplateComponent } from './feature/angular/concepts/template/template.component';
 import { TemplateExpressionComponent } from './feature/angular/concepts/template-expression/template-expression.component';
 import { TemplateReferenceVariableComponent } from './feature/angular/concepts/template-reference-variable/template-reference-variable.component';
-import { GlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
 import { AngularElementComponent } from './feature/angular/concepts/angular-element/angular-element.component';
 import { AfterNextRenderComponent } from './feature/angular/concepts/after-next-render/after-next-render.component';
 import { AfterRenderComponent } from './feature/angular/concepts/after-render/after-render.component';
@@ -95,6 +94,9 @@ import { WebComponentComponent } from './feature/angular/concepts/web-component/
 import { WorkspaceComponent } from './feature/angular/concepts/workspace/workspace.component';
 import { WorkspaceConfigurationComponent } from './feature/angular/concepts/workspace-configuration/workspace-configuration.component';
 import { ZoneComponent } from './feature/angular/concepts/zone/zone.component';
+import { RxjsGlossaryComponent } from './feature/rxjs/components/glossary/glossary.component';
+import { RxjsGlossaryPageComponent } from './feature/rxjs/pages/glossary-page/glossary-page.component';
+import { NgGlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
 
 const routes: Routes = [
   {
@@ -104,7 +106,7 @@ const routes: Routes = [
   },
   {
     path: 'angular',
-    component: GlossaryPageComponent,
+    component: NgGlossaryPageComponent,
     children: [
       {
         path: 'aot',
@@ -538,6 +540,21 @@ const routes: Routes = [
         path: 'zone',
         component: ZoneComponent
       },
+      {
+        path: '',
+        redirectTo: 'aot',
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
+    path: 'rxjs',
+    component: RxjsGlossaryPageComponent,
+    children: [
+      {
+        path: '',
+        component: AotComponent
+      }
     ]
   },
 

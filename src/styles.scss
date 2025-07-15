@@ -34,3 +34,14 @@ ol li {
 code {
   @apply bg-gray-900 text-rose-300 text-xs;
 }
+
+
+.hide-scrollbar {
+  overflow: auto;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari, Opera */
+}

@@ -30,7 +30,16 @@ export class SidebarComponent {
 
         if (this.selectedTech) console.log(this.technologies)
         console.log(this.selectedTech)
-        this.items = this.technologies.angular.items;
+
+        switch (this.selectedTech) {
+          case 'angular':
+            this.items = this.technologies.angular.items;
+            break;
+          case 'rxjs':
+            this.items = this.technologies.rxjs.items;
+            break;
+        }
+
         console.log(this.items);
       });
   }

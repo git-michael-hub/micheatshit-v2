@@ -1,0 +1,35 @@
+<div class="flex flex-wrap relative overflow-y-auto">
+
+  <div *ngFor="let category of getCategories(); let categoryIndex = index" class="w-[98%]">
+    <!-- Category Header -->
+    <div class="w-full p-2 mt-4 mb-2">
+      <h3 class="text-lg font-semibold text-sky-400 border-b border-gray-600 pb-1">
+        {{ category }}
+      </h3>
+    </div>
+
+    <!-- Items in this category -->
+    <a
+      [routerLink]="item.url"
+      type="button"
+      (click)="fn(item)"
+      *ngFor="let item of getItemsByCategory(category); let i = index"
+      class="wrapper-container-{{i}}   cursor-pointer m-1 relative flex items-center
+        rounded-lg border border-gray-300
+        bg-[#303030] p-2 shadow-sm
+        focus:ring-2 focus:ring-rose-500 focus:ring-offset-1
+        hover:border-rose-400 hover:shadow-lg hover:ring-rose-400 hover:ring-1
+        w-full
+      ">
+      <div class="min-w-0 flex-1">
+        <span
+          appFirstLetterColor
+          text="{{item.name}}"
+          [id]="i"
+          class="text-sm font-medium text-content">
+        </span>
+      </div>
+    </a>
+  </div>
+
+</div>

@@ -10,7 +10,6 @@ import { SidebarComponent } from './core/sidebar/sidebar.component';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { ObjToArrPipe } from './utils/pipes/obj-to-arr.pipe';
 import { BypassStringIndexPipe } from './utils/pipes/bypass-string-index.pipe';
-import { GlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
 import { BoxWidgetDirective } from './utils/directives/box-widget.directive';
 import { AotComponent } from './feature/angular/concepts/aot/aot.component';
 import { ApfComponent } from './feature/angular/concepts/apf/apf.component';
@@ -76,6 +75,9 @@ import { SchematicsCliModule } from './feature/angular/concepts/schematics-cli/s
 import { ScopedPackageModule } from './feature/angular/concepts/scoped-package/scoped-package.module';
 import { ServiceModule } from './feature/angular/concepts/service/service.module';
 import { TargetComponent } from './feature/angular/concepts/target/target.component';
+import { RxjsGlossaryComponent } from './feature/rxjs/components/glossary/glossary.component';
+import { NgGlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
+import { RxjsGlossaryPageComponent } from './feature/rxjs/pages/glossary-page/glossary-page.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,7 @@ import { TargetComponent } from './feature/angular/concepts/target/target.compon
     SidebarComponent,
     ObjToArrPipe,
     BypassStringIndexPipe,
-    GlossaryPageComponent,
+    GlossaryComponent,
     BoxWidgetDirective,
     AotComponent,
     AngularElementComponent,
@@ -130,6 +132,9 @@ import { TargetComponent } from './feature/angular/concepts/target/target.compon
     ElementComponent,
     EntryPointComponent,
     TargetComponent,
+    RxjsGlossaryComponent,
+    RxjsGlossaryPageComponent,
+    NgGlossaryPageComponent
   ],
   imports: [
     CommonModule,
