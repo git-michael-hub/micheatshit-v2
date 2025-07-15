@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-rxjs-glossary',
+  selector: 'app-sass-glossary',
   templateUrl: './glossary.component.html',
   styleUrls: ['./glossary.component.css']
 })
-export class RxjsGlossaryComponent implements OnInit {
+export class SassGlossaryComponent implements OnInit {
   components = [
     {
       "name": "Consumer",

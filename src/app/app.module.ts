@@ -80,6 +80,8 @@ import { NgGlossaryPageComponent } from './feature/angular/pages/glossary-page/g
 import { RxjsGlossaryPageComponent } from './feature/rxjs/pages/glossary-page/glossary-page.component';
 import { SearchComponent } from './uis/input/search/search.component';
 import { SearchPipe } from './shared/pipes/search.pipe';
+import { SassGlossaryComponent } from './feature/sass/components/glossary/glossary.component';
+import { SassGlossaryPageComponent } from './feature/sass/pages/glossary-page/glossary-page.component';
 
 @NgModule({
   declarations: [
@@ -136,6 +138,8 @@ import { SearchPipe } from './shared/pipes/search.pipe';
     TargetComponent,
     RxjsGlossaryComponent,
     RxjsGlossaryPageComponent,
+    SassGlossaryComponent,
+    SassGlossaryPageComponent,
     NgGlossaryPageComponent,
     SearchPipe
   ],

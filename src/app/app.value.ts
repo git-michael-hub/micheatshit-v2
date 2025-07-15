@@ -1,10 +1,12 @@
 import { angular, angular19 } from "./feature/angular/data-access/values";
-import { rxjs } from "./feature/rxjs/data-access/values";
+import { rxjs7 } from "./feature/rxjs/data-access/values";
+import { sass } from "./feature/sass/data-access/values";
 
 export const technologies = {
   angular,
   angular19,
-  rxjs,
+  rxjs7,
+  sass,
   "ngrx": {
     name: "ngrx"
   }

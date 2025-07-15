@@ -97,6 +97,7 @@ import { ZoneComponent } from './feature/angular/concepts/zone/zone.component';
 import { RxjsGlossaryComponent } from './feature/rxjs/components/glossary/glossary.component';
 import { RxjsGlossaryPageComponent } from './feature/rxjs/pages/glossary-page/glossary-page.component';
 import { NgGlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
+import { SassGlossaryPageComponent } from './feature/sass/pages/glossary-page/glossary-page.component';
 
 
 const angular_children: any[] = [
@@ -556,8 +557,18 @@ const routes: Routes = [
     children: [...angular_children]
   },
   {
-    path: 'rxjs',
+    path: 'rxjs7',
     component: RxjsGlossaryPageComponent,
+    children: [
+      {
+        path: '',
+        component: AotComponent
+      }
+    ]
+  },
+  {
+    path: 'sass',
+    component: SassGlossaryPageComponent,
     children: [
       {
         path: '',

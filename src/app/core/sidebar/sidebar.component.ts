@@ -38,8 +38,11 @@ export class SidebarComponent {
           case 'angular19':
             this.items = this.technologies.angular19.items;
             break;
-          case 'rxjs':
-            this.items = this.technologies.rxjs.items;
+          case 'rxjs7':
+            this.items = this.technologies.rxjs7.items;
+            break;
+          case 'sass':
+            this.items = this.technologies.sass.items;
             break;
         }
 

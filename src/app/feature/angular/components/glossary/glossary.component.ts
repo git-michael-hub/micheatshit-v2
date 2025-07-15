@@ -861,7 +861,7 @@ export class GlossaryComponent implements OnInit {
     },
   ];
 
-  searchTerm = ''
+  searchTerm = '';
 
   // bottomPills$!: Observable<{}[]>;
 
@@ -887,7 +887,7 @@ export class GlossaryComponent implements OnInit {
     });
   }
 
-    // - search
+  // - search
   toSearch(term: string): void {
     console.log('term', term)
     this.searchTerm = term;

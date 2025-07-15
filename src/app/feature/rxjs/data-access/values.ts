@@ -1,7 +1,7 @@
 
-export const rxjs = {
-  "name": "rxjs",
-  "url": "rxjs",
+export const rxjs7 = {
+  "name": "rxjs7",
+  "url": "rxjs7",
   "items": {
     "Overview": {
       "observables": {
