@@ -98,454 +98,462 @@ import { RxjsGlossaryComponent } from './feature/rxjs/components/glossary/glossa
 import { RxjsGlossaryPageComponent } from './feature/rxjs/pages/glossary-page/glossary-page.component';
 import { NgGlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
 
+
+const angular_children: any[] = [
+  {
+    path: 'aot',
+    component: AotComponent
+  },
+  {
+    path: 'after-next-render',
+    component: AfterNextRenderComponent
+  },
+  {
+    path: 'after-render',
+    component: AfterRenderComponent
+  },
+  {
+    path: 'angular-element',
+    component: AngularElementComponent
+  },
+  {
+    path: 'annotation',
+    component: AnnotationComponent
+  },
+  {
+    path: 'app-shell',
+    component: AppShellComponent
+  },
+  {
+    path: 'architect',
+    component: ArchitectComponent
+  },
+  {
+    path: 'attribute-directive',
+    component: AttributeDirectiveComponent
+  },
+  {
+    path: 'binding',
+    component: BindingComponent
+  },
+  {
+    path: 'bootstrap',
+    component: BootstrapComponent
+  },
+  {
+    path: 'builder',
+    component: BuilderComponent
+  },
+  {
+    path: 'case-types',
+    component: CaseTypesComponent
+  },
+  {
+    path: 'change-detection',
+    component: ChangeDetectionComponent
+  },
+  {
+    path: 'data-binding',
+    component: DataBindingComponent
+  },
+  {
+    path: 'declarable',
+    component: DeclarableComponent
+  },
+  {
+    path: 'decorator',
+    component: DecoratorComponent
+  },
+  {
+    path: 'di',
+    component: DependencyInjectionComponent
+  },
+  {
+    path: 'di-token',
+    component: DiTokenComponent
+  },
+  {
+    path: 'directive',
+    component: DirectiveComponent
+  },
+  {
+    path: 'dynamic-component-loading',
+    component: DynamicComponentLoadingComponent
+  },
+  {
+    path: 'eager-loading',
+    component: EagerLoadingComponent
+  },
+  {
+    path: 'ecmascript',
+    component: EcmascriptComponent
+  },
+  {
+    path: 'element',
+    component: ElementComponent
+  },
+  {
+    path: 'entry-point',
+    component: EntryPointComponent
+  },
+  {
+    path: 'angular-devtools',
+    component: AngularDevToolsComponent
+  },
+  {
+    path: 'deferrable-views',
+    component: DeferrableViewsComponent
+  },
+  {
+    path: 'form-control',
+    component: FormControlComponent
+  },
+  {
+    path: 'form-model',
+    component: FormModelComponent
+  },
+  {
+    path: 'form-validation',
+    component: FormValidationComponent
+  },
+  {
+    path: 'hydration',
+    component: HydrationComponent
+  },
+  {
+    path: 'immutability',
+    component: ImmutabilityComponent
+  },
+  {
+    path: 'injectable',
+    component: InjectableComponent
+  },
+  {
+    path: 'injector',
+    component: InjectorComponent
+  },
+  {
+    path: 'input-transform',
+    component: InputTransformComponent
+  },
+  {
+    path: 'lazy-loading',
+    component: LazyLoadingComponent
+  },
+  {
+    path: 'library',
+    component: LibraryComponent
+  },
+  {
+    path: 'lifecycle-hook',
+    component: LifecycleHookComponent
+  },
+  {
+    path: 'module',
+    component: ModuleComponent
+  },
+  {
+    path: 'observable',
+    component: ObservableComponent
+  },
+  {
+    path: 'observer',
+    loadChildren: () => import('./feature/angular/concepts/observer/observer.module').then(m => m.ObserverModule)
+  },
+  {
+    path: 'output',
+    loadChildren: () => import('./feature/angular/concepts/output/output.module').then(m => m.OutputModule)
+  },
+  {
+    path: 'partial-hydration',
+    loadChildren: () => import('./feature/angular/concepts/partial-hydration/partial-hydration.module').then(m => m.PartialHydrationModule)
+  },
+  {
+    path: 'pipe',
+    component: PipeComponent
+  },
+  {
+    path: 'platform',
+    loadChildren: () => import('./feature/angular/concepts/platform/platform.module').then(m => m.PlatformModule)
+  },
+  {
+    path: 'polyfill',
+    loadChildren: () => import('./feature/angular/concepts/polyfill/polyfill.module').then(m => m.PolyfillModule)
+  },
+  {
+    path: 'reactive-form',
+    component: ReactiveFormComponent
+  },
+  {
+    path: 'resolver',
+    component: ResolverComponent
+  },
+  {
+    path: 'route-guard',
+    component: RouteGuardComponent
+  },
+  {
+    path: 'router',
+    component: RouterComponent
+  },
+  {
+    path: 'router-outlet',
+    component: RouterOutletComponent
+  },
+  {
+    path: 'routing-component',
+    component: RoutingComponentComponent
+  },
+  {
+    path: 'rule',
+    component: RuleComponent
+  },
+  {
+    path: 'schematic',
+    component: SchematicComponent
+  },
+  {
+    path: 'schematics-cli',
+    component: SchematicsCliComponent
+  },
+  {
+    path: 'scoped-package',
+    component: ScopedPackageComponent
+  },
+  {
+    path: 'signals',
+    component: SignalsComponent
+  },
+  {
+    path: 'signal-components',
+    component: SignalComponentsComponent
+  },
+  {
+    path: 'ssr',
+    component: SsrComponent
+  },
+  {
+    path: 'standalone',
+    component: StandaloneComponent
+  },
+  {
+    path: 'structural-directive',
+    component: StructuralDirectiveComponent
+  },
+  {
+    path: 'style-url',
+    component: StyleUrlComponent
+  },
+  {
+    path: 'target',
+    component: TargetComponent
+  },
+  {
+    path: 'subscriber',
+    component: SubscriberComponent
+  },
+  {
+    path: 'template',
+    component: TemplateComponent
+  },
+  {
+    path: 'template-expression',
+    component: TemplateExpressionComponent
+  },
+  {
+    path: 'template-form',
+    component: TemplateFormComponent
+  },
+  {
+    path: 'template-input-variable',
+    loadChildren: () => import('./feature/angular/concepts/template-input-variable/template-input-variable.module').then(m => m.TemplateInputVariableModule)
+  },
+  {
+    path: 'template-reference-variable',
+    loadChildren: () => import('./feature/angular/concepts/template-reference-variable/template-reference-variable.module').then(m => m.TemplateReferenceVariableModule)
+  },
+  {
+    path: 'tree',
+    loadChildren: () => import('./feature/angular/concepts/tree/tree.module').then(m => m.TreeModule)
+  },
+  {
+    path: 'typescript',
+    loadChildren: () => import('./feature/angular/concepts/typescript/typescript.module').then(m => m.TypescriptModule)
+  },
+  {
+    path: 'universal',
+    component: UniversalComponent
+  },
+  {
+    path: 'view-hierarchy',
+    component: ViewHierarchyComponent
+  },
+  {
+    path: 'view-transitions',
+    component: ViewTransitionsComponent
+  },
+  {
+    path: 'web-component',
+    component: WebComponentComponent
+  },
+  {
+    path: 'workspace',
+    component: WorkspaceComponent
+  },
+  {
+    path: 'workspace-configuration',
+    component: WorkspaceConfigurationComponent
+  },
+  {
+    path: 'zoneless-applications',
+    component: ZonelessApplicationsComponent
+  },
+  {
+    path: 'component',
+    component: ComponentComponent
+  },
+  {
+    path: 'configuration',
+    component: ConfigurationComponent
+  },
+  {
+    path: 'content-projection',
+    component: ContentProjectionComponent
+  },
+  {
+    path: 'control-flow',
+    component: ControlFlowComponent
+  },
+  {
+    path: 'class-decorator',
+    component: ClassDecoratorComponent
+  },
+  {
+    path: 'class-field-decorator',
+    component: ClassFieldDecoratorComponent
+  },
+  {
+    path: 'collection',
+    component: CollectionComponent
+  },
+  {
+    path: 'cli',
+    component: CliComponent
+  },
+  {
+    path: 'custom-element',
+    component: CustomElementComponent
+  },
+  {
+    path: 'dsl',
+    component: DslComponent
+  },
+  {
+    path: 'input',
+    component: InputComponent
+  },
+  {
+    path: 'interpolation',
+    component: InterpolationComponent
+  },
+  {
+    path: 'ivy',
+    component: IvyComponent
+  },
+  {
+    path: 'javascript',
+    component: JavascriptComponent
+  },
+  {
+    path: 'jit',
+    component: JitComponent
+  },
+  {
+    path: 'hooks',
+    component: LifecycleHookComponent
+  },
+  {
+    path: 'ngcc',
+    component: NgccComponent
+  },
+  {
+    path: 'ngmodule',
+    component: ModuleComponent
+  },
+  {
+    path: 'npm-package',
+    component: NpmPackageComponent
+  },
+  {
+    path: 'ngc',
+    component: NgcComponent
+  },
+  {
+    path: 'project',
+    loadChildren: () => import('./feature/angular/concepts/project/project.module').then(m => m.ProjectModule)
+  },
+  {
+    path: 'provider',
+    loadChildren: () => import('./feature/angular/concepts/provider/provider.module').then(m => m.ProviderModule)
+  },
+  {
+    path: 'service',
+    loadChildren: () => import('./feature/angular/concepts/service/service.module').then(m => m.ServiceModule)
+  },
+  {
+    path: 'token',
+    loadChildren: () => import('./feature/angular/concepts/token/token.module').then(m => m.TokenModule)
+  },
+  {
+    path: 'transpile',
+    loadChildren: () => import('./feature/angular/concepts/transpile/transpile.module').then(m => m.TranspileModule)
+  },
+  {
+    path: 'tsconfig',
+    loadChildren: () => import('./feature/angular/concepts/tsconfig.module').then(m => m.TsconfigModule)
+  },
+  {
+    path: 'typescript-configuration',
+    loadChildren: () => import('./feature/angular/concepts/tsconfig.module').then(m => m.TsconfigModule)
+  },
+  {
+    path: 'unidirectional-data-flow',
+    component: UnidirectionalDataFlowComponent
+  },
+  {
+    path: 'view',
+    component: ViewComponent
+  },
+  {
+    path: 'view-engine',
+    component: ViewEngineComponent
+  },
+  {
+    path: 'zone',
+    component: ZoneComponent
+  },
+  {
+    path: '',
+    redirectTo: 'aot',
+    pathMatch: 'full'
+  }
+];
+
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'angular',
+    redirectTo: 'angular19',
     pathMatch: 'full'
   },
   {
     path: 'angular',
     component: NgGlossaryPageComponent,
-    children: [
-      {
-        path: 'aot',
-        component: AotComponent
-      },
-      {
-        path: 'after-next-render',
-        component: AfterNextRenderComponent
-      },
-      {
-        path: 'after-render',
-        component: AfterRenderComponent
-      },
-      {
-        path: 'angular-element',
-        component: AngularElementComponent
-      },
-      {
-        path: 'annotation',
-        component: AnnotationComponent
-      },
-      {
-        path: 'app-shell',
-        component: AppShellComponent
-      },
-      {
-        path: 'architect',
-        component: ArchitectComponent
-      },
-      {
-        path: 'attribute-directive',
-        component: AttributeDirectiveComponent
-      },
-      {
-        path: 'binding',
-        component: BindingComponent
-      },
-      {
-        path: 'bootstrap',
-        component: BootstrapComponent
-      },
-      {
-        path: 'builder',
-        component: BuilderComponent
-      },
-      {
-        path: 'case-types',
-        component: CaseTypesComponent
-      },
-      {
-        path: 'change-detection',
-        component: ChangeDetectionComponent
-      },
-      {
-        path: 'data-binding',
-        component: DataBindingComponent
-      },
-      {
-        path: 'declarable',
-        component: DeclarableComponent
-      },
-      {
-        path: 'decorator',
-        component: DecoratorComponent
-      },
-      {
-        path: 'di',
-        component: DependencyInjectionComponent
-      },
-      {
-        path: 'di-token',
-        component: DiTokenComponent
-      },
-      {
-        path: 'directive',
-        component: DirectiveComponent
-      },
-      {
-        path: 'dynamic-component-loading',
-        component: DynamicComponentLoadingComponent
-      },
-      {
-        path: 'eager-loading',
-        component: EagerLoadingComponent
-      },
-      {
-        path: 'ecmascript',
-        component: EcmascriptComponent
-      },
-      {
-        path: 'element',
-        component: ElementComponent
-      },
-      {
-        path: 'entry-point',
-        component: EntryPointComponent
-      },
-      {
-        path: 'angular-devtools',
-        component: AngularDevToolsComponent
-      },
-      {
-        path: 'deferrable-views',
-        component: DeferrableViewsComponent
-      },
-      {
-        path: 'form-control',
-        component: FormControlComponent
-      },
-      {
-        path: 'form-model',
-        component: FormModelComponent
-      },
-      {
-        path: 'form-validation',
-        component: FormValidationComponent
-      },
-      {
-        path: 'hydration',
-        component: HydrationComponent
-      },
-      {
-        path: 'immutability',
-        component: ImmutabilityComponent
-      },
-      {
-        path: 'injectable',
-        component: InjectableComponent
-      },
-      {
-        path: 'injector',
-        component: InjectorComponent
-      },
-      {
-        path: 'input-transform',
-        component: InputTransformComponent
-      },
-      {
-        path: 'lazy-loading',
-        component: LazyLoadingComponent
-      },
-      {
-        path: 'library',
-        component: LibraryComponent
-      },
-      {
-        path: 'lifecycle-hook',
-        component: LifecycleHookComponent
-      },
-      {
-        path: 'module',
-        component: ModuleComponent
-      },
-      {
-        path: 'observable',
-        component: ObservableComponent
-      },
-      {
-        path: 'observer',
-        loadChildren: () => import('./feature/angular/concepts/observer/observer.module').then(m => m.ObserverModule)
-      },
-      {
-        path: 'output',
-        loadChildren: () => import('./feature/angular/concepts/output/output.module').then(m => m.OutputModule)
-      },
-      {
-        path: 'partial-hydration',
-        loadChildren: () => import('./feature/angular/concepts/partial-hydration/partial-hydration.module').then(m => m.PartialHydrationModule)
-      },
-      {
-        path: 'pipe',
-        component: PipeComponent
-      },
-      {
-        path: 'platform',
-        loadChildren: () => import('./feature/angular/concepts/platform/platform.module').then(m => m.PlatformModule)
-      },
-      {
-        path: 'polyfill',
-        loadChildren: () => import('./feature/angular/concepts/polyfill/polyfill.module').then(m => m.PolyfillModule)
-      },
-      {
-        path: 'reactive-form',
-        component: ReactiveFormComponent
-      },
-      {
-        path: 'resolver',
-        component: ResolverComponent
-      },
-      {
-        path: 'route-guard',
-        component: RouteGuardComponent
-      },
-      {
-        path: 'router',
-        component: RouterComponent
-      },
-      {
-        path: 'router-outlet',
-        component: RouterOutletComponent
-      },
-      {
-        path: 'routing-component',
-        component: RoutingComponentComponent
-      },
-      {
-        path: 'rule',
-        component: RuleComponent
-      },
-      {
-        path: 'schematic',
-        component: SchematicComponent
-      },
-      {
-        path: 'schematics-cli',
-        component: SchematicsCliComponent
-      },
-      {
-        path: 'scoped-package',
-        component: ScopedPackageComponent
-      },
-      {
-        path: 'signals',
-        component: SignalsComponent
-      },
-      {
-        path: 'signal-components',
-        component: SignalComponentsComponent
-      },
-      {
-        path: 'ssr',
-        component: SsrComponent
-      },
-      {
-        path: 'standalone',
-        component: StandaloneComponent
-      },
-      {
-        path: 'structural-directive',
-        component: StructuralDirectiveComponent
-      },
-      {
-        path: 'style-url',
-        component: StyleUrlComponent
-      },
-      {
-        path: 'target',
-        component: TargetComponent
-      },
-      {
-        path: 'subscriber',
-        component: SubscriberComponent
-      },
-      {
-        path: 'template',
-        component: TemplateComponent
-      },
-      {
-        path: 'template-expression',
-        component: TemplateExpressionComponent
-      },
-      {
-        path: 'template-form',
-        component: TemplateFormComponent
-      },
-      {
-        path: 'template-input-variable',
-        loadChildren: () => import('./feature/angular/concepts/template-input-variable/template-input-variable.module').then(m => m.TemplateInputVariableModule)
-      },
-      {
-        path: 'template-reference-variable',
-        loadChildren: () => import('./feature/angular/concepts/template-reference-variable/template-reference-variable.module').then(m => m.TemplateReferenceVariableModule)
-      },
-      {
-        path: 'tree',
-        loadChildren: () => import('./feature/angular/concepts/tree/tree.module').then(m => m.TreeModule)
-      },
-      {
-        path: 'typescript',
-        loadChildren: () => import('./feature/angular/concepts/typescript/typescript.module').then(m => m.TypescriptModule)
-      },
-      {
-        path: 'universal',
-        component: UniversalComponent
-      },
-      {
-        path: 'view-hierarchy',
-        component: ViewHierarchyComponent
-      },
-      {
-        path: 'view-transitions',
-        component: ViewTransitionsComponent
-      },
-      {
-        path: 'web-component',
-        component: WebComponentComponent
-      },
-      {
-        path: 'workspace',
-        component: WorkspaceComponent
-      },
-      {
-        path: 'workspace-configuration',
-        component: WorkspaceConfigurationComponent
-      },
-      {
-        path: 'zoneless-applications',
-        component: ZonelessApplicationsComponent
-      },
-      {
-        path: 'component',
-        component: ComponentComponent
-      },
-      {
-        path: 'configuration',
-        component: ConfigurationComponent
-      },
-      {
-        path: 'content-projection',
-        component: ContentProjectionComponent
-      },
-      {
-        path: 'control-flow',
-        component: ControlFlowComponent
-      },
-      {
-        path: 'class-decorator',
-        component: ClassDecoratorComponent
-      },
-      {
-        path: 'class-field-decorator',
-        component: ClassFieldDecoratorComponent
-      },
-      {
-        path: 'collection',
-        component: CollectionComponent
-      },
-      {
-        path: 'cli',
-        component: CliComponent
-      },
-      {
-        path: 'custom-element',
-        component: CustomElementComponent
-      },
-      {
-        path: 'dsl',
-        component: DslComponent
-      },
-      {
-        path: 'input',
-        component: InputComponent
-      },
-      {
-        path: 'interpolation',
-        component: InterpolationComponent
-      },
-      {
-        path: 'ivy',
-        component: IvyComponent
-      },
-      {
-        path: 'javascript',
-        component: JavascriptComponent
-      },
-      {
-        path: 'jit',
-        component: JitComponent
-      },
-      {
-        path: 'hooks',
-        component: LifecycleHookComponent
-      },
-      {
-        path: 'ngcc',
-        component: NgccComponent
-      },
-      {
-        path: 'ngmodule',
-        component: ModuleComponent
-      },
-      {
-        path: 'npm-package',
-        component: NpmPackageComponent
-      },
-      {
-        path: 'ngc',
-        component: NgcComponent
-      },
-      {
-        path: 'project',
-        loadChildren: () => import('./feature/angular/concepts/project/project.module').then(m => m.ProjectModule)
-      },
-      {
-        path: 'provider',
-        loadChildren: () => import('./feature/angular/concepts/provider/provider.module').then(m => m.ProviderModule)
-      },
-      {
-        path: 'service',
-        loadChildren: () => import('./feature/angular/concepts/service/service.module').then(m => m.ServiceModule)
-      },
-      {
-        path: 'token',
-        loadChildren: () => import('./feature/angular/concepts/token/token.module').then(m => m.TokenModule)
-      },
-      {
-        path: 'transpile',
-        loadChildren: () => import('./feature/angular/concepts/transpile/transpile.module').then(m => m.TranspileModule)
-      },
-      {
-        path: 'tsconfig',
-        loadChildren: () => import('./feature/angular/concepts/tsconfig.module').then(m => m.TsconfigModule)
-      },
-      {
-        path: 'typescript-configuration',
-        loadChildren: () => import('./feature/angular/concepts/tsconfig.module').then(m => m.TsconfigModule)
-      },
-      {
-        path: 'unidirectional-data-flow',
-        component: UnidirectionalDataFlowComponent
-      },
-      {
-        path: 'view',
-        component: ViewComponent
-      },
-      {
-        path: 'view-engine',
-        component: ViewEngineComponent
-      },
-      {
-        path: 'zone',
-        component: ZoneComponent
-      },
-      {
-        path: '',
-        redirectTo: 'aot',
-        pathMatch: 'full'
-      }
-    ]
+    children: [...angular_children]
+  },
+  {
+    path: 'angular19',
+    component: NgGlossaryPageComponent,
+    children: [...angular_children]
   },
   {
     path: 'rxjs',

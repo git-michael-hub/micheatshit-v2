@@ -435,6 +435,130 @@ export const angular = {
   }
 };
 
+export const angular19 = {
+  "name": "Angular 19",
+  "url": "angular19",
+  "items": {
+    "Introduction": {
+      "ng19": {
+        "name": "Angular 19"
+      },
+      "installation": {
+        "name": "Installation"
+      },
+      "essentials": {
+        "name": "Essentials"
+      }
+    },
+    "In-depth": {
+      "signals": {
+        "name": "Signals",
+      },
+      "components": {
+        "name": "Components",
+      },
+      "template": {
+        "name": "Template",
+      },
+      "directives": {
+        "name": "Directives",
+      },
+      "di": {
+        "name": "Dependency Injection",
+      },
+      "routing": {
+        "name": "Routing",
+      },
+      "forms": {
+        "name": "Forms",
+      },
+      "http-client": {
+        "name": "HTTP Client",
+      },
+      "ssr": {
+        "name": "Server-side & hybrid rendering",
+      },
+      "testing": {
+        "name": "Testing",
+      },
+      "internationalization": {
+        "name": "Internationalization",
+      },
+      "experimental-features": {
+        "name": "Experimental features",
+      },
+      "animations": {
+        "name": "Animations",
+      },
+      "drag-drop": {
+        "name": "Drag and drop",
+      },
+    },
+    "Developer Tools": {
+      "cli": {
+        "name": "CLI",
+      },
+      "libraries": {
+        "name": "Libraries",
+      },
+      "dev-tools": {
+        "name": "DevTools",
+      },
+    },
+    "Best Practices": {
+      "style-guide": {
+        "name": "Style Guide",
+      },
+      "security": {
+        "name": "Security",
+      },
+      "accessibility": {
+        "name": "Accessibility",
+      },
+      "performance": {
+        "name": "Performance",
+      },
+    },
+    "Extended Ecosystem": {
+      "modules": {
+        "name": "NgModules",
+      },
+      "animation": {
+        "name": "Animations",
+      },
+      "rxjs": {
+        "name": "RxJS with Angular",
+      },
+      "pwa": {
+        "name": "Service Workers & PWAs",
+      },
+      "web-worker": {
+        "name": "Web workers",
+      },
+      "pipeline": {
+        "name": "Custom build pipelin",
+      },
+      "angular-fire": {
+        "name": "Angular Fire",
+      },
+      "google-maps": {
+        "name": "Google Maps",
+      },
+      "google-pay": {
+        "name": "Google Pay",
+      },
+      "youtube-player": {
+        "name": "YouTube Player",
+      },
+      "angular-cdk": {
+        "name": "Angular CDK",
+      },
+      "angular-material": {
+        "name": "Angular Material",
+      },
+    }
+  }
+};
 
 
 

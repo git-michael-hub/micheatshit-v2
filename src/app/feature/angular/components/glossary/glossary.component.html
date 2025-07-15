@@ -1,10 +1,12 @@
 <div class="flex flex-wrap relative overflow-y-auto">
 
+  <ui-search (searchTermFn)="toSearch($event)" class="w-[97.5%] ml-[4px]"/>
+
   <a
     [routerLink]="item.url"
     type="button"
     (click)="fn(item)"
-    *ngFor="let item of components; let i = index;"
+    *ngFor="let item of (components | search: searchTerm); let i = index;"
     class="wrapper-container-{{i}}   cursor-pointer m-1 relative flex items-center
       rounded-lg border border-gray-300
       bg-[#303030] p-2 shadow-sm

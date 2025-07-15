@@ -78,6 +78,8 @@ import { TargetComponent } from './feature/angular/concepts/target/target.compon
 import { RxjsGlossaryComponent } from './feature/rxjs/components/glossary/glossary.component';
 import { NgGlossaryPageComponent } from './feature/angular/pages/glossary-page/glossary-page.component';
 import { RxjsGlossaryPageComponent } from './feature/rxjs/pages/glossary-page/glossary-page.component';
+import { SearchComponent } from './uis/input/search/search.component';
+import { SearchPipe } from './shared/pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -134,7 +136,8 @@ import { RxjsGlossaryPageComponent } from './feature/rxjs/pages/glossary-page/gl
     TargetComponent,
     RxjsGlossaryComponent,
     RxjsGlossaryPageComponent,
-    NgGlossaryPageComponent
+    NgGlossaryPageComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
@@ -160,8 +163,10 @@ import { RxjsGlossaryPageComponent } from './feature/rxjs/pages/glossary-page/gl
     RuleModule,
     SchematicModule,
     SchematicsCliModule,
-    ServiceModule
+    ServiceModule,
+    SearchComponent,
   ],
+  exports: [SearchPipe],
   providers: [
     {
       provide: HIGHLIGHT_OPTIONS,
